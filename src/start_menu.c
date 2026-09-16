@@ -71,6 +71,7 @@ enum
     MENU_ACTION_DEBUG,
     MENU_ACTION_DEXNAV,
     MENU_ACTION_CITIES_ACCESS,
+    MENU_ACTION_CITIES_RANKINGS,
 };
 
 // Save status
@@ -114,6 +115,8 @@ static bool8 StartMenuBattlePyramidBagCallback(void);
 static bool8 StartMenuDebugCallback(void);
 static bool8 StartMenuDexNavCallback(void);
 static bool8 StartMenuCitiesAccessCallback(void);
+static bool8 StartMenuCitiesRankingsCallback(void);
+extern const u8 Cities_EventScript_ShowRankings[];
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -210,6 +213,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_DEBUG]           = {sText_MenuDebug,   {.u8_void = StartMenuDebugCallback}},
     [MENU_ACTION_DEXNAV]          = {gText_MenuDexNav,  {.u8_void = StartMenuDexNavCallback}},
     [MENU_ACTION_CITIES_ACCESS]   = {COMPOUND_STRING("Access"), {.u8_void = StartMenuCitiesAccessCallback}},
+    [MENU_ACTION_CITIES_RANKINGS] = {COMPOUND_STRING("Ranking"), {.u8_void = StartMenuCitiesRankingsCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -334,6 +338,7 @@ static void BuildNormalStartMenu(void)
     if (DN_FLAG_DEXNAV_GET != 0 && FlagGet(DN_FLAG_DEXNAV_GET))
         AddStartMenuAction(MENU_ACTION_DEXNAV);
     AddStartMenuAction(MENU_ACTION_CITIES_ACCESS); // Cities of Emerald: Accessibility menu, always available (GDD 11)
+    AddStartMenuAction(MENU_ACTION_CITIES_RANKINGS); // Cities of Emerald: rankings (GDD 8.5)
 
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
@@ -1501,6 +1506,14 @@ void AppendToList(u8 *list, u8 *pos, u8 newEntry)
 {
     list[*pos] = newEntry;
     (*pos)++;
+}
+
+static bool8 StartMenuCitiesRankingsCallback(void)
+{
+    RemoveExtraStartMenuWindows();
+    HideStartMenu();
+    ScriptContext_SetupScript(Cities_EventScript_ShowRankings);
+    return TRUE;
 }
 
 static bool8 StartMenuCitiesAccessCallback(void)

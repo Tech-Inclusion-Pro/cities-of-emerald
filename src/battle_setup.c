@@ -6,6 +6,7 @@
 #include "battle_pike.h"
 #include "battle_pyramid.h"
 #include "battle_setup.h"
+#include "cities_rankings.h"
 #include "battle_special.h"
 #include "battle_partner.h"
 #include "battle_tower.h"
@@ -1468,6 +1469,9 @@ void BattleSetup_StartTrainerBattle(void)
     if (TRAINER_BATTLE_PARAM.earlyRival && GetRivalBattleFlags() & RIVAL_BATTLE_TUTORIAL)
         gBattleTypeFlags |= BATTLE_TYPE_FIRST_BATTLE;
 
+    // Cities of Emerald (GDD 8): begin ranking battle tracking.
+    CitiesRanking_BattleStart(TRAINER_BATTLE_PARAM.opponentA);
+
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
     {
         VarSet(VAR_TEMP_PLAYING_PYRAMID_MUSIC, 0);
@@ -1585,6 +1589,8 @@ static void HandleBattleVariantEndParty(void)
 
 static void CB2_EndTrainerBattle(void)
 {
+    CitiesRanking_BattleEnd(); // Cities of Emerald (GDD 8): settle ranking points
+
     HandleBattleVariantEndParty();
 
     gIsDebugBattle = FALSE;

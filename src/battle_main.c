@@ -1,4 +1,5 @@
 #include "global.h"
+#include "cities_rankings.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_main.h"
@@ -1730,6 +1731,8 @@ static void CB2_HandleStartMultiBattle(void)
 
 void BattleMainCB2(void)
 {
+    CitiesRanking_TickFrame(); // Cities of Emerald (GDD 8.4): battle duration in frames
+
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
