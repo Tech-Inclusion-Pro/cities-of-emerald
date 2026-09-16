@@ -14,6 +14,7 @@ Route117_OnTransition:
 	switch VAR_RESULT
 	case 2, Route117_EventScript_ShowDaycareMon1
 	case 1, Route117_EventScript_ShowDaycareMon0
+	call Route117_EventScript_UpdateEeveeTrainerJolteon
 	end
 
 Route117_EventScript_ShowDaycareMon1:
@@ -240,3 +241,61 @@ Route117_Text_RouteSignMauville:
 Route117_Text_DayCareSign:
 	.string "POKéMON DAY CARE\n"
 	.string "“Let us raise your POKéMON.”$"
+
+@ Cities of Emerald (GDD 4.3): Eeveelution trainer (Jolteon), roster approved 2026-09-16.
+Route117_EventScript_UpdateEeveeTrainerJolteon::
+	setflag FLAG_CITIES_HIDE_EEVEE_TRAINER_JOLTEON
+	goto_if_unset FLAG_BADGE03_GET, Route117_EventScript_UpdateEeveeTrainerJolteon_Done
+	clearflag FLAG_CITIES_HIDE_EEVEE_TRAINER_JOLTEON
+Route117_EventScript_UpdateEeveeTrainerJolteon_Done:
+	return
+
+Route117_EventScript_EeveeTrainerJolteon::
+	trainerbattle_single TRAINER_CITIES_EEVEE_JOLTEON, Route117_Text_EeveeJolteonIntro, Route117_Text_EeveeJolteonDefeat, Route117_EventScript_EeveeTrainerJolteon_Victory
+	lock
+	faceplayer
+	goto_if_unset FLAG_CITIES_EEVEE_STONE_THUNDER_AWARDED, Route117_EventScript_EeveeTrainerJolteon_TryGive
+	msgbox Route117_Text_EeveeJolteonChat, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_EeveeTrainerJolteon_Victory::
+	msgbox Route117_Text_EeveeJolteonReward, MSGBOX_DEFAULT
+	goto Route117_EventScript_EeveeTrainerJolteon_TryGive
+
+Route117_EventScript_EeveeTrainerJolteon_TryGive::
+	giveitem ITEM_THUNDER_STONE
+	goto_if_eq VAR_RESULT, FALSE, Route117_EventScript_EeveeTrainerJolteon_BagFull
+	setflag FLAG_CITIES_EEVEE_STONE_THUNDER_AWARDED
+	msgbox Route117_Text_EeveeJolteonEnjoy, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_EventScript_EeveeTrainerJolteon_BagFull::
+	msgbox Route117_Text_EeveeJolteonBagFull, MSGBOX_DEFAULT
+	release
+	end
+
+Route117_Text_EeveeJolteonIntro:
+	.string "Feel that static? Jolteon and I\n"
+	.string "never slow down!$"
+
+Route117_Text_EeveeJolteonDefeat:
+	.string "Zapped of all my energy…$"
+
+Route117_Text_EeveeJolteonReward:
+	.string "Quick thinking! This Thunder\n"
+	.string "Stone is yours.\p"
+	.string "Jolteon will keep you racing.$"
+
+Route117_Text_EeveeJolteonEnjoy:
+	.string "Thunder Stones buzz if you hold\n"
+	.string "them close. Listen for it!$"
+
+Route117_Text_EeveeJolteonChat:
+	.string "Jolteon charges up by running.\n"
+	.string "We race every morning!$"
+
+Route117_Text_EeveeJolteonBagFull:
+	.string "Your Bag is full. Come back for\n"
+	.string "the stone later!$"

@@ -13,6 +13,7 @@ Route115_OnTransition:
 	call_if_eq VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_WEST, AbnormalWeather_StartGroudonWeather
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_EAST, AbnormalWeather_StartGroudonWeather
+	call Route115_EventScript_UpdateEeveeTrainerEspeon
 	end
 
 Route115_OnFrame:
@@ -143,3 +144,44 @@ Route115_Text_MeteorFallsSign:
 	.string "METEOR FALLS\n"
 	.string "FALLARBOR TOWN THROUGH HERE$"
 
+
+@ Cities of Emerald (GDD 4.3): Eeveelution trainer (Espeon), roster approved 2026-09-16.
+Route115_EventScript_UpdateEeveeTrainerEspeon::
+	setflag FLAG_CITIES_HIDE_EEVEE_TRAINER_ESPEON
+	goto_if_unset FLAG_BADGE05_GET, Route115_EventScript_UpdateEeveeTrainerEspeon_Done
+	special Script_CitiesIsNight
+	goto_if_eq VAR_RESULT, TRUE, Route115_EventScript_UpdateEeveeTrainerEspeon_Done
+	clearflag FLAG_CITIES_HIDE_EEVEE_TRAINER_ESPEON
+Route115_EventScript_UpdateEeveeTrainerEspeon_Done:
+	return
+
+Route115_EventScript_EeveeTrainerEspeon::
+	trainerbattle_single TRAINER_CITIES_EEVEE_ESPEON, Route115_Text_EeveeEspeonIntro, Route115_Text_EeveeEspeonDefeat, Route115_EventScript_EeveeTrainerEspeon_Victory
+	lock
+	faceplayer
+	msgbox Route115_Text_EeveeEspeonChat, MSGBOX_DEFAULT
+	release
+	end
+
+Route115_EventScript_EeveeTrainerEspeon_Victory::
+	msgbox Route115_Text_EeveeEspeonReward, MSGBOX_DEFAULT
+	release
+	end
+
+Route115_Text_EeveeEspeonIntro:
+	.string "Espeon and I trained under the\n"
+	.string "morning sun. Show me your bond!$"
+
+Route115_Text_EeveeEspeonDefeat:
+	.string "We saw it coming, and still…$"
+
+Route115_Text_EeveeEspeonReward:
+	.string "Espeon needs no stone at all.\p"
+	.string "Spend time with your Eevee.\n"
+	.string "Keep it healthy and happy.\p"
+	.string "When your bond is strong and the\n"
+	.string "sun is up, it will become Espeon.$"
+
+Route115_Text_EeveeEspeonChat:
+	.string "Sunshine and friendship. That is\n"
+	.string "the whole secret.$"
