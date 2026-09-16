@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SPECIES_DIR = ROOT / "src/data/pokemon/species_info"
-WILD_JSON = ROOT / "src/data/wild_encounters.json"
+WILD_JSON = ROOT / "tools/cities/base_wild_encounters.json"  # pristine vanilla snapshot
 OUT_CSV = ROOT / "docs/species_plan.csv"
 
 STORY_ONLY_FLAGS = (
@@ -143,7 +143,11 @@ def main():
 
     def story_only(name):
         e = species[name]
-        return bool(e["body_flags"] & set(STORY_ONLY_FLAGS)) or name in STORY_ONLY_BASES
+        if e["body_flags"] & set(STORY_ONLY_FLAGS):
+            return True
+        # Borderline families match by prefix so every form is covered
+        # (Silvally types, Urshifu styles, ...) — mirrors IsStoryOnlySpecies.
+        return any(name == b or name.startswith(b + "_") for b in STORY_ONLY_BASES)
 
     # Evolution stages over ALL parsed species (forms included).
     targets = set()

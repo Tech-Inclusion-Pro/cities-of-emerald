@@ -49,7 +49,8 @@ class Config:
                     field_type = field["type"]
                     if not self.mon_types:
                         self.mon_types = []
-                    self.mon_types.append(field_type)
+                    if field_type not in self.mon_types: # Cities: groups may share fields
+                        self.mon_types.append(field_type)
 
     def ParseTimeConfig(self, line):
         m = re.search(r'#define OW_TIME_OF_DAY_ENCOUNTERS\s+(\w+)', line)

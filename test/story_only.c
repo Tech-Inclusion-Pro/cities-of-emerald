@@ -65,17 +65,18 @@ TEST("IsStoryOnlySpecies: ordinary and pseudo-legendary species are not story-on
 }
 
 // GDD 6.8 / Task 2.2: fail `make check` if any story-only species is in any
-// wild encounter table, across every time of day and encounter type. This is
-// the enforcement gate for hand-edited or generated wild_encounters.json.
-TEST("No story-only species appears in any wild encounter table")
+// wild encounter table, across every time of day and encounter type — in
+// BOTH the main-game and postgame table sets. This is the enforcement gate
+// for hand-edited or generated wild_encounters.json.
+static void CheckHeadersHaveNoStoryOnlySpecies(const struct WildPokemonHeader *headers)
 {
     u32 i, t, s;
 
-    for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(MAP_UNDEFINED); i++)
+    for (i = 0; headers[i].mapGroup != MAP_GROUP(MAP_UNDEFINED); i++)
     {
         for (t = 0; t < TIMES_OF_DAY_COUNT; t++)
         {
-            const struct WildEncounterTypes *types = &gWildMonHeaders[i].encounterTypes[t];
+            const struct WildEncounterTypes *types = &headers[i].encounterTypes[t];
 
             if (types->landMonsInfo != NULL)
                 for (s = 0; s < NUM_LAND_MONS_ENCOUNTER_SLOTS; s++)
@@ -94,4 +95,10 @@ TEST("No story-only species appears in any wild encounter table")
                     EXPECT(!IsStoryOnlySpecies(types->hiddenMonsInfo->wildPokemon[s].species));
         }
     }
+}
+
+TEST("No story-only species appears in any wild encounter table")
+{
+    CheckHeadersHaveNoStoryOnlySpecies(gWildMonHeaders_Main);
+    CheckHeadersHaveNoStoryOnlySpecies(gWildMonHeaders_Postgame);
 }
