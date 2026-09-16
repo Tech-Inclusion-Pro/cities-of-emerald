@@ -2280,7 +2280,20 @@ void CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Traine
     for (i = 0; i < monsCount; i++)
     {
         u32 monIndex = monIndices[i];
-        GenerateMonFromTrainerMon(&party[i], &trainer->party[monIndex], trainerGen);
+        // Cities of Emerald (GDD 4.2): rival teams keep the vanilla 3-way
+        // Hoenn variants in data; swap the starter-line member for the same
+        // evolution stage of the player's chosen region before generation so
+        // movesets, IVs, and nature all come out right.
+        if (trainer->trainerClass == TRAINER_CLASS_RIVAL)
+        {
+            struct TrainerMon rivalMon = trainer->party[monIndex];
+            rivalMon.species = CitiesGetRivalStarterSpecies(rivalMon.species);
+            GenerateMonFromTrainerMon(&party[i], &rivalMon, trainerGen);
+        }
+        else
+        {
+            GenerateMonFromTrainerMon(&party[i], &trainer->party[monIndex], trainerGen);
+        }
     }
     Free(trainerGen);
 }
