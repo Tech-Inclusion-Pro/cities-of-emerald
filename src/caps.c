@@ -22,13 +22,18 @@ u32 GetCurrentLevelCap(void)
 
     u32 i;
 
+    u32 capBonus = 0;
+
     if (B_LEVEL_CAP_TYPE == LEVEL_CAP_VARIABLE)
     {
-        // Cities of Emerald: var == 0 means automatic (badge-based table
-        // below); a non-zero var overrides the cap. Assist mode uses the
-        // override to raise the cap or remove it (set to MAX_LEVEL).
+        // Cities of Emerald: var semantics (GDD 9.1/10):
+        //   0 = automatic badge-based cap (table below)
+        //   1 = automatic cap + 10 (Assist mode "raised")
+        //   MAX_LEVEL = no cap    other = fixed override
         u32 varCap = VarGet(B_LEVEL_CAP_VARIABLE);
-        if (varCap != 0)
+        if (varCap == 1)
+            capBonus = 10;
+        else if (varCap != 0)
             return varCap;
     }
 
@@ -37,7 +42,7 @@ u32 GetCurrentLevelCap(void)
         for (i = 0; i < ARRAY_COUNT(sLevelCapFlagMap); i++)
         {
             if (!FlagGet(sLevelCapFlagMap[i][0]))
-                return sLevelCapFlagMap[i][1];
+                return min(sLevelCapFlagMap[i][1] + capBonus, MAX_LEVEL);
         }
     }
 

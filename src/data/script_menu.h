@@ -1127,6 +1127,21 @@ static const struct MenuAction MultichoiceList_Exit[] =
     {gText_Exit},
 };
 
+// Cities of Emerald: new-game setup (GDD 4.1/10)
+static const struct MenuAction sMultichoiceList_CitiesDifficulty[] =
+{
+    {COMPOUND_STRING("Easy")},
+    {COMPOUND_STRING("Normal")},
+    {COMPOUND_STRING("Hard")},
+};
+
+static const struct MenuAction sMultichoiceList_CitiesLevelCap[] =
+{
+    {COMPOUND_STRING("Keep level caps")},
+    {COMPOUND_STRING("Raise caps by 10")},
+    {COMPOUND_STRING("No level caps")},
+};
+
 // Cities of Emerald: Dewford stone expert choice (GDD 4.3)
 static const struct MenuAction sMultichoiceList_CitiesEeveeStones[] =
 {
@@ -1306,6 +1321,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_EGGS_VICTORIES_QUIT]                        = MULTICHOICE(sMultichoiceList_Eggs_Victories_Quit),
     [MULTI_HOF_EGGS_VICTORIES_QUIT]                    = MULTICHOICE(sMultichoiceList_HOF_Eggs_Victories_Quit),
     [MULTI_CITIES_EEVEE_STONES]                        = MULTICHOICE(sMultichoiceList_CitiesEeveeStones),
+    [MULTI_CITIES_DIFFICULTY]                          = MULTICHOICE(sMultichoiceList_CitiesDifficulty),
+    [MULTI_CITIES_LEVEL_CAP]                           = MULTICHOICE(sMultichoiceList_CitiesLevelCap),
 };
 
 const u8 *const gStdStrings[] =

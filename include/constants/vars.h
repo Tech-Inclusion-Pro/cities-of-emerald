@@ -283,6 +283,7 @@
 #define VAR_CITIES_DEXNAV_STEP_COUNTER                   (CITIES_VARS_START + 0x2) // DN_VAR_STEP_COUNTER
 #define VAR_CITIES_LEVEL_CAP                             (CITIES_VARS_START + 0x3) // B_LEVEL_CAP_VARIABLE; 0 = automatic badge-based cap, non-zero = override (Assist mode)
 #define VAR_CITIES_STARTER_REGION                        (CITIES_VARS_START + 0x4) // CITIES_STARTER_REGION_* (starter_choose.h); 0 = not chosen yet (vanilla fallback)
+#define VAR_CITIES_DIFFICULTY                            (CITIES_VARS_START + 0x5) // B_VAR_DIFFICULTY: 0 = Easy, 1 = Normal, 2 = Hard
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END

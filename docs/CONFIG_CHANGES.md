@@ -90,3 +90,11 @@ Net SaveBlock1: 15,760 → 15,260 B measured (612 B free). Save-size test baseli
 **Bug found upstream:** `FREE_MYSTERY_EVENT_BUFFERS = TRUE` causes heap-corruption crashes in the expansion's own test suite (26 CRASHes in one runner shard, `malloc.c` block-magic assertions). Isolated by A/B bisect on 2026-09-16; `FREE_MYSTERY_GIFT` alone is clean. Left DISABLED — its 1,104 B stays in reserve. Worth reporting to rh-hideout.
 
 `Higher leveled Pokemon give more exp` (test/battle/exp.c) now carries `ASSUME(B_EXP_CAP_TYPE == EXP_CAP_NONE)`: with a soft cap and no badges, both parametrizations scale to near-zero exp and the comparison is meaningless. Skipped, not failed, under Cities config.
+
+## Phase 5 — Difficulty and Assist (GDD 4.1/10)
+
+| Setting | File | Old | New | Reason |
+|---|---|---|---|---|
+| `B_VAR_DIFFICULTY` | include/config/battle.h | 0 (disabled) | `VAR_CITIES_DIFFICULTY` | Activates the expansion's per-difficulty trainer parties; set by the truck setup conversation (0 Easy / 1 Normal / 2 Hard) |
+
+New-game setup runs inside the moving truck: difficulty choice, Assist mode yes/no, and (if Assist) a level-cap choice stored in `VAR_CITIES_LEVEL_CAP` (0 auto / 1 auto+10 / 100 none). `FLAG_CITIES_ASSIST_MODE` suppresses the whiteout money penalty (src/battle_script_commands.c); the party heal on whiteout is vanilla behavior and already satisfies the assist heal requirement.

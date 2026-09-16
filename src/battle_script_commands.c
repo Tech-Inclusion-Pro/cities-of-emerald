@@ -3832,6 +3832,9 @@ static void Cmd_getmoneyreward(void)
             }
             money = sWhiteOutBadgeMoney[count] * sPartyLevel;
         }
+        // Cities of Emerald (GDD 10): Assist mode removes the money penalty.
+        if (FlagGet(FLAG_CITIES_ASSIST_MODE))
+            money = 0;
         if (!IsEnoughMoney(&gSaveBlock1Ptr->money, money))
             money = GetMoney(&gSaveBlock1Ptr->money);
         RemoveMoney(&gSaveBlock1Ptr->money, money);
