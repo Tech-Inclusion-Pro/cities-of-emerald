@@ -640,3 +640,4 @@ gSpecials::
 	def_special CheckAddCoins
 	def_special Script_CitiesIsNight
 	def_special Script_CitiesApplyPreset
+	def_special Script_CitiesBufferRankingScore

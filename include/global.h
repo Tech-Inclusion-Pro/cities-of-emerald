@@ -290,6 +290,7 @@ struct SaveBlock3
     struct SiiRtcInfo fakeRTC;
 #endif
     struct CitiesAccessibility citiesAccess;
+    s32 citiesRankingScore; // National ranking score (GDD 8.6); floored at 0
 #if FNPC_ENABLE_NPC_FOLLOWERS
     struct NPCFollower NPCfollower;
 #endif

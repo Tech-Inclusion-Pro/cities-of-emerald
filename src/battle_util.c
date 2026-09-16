@@ -1,4 +1,5 @@
 #include "global.h"
+#include "cities_rankings.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_anim_scripts.h"
@@ -479,6 +480,11 @@ static bool32 IsUnnerveAbilityOnOpposingSide(enum BattlerId battler)
 // Functions
 void HandleAction_UseMove(void)
 {
+    // Cities of Emerald (GDD 8.3): "battled" means used at least one move.
+    if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
+     && !(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_RIGHT))
+        CitiesRanking_NoteMonActed(gBattlerPartyIndexes[gBattlerAttacker]);
+
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     if (!IsBattlerAlive(gBattlerAttacker)
      || gBattleStruct->battlerState[gBattlerAttacker].commandingDondozo)
