@@ -234,6 +234,7 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+    EnableNationalPokedex(); // Cities of Emerald: National Dex from the start (GDD Section 3)
 }
 
 static void ResetMiniGamesRecords(void)
