@@ -374,6 +374,7 @@ Route103_EventScript_CitiesRivalRematch::
 	goto_if_eq VAR_RESULT, NO, Route103_EventScript_CitiesRivalRematchDecline
 	specialvar VAR_RESULT, Script_CitiesArmRivalRematch
 	goto_if_eq VAR_RESULT, 0, Route103_EventScript_CitiesRivalRematchDecline
+	call Cities_EventScript_RivalRematchNotice
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, Route103_EventScript_CitiesRivalRematchMay
 	goto_if_eq VAR_RESULT, FEMALE, Route103_EventScript_CitiesRivalRematchBrendan

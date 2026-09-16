@@ -37,5 +37,7 @@ bool32 CitiesRivalRematchWinEligible(void);
 bool8 Script_CitiesTryGymRematch(void);
 u16 Script_CitiesArmRivalRematch(void);
 void Script_CitiesRivalRematchWon(void);
+bool8 Script_CitiesGymRematchWillScore(void);
+bool8 Script_CitiesRivalRematchWillScore(void);
 
 #endif // GUARD_CITIES_REMATCHES_H

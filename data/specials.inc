@@ -644,3 +644,5 @@ gSpecials::
 	def_special Script_CitiesTryGymRematch
 	def_special Script_CitiesArmRivalRematch
 	def_special Script_CitiesRivalRematchWon
+	def_special Script_CitiesGymRematchWillScore
+	def_special Script_CitiesRivalRematchWillScore

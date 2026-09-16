@@ -112,6 +112,19 @@ bool32 CitiesRivalRematchWinEligible(void)
     return !FlagGet(RivalVersionBeatenFlag(version));
 }
 
+// Specials for the pre-battle notice (GDD 8.2): will the upcoming rematch
+// earn points? For gyms the served version's own trainer flag decides; the
+// script runs this while VAR_TRAINER_BATTLE_OPPONENT_A still holds the _1 ID.
+bool8 Script_CitiesGymRematchWillScore(void)
+{
+    return !HasTrainerBeenFought(CitiesGetGymRematchServeId(TRAINER_BATTLE_PARAM.opponentA));
+}
+
+bool8 Script_CitiesRivalRematchWillScore(void)
+{
+    return CitiesRivalRematchWinEligible();
+}
+
 // Special: called from the Route 103 script after a rematch win.
 void Script_CitiesRivalRematchWon(void)
 {
