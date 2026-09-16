@@ -864,7 +864,19 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD     855
+// Cities of Emerald: Eeveelution trainers (GDD 4.3). Uses 8 of the 9 spare
+// trainer slots noted above — Phase 8 rematch versions will need the flag
+// rework described in that note.
+#define TRAINER_CITIES_EEVEE_VAPOREON       855
+#define TRAINER_CITIES_EEVEE_JOLTEON        856
+#define TRAINER_CITIES_EEVEE_FLAREON        857
+#define TRAINER_CITIES_EEVEE_ESPEON         858
+#define TRAINER_CITIES_EEVEE_LEAFEON        859
+#define TRAINER_CITIES_EEVEE_SYLVEON        860
+#define TRAINER_CITIES_EEVEE_UMBREON        861
+#define TRAINER_CITIES_EEVEE_GLACEON        862
+
+#define TRAINERS_COUNT_EMERALD     863
 #define MAX_TRAINERS_COUNT_EMERALD 864
 
 #if IS_FRLG

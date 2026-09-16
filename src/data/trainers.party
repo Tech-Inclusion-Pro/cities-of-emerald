@@ -16877,3 +16877,91 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_CITIES_EEVEE_VAPOREON ===
+Name: MAREN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+Vaporeon
+Level: 20
+
+=== TRAINER_CITIES_EEVEE_JOLTEON ===
+Name: JOULE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Jolteon
+Level: 20
+
+=== TRAINER_CITIES_EEVEE_FLAREON ===
+Name: CINDER
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Flareon
+Level: 26
+
+=== TRAINER_CITIES_EEVEE_ESPEON ===
+Name: AURELIA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+Espeon
+Level: 30
+
+=== TRAINER_CITIES_EEVEE_LEAFEON ===
+Name: LINDEN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Leafeon
+Level: 34
+
+=== TRAINER_CITIES_EEVEE_SYLVEON ===
+Name: FAYE
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+Sylveon
+Level: 34
+
+=== TRAINER_CITIES_EEVEE_UMBREON ===
+Name: NOX
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+Umbreon
+Level: 40
+
+=== TRAINER_CITIES_EEVEE_GLACEON ===
+Name: NEVE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+Glaceon
+Level: 40

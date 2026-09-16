@@ -502,6 +502,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
       "flag": "FLAG_HIDE_ROUTE_110_BIRCH"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
+      "x": 15,
+      "y": 90,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route110_EventScript_EeveeTrainerVaporeon",
+      "flag": "FLAG_CITIES_HIDE_EEVEE_TRAINER_VAPOREON"
     }
   ],
   "warp_events": [

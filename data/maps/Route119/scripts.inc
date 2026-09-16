@@ -18,6 +18,7 @@ Route119_OnTransition:
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_EventScript_MoveInstituteWorkersDownstairs
 	special SetRoute119Weather
+	call Route119_EventScript_UpdateEeveeTrainerLeafeon
 	end
 
 Route119_EventScript_MoveInstituteWorkersDownstairs::
@@ -608,3 +609,61 @@ Route119_Text_TrainerTipsDecoration:
 	.string "Pick your favorite items and create\n"
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
+
+@ Cities of Emerald (GDD 4.3): Eeveelution trainer (Leafeon), roster approved 2026-09-16.
+Route119_EventScript_UpdateEeveeTrainerLeafeon::
+	setflag FLAG_CITIES_HIDE_EEVEE_TRAINER_LEAFEON
+	goto_if_unset FLAG_BADGE06_GET, Route119_EventScript_UpdateEeveeTrainerLeafeon_Done
+	clearflag FLAG_CITIES_HIDE_EEVEE_TRAINER_LEAFEON
+Route119_EventScript_UpdateEeveeTrainerLeafeon_Done:
+	return
+
+Route119_EventScript_EeveeTrainerLeafeon::
+	trainerbattle_single TRAINER_CITIES_EEVEE_LEAFEON, Route119_Text_EeveeLeafeonIntro, Route119_Text_EeveeLeafeonDefeat, Route119_EventScript_EeveeTrainerLeafeon_Victory
+	lock
+	faceplayer
+	goto_if_unset FLAG_CITIES_EEVEE_STONE_LEAF_AWARDED, Route119_EventScript_EeveeTrainerLeafeon_TryGive
+	msgbox Route119_Text_EeveeLeafeonChat, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_EventScript_EeveeTrainerLeafeon_Victory::
+	msgbox Route119_Text_EeveeLeafeonReward, MSGBOX_DEFAULT
+	goto Route119_EventScript_EeveeTrainerLeafeon_TryGive
+
+Route119_EventScript_EeveeTrainerLeafeon_TryGive::
+	giveitem ITEM_LEAF_STONE
+	goto_if_eq VAR_RESULT, FALSE, Route119_EventScript_EeveeTrainerLeafeon_BagFull
+	setflag FLAG_CITIES_EEVEE_STONE_LEAF_AWARDED
+	msgbox Route119_Text_EeveeLeafeonEnjoy, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_EventScript_EeveeTrainerLeafeon_BagFull::
+	msgbox Route119_Text_EeveeLeafeonBagFull, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_Text_EeveeLeafeonIntro:
+	.string "The rainforest raised my Leafeon.\n"
+	.string "Let's see what raised you!$"
+
+Route119_Text_EeveeLeafeonDefeat:
+	.string "Rooted to the spot…$"
+
+Route119_Text_EeveeLeafeonReward:
+	.string "A clean battle!\p"
+	.string "This Leaf Stone fell right here\n"
+	.string "in the forest. It is yours.$"
+
+Route119_Text_EeveeLeafeonEnjoy:
+	.string "Leafeon drinks sunlight, just\n"
+	.string "like a tree. Peaceful, huh?$"
+
+Route119_Text_EeveeLeafeonChat:
+	.string "Listen… the whole forest hums.\n"
+	.string "Leafeon loves it here.$"
+
+Route119_Text_EeveeLeafeonBagFull:
+	.string "Your Bag is full. Come back for\n"
+	.string "the stone later!$"

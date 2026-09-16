@@ -5766,3 +5766,10 @@ bool8 CheckAddCoins(void)
     else
         return TRUE;
 }
+
+// Cities of Emerald (GDD 4.3): lets scripts gate NPCs by night, e.g. the
+// Umbreon (night) and Espeon (day) Eeveelution trainers.
+void Script_CitiesIsNight(void)
+{
+    gSpecialVar_Result = (GetTimeOfDay() == TIME_NIGHT);
+}

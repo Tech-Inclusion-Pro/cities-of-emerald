@@ -1,5 +1,10 @@
 Route121_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route121_OnTransition
 	.byte 0
+
+Route121_OnTransition:
+	call Route121_EventScript_UpdateEeveeTrainerSylveon
+	end
 
 Route121_EventScript_Woman::
 	msgbox Route121_Text_AheadLoomsMtPyre, MSGBOX_NPC
@@ -186,3 +191,42 @@ Route121_Text_SafariZoneSign:
 	.string "“Filled with rare POKéMON!”\n"
 	.string "SAFARI ZONE$"
 
+
+@ Cities of Emerald (GDD 4.3): Eeveelution trainer (Sylveon), roster approved 2026-09-16.
+Route121_EventScript_UpdateEeveeTrainerSylveon::
+	setflag FLAG_CITIES_HIDE_EEVEE_TRAINER_SYLVEON
+	goto_if_unset FLAG_BADGE06_GET, Route121_EventScript_UpdateEeveeTrainerSylveon_Done
+	clearflag FLAG_CITIES_HIDE_EEVEE_TRAINER_SYLVEON
+Route121_EventScript_UpdateEeveeTrainerSylveon_Done:
+	return
+
+Route121_EventScript_EeveeTrainerSylveon::
+	trainerbattle_single TRAINER_CITIES_EEVEE_SYLVEON, Route121_Text_EeveeSylveonIntro, Route121_Text_EeveeSylveonDefeat, Route121_EventScript_EeveeTrainerSylveon_Victory
+	lock
+	faceplayer
+	msgbox Route121_Text_EeveeSylveonChat, MSGBOX_DEFAULT
+	release
+	end
+
+Route121_EventScript_EeveeTrainerSylveon_Victory::
+	msgbox Route121_Text_EeveeSylveonReward, MSGBOX_DEFAULT
+	release
+	end
+
+Route121_Text_EeveeSylveonIntro:
+	.string "Sylveon's ribbons calm every\n"
+	.string "heart. But not our battle spirit!$"
+
+Route121_Text_EeveeSylveonDefeat:
+	.string "Charmed, I'm sure!$"
+
+Route121_Text_EeveeSylveonReward:
+	.string "Sylveon evolves through love.\p"
+	.string "Teach your Eevee a Fairy-type\n"
+	.string "move and treat it kindly.\p"
+	.string "When its heart is full, it will\n"
+	.string "become Sylveon.$"
+
+Route121_Text_EeveeSylveonChat:
+	.string "A Fairy-type move and a full\n"
+	.string "heart. Don't forget!$"

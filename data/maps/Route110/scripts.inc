@@ -12,6 +12,7 @@ Route110_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_CYCLING_CHALLENGE_STATE, 1, Route110_EventScript_SaveCyclingMusic
+	call Route110_EventScript_UpdateEeveeTrainerVaporeon
 	end
 
 Route110_EventScript_SaveCyclingMusic::
@@ -987,3 +988,61 @@ Route110_Text_KeepAnEyeOutForRival:
 	.string "Well, I had better get going.\n"
 	.string "See you again, {PLAYER}{KUN}!$"
 
+
+@ Cities of Emerald (GDD 4.3): Eeveelution trainer (Vaporeon), roster approved 2026-09-16.
+Route110_EventScript_UpdateEeveeTrainerVaporeon::
+	setflag FLAG_CITIES_HIDE_EEVEE_TRAINER_VAPOREON
+	goto_if_unset FLAG_BADGE03_GET, Route110_EventScript_UpdateEeveeTrainerVaporeon_Done
+	clearflag FLAG_CITIES_HIDE_EEVEE_TRAINER_VAPOREON
+Route110_EventScript_UpdateEeveeTrainerVaporeon_Done:
+	return
+
+Route110_EventScript_EeveeTrainerVaporeon::
+	trainerbattle_single TRAINER_CITIES_EEVEE_VAPOREON, Route110_Text_EeveeVaporeonIntro, Route110_Text_EeveeVaporeonDefeat, Route110_EventScript_EeveeTrainerVaporeon_Victory
+	lock
+	faceplayer
+	goto_if_unset FLAG_CITIES_EEVEE_STONE_WATER_AWARDED, Route110_EventScript_EeveeTrainerVaporeon_TryGive
+	msgbox Route110_Text_EeveeVaporeonChat, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_EeveeTrainerVaporeon_Victory::
+	msgbox Route110_Text_EeveeVaporeonReward, MSGBOX_DEFAULT
+	goto Route110_EventScript_EeveeTrainerVaporeon_TryGive
+
+Route110_EventScript_EeveeTrainerVaporeon_TryGive::
+	giveitem ITEM_WATER_STONE
+	goto_if_eq VAR_RESULT, FALSE, Route110_EventScript_EeveeTrainerVaporeon_BagFull
+	setflag FLAG_CITIES_EEVEE_STONE_WATER_AWARDED
+	msgbox Route110_Text_EeveeVaporeonEnjoy, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_EventScript_EeveeTrainerVaporeon_BagFull::
+	msgbox Route110_Text_EeveeVaporeonBagFull, MSGBOX_DEFAULT
+	release
+	end
+
+Route110_Text_EeveeVaporeonIntro:
+	.string "My Vaporeon and I trained by\n"
+	.string "swimming every sea in Hoenn!$"
+
+Route110_Text_EeveeVaporeonDefeat:
+	.string "Splashed and outclassed!$"
+
+Route110_Text_EeveeVaporeonReward:
+	.string "You battle with real care.\p"
+	.string "Take this Water Stone. Let a new\n"
+	.string "Vaporeon swim beside you.$"
+
+Route110_Text_EeveeVaporeonEnjoy:
+	.string "Water Stones come from deep\n"
+	.string "springs. Treat it well!$"
+
+Route110_Text_EeveeVaporeonChat:
+	.string "Vaporeon can melt into water\n"
+	.string "and vanish. Amazing, right?$"
+
+Route110_Text_EeveeVaporeonBagFull:
+	.string "Your Bag is full. Come back for\n"
+	.string "the stone later!$"
