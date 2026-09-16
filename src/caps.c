@@ -22,17 +22,23 @@ u32 GetCurrentLevelCap(void)
 
     u32 i;
 
-    if (B_LEVEL_CAP_TYPE == LEVEL_CAP_FLAG_LIST)
+    if (B_LEVEL_CAP_TYPE == LEVEL_CAP_VARIABLE)
+    {
+        // Cities of Emerald: var == 0 means automatic (badge-based table
+        // below); a non-zero var overrides the cap. Assist mode uses the
+        // override to raise the cap or remove it (set to MAX_LEVEL).
+        u32 varCap = VarGet(B_LEVEL_CAP_VARIABLE);
+        if (varCap != 0)
+            return varCap;
+    }
+
+    if (B_LEVEL_CAP_TYPE != LEVEL_CAP_NONE)
     {
         for (i = 0; i < ARRAY_COUNT(sLevelCapFlagMap); i++)
         {
             if (!FlagGet(sLevelCapFlagMap[i][0]))
                 return sLevelCapFlagMap[i][1];
         }
-    }
-    else if (B_LEVEL_CAP_TYPE == LEVEL_CAP_VARIABLE)
-    {
-        return VarGet(B_LEVEL_CAP_VARIABLE);
     }
 
     return MAX_LEVEL;

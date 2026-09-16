@@ -49,6 +49,18 @@ Notes:
 
 Already present (no change): **bag sorting** is built into the expansion (bag context menu → "Sort items how?"); item stack capacity is already 999 (`MAX_BAG_ITEM_CAPACITY`).
 
+## Task 1.4 — Level caps (approved by Rocco 2026-09-16)
+
+| Setting | File | Old | New | Reason |
+|---|---|---|---|---|
+| `B_EXP_CAP_TYPE` | include/config/caps.h | EXP_CAP_NONE | EXP_CAP_SOFT | Soft caps [DECIDED]: sharply reduced exp above the cap |
+| `B_LEVEL_CAP_TYPE` | include/config/caps.h | LEVEL_CAP_NONE | LEVEL_CAP_VARIABLE | Variable-based (approved): Assist mode can raise/remove the cap at runtime |
+| `B_LEVEL_CAP_VARIABLE` | include/config/caps.h | 0 | `VAR_CITIES_LEVEL_CAP` | New Cities var |
+| `GetCurrentLevelCap()` | src/caps.c | variable mode returned the var directly | var 0 = automatic badge-based table; non-zero = override | Works with no badge-script edits; the override is the Assist hook (Phase 5) |
+
+Cap values: the expansion's built-in badge table already matches the approved values (15, 19, 24, 29, 31, 33, 42, 46, League 58). Recalculate during trainer rebalancing.
+`B_RARE_CANDY_CAP` stays FALSE (candies can pass the soft cap — consistent with "soft" philosophy; revisit if abused).
+
 ## Task 1.5 — Training
 
 No changes needed — all GDD Section 9.2 items are already the modern defaults:
@@ -64,4 +76,17 @@ No changes needed — all GDD Section 9.2 items are already the modern defaults:
 
 Note: EV/IV summary-screen display and the egg-move tutor NPC (GDD 9.2) are UI/NPC work for later phases, not configs.
 
-Flagged for Rocco — **bag pocket sizes** (`enum BagCounts`, include/constants/global.h:140): Items 30, Key Items 30, Poké Balls 16, TM/HM 64, Berries 46. Each added slot costs 4 bytes of SaveBlock1, which is nearly full (112 B margin after the Cities ranges). Expanding meaningfully (e.g., Items→60, Balls→32, TM/HM→112) needs ~1,300 B, which requires enabling `FREE_MYSTERY_EVENT_BUFFERS` and/or `FREE_MYSTERY_GIFT` first (safe for a single-player hack, per SAVE_BUDGET.md). Decision pending.
+**Bag pocket expansion (approved by Rocco 2026-09-16):**
+
+| Setting | File | Old | New | Reason |
+|---|---|---|---|---|
+| `FREE_MYSTERY_GIFT` | include/config/save.h | FALSE | TRUE | Frees 876 B — link-era feature, dead weight in a single-player emulator hack |
+| `BAG_ITEMS_COUNT` | include/constants/global.h | 30 | 60 | Expanded bag [DECIDED] |
+| `BAG_POKEBALLS_COUNT` | include/constants/global.h | 16 | 32 | More ball variety across 9 generations |
+| `BAG_TMHM_COUNT` | include/constants/global.h | 64 | 112 | Room for the expanded TM set |
+
+Net SaveBlock1: 15,760 → 15,260 B measured (612 B free). Save-size test baseline updated accordingly.
+
+**Bug found upstream:** `FREE_MYSTERY_EVENT_BUFFERS = TRUE` causes heap-corruption crashes in the expansion's own test suite (26 CRASHes in one runner shard, `malloc.c` block-magic assertions). Isolated by A/B bisect on 2026-09-16; `FREE_MYSTERY_GIFT` alone is clean. Left DISABLED — its 1,104 B stays in reserve. Worth reporting to rh-hideout.
+
+`Higher leveled Pokemon give more exp` (test/battle/exp.c) now carries `ASSUME(B_EXP_CAP_TYPE == EXP_CAP_NONE)`: with a soft cap and no badges, both parametrizations scale to near-zero exp and the comparison is meaningless. Skipped, not failed, under Cities config.

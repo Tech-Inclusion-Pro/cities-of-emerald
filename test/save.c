@@ -4,7 +4,7 @@
 
 // If you would like to ensure save compatibility, update the values below with those for your hack. You can find these through the debug menu.
 // Please note that this simple check is not 100% foolproof, but should be able to catch most unintended shifts.
-#define T_SAVEBLOCK1_SIZE 15760 // Cities of Emerald: +192 bytes for the Cities flag/var ranges (docs/SAVE_BUDGET.md)
+#define T_SAVEBLOCK1_SIZE 15260 // Cities of Emerald: +192 B Cities flag/var ranges, +376 B bag expansion, -876 B FREE_MYSTERY_GIFT (docs/SAVE_BUDGET.md)
 #define T_SAVEBLOCK2_SIZE 3884
 #define T_SAVEBLOCK3_SIZE 4
 #define T_POKEMONSTORAGE_SIZE 34144

@@ -139,10 +139,10 @@ enum PartyBattleSlot
 
 enum BagCounts
 {
-    BAG_ITEMS_COUNT = 30,
+    BAG_ITEMS_COUNT = 60,     // Cities of Emerald: expanded (was 30); space freed via FREE_MYSTERY_GIFT in config/save.h
     BAG_KEYITEMS_COUNT = 30,
-    BAG_POKEBALLS_COUNT = 16,
-    BAG_TMHM_COUNT = 64,
+    BAG_POKEBALLS_COUNT = 32,  // Cities of Emerald: expanded (was 16)
+    BAG_TMHM_COUNT = 112,      // Cities of Emerald: expanded (was 64)
     BAG_BERRIES_COUNT = 46,
 };
 

@@ -35,6 +35,9 @@ WILD_BATTLE_TEST("Higher leveled Pokemon give more exp", s32 exp)
     PARAMETRIZE { level = 10; }
 
     GIVEN {
+        // Cities of Emerald: with a soft level cap and no badges, both gains
+        // are scaled down to near-zero and the comparison is meaningless.
+        ASSUME(B_EXP_CAP_TYPE == EXP_CAP_NONE);
         PLAYER(SPECIES_WOBBUFFET) { Level(20); }
         OPPONENT(SPECIES_CATERPIE) { Level(level); HP(1); }
     } WHEN {
