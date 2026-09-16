@@ -66,3 +66,9 @@ tools/aif2pcm/aif2pcm
 *.smolTM
 __pycache__
 .map_version
+
+# Cities of Emerald: never commit ROMs, saves, or patches
+*.sav
+*.bps
+*.ups
+*.ips
