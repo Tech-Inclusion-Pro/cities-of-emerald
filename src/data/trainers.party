@@ -16856,27 +16856,29 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRENDAN_PLACEHOLDER ===
 Name: BRENDAN
-Class: RS Protag
-Pic: RS Brendan
+Class: Rival
+Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
+AI: Basic Trainer
 
-Groudon
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sceptile
+Level: 60
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 === TRAINER_MAY_PLACEHOLDER ===
 Name: MAY
-Class: RS Protag
-Pic: RS May
+Class: Rival
+Pic: May
 Gender: Female
-Music: Male
+Music: Female
 Double Battle: No
+AI: Basic Trainer
 
-Kyogre
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sceptile
+Level: 60
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 === TRAINER_CITIES_EEVEE_VAPOREON ===
 Name: MAREN

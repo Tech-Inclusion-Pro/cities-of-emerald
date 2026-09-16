@@ -6,7 +6,19 @@ Route103_MapScripts::
 Route103_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call ProfBirch_EventScript_UpdateLocation
+	call_if_unset FLAG_SYS_GAME_CLEAR, Route103_EventScript_HideCitiesRivalRematch
+	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_ShowCitiesRivalRematch
 	end
+
+@ Cities of Emerald (GDD 7.3): the rival returns to Route 103 once the player
+@ is Champion, offering the postgame rematch versions.
+Route103_EventScript_HideCitiesRivalRematch::
+	setflag FLAG_CITIES_HIDE_RIVAL_REMATCH
+	return
+
+Route103_EventScript_ShowCitiesRivalRematch::
+	clearflag FLAG_CITIES_HIDE_RIVAL_REMATCH
+	return
 
 Route103_OnLoad:
 	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
@@ -351,3 +363,64 @@ Route103_Text_RouteSign:
 	.string "ROUTE 103\n"
 	.string "{DOWN_ARROW} OLDALE TOWN$"
 
+
+@ Cities of Emerald (GDD 7.3): postgame rival rematch versions. The version
+@ to fight is picked and armed by Script_CitiesArmRivalRematch; the party is
+@ swapped in by version at battle start. Plain language, no ableist wording.
+Route103_EventScript_CitiesRivalRematch::
+	lock
+	faceplayer
+	msgbox Route103_Text_CitiesRivalRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route103_EventScript_CitiesRivalRematchDecline
+	specialvar VAR_RESULT, Script_CitiesArmRivalRematch
+	goto_if_eq VAR_RESULT, 0, Route103_EventScript_CitiesRivalRematchDecline
+	checkplayergender
+	goto_if_eq VAR_RESULT, MALE, Route103_EventScript_CitiesRivalRematchMay
+	goto_if_eq VAR_RESULT, FEMALE, Route103_EventScript_CitiesRivalRematchBrendan
+	release
+	end
+
+Route103_EventScript_CitiesRivalRematchDecline::
+	msgbox Route103_Text_CitiesRivalRematchDecline, MSGBOX_DEFAULT
+	release
+	end
+
+Route103_EventScript_CitiesRivalRematchMay::
+	closemessage
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+	cleartrainerflag TRAINER_MAY_PLACEHOLDER
+	trainerbattle_no_intro TRAINER_MAY_PLACEHOLDER, Route103_Text_CitiesRivalRematchDefeat
+	special Script_CitiesRivalRematchWon
+	msgbox Route103_Text_CitiesRivalRematchPost, MSGBOX_AUTOCLOSE
+	release
+	end
+
+Route103_EventScript_CitiesRivalRematchBrendan::
+	closemessage
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	cleartrainerflag TRAINER_BRENDAN_PLACEHOLDER
+	trainerbattle_no_intro TRAINER_BRENDAN_PLACEHOLDER, Route103_Text_CitiesRivalRematchDefeat
+	special Script_CitiesRivalRematchWon
+	msgbox Route103_Text_CitiesRivalRematchPost, MSGBOX_AUTOCLOSE
+	release
+	end
+
+Route103_Text_CitiesRivalRematchAsk:
+	.string "Hey, {PLAYER}! This place takes me back.\p"
+	.string "Our very first battle was right here,\n"
+	.string "remember?\p"
+	.string "I've been training a whole new team.\n"
+	.string "Want to battle?$"
+
+Route103_Text_CitiesRivalRematchDecline:
+	.string "No worries! I'll be here whenever\n"
+	.string "you're ready.$"
+
+Route103_Text_CitiesRivalRematchDefeat:
+	.string "Wow! You really are the CHAMPION!$"
+
+Route103_Text_CitiesRivalRematchPost:
+	.string "That was fun!\p"
+	.string "Keep exploring, okay? When you find\n"
+	.string "something amazing, come tell me about\l"
+	.string "it. I'll have a new team ready!$"

@@ -1671,6 +1671,15 @@
 #define FLAG_CITIES_ASSIST_MODE                     (CITIES_FLAGS_START + 0x16) // No money loss on defeat; pairs with VAR_CITIES_LEVEL_CAP choice
 // Accessibility (GDD 11)
 #define FLAG_CITIES_ACCESS_INSTANT_TEXT             (CITIES_FLAGS_START + 0x17) // FLAG_TEXT_SPEED_INSTANT
+// Postgame story milestones (GDD 7.3 rematch unlocks; set by the Phase 11/12 arcs)
+#define FLAG_CITIES_POSTGAME_THREAD1_MIDPOINT       (CITIES_FLAGS_START + 0x18) // Hidden-areas thread halfway point -> rematch V2
+#define FLAG_CITIES_POSTGAME_THREAD1_COMPLETE       (CITIES_FLAGS_START + 0x19) // Both COMPLETE flags together -> rematch V3
+#define FLAG_CITIES_POSTGAME_THREAD2_COMPLETE       (CITIES_FLAGS_START + 0x1A)
+// Rival rematch versions (GDD 7.3; gym leaders use the vanilla _2.._4 trainer flags instead)
+#define FLAG_CITIES_HIDE_RIVAL_REMATCH              (CITIES_FLAGS_START + 0x1B) // Route 103 rival, shown once Champion
+#define FLAG_CITIES_RIVAL_REMATCH_V1_BEATEN         (CITIES_FLAGS_START + 0x1C)
+#define FLAG_CITIES_RIVAL_REMATCH_V2_BEATEN         (CITIES_FLAGS_START + 0x1D)
+#define FLAG_CITIES_RIVAL_REMATCH_V3_BEATEN         (CITIES_FLAGS_START + 0x1E)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

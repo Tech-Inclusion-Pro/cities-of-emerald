@@ -51,7 +51,7 @@ PetalburgCity_Gym_EventScript_MoveNormanToEntrance::
 
 PetalburgCity_Gym_EventScript_CheckNormanForRematch::
 	setorcopyvar VAR_TRAINER_BATTLE_OPPONENT_A, TRAINER_NORMAN_1
-	specialvar VAR_RESULT, IsTrainerReadyForRematch
+	specialvar VAR_RESULT, Script_CitiesTryGymRematch
 	goto_if_eq VAR_RESULT, TRUE, PetalburgCity_Gym_EventScript_DontMoveNormanToFront
 	goto_if_eq VAR_PETALBURG_GYM_STATE, 8, PetalburgCity_Gym_EventScript_DontMoveNormanToFront
 	setobjectxyperm LOCALID_PETALBURG_GYM_NORMAN, 4, 107
