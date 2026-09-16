@@ -1142,6 +1142,15 @@ static const struct MenuAction sMultichoiceList_CitiesLevelCap[] =
     {COMPOUND_STRING("No level caps")},
 };
 
+static const struct MenuAction sMultichoiceList_CitiesAccessPreset[] =
+{
+    {COMPOUND_STRING("No preset")},
+    {COMPOUND_STRING("Low Vision")},
+    {COMPOUND_STRING("Reduced Motion")},
+    {COMPOUND_STRING("Reading Support")},
+    {COMPOUND_STRING("One-Handed")},
+};
+
 // Cities of Emerald: Dewford stone expert choice (GDD 4.3)
 static const struct MenuAction sMultichoiceList_CitiesEeveeStones[] =
 {
@@ -1323,6 +1332,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_CITIES_EEVEE_STONES]                        = MULTICHOICE(sMultichoiceList_CitiesEeveeStones),
     [MULTI_CITIES_DIFFICULTY]                          = MULTICHOICE(sMultichoiceList_CitiesDifficulty),
     [MULTI_CITIES_LEVEL_CAP]                           = MULTICHOICE(sMultichoiceList_CitiesLevelCap),
+    [MULTI_CITIES_ACCESS_PRESET]                       = MULTICHOICE(sMultichoiceList_CitiesAccessPreset),
 };
 
 const u8 *const gStdStrings[] =

@@ -6,7 +6,7 @@
 // Please note that this simple check is not 100% foolproof, but should be able to catch most unintended shifts.
 #define T_SAVEBLOCK1_SIZE 15260 // Cities of Emerald: +192 B Cities flag/var ranges, +376 B bag expansion, -876 B FREE_MYSTERY_GIFT (docs/SAVE_BUDGET.md)
 #define T_SAVEBLOCK2_SIZE 3884
-#define T_SAVEBLOCK3_SIZE 4
+#define T_SAVEBLOCK3_SIZE 8 // Cities of Emerald: +4 B CitiesAccessibility (docs/SAVE_BUDGET.md)
 #define T_POKEMONSTORAGE_SIZE 34144
 
 TEST("SaveBlock1 is backwards compatible")

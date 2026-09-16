@@ -62,6 +62,10 @@ InsideOfTruck_Text_BoxPrintedWithMonLogo:
 
 InsideOfTruck_EventScript_CitiesSetup::
 	msgbox InsideOfTruck_Text_SetupIntro, MSGBOX_DEFAULT
+	message InsideOfTruck_Text_ChoosePreset
+	waitmessage
+	multichoice 0, 0, MULTI_CITIES_ACCESS_PRESET, TRUE
+	special Script_CitiesApplyPreset
 InsideOfTruck_EventScript_CitiesSetupDifficulty::
 	message InsideOfTruck_Text_ChooseDifficulty
 	waitmessage
@@ -118,6 +122,13 @@ InsideOfTruck_Text_SetupIntro:
 	.string "Before your journey begins, let's\n"
 	.string "set up the game your way.\p"
 	.string "There are no wrong answers.$"
+
+InsideOfTruck_Text_ChoosePreset:
+	.string "First: accessibility.\p"
+	.string "A preset turns on a group of\n"
+	.string "helpful settings at once.\p"
+	.string "You can change every setting later\n"
+	.string "in the ACCESS menu. Choose one:$"
 
 InsideOfTruck_Text_ChooseDifficulty:
 	.string "How challenging should battles be?\p"

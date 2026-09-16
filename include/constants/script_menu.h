@@ -172,6 +172,7 @@ enum
     MULTI_CITIES_EEVEE_STONES, // Cities of Emerald: Dewford stone expert (GDD 4.3)
     MULTI_CITIES_DIFFICULTY,   // Cities of Emerald: new-game setup (GDD 4.1/10)
     MULTI_CITIES_LEVEL_CAP,    // Cities of Emerald: assist cap choice (GDD 10)
+    MULTI_CITIES_ACCESS_PRESET, // Cities of Emerald: accessibility presets (GDD 11.6)
 };
 
 #define MULTI_NONE 255
