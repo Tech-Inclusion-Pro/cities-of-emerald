@@ -92,13 +92,12 @@ static void Set_instantText(u8 value) { if (value) FlagSet(FLAG_CITIES_ACCESS_IN
 static u8 Get_skipAnims(void) { return gSaveBlock2Ptr->optionsBattleSceneOff; }
 static void Set_skipAnims(u8 value) { gSaveBlock2Ptr->optionsBattleSceneOff = value; }
 
+// Rows appear only once their effect is wired; stored bits for the rest
+// are reserved (numeric HP, patterned bars return in Task 6.3 follow-up).
 static const struct CitiesAccessMenuItem sPage_Vision[] =
 {
-    {COMPOUND_STRING("Type text labels"),   2, sValues_OffOn, Get_typeLabels, Set_typeLabels},
     {COMPOUND_STRING("High contrast"),      2, sValues_OffOn, Get_highContrast, Set_highContrast},
     {COMPOUND_STRING("Effect indicator"),   2, sValues_OffOn, Get_effectivenessIndicator, Set_effectivenessIndicator},
-    {COMPOUND_STRING("Numeric HP"),         2, sValues_OffOn, Get_numericHp, Set_numericHp},
-    {COMPOUND_STRING("Patterned HP bars"),  2, sValues_OffOn, Get_patternedHpBars, Set_patternedHpBars},
 };
 
 static const struct CitiesAccessMenuItem sPage_Motor[] =
@@ -106,7 +105,6 @@ static const struct CitiesAccessMenuItem sPage_Motor[] =
     {COMPOUND_STRING("Auto-run"),           2, sValues_OffOn, Get_autoRun, Set_autoRun},
     {COMPOUND_STRING("Toggle run"),         2, sValues_OffOn, Get_toggleRun, Set_toggleRun},
     {COMPOUND_STRING("Fewer presses"),      2, sValues_OffOn, Get_fewerPresses, Set_fewerPresses},
-    {COMPOUND_STRING("Hold to confirm"),    2, sValues_OffOn, Get_holdToConfirm, Set_holdToConfirm},
 };
 
 static const struct CitiesAccessMenuItem sPage_Sensory[] =
@@ -121,8 +119,6 @@ static const struct CitiesAccessMenuItem sPage_TextSound[] =
 {
     {COMPOUND_STRING("Instant text"),       2, sValues_OffOn, Get_instantText, Set_instantText},
     {COMPOUND_STRING("Wait for button"),    2, sValues_OffOn, Get_waitForButton, Set_waitForButton},
-    {COMPOUND_STRING("Visual sound cues"),  2, sValues_OffOn, Get_visualSoundCues, Set_visualSoundCues},
-    {COMPOUND_STRING("Sound subtitles"),    2, sValues_OffOn, Get_soundSubtitles, Set_soundSubtitles},
     {COMPOUND_STRING("Extra time"),         6, sValues_ExtraTime, Get_extraTimeMinutes, Set_extraTimeMinutes},
 };
 

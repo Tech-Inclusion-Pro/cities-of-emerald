@@ -48,6 +48,10 @@ void AnimTask_BlendBattleAnimPal(u8 taskId)
                                     (gBattleAnimArgs[0] >>  8) & 1,
                                     (gBattleAnimArgs[0] >>  9) & 1,
                                     (gBattleAnimArgs[0] >> 10) & 1);
+    // Cities of Emerald (GDD 11.5): reduced flashing softens palette
+    // blends (screen flashes/whiteouts) to at most half intensity.
+    if (gSaveBlock3Ptr->citiesAccess.reducedFlashing && gBattleAnimArgs[3] > 8)
+        gBattleAnimArgs[3] = 8;
     StartBlendAnimSpriteColor(taskId, selectedPalettes);
 }
 

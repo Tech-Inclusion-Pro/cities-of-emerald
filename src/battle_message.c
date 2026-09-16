@@ -37,6 +37,11 @@
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+// Cities of Emerald note: this file's B_SHOW_EFFECTIVENESS uses are const
+// initializers testing != NEVER only; the runtime toggle (ALWAYS vs SEEN,
+// both != NEVER) cannot change their result, so the compile-time constant
+// is correct here. The runtime override lives in battle_controller_player.c.
+
 
 struct BattleWindowText
 {
