@@ -254,11 +254,42 @@ struct NPCFollower
 #include "constants/items.h"
 #define ITEM_FLAGS_COUNT ((ITEMS_COUNT / 8) + ((ITEMS_COUNT % 8) ? 1 : 0))
 
+// Cities of Emerald accessibility settings (GDD Section 11). Bitfields;
+// defaults and presets live in src/cities_accessibility.c. Instant text is
+// stored separately in FLAG_CITIES_ACCESS_INSTANT_TEXT because the engine's
+// text system reads a flag.
+struct CitiesAccessibility
+{
+    // Vision (GDD 11.1)
+    u32 typeLabels:1;
+    u32 highContrast:1;
+    u32 effectivenessIndicator:1;
+    u32 numericHp:1;
+    u32 patternedHpBars:1;
+    // Hearing (GDD 11.2)
+    u32 visualSoundCues:1;
+    u32 soundSubtitles:1;
+    // Motor (GDD 11.3)
+    u32 autoRun:1;
+    u32 toggleRun:1;
+    u32 fewerPresses:1;
+    u32 holdToConfirm:1;
+    // Text (GDD 11.4)
+    u32 waitForButton:1;
+    // Sensory and pacing (GDD 11.5)
+    u32 reducedFlashing:1;
+    u32 reducedShake:1;
+    u32 battleSpeed:2;      // 0 normal, 1 fast, 2 fastest
+    u32 extraTimeMinutes:3; // 0-5, ranking quick-win window (GDD 8.4)
+    u32 padding:13;
+};
+
 struct SaveBlock3
 {
 #if OW_USE_FAKE_RTC
     struct SiiRtcInfo fakeRTC;
 #endif
+    struct CitiesAccessibility citiesAccess;
 #if FNPC_ENABLE_NPC_FOLLOWERS
     struct NPCFollower NPCfollower;
 #endif

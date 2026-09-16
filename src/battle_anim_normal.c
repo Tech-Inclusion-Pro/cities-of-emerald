@@ -964,6 +964,16 @@ static void AnimShakeMonOrBattlePlatforms(struct Sprite *sprite)
     }
 
     sprite->sOriginalValue = *(u16 *)(sprite->sShakePtrLo | (sprite->sShakePtrHi << 16));
+    // Cities of Emerald (GDD 11.5): reduced shake collapses the shake to a
+    // single frame of minimal movement.
+    if (gSaveBlock3Ptr->citiesAccess.reducedShake)
+    {
+        sprite->sTimer = 1;
+        if (sprite->sShakeVelocity > 1)
+            sprite->sShakeVelocity = 1;
+        else if (sprite->sShakeVelocity < -1)
+            sprite->sShakeVelocity = -1;
+    }
     sprite->sType = cmd->type;
     if (sprite->sType == SHAKE_MON_X || sprite->sType == SHAKE_MON_Y)
         AnimShakeMonOrBattlePlatforms_UpdateCoordOffsetEnabled();

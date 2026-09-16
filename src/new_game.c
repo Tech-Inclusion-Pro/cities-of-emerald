@@ -18,6 +18,7 @@
 #include "berry.h"
 #include "rtc.h"
 #include "easy_chat.h"
+#include "cities_accessibility.h"
 #include "event_data.h"
 #include "money.h"
 #include "trainer_hill.h"
@@ -234,6 +235,7 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+    CitiesAccess_Reset(); // Cities of Emerald: accessibility defaults (GDD 11)
     EnableNationalPokedex(); // Cities of Emerald: National Dex from the start (GDD Section 3)
 }
 

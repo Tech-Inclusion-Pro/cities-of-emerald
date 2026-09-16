@@ -1014,3 +1014,49 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+
+@ Cities of Emerald (GDD 11.7): in-world accessibility guide.
+LittlerootTown_EventScript_CitiesAccessGuide::
+	lock
+	faceplayer
+	msgbox LittlerootTown_Text_AccessGuideIntro, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_AccessGuideOfferPreset, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, LittlerootTown_EventScript_AccessGuideDone
+	message LittlerootTown_Text_AccessGuideChoosePreset
+	waitmessage
+	multichoice 0, 0, MULTI_CITIES_ACCESS_PRESET, TRUE
+	special Script_CitiesApplyPreset
+	msgbox LittlerootTown_Text_AccessGuideApplied, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_EventScript_AccessGuideDone::
+	msgbox LittlerootTown_Text_AccessGuideBye, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_Text_AccessGuideIntro:
+	.string "Hi! I help people set up the game\n"
+	.string "so it feels right for them.\p"
+	.string "Open the menu with START and pick\n"
+	.string "ACCESS to see every setting:\p"
+	.string "reading help, easier controls,\n"
+	.string "calmer screens, and more.$"
+
+LittlerootTown_Text_AccessGuideOfferPreset:
+	.string "A preset turns on a group of\n"
+	.string "settings at once.\p"
+	.string "Would you like to pick a preset\n"
+	.string "right now?$"
+
+LittlerootTown_Text_AccessGuideChoosePreset:
+	.string "Which preset would you like?$"
+
+LittlerootTown_Text_AccessGuideApplied:
+	.string "Done!\p"
+	.string "You can change any single setting\n"
+	.string "in the ACCESS menu, any time.$"
+
+LittlerootTown_Text_AccessGuideBye:
+	.string "Any time you like, the ACCESS\n"
+	.string "menu is there for you.$"
