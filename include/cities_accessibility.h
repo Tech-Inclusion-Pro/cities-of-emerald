@@ -17,6 +17,7 @@ enum CitiesAccessPreset
 void CitiesAccess_Reset(void);
 void CitiesAccess_ApplyPreset(enum CitiesAccessPreset preset);
 u32 CountPaceSlowingFeatures(void);
+u32 CitiesScaleBattleWait(u32 frames);
 bool32 CitiesPlayerWantsRun(u16 heldKeys);
 void Script_CitiesApplyPreset(void);
 void CB2_InitCitiesAccessMenu(void);

@@ -49,6 +49,13 @@
 #include "pokedex.h"
 #include "test/battle.h"
 
+// Cities of Emerald (GDD 11.1): the accessibility "effect indicator" toggle
+// upgrades the effectiveness preview to ALWAYS at runtime.
+u32 CitiesShowEffectiveness(void);
+#undef B_SHOW_EFFECTIVENESS
+#define B_SHOW_EFFECTIVENESS (CitiesShowEffectiveness())
+
+
 static void PlayerHandleLoadMonSprite(enum BattlerId battler);
 static void PlayerHandleDrawTrainerPic(enum BattlerId battler);
 static void PlayerHandleTrainerSlide(enum BattlerId battler);

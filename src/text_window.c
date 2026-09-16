@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/rgb.h"
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
@@ -202,8 +203,21 @@ const u16 *GetTextWindowPalette(u8 id)
     return (const u16 *)(sTextWindowPalettes) + id;
 }
 
+// Cities of Emerald (GDD 11.1): high contrast swaps the message box to
+// white text on black. Index 1 is the box fill, 2 the text body, 3 the
+// text shadow; the rest stay dark so decorations don't glare.
+static const u16 sCitiesHighContrastMessageBox_Pal[16] =
+{
+    RGB_BLACK, RGB_BLACK, RGB_WHITE, RGB(10, 10, 10),
+    RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK,
+    RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_BLACK,
+    RGB_BLACK, RGB_BLACK, RGB_BLACK, RGB_WHITE,
+};
+
 const u16 *GetOverworldTextboxPalettePtr(void)
 {
+    if (gSaveBlock3Ptr->citiesAccess.highContrast)
+        return sCitiesHighContrastMessageBox_Pal;
     return gMessageBox_Pal;
 }
 

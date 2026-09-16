@@ -1,4 +1,5 @@
 #include "global.h"
+#include "cities_accessibility.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -1290,9 +1291,19 @@ static void Cmd_waitmessage(void)
         }
         else
         {
-            u16 toWait = cmd->time;
+            u16 toWait = CitiesScaleBattleWait(cmd->time);
             if (gTestRunnerHeadless)
                 gPauseCounterBattle = toWait;
+            else if (gSaveBlock3Ptr->citiesAccess.waitForButton)
+            {
+                if (JOY_NEW(A_BUTTON | B_BUTTON))
+                {
+                    gPauseCounterBattle = 0;
+                    gBattlescriptCurrInstr = cmd->nextInstr;
+                    gBattleCommunication[MSG_DISPLAY] = MSG_DISPLAY_CONTINUE;
+                }
+                return;
+            }
             if (++gPauseCounterBattle >= toWait)
             {
                 gPauseCounterBattle = 0;
@@ -2656,9 +2667,20 @@ static void Cmd_pause(void)
 
     if (gBattleControllerExecFlags == 0)
     {
-        u16 value = cmd->frames;
+        // Cities of Emerald (GDD 11.5/11.4): battle speed scales pauses;
+        // wait-for-button holds until the player presses A or B.
+        u16 value = CitiesScaleBattleWait(cmd->frames);
         if (gTestRunnerHeadless)
             gPauseCounterBattle = value;
+        else if (gSaveBlock3Ptr->citiesAccess.waitForButton)
+        {
+            if (JOY_NEW(A_BUTTON | B_BUTTON))
+            {
+                gPauseCounterBattle = 0;
+                gBattlescriptCurrInstr = cmd->nextInstr;
+            }
+            return;
+        }
         if (++gPauseCounterBattle >= value)
         {
             gPauseCounterBattle = 0;
@@ -8355,6 +8377,14 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
 static void Cmd_trygivecaughtmonnick(void)
 {
     CMD_ARGS();
+
+    // Cities of Emerald (GDD 11.3): "fewer presses" skips the optional
+    // nickname question after a catch.
+    if (gSaveBlock3Ptr->citiesAccess.fewerPresses)
+    {
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
+    }
 
     switch (gBattleCommunication[MULTIUSE_STATE])
     {

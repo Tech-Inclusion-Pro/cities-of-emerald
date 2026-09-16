@@ -3,6 +3,7 @@
 #include "event_data.h"
 #include "main.h"
 #include "constants/flags.h"
+#include "config/battle.h"
 
 // Task 6.1/6.8/6.9 (GDD 11): defaults, presets, and the pace-slowing
 // feature count all live in this one file, per the implementation plan's
@@ -90,4 +91,24 @@ bool32 CitiesPlayerWantsRun(u16 heldKeys)
 void Script_CitiesApplyPreset(void)
 {
     CitiesAccess_ApplyPreset(gSpecialVar_Result);
+}
+
+// Task 6.3: the indicator toggle forces the battle effectiveness preview to
+// ALWAYS; off keeps the expansion's dex-based default (seen species).
+u32 CitiesShowEffectiveness(void)
+{
+    if (gSaveBlock3Ptr->citiesAccess.effectivenessIndicator)
+        return SHOW_EFFECTIVENESS_ALWAYS;
+    return SHOW_EFFECTIVENESS_SEEN;
+}
+
+// Task 6.5: battle speed scales every battlescript pause.
+u32 CitiesScaleBattleWait(u32 frames)
+{
+    switch (gSaveBlock3Ptr->citiesAccess.battleSpeed)
+    {
+    case 1: frames /= 2; break;
+    case 2: frames /= 4; break;
+    }
+    return frames == 0 ? 1 : frames;
 }
