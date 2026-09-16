@@ -1,19 +1,23 @@
 #include "global.h"
+#include "battle_main.h"
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
 #include "event_data.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
+#include "list_menu.h"
 #include "main.h"
 #include "menu.h"
 #include "palette.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "random.h"
 #include "scanline_effect.h"
 #include "sound.h"
 #include "sprite.h"
 #include "starter_choose.h"
+#include "string_util.h"
 #include "strings.h"
 #include "task.h"
 #include "text.h"
@@ -24,44 +28,42 @@
 #include "constants/songs.h"
 #include "constants/rgb.h"
 
+// Cities of Emerald (GDD 4.2): the vanilla three-ball screen is replaced by
+// a three-step, text-first flow — pick a region, pick a Pokémon (sprite,
+// name, and type shown as text), confirm. B always goes back one step.
+
 #define STARTER_MON_COUNT   3
 
-// Position of the sprite of the selected starter Pokémon
-#define STARTER_PKMN_POS_X (DISPLAY_WIDTH / 2)
-#define STARTER_PKMN_POS_Y 64
-
 #define TAG_POKEBALL_SELECT 0x1000
-#define TAG_STARTER_CIRCLE  0x1001
 
 static void CB2_StarterChoose(void);
-static void ClearStarterLabel(void);
-static void Task_StarterChoose(u8 taskId);
-static void Task_HandleStarterChooseInput(u8 taskId);
-static void Task_WaitForStarterSprite(u8 taskId);
+static void Task_OpenRegionList(u8 taskId);
+static void Task_HandleRegionListInput(u8 taskId);
+static void Task_OpenMonSelect(u8 taskId);
+static void Task_HandleMonSelectInput(u8 taskId);
 static void Task_AskConfirmStarter(u8 taskId);
 static void Task_HandleConfirmStarterInput(u8 taskId);
-static void Task_DeclineStarter(u8 taskId);
-static void Task_MoveStarterChooseCursor(u8 taskId);
-static void Task_CreateStarterLabel(u8 taskId);
-static void CreateStarterPokemonLabel(u8 selection);
-static u8 CreatePokemonFrontSprite(enum Species species, u8 x, u8 y);
 static void SpriteCB_SelectionHand(struct Sprite *sprite);
-static void SpriteCB_Pokeball(struct Sprite *sprite);
-static void SpriteCB_StarterPokemon(struct Sprite *sprite);
-
-static u16 sStarterLabelWindowId;
+static u8 CreatePokemonFrontSprite(enum Species species, u8 x, u8 y, u8 paletteSlot);
+static enum Species GetDisplaySpecies(u8 taskId, u8 slot);
+static void PrintMonInfoText(u8 taskId);
+static void DestroyMonSprites(u8 taskId);
 
 const u16 gBirchBagGrass_Pal[] = INCGFX_U16("graphics/starter_choose/tiles.png", ".gbapal");
 static const u16 sPokeballSelection_Pal[] = INCGFX_U16("graphics/starter_choose/pokeball_selection.png", ".gbapal");
-static const u16 sStarterCircle_Pal[] = INCGFX_U16("graphics/starter_choose/starter_circle.png", ".gbapal");
 const u32 gBirchBagTilemap[] = INCGFX_U32("graphics/starter_choose/birch_bag.bin", ".smolTM");
 const u32 gBirchGrassTilemap[] = INCGFX_U32("graphics/starter_choose/birch_grass.bin", ".smolTM");
 const u32 gBirchBagGrass_Gfx[] = INCGFX_U32("graphics/starter_choose/tiles.png", ".4bpp.smol");
 const u32 gPokeballSelection_Gfx[] = INCGFX_U32("graphics/starter_choose/pokeball_selection.png", ".4bpp.smol");
-static const u32 sStarterCircle_Gfx[] = INCGFX_U32("graphics/starter_choose/starter_circle.png", ".4bpp.smol");
+
+enum
+{
+    WIN_MSG,
+};
 
 static const struct WindowTemplate sWindowTemplates[] =
 {
+    [WIN_MSG] =
     {
         .bg = 0,
         .tilemapLeft = 3,
@@ -85,40 +87,96 @@ static const struct WindowTemplate sWindowTemplate_ConfirmStarter =
     .baseBlock = 0x0260
 };
 
-static const struct WindowTemplate sWindowTemplate_StarterLabel =
+static const struct WindowTemplate sWindowTemplate_RegionList =
 {
     .bg = 0,
-    .tilemapLeft = 0,
-    .tilemapTop = 0,
-    .width = 13,
-    .height = 4,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 9,
+    .height = 12,
     .paletteNum = 14,
-    .baseBlock = 0x0274
+    .baseBlock = 0x02B8
 };
 
-static const u8 sPokeballCoords[STARTER_MON_COUNT][2] =
+// Sprite positions for the three starters (matches the bag's ball spots).
+static const u8 sMonCoords[STARTER_MON_COUNT][2] =
 {
     {60, 64},
     {120, 88},
     {180, 64},
 };
 
-static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
+static const u8 sCursorCoords[STARTER_MON_COUNT][2] =
 {
-    {0, 9},
-    {16, 10},
-    {8, 4},
+    {60, 32},
+    {120, 56},
+    {180, 32},
 };
 
 #define GRASS_STARTER (IS_FRLG ? SPECIES_BULBASAUR  : SPECIES_TREECKO)
 #define FIRE_STARTER  (IS_FRLG ? SPECIES_CHARMANDER : SPECIES_TORCHIC)
 #define WATER_STARTER (IS_FRLG ? SPECIES_SQUIRTLE   : SPECIES_MUDKIP )
 
+// Vanilla fallback, used only while VAR_CITIES_STARTER_REGION is unset.
 static const u16 sStarterMon[STARTER_MON_COUNT] =
 {
     GRASS_STARTER,
     FIRE_STARTER,
     WATER_STARTER,
+};
+
+#include "data/cities_starters.h"
+
+static const u8 sText_Kanto[] = _("Kanto");
+static const u8 sText_Johto[] = _("Johto");
+static const u8 sText_Hoenn[] = _("Hoenn");
+static const u8 sText_Sinnoh[] = _("Sinnoh");
+static const u8 sText_Unova[] = _("Unova");
+static const u8 sText_Kalos[] = _("Kalos");
+static const u8 sText_Alola[] = _("Alola");
+static const u8 sText_Galar[] = _("Galar");
+static const u8 sText_Paldea[] = _("Paldea");
+static const u8 sText_Special[] = _("Special");
+
+static const u8 sText_ChooseRegion[] = _("Choose a region.\nPress A to select.");
+static const u8 sText_MonInfo[] = _("{STR_VAR_1}: {STR_VAR_2} type\nA: choose   B: go back");
+static const u8 sText_ConfirmChoice[] = _("You chose {STR_VAR_1}, the {STR_VAR_2}-type\nPokémon. Is that right?");
+static const u8 sText_TypeSlash[] = _("/");
+
+static const struct ListMenuItem sRegionListItems[] =
+{
+    {sText_Kanto,   CITIES_STARTER_REGION_KANTO},
+    {sText_Johto,   CITIES_STARTER_REGION_JOHTO},
+    {sText_Hoenn,   CITIES_STARTER_REGION_HOENN},
+    {sText_Sinnoh,  CITIES_STARTER_REGION_SINNOH},
+    {sText_Unova,   CITIES_STARTER_REGION_UNOVA},
+    {sText_Kalos,   CITIES_STARTER_REGION_KALOS},
+    {sText_Alola,   CITIES_STARTER_REGION_ALOLA},
+    {sText_Galar,   CITIES_STARTER_REGION_GALAR},
+    {sText_Paldea,  CITIES_STARTER_REGION_PALDEA},
+    {sText_Special, CITIES_STARTER_REGION_SPECIAL},
+};
+
+static const struct ListMenuTemplate sRegionListMenuTemplate =
+{
+    .items = sRegionListItems,
+    .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
+    .itemPrintFunc = NULL,
+    .totalItems = ARRAY_COUNT(sRegionListItems),
+    .maxShowed = 5,
+    .windowId = 0, // set at runtime
+    .header_X = 0,
+    .item_X = 8,
+    .cursor_X = 0,
+    .upText_Y = 1,
+    .cursorPal = 2,
+    .fillValue = 1,
+    .cursorShadowPal = 3,
+    .lettersSpacing = FALSE,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
+    .fontId = FONT_NORMAL,
+    .cursorKind = CURSOR_BLACK_ARROW,
 };
 
 static const struct BgTemplate sBgTemplates[3] =
@@ -152,8 +210,6 @@ static const struct BgTemplate sBgTemplates[3] =
     },
 };
 
-static const u8 sTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY};
-
 static const struct OamData sOam_Hand =
 {
     .y = DISPLAY_HEIGHT,
@@ -171,84 +227,9 @@ static const struct OamData sOam_Hand =
     .affineParam = 0,
 };
 
-static const struct OamData sOam_Pokeball =
-{
-    .y = DISPLAY_HEIGHT,
-    .affineMode = ST_OAM_AFFINE_OFF,
-    .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = FALSE,
-    .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(32x32),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(32x32),
-    .tileNum = 0,
-    .priority = 1,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
-
-static const struct OamData sOam_StarterCircle =
-{
-    .y = DISPLAY_HEIGHT,
-    .affineMode = ST_OAM_AFFINE_DOUBLE,
-    .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = FALSE,
-    .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(64x64),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(64x64),
-    .tileNum = 0,
-    .priority = 1,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
-
-static const u8 sCursorCoords[][2] =
-{
-    {60, 32},
-    {120, 56},
-    {180, 32},
-};
-
 static const union AnimCmd sAnim_Hand[] =
 {
     ANIMCMD_FRAME(48, 30),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_Pokeball_Still[] =
-{
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_Pokeball_Moving[] =
-{
-    ANIMCMD_FRAME(16, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(32, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(16, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(32, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(0, 32),
-    ANIMCMD_FRAME(16, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(32, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(16, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(32, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_JUMP(0),
-};
-
-static const union AnimCmd sAnim_StarterCircle[] =
-{
-    ANIMCMD_FRAME(0, 8),
     ANIMCMD_END,
 };
 
@@ -256,34 +237,6 @@ static const union AnimCmd *const sAnims_Hand[] =
 {
     sAnim_Hand,
 };
-
-static const union AnimCmd *const sAnims_Pokeball[] =
-{
-    sAnim_Pokeball_Still,
-    sAnim_Pokeball_Moving,
-};
-
-static const union AnimCmd *const sAnims_StarterCircle[] =
-{
-    sAnim_StarterCircle,
-};
-
-static const union AffineAnimCmd sAffineAnim_StarterPokemon[] =
-{
-    AFFINEANIMCMD_FRAME(16, 16, 0, 0),
-    AFFINEANIMCMD_FRAME(16, 16, 0, 15),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd sAffineAnim_StarterCircle[] =
-{
-    AFFINEANIMCMD_FRAME(20, 20, 0, 0),
-    AFFINEANIMCMD_FRAME(20, 20, 0, 15),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd *const sAffineAnims_StarterPokemon = {sAffineAnim_StarterPokemon};
-static const union AffineAnimCmd *const sAffineAnims_StarterCircle[] = {sAffineAnim_StarterCircle};
 
 static const struct CompressedSpriteSheet sSpriteSheet_PokeballSelect[] =
 {
@@ -295,25 +248,11 @@ static const struct CompressedSpriteSheet sSpriteSheet_PokeballSelect[] =
     {}
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_StarterCircle[] =
-{
-    {
-        .data = sStarterCircle_Gfx,
-        .size = 0x0800,
-        .tag = TAG_STARTER_CIRCLE
-    },
-    {}
-};
-
 static const struct SpritePalette sSpritePalettes_StarterChoose[] =
 {
     {
         .data = sPokeballSelection_Pal,
         .tag = TAG_POKEBALL_SELECT
-    },
-    {
-        .data = sStarterCircle_Pal,
-        .tag = TAG_STARTER_CIRCLE
     },
     {},
 };
@@ -327,31 +266,42 @@ static const struct SpriteTemplate sSpriteTemplate_Hand =
     .callback = SpriteCB_SelectionHand
 };
 
-static const struct SpriteTemplate sSpriteTemplate_Pokeball =
-{
-    .tileTag = TAG_POKEBALL_SELECT,
-    .paletteTag = TAG_POKEBALL_SELECT,
-    .oam = &sOam_Pokeball,
-    .anims = sAnims_Pokeball,
-    .callback = SpriteCB_Pokeball
-};
-
-static const struct SpriteTemplate sSpriteTemplate_StarterCircle =
-{
-    .tileTag = TAG_STARTER_CIRCLE,
-    .paletteTag = TAG_STARTER_CIRCLE,
-    .oam = &sOam_StarterCircle,
-    .anims = sAnims_StarterCircle,
-    .affineAnims = sAffineAnims_StarterCircle,
-    .callback = SpriteCB_StarterPokemon
-};
-
 // .text
 u16 GetStarterPokemon(u16 chosenStarterId)
 {
-    if (chosenStarterId > STARTER_MON_COUNT)
+    u16 region = VarGet(VAR_CITIES_STARTER_REGION);
+
+    if (chosenStarterId >= STARTER_MON_COUNT)
         chosenStarterId = 0;
+    if (region == CITIES_STARTER_REGION_SPECIAL)
+        return SPECIES_EEVEE;
+    if (region >= CITIES_STARTER_REGION_KANTO && region <= CITIES_STARTER_REGION_PALDEA)
+        return gCitiesStarterStages[region - 1][chosenStarterId][0];
     return sStarterMon[chosenStarterId];
+}
+
+// Maps a Hoenn starter-line species to the same evolution stage of the
+// same-region line, based on the player's chosen region. Used for rival
+// teams (GDD 4.2): scripts still pick the vanilla 3-way trainer variant,
+// and this swap keeps the type advantage while matching the region.
+enum Species CitiesGetRivalStarterSpecies(enum Species species)
+{
+    u32 line, stage;
+    u16 region = VarGet(VAR_CITIES_STARTER_REGION);
+
+    if (region < CITIES_STARTER_REGION_KANTO || region > CITIES_STARTER_REGION_PALDEA
+     || region == CITIES_STARTER_REGION_HOENN)
+        return species; // Hoenn, Special (Eevee), or unset: vanilla teams are already right.
+
+    for (line = 0; line < 3; line++)
+    {
+        for (stage = 0; stage < 3; stage++)
+        {
+            if (gCitiesStarterStages[CITIES_STARTER_REGION_HOENN - 1][line][stage] == species)
+                return gCitiesStarterStages[region - 1][line][stage];
+        }
+    }
+    return species;
 }
 
 static void VblankCB_StarterChoose(void)
@@ -361,14 +311,18 @@ static void VblankCB_StarterChoose(void)
     TransferPlttBuffer();
 }
 
-// Data for Task_StarterChoose
-#define tStarterSelection   data[0]
-#define tPkmnSpriteId       data[1]
-#define tCircleSpriteId     data[2]
+// Task data
+#define tState          data[0]  // unused directly; states are task funcs
+#define tRegion         data[1]  // CITIES_STARTER_REGION_*
+#define tMonSelection   data[2]  // 0..2
+#define tListTaskId     data[3]
+#define tRegionWindowId data[4]
+#define tHandSpriteId   data[5]
+#define tMonCount       data[6]
+#define tSpriteBase     7        // data[7..9]: mon pic sprite ids
 
-// Data for sSpriteTemplate_Pokeball
+// Sprite data
 #define sTaskId data[0]
-#define sBallId data[1]
 
 void CB2_ChooseStarter(void)
 {
@@ -417,7 +371,6 @@ void CB2_ChooseStarter(void)
     LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(14), PLTT_SIZE_4BPP);
     LoadPalette(gBirchBagGrass_Pal, BG_PLTT_ID(0), sizeof(gBirchBagGrass_Pal));
     LoadCompressedSpriteSheet(&sSpriteSheet_PokeballSelect[0]);
-    LoadCompressedSpriteSheet(&sSpriteSheet_StarterCircle[0]);
     LoadSpritePalettes(sSpritePalettes_StarterChoose);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
 
@@ -425,40 +378,22 @@ void CB2_ChooseStarter(void)
     SetVBlankCallback(VblankCB_StarterChoose);
     SetMainCallback2(CB2_StarterChoose);
 
-    SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR);
-    SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ);
-    SetGpuReg(REG_OFFSET_WIN0H, 0);
-    SetGpuReg(REG_OFFSET_WIN0V, 0);
-    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_OBJ | BLDCNT_TGT1_BD | BLDCNT_EFFECT_DARKEN);
-    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
-    SetGpuReg(REG_OFFSET_BLDY, 7);
-    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
+    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
 
     ShowBg(0);
     ShowBg(2);
     ShowBg(3);
 
-    taskId = CreateTask(Task_StarterChoose, 0);
-    gTasks[taskId].tStarterSelection = 1;
+    taskId = CreateTask(Task_OpenRegionList, 0);
+    gTasks[taskId].tRegion = CITIES_STARTER_REGION_KANTO;
+    gTasks[taskId].tMonSelection = 0;
+    gTasks[taskId].tRegionWindowId = WINDOW_NONE;
 
-    // Create hand sprite
+    // Selection hand cursor, hidden until the Pokémon step.
     spriteId = CreateSprite(&sSpriteTemplate_Hand, 120, 56, 2);
-    gSprites[spriteId].data[0] = taskId;
-
-    // Create three Poké Ball sprites
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[0][0], sPokeballCoords[0][1], 2);
     gSprites[spriteId].sTaskId = taskId;
-    gSprites[spriteId].sBallId = 0;
-
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[1][0], sPokeballCoords[1][1], 2);
-    gSprites[spriteId].sTaskId = taskId;
-    gSprites[spriteId].sBallId = 1;
-
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[2][0], sPokeballCoords[2][1], 2);
-    gSprites[spriteId].sTaskId = taskId;
-    gSprites[spriteId].sBallId = 2;
-
-    sStarterLabelWindowId = WINDOW_NONE;
+    gSprites[spriteId].invisible = TRUE;
+    gTasks[taskId].tHandSpriteId = spriteId;
 }
 
 static void CB2_StarterChoose(void)
@@ -470,65 +405,158 @@ static void CB2_StarterChoose(void)
     UpdatePaletteFade();
 }
 
-static void Task_StarterChoose(u8 taskId)
+static void Task_OpenRegionList(u8 taskId)
 {
-    CreateStarterPokemonLabel(gTasks[taskId].tStarterSelection);
-    DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x2A8, 0xD);
-    AddTextPrinterParameterized(0, FONT_NORMAL, gText_BirchInTrouble, 0, 1, 0, NULL);
-    PutWindowTilemap(0);
+    u8 windowId;
+
+    DrawStdFrameWithCustomTileAndPalette(WIN_MSG, FALSE, 0x2A8, 0xD);
+    FillWindowPixelBuffer(WIN_MSG, PIXEL_FILL(1));
+    AddTextPrinterParameterized(WIN_MSG, FONT_NORMAL, sText_ChooseRegion, 0, 1, 0, NULL);
+    PutWindowTilemap(WIN_MSG);
+
+    windowId = AddWindow(&sWindowTemplate_RegionList);
+    gTasks[taskId].tRegionWindowId = windowId;
+    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x2A8, 0xD);
+
+    gMultiuseListMenuTemplate = sRegionListMenuTemplate;
+    gMultiuseListMenuTemplate.windowId = windowId;
+    gTasks[taskId].tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
+
     ScheduleBgCopyTilemapToVram(0);
-    gTasks[taskId].func = Task_HandleStarterChooseInput;
+    gTasks[taskId].func = Task_HandleRegionListInput;
 }
 
-static void Task_HandleStarterChooseInput(u8 taskId)
+static void Task_HandleRegionListInput(u8 taskId)
 {
-    u8 selection = gTasks[taskId].tStarterSelection;
+    s32 input = ListMenu_ProcessInput(gTasks[taskId].tListTaskId);
+
+    switch (input)
+    {
+    case LIST_NOTHING_CHOSEN:
+    case LIST_CANCEL: // Choosing a starter is required; B does nothing here.
+        break;
+    default:
+        PlaySE(SE_SELECT);
+        gTasks[taskId].tRegion = input;
+        gTasks[taskId].tMonSelection = 0;
+        DestroyListMenuTask(gTasks[taskId].tListTaskId, NULL, NULL);
+        ClearStdWindowAndFrameToTransparent(gTasks[taskId].tRegionWindowId, FALSE);
+        ClearWindowTilemap(gTasks[taskId].tRegionWindowId);
+        RemoveWindow(gTasks[taskId].tRegionWindowId);
+        gTasks[taskId].tRegionWindowId = WINDOW_NONE;
+        ScheduleBgCopyTilemapToVram(0);
+        gTasks[taskId].func = Task_OpenMonSelect;
+        break;
+    }
+}
+
+static enum Species GetDisplaySpecies(u8 taskId, u8 slot)
+{
+    u16 region = gTasks[taskId].tRegion;
+
+    if (region == CITIES_STARTER_REGION_SPECIAL)
+        return SPECIES_EEVEE;
+    return gCitiesStarterStages[region - 1][slot][0];
+}
+
+static void Task_OpenMonSelect(u8 taskId)
+{
+    u8 i;
+    bool8 isSpecial = (gTasks[taskId].tRegion == CITIES_STARTER_REGION_SPECIAL);
+
+    gTasks[taskId].tMonCount = isSpecial ? 1 : STARTER_MON_COUNT;
+
+    for (i = 0; i < gTasks[taskId].tMonCount; i++)
+    {
+        u8 coordIndex = isSpecial ? 1 : i; // lone Eevee sits in the middle
+        gTasks[taskId].data[tSpriteBase + i] =
+            CreatePokemonFrontSprite(GetDisplaySpecies(taskId, i), sMonCoords[coordIndex][0], sMonCoords[coordIndex][1], 13 + i);
+    }
+
+    gSprites[gTasks[taskId].tHandSpriteId].invisible = FALSE;
+    PrintMonInfoText(taskId);
+    gTasks[taskId].func = Task_HandleMonSelectInput;
+}
+
+static void PrintMonInfoText(u8 taskId)
+{
+    enum Species species = GetDisplaySpecies(taskId, gTasks[taskId].tMonSelection);
+    enum Type type1 = GetSpeciesType(species, 0);
+    enum Type type2 = GetSpeciesType(species, 1);
+
+    StringCopy(gStringVar1, GetSpeciesName(species));
+    StringCopy(gStringVar2, gTypesInfo[type1].name);
+    if (type2 != type1)
+    {
+        StringAppend(gStringVar2, sText_TypeSlash);
+        StringAppend(gStringVar2, gTypesInfo[type2].name);
+    }
+    StringExpandPlaceholders(gStringVar4, sText_MonInfo);
+
+    FillWindowPixelBuffer(WIN_MSG, PIXEL_FILL(1));
+    AddTextPrinterParameterized(WIN_MSG, FONT_NORMAL, gStringVar4, 0, 1, 0, NULL);
+    PutWindowTilemap(WIN_MSG);
+    ScheduleBgCopyTilemapToVram(0);
+}
+
+static void DestroyMonSprites(u8 taskId)
+{
+    u8 i;
+
+    for (i = 0; i < gTasks[taskId].tMonCount; i++)
+        FreeAndDestroyMonPicSprite(gTasks[taskId].data[tSpriteBase + i]);
+}
+
+static void Task_HandleMonSelectInput(u8 taskId)
+{
+    u8 selection = gTasks[taskId].tMonSelection;
+    u8 count = gTasks[taskId].tMonCount;
 
     if (JOY_NEW(A_BUTTON))
     {
-        u8 spriteId;
-
-        ClearStarterLabel();
-
-        // Create white circle background
-        spriteId = CreateSprite(&sSpriteTemplate_StarterCircle, sPokeballCoords[selection][0], sPokeballCoords[selection][1], 1);
-        gTasks[taskId].tCircleSpriteId = spriteId;
-
-        // Create Pokémon sprite
-        spriteId = CreatePokemonFrontSprite(GetStarterPokemon(gTasks[taskId].tStarterSelection), sPokeballCoords[selection][0], sPokeballCoords[selection][1]);
-        gSprites[spriteId].affineAnims = &sAffineAnims_StarterPokemon;
-        gSprites[spriteId].callback = SpriteCB_StarterPokemon;
-
-        gTasks[taskId].tPkmnSpriteId = spriteId;
-        gTasks[taskId].func = Task_WaitForStarterSprite;
+        PlaySE(SE_SELECT);
+        gTasks[taskId].func = Task_AskConfirmStarter;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        DestroyMonSprites(taskId);
+        gSprites[gTasks[taskId].tHandSpriteId].invisible = TRUE;
+        gTasks[taskId].func = Task_OpenRegionList;
     }
     else if (JOY_NEW(DPAD_LEFT) && selection > 0)
     {
-        gTasks[taskId].tStarterSelection--;
-        gTasks[taskId].func = Task_MoveStarterChooseCursor;
+        PlaySE(SE_SELECT);
+        gTasks[taskId].tMonSelection--;
+        PrintMonInfoText(taskId);
     }
-    else if (JOY_NEW(DPAD_RIGHT) && selection < STARTER_MON_COUNT - 1)
+    else if (JOY_NEW(DPAD_RIGHT) && selection < count - 1)
     {
-        gTasks[taskId].tStarterSelection++;
-        gTasks[taskId].func = Task_MoveStarterChooseCursor;
-    }
-}
-
-static void Task_WaitForStarterSprite(u8 taskId)
-{
-    if (gSprites[gTasks[taskId].tCircleSpriteId].affineAnimEnded &&
-        gSprites[gTasks[taskId].tCircleSpriteId].x == STARTER_PKMN_POS_X &&
-        gSprites[gTasks[taskId].tCircleSpriteId].y == STARTER_PKMN_POS_Y)
-    {
-        gTasks[taskId].func = Task_AskConfirmStarter;
+        PlaySE(SE_SELECT);
+        gTasks[taskId].tMonSelection++;
+        PrintMonInfoText(taskId);
     }
 }
 
 static void Task_AskConfirmStarter(u8 taskId)
 {
-    PlayCry_Normal(GetStarterPokemon(gTasks[taskId].tStarterSelection), 0);
-    FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized(0, FONT_NORMAL, gText_ConfirmStarterChoice, 0, 1, 0, NULL);
+    enum Species species = GetDisplaySpecies(taskId, gTasks[taskId].tMonSelection);
+    enum Type type1 = GetSpeciesType(species, 0);
+    enum Type type2 = GetSpeciesType(species, 1);
+
+    PlayCry_Normal(species, 0);
+
+    StringCopy(gStringVar1, GetSpeciesName(species));
+    StringCopy(gStringVar2, gTypesInfo[type1].name);
+    if (type2 != type1)
+    {
+        StringAppend(gStringVar2, sText_TypeSlash);
+        StringAppend(gStringVar2, gTypesInfo[type2].name);
+    }
+    StringExpandPlaceholders(gStringVar4, sText_ConfirmChoice);
+
+    FillWindowPixelBuffer(WIN_MSG, PIXEL_FILL(1));
+    AddTextPrinterParameterized(WIN_MSG, FONT_NORMAL, gStringVar4, 0, 1, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
     CreateYesNoMenu(&sWindowTemplate_ConfirmStarter, 0x2A8, 0xD, 0);
     gTasks[taskId].func = Task_HandleConfirmStarterInput;
@@ -536,131 +564,55 @@ static void Task_AskConfirmStarter(u8 taskId)
 
 static void Task_HandleConfirmStarterInput(u8 taskId)
 {
-    u8 spriteId;
+    u16 region = gTasks[taskId].tRegion;
 
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
     case 0:  // YES
-        // Return the starter choice and exit.
-        gSpecialVar_Result = gTasks[taskId].tStarterSelection;
+        VarSet(VAR_CITIES_STARTER_REGION, region);
+        if (region == CITIES_STARTER_REGION_SPECIAL)
+        {
+            // Eevee: the rival gets a random Hoenn starter (approved 2026-09-16).
+            // Scripts derive the rival's pick as (VAR_STARTER_MON + 1) % 3, so
+            // encode the rolled pick accordingly.
+            u16 rivalSlot = Random() % 3;
+            gSpecialVar_Result = (rivalSlot + 2) % 3;
+        }
+        else
+        {
+            gSpecialVar_Result = gTasks[taskId].tMonSelection;
+        }
         ResetAllPicSprites();
         SetMainCallback2(gMain.savedCallback);
         break;
     case 1:  // NO
     case MENU_B_PRESSED:
         PlaySE(SE_SELECT);
-        spriteId = gTasks[taskId].tPkmnSpriteId;
-        FreeOamMatrix(gSprites[spriteId].oam.matrixNum);
-        FreeAndDestroyMonPicSprite(spriteId);
-
-        spriteId = gTasks[taskId].tCircleSpriteId;
-        FreeOamMatrix(gSprites[spriteId].oam.matrixNum);
-        DestroySprite(&gSprites[spriteId]);
-        gTasks[taskId].func = Task_DeclineStarter;
+        PrintMonInfoText(taskId);
+        gTasks[taskId].func = Task_HandleMonSelectInput;
         break;
     }
 }
 
-static void Task_DeclineStarter(u8 taskId)
-{
-    gTasks[taskId].func = Task_StarterChoose;
-}
-
-static void CreateStarterPokemonLabel(u8 selection)
-{
-    u8 categoryText[32];
-    struct WindowTemplate winTemplate;
-    const u8 *speciesName;
-    s32 width;
-    u8 labelLeft, labelRight, labelTop, labelBottom;
-
-    enum Species species = GetStarterPokemon(selection);
-    CopyMonCategoryText(species, categoryText);
-    speciesName = GetSpeciesName(species);
-
-    winTemplate = sWindowTemplate_StarterLabel;
-    winTemplate.tilemapLeft = sStarterLabelCoords[selection][0];
-    winTemplate.tilemapTop = sStarterLabelCoords[selection][1];
-
-    sStarterLabelWindowId = AddWindow(&winTemplate);
-    FillWindowPixelBuffer(sStarterLabelWindowId, PIXEL_FILL(0));
-
-    width = GetStringCenterAlignXOffset(FONT_NARROW, categoryText, 0x68);
-    AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NARROW, width, 1, sTextColors, 0, categoryText);
-
-    width = GetStringCenterAlignXOffset(FONT_NORMAL, speciesName, 0x68);
-    AddTextPrinterParameterized3(sStarterLabelWindowId, FONT_NORMAL, width, 17, sTextColors, 0, speciesName);
-
-    PutWindowTilemap(sStarterLabelWindowId);
-    ScheduleBgCopyTilemapToVram(0);
-
-    labelLeft = sStarterLabelCoords[selection][0] * 8 - 4;
-    labelRight = (sStarterLabelCoords[selection][0] + 13) * 8 + 4;
-    labelTop = sStarterLabelCoords[selection][1] * 8;
-    labelBottom = (sStarterLabelCoords[selection][1] + 4) * 8;
-    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(labelLeft, labelRight));
-    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(labelTop, labelBottom));
-}
-
-static void ClearStarterLabel(void)
-{
-    FillWindowPixelBuffer(sStarterLabelWindowId, PIXEL_FILL(0));
-    ClearWindowTilemap(sStarterLabelWindowId);
-    RemoveWindow(sStarterLabelWindowId);
-    sStarterLabelWindowId = WINDOW_NONE;
-    SetGpuReg(REG_OFFSET_WIN0H, 0);
-    SetGpuReg(REG_OFFSET_WIN0V, 0);
-    ScheduleBgCopyTilemapToVram(0);
-}
-
-static void Task_MoveStarterChooseCursor(u8 taskId)
-{
-    ClearStarterLabel();
-    gTasks[taskId].func = Task_CreateStarterLabel;
-}
-
-static void Task_CreateStarterLabel(u8 taskId)
-{
-    CreateStarterPokemonLabel(gTasks[taskId].tStarterSelection);
-    gTasks[taskId].func = Task_HandleStarterChooseInput;
-}
-
-static u8 CreatePokemonFrontSprite(enum Species species, u8 x, u8 y)
+static u8 CreatePokemonFrontSprite(enum Species species, u8 x, u8 y, u8 paletteSlot)
 {
     u8 spriteId;
 
-    spriteId = CreateMonPicSprite_Affine(species, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
+    spriteId = CreateMonPicSprite_Affine(species, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, paletteSlot, TAG_NONE);
     gSprites[spriteId].oam.priority = 0;
     return spriteId;
 }
 
 static void SpriteCB_SelectionHand(struct Sprite *sprite)
 {
-    // Float up and down above selected Poké Ball
-    sprite->x = sCursorCoords[gTasks[sprite->data[0]].tStarterSelection][0];
-    sprite->y = sCursorCoords[gTasks[sprite->data[0]].tStarterSelection][1];
+    // Float up and down above the selected Pokémon.
+    u8 taskId = sprite->sTaskId;
+    u8 coordIndex = gTasks[taskId].tMonSelection;
+
+    if (gTasks[taskId].tRegion == CITIES_STARTER_REGION_SPECIAL)
+        coordIndex = 1;
+    sprite->x = sCursorCoords[coordIndex][0];
+    sprite->y = sCursorCoords[coordIndex][1];
     sprite->y2 = Sin(sprite->data[1], 8);
     sprite->data[1] = (u8)(sprite->data[1]) + 4;
-}
-
-static void SpriteCB_Pokeball(struct Sprite *sprite)
-{
-    // Animate Poké Ball if currently selected
-    if (gTasks[sprite->sTaskId].tStarterSelection == sprite->sBallId)
-        StartSpriteAnimIfDifferent(sprite, 1);
-    else
-        StartSpriteAnimIfDifferent(sprite, 0);
-}
-
-static void SpriteCB_StarterPokemon(struct Sprite *sprite)
-{
-    // Move sprite to upper center of screen
-    if (sprite->x > STARTER_PKMN_POS_X)
-        sprite->x -= 4;
-    if (sprite->x < STARTER_PKMN_POS_X)
-        sprite->x += 4;
-    if (sprite->y > STARTER_PKMN_POS_Y)
-        sprite->y -= 2;
-    if (sprite->y < STARTER_PKMN_POS_Y)
-        sprite->y += 2;
 }
