@@ -1639,7 +1639,21 @@
 #define DAILY_FLAGS_END                             (FLAG_UNUSED_0x95F + (7 - FLAG_UNUSED_0x95F % 8))
 #define NUM_DAILY_FLAGS                             (DAILY_FLAGS_END - DAILY_FLAGS_START + 1)
 
-#define FLAGS_COUNT (DAILY_FLAGS_END + 1)
+// Cities of Emerald flags (see docs/SAVE_BUDGET.md). Reserved contiguous range;
+// placed after the daily flags so they are never cleared automatically.
+#define CITIES_FLAGS_START                          (DAILY_FLAGS_END + 1)
+// Feature toggle flags (assigned in include/config/*.h)
+#define FLAG_CITIES_NO_WILD_ENCOUNTERS              (CITIES_FLAGS_START + 0x0)  // WE_FLAG_NO_ENCOUNTER
+#define FLAG_CITIES_NO_TRAINER_SIGHT                (CITIES_FLAGS_START + 0x1)  // OW_FLAG_NO_TRAINER_SEE
+#define FLAG_CITIES_DEXNAV_SEARCHING                (CITIES_FLAGS_START + 0x2)  // DN_FLAG_SEARCHING
+#define FLAG_CITIES_DEXNAV_GET                      (CITIES_FLAGS_START + 0x3)  // DN_FLAG_DEXNAV_GET
+#define FLAG_CITIES_DEXNAV_DETECTOR_MODE            (CITIES_FLAGS_START + 0x4)  // DN_FLAG_DETECTOR_MODE
+#define FLAG_CITIES_DYNAMAX_BATTLE                  (CITIES_FLAGS_START + 0x5)  // B_FLAG_DYNAMAX_BATTLE
+#define FLAG_CITIES_TERA_ORB_CHARGED                (CITIES_FLAGS_START + 0x6)  // B_FLAG_TERA_ORB_CHARGED
+#define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
+#define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
+
+#define FLAGS_COUNT (CITIES_FLAGS_END + 1)
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000

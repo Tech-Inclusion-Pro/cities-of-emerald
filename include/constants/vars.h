@@ -276,7 +276,14 @@
 #define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
 #define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
 
-#define VARS_END                                         0x40FF
+// Cities of Emerald vars (see docs/SAVE_BUDGET.md). Reserved contiguous range.
+#define CITIES_VARS_START                                0x4100
+#define VAR_CITIES_LAST_REPEL_LURE_USED                  (CITIES_VARS_START + 0x0) // VAR_LAST_REPEL_LURE_USED
+#define VAR_CITIES_DEXNAV_SPECIES                        (CITIES_VARS_START + 0x1) // DN_VAR_SPECIES
+#define VAR_CITIES_DEXNAV_STEP_COUNTER                   (CITIES_VARS_START + 0x2) // DN_VAR_STEP_COUNTER
+#define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
+
+#define VARS_END                                         CITIES_VARS_END
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000
