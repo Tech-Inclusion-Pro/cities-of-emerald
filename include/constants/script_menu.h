@@ -170,6 +170,8 @@ enum
     MULTI_EGGS_VICTORIES_QUIT,
     MULTI_HOF_EGGS_VICTORIES_QUIT,
     MULTI_CITIES_EEVEE_STONES, // Cities of Emerald: Dewford stone expert (GDD 4.3)
+    MULTI_CITIES_DIFFICULTY,   // Cities of Emerald: new-game setup (GDD 4.1/10)
+    MULTI_CITIES_LEVEL_CAP,    // Cities of Emerald: assist cap choice (GDD 10)
 };
 
 #define MULTI_NONE 255

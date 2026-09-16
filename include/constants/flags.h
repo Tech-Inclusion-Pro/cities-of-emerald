@@ -1667,6 +1667,8 @@
 #define FLAG_CITIES_HIDE_EEVEE_TRAINER_SYLVEON      (CITIES_FLAGS_START + 0x13)
 #define FLAG_CITIES_HIDE_EEVEE_TRAINER_UMBREON      (CITIES_FLAGS_START + 0x14)
 #define FLAG_CITIES_HIDE_EEVEE_TRAINER_GLACEON      (CITIES_FLAGS_START + 0x15)
+// Difficulty and assist (GDD Section 10)
+#define FLAG_CITIES_ASSIST_MODE                     (CITIES_FLAGS_START + 0x16) // No money loss on defeat; pairs with VAR_CITIES_LEVEL_CAP choice
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 
