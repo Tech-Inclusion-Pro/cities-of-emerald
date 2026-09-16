@@ -2,6 +2,8 @@
 
 Task 0.4 deliverable. Measured on `upcoming` (commit at clone, 2026-09-16) with the **default config** via a compile probe (`sizeof` of each struct, arm-none-eabi-gcc 14.3.1). Re-measure after any config change: enabling followers, DexNav search levels, apricorn trees, or fake RTC grows SaveBlock3.
 
+> **Update 2026-09-16 (post Phase 1):** the Cities flag/var ranges (+192 B), bag expansion (+376 B), and `FREE_MYSTERY_GIFT` (−876 B) are live. SaveBlock1 measured: **15,260 B used, 612 B free**. `FREE_MYSTERY_EVENT_BUFFERS` was tried and REVERTED — it crashes the expansion's test suite (heap corruption; see CONFIG_CHANGES.md). Its 1,104 B plus the other FREE_* options remain in reserve. Numbers below are the original pre-Phase-1 audit.
+
 ## 1. Current state (measured)
 
 | Block | Used | Capacity | Free | Enforced by |

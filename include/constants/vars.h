@@ -281,6 +281,7 @@
 #define VAR_CITIES_LAST_REPEL_LURE_USED                  (CITIES_VARS_START + 0x0) // VAR_LAST_REPEL_LURE_USED
 #define VAR_CITIES_DEXNAV_SPECIES                        (CITIES_VARS_START + 0x1) // DN_VAR_SPECIES
 #define VAR_CITIES_DEXNAV_STEP_COUNTER                   (CITIES_VARS_START + 0x2) // DN_VAR_STEP_COUNTER
+#define VAR_CITIES_LEVEL_CAP                             (CITIES_VARS_START + 0x3) // B_LEVEL_CAP_VARIABLE; 0 = automatic badge-based cap, non-zero = override (Assist mode)
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END
