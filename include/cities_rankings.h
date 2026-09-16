@@ -16,6 +16,11 @@ s32 CitiesRanking_ComputeDelta(bool32 won, u32 survivedActed, u32 fainted, bool3
 u32 CitiesRanking_QuickWinFrames(void);
 void CitiesRanking_ApplyDelta(s32 delta);
 
+u32 CitiesRanking_GetNpcCount(void);
+const u8 *CitiesRanking_GetNpcName(u32 index);
+s32 CitiesRanking_GetNpcScore(u32 index);
+u32 CitiesRanking_GetPlayerRank(void);
 void Script_CitiesBufferRankingScore(void);
+void CB2_InitCitiesRankingsScreen(void);
 
 #endif // GUARD_CITIES_RANKINGS_H

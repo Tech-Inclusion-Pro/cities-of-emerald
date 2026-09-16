@@ -6,6 +6,7 @@
 #include "bg.h"
 #include "debug.h"
 #include "cities_accessibility.h"
+#include "cities_rankings.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_object_lock.h"
@@ -1510,10 +1511,16 @@ void AppendToList(u8 *list, u8 *pos, u8 newEntry)
 
 static bool8 StartMenuCitiesRankingsCallback(void)
 {
-    RemoveExtraStartMenuWindows();
-    HideStartMenu();
-    ScriptContext_SetupScript(Cities_EventScript_ShowRankings);
-    return TRUE;
+    if (!gPaletteFade.active)
+    {
+        PlayRainStoppingSoundEffect();
+        RemoveExtraStartMenuWindows();
+        CleanupOverworldWindowsAndTilemaps();
+        SetMainCallback2(CB2_InitCitiesRankingsScreen);
+        gMain.savedCallback = CB2_ReturnToFieldWithOpenMenu;
+        return TRUE;
+    }
+    return FALSE;
 }
 
 static bool8 StartMenuCitiesAccessCallback(void)
