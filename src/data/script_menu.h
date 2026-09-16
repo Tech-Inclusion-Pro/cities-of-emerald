@@ -1127,6 +1127,17 @@ static const struct MenuAction MultichoiceList_Exit[] =
     {gText_Exit},
 };
 
+// Cities of Emerald: Dewford stone expert choice (GDD 4.3)
+static const struct MenuAction sMultichoiceList_CitiesEeveeStones[] =
+{
+    {COMPOUND_STRING("Water Stone")},
+    {COMPOUND_STRING("Thunder Stone")},
+    {COMPOUND_STRING("Fire Stone")},
+    {COMPOUND_STRING("Leaf Stone")},
+    {COMPOUND_STRING("Ice Stone")},
+    {gText_Exit},
+};
+
 struct MultichoiceListStruct
 {
     const struct MenuAction *list;
@@ -1294,6 +1305,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_HOF_VICTORIES_QUIT]                         = MULTICHOICE(sMultichoiceList_HOF_Victories_Quit),
     [MULTI_EGGS_VICTORIES_QUIT]                        = MULTICHOICE(sMultichoiceList_Eggs_Victories_Quit),
     [MULTI_HOF_EGGS_VICTORIES_QUIT]                    = MULTICHOICE(sMultichoiceList_HOF_Eggs_Victories_Quit),
+    [MULTI_CITIES_EEVEE_STONES]                        = MULTICHOICE(sMultichoiceList_CitiesEeveeStones),
 };
 
 const u8 *const gStdStrings[] =
