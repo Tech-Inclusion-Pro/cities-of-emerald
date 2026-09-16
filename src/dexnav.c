@@ -1,4 +1,5 @@
 #include "global.h"
+#include "story_only.h"
 #include "battle_main.h"
 #include "battle_setup.h"
 #include "bg.h"
@@ -1924,7 +1925,7 @@ static void DexNavLoadEncounterData(void)
         for (i = 0; i < NUM_LAND_MONS_ENCOUNTER_SLOTS; i++)
         {
             species = landMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE && !SpeciesInArray(species, 0))
+            if (species != SPECIES_NONE && !IsStoryOnlySpecies(species) && !SpeciesInArray(species, 0))
                 sDexNavUiDataPtr->landSpecies[grassIndex++] = landMonsInfo->wildPokemon[i].species;
         }
     }
@@ -1935,7 +1936,7 @@ static void DexNavLoadEncounterData(void)
         for (i = 0; i < NUM_WATER_MONS_ENCOUNTER_SLOTS; i++)
         {
             species = waterMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE && !SpeciesInArray(species, 1))
+            if (species != SPECIES_NONE && !IsStoryOnlySpecies(species) && !SpeciesInArray(species, 1))
                 sDexNavUiDataPtr->waterSpecies[waterIndex++] = waterMonsInfo->wildPokemon[i].species;
         }
     }
@@ -1946,7 +1947,7 @@ static void DexNavLoadEncounterData(void)
         for (i = 0; i < NUM_HIDDEN_MONS_ENCOUNTER_SLOTS; i++)
         {
             species = hiddenMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE && !SpeciesInArray(species, 2))
+            if (species != SPECIES_NONE && !IsStoryOnlySpecies(species) && !SpeciesInArray(species, 2))
                 sDexNavUiDataPtr->hiddenSpecies[hiddenIndex++] = hiddenMonsInfo->wildPokemon[i].species;
         }
     }

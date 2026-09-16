@@ -22,6 +22,7 @@
 #include "script.h"
 #include "tv.h"
 #include "wild_encounter.h"
+#include "story_only.h"
 #include "battle_debug.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
@@ -576,6 +577,11 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum WildPok
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
         return FALSE;
     if (gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
+        return FALSE;
+    // Cities of Emerald (GDD 6.2): hard guarantee that no story-only species
+    // comes out of a random encounter, even if a bad table slips through the
+    // build-time sweep. Also covers OWE spawns, which use this path.
+    if (IsStoryOnlySpecies(wildMonInfo->wildPokemon[wildMonIndex].species))
         return FALSE;
 
     CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level);

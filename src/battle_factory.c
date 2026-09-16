@@ -1,4 +1,5 @@
 #include "global.h"
+#include "story_only.h"
 #include "battle.h"
 #include "battle_factory.h"
 #include "battle_factory_screen.h"
@@ -269,6 +270,11 @@ static void GenerateOpponentMons(void)
         if (gFacilityTrainerMons[monId].species == SPECIES_UNOWN)
             continue;
 
+        // Cities of Emerald (GDD 6.2): opponents are filtered too, because a
+        // beaten opponent's Pokémon can be acquired via the rental swap.
+        if (IsStoryOnlySpecies(gFacilityTrainerMons[monId].species))
+            continue;
+
         // Ensure none of the opponent's Pokémon are the same as the potential rental Pokémon for the player
         for (j = 0; j < (int)ARRAY_COUNT(gSaveBlock2Ptr->frontier.rentalMons); j++)
         {
@@ -433,6 +439,10 @@ static void GenerateInitialRentalMons(void)
             monId = GetFactoryMonId(factoryLvlMode, challengeNum, FALSE);
 
         if (gFacilityTrainerMons[monId].species == SPECIES_UNOWN)
+            continue;
+
+        // Cities of Emerald (GDD 6.2): no story-only species in rental pools.
+        if (IsStoryOnlySpecies(gFacilityTrainerMons[monId].species))
             continue;
 
         // Cannot have two Pokémon of the same species.
