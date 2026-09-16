@@ -39,3 +39,14 @@ Notes:
 - `USE_DEXNAV_SEARCH_LEVELS` stays FALSE per the approved save budget (would need ~1,500+ bytes of save space).
 - **Auto-run does not exist in the expansion** — it will be custom work in Phase 6 (motor accessibility, Task 6.4), as the GDD anticipated.
 - The DexNav start-menu entry appears once `FLAG_CITIES_DEXNAV_GET` is set by a script (decide when during story work; vanilla hacks give it early).
+
+## Task 1.3 — Quality of life
+
+| Setting | File | Old | New | Reason |
+|---|---|---|---|---|
+| `I_REUSABLE_TMS` | include/config/item.h | FALSE | TRUE | Reusable TMs (GDD 3) |
+| `NewGameInitData()` | src/new_game.c | — | calls `EnableNationalPokedex()` | National Dex from the start; no config toggle exists, so it is enabled at new-game init |
+
+Already present (no change): **bag sorting** is built into the expansion (bag context menu → "Sort items how?"); item stack capacity is already 999 (`MAX_BAG_ITEM_CAPACITY`).
+
+Flagged for Rocco — **bag pocket sizes** (`enum BagCounts`, include/constants/global.h:140): Items 30, Key Items 30, Poké Balls 16, TM/HM 64, Berries 46. Each added slot costs 4 bytes of SaveBlock1, which is nearly full (112 B margin after the Cities ranges). Expanding meaningfully (e.g., Items→60, Balls→32, TM/HM→112) needs ~1,300 B, which requires enabling `FREE_MYSTERY_EVENT_BUFFERS` and/or `FREE_MYSTERY_GIFT` first (safe for a single-player hack, per SAVE_BUDGET.md). Decision pending.
