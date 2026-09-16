@@ -49,4 +49,19 @@ Notes:
 
 Already present (no change): **bag sorting** is built into the expansion (bag context menu → "Sort items how?"); item stack capacity is already 999 (`MAX_BAG_ITEM_CAPACITY`).
 
+## Task 1.5 — Training
+
+No changes needed — all GDD Section 9.2 items are already the modern defaults:
+
+| Feature | Setting | Value | Behavior |
+|---|---|---|---|
+| Everstone nature pass | `P_NATURE_INHERITANCE` (pokemon.h:31) | GEN_LATEST | 100% nature inheritance |
+| Destiny Knot | hardcoded modern (src/daycare.c:636) | — | passes 5 IVs |
+| Ability inheritance | `P_ABILITY_INHERITANCE` (pokemon.h:32) | GEN_LATEST | 80%/60% HA pass-down |
+| EV cap | `P_EV_CAP` (pokemon.h:54) | GEN_LATEST | 252 per stat (Gen 6+) |
+| Ability Patch | `ITEM_ABILITY_PATCH` | exists | grants hidden ability |
+| Hidden abilities in the wild | via DexNav search chances (dexnav.h) | enabled in Task 1.2 | no generic wild-HA% config exists |
+
+Note: EV/IV summary-screen display and the egg-move tutor NPC (GDD 9.2) are UI/NPC work for later phases, not configs.
+
 Flagged for Rocco — **bag pocket sizes** (`enum BagCounts`, include/constants/global.h:140): Items 30, Key Items 30, Poké Balls 16, TM/HM 64, Berries 46. Each added slot costs 4 bytes of SaveBlock1, which is nearly full (112 B margin after the Cities ranges). Expanding meaningfully (e.g., Items→60, Balls→32, TM/HM→112) needs ~1,300 B, which requires enabling `FREE_MYSTERY_EVENT_BUFFERS` and/or `FREE_MYSTERY_GIFT` first (safe for a single-player hack, per SAVE_BUDGET.md). Decision pending.
