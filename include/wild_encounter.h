@@ -45,7 +45,13 @@ struct WildPokemonHeader
 };
 
 
-extern const struct WildPokemonHeader gWildMonHeaders[];
+// Cities of Emerald (GDD 5.5 / Task 4.3): each map has a main-game and a
+// postgame table set. All existing consumers keep using gWildMonHeaders;
+// the alias resolves to the postgame array once the Champion flag is set.
+extern const struct WildPokemonHeader gWildMonHeaders_Main[];
+extern const struct WildPokemonHeader gWildMonHeaders_Postgame[];
+bool32 UseCitiesPostgameTables(void);
+#define gWildMonHeaders (UseCitiesPostgameTables() ? gWildMonHeaders_Postgame : gWildMonHeaders_Main)
 extern const struct WildPokemonHeader gBattlePikeWildMonHeaders[];
 extern const struct WildPokemonHeader gBattlePyramidWildMonHeaders[];
 extern const struct WildPokemon gWildFeebas;

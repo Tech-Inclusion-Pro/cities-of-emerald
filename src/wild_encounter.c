@@ -65,6 +65,13 @@ EWRAM_DATA u8 gChainFishingDexNavStreak = 0;
 
 #include "data/wild_encounters.h"
 
+// Cities of Emerald (Task 4.3): postgame encounter tables switch on once
+// the player has entered the Hall of Fame.
+bool32 UseCitiesPostgameTables(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR);
+}
+
 const struct WildPokemon gWildFeebas = {20, 25, SPECIES_FEEBAS};
 
 static const u16 sRoute119WaterTileData[] =
