@@ -6,7 +6,16 @@ MauvilleCity_Mart_EventScript_Clerk::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
+@ Cities of Emerald (Task 4.4, approved): the Linking Cord is stocked once
+@ the player has the Dynamo Badge.
+	goto_if_set FLAG_BADGE03_GET, MauvilleCity_Mart_EventScript_ClerkWithLinkingCord
 	pokemart MauvilleCity_Mart_Pokemart
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_Mart_EventScript_ClerkWithLinkingCord::
+	pokemart MauvilleCity_Mart_PokemartWithLinkingCord
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
@@ -25,6 +34,23 @@ MauvilleCity_Mart_Pokemart:
 	.2byte ITEM_GUARD_SPEC
 	.2byte ITEM_DIRE_HIT
 	.2byte ITEM_X_ACCURACY
+	pokemartlistend
+
+	.align 2
+MauvilleCity_Mart_PokemartWithLinkingCord:
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_LINKING_CORD
 	pokemartlistend
 
 MauvilleCity_Mart_EventScript_ExpertM::

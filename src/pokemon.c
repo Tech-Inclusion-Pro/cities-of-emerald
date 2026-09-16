@@ -4400,6 +4400,26 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
     return TRUE;
 }
 
+// Cities of Emerald (Task 4.4): when the Linking Cord triggers a trade
+// evolution, a partner-species condition (Karrablast/Shelmet) is satisfied
+// by the required species being in the player's own party.
+static struct Pokemon *FindLinkingCordPartnerInParty(const struct EvolutionParam *params)
+{
+    u32 i, j;
+
+    for (i = 0; params != NULL && params[i].condition != CONDITIONS_END; i++)
+    {
+        if (params[i].condition != IF_TRADE_PARTNER_SPECIES)
+            continue;
+        for (j = 0; j < PARTY_SIZE; j++)
+        {
+            if (GetMonData(&gParties[B_TRAINER_PLAYER][j], MON_DATA_SPECIES) == params[i].arg1)
+                return &gParties[B_TRAINER_PLAYER][j];
+        }
+    }
+    return NULL;
+}
+
 enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, enum Item evolutionItem, struct Pokemon *tradePartner, bool32 *canStopEvo, enum EvoState evoState)
 {
     int i;
@@ -4483,6 +4503,7 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
+            struct Pokemon *virtualPartner = NULL;
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
                 continue;
 
@@ -4492,9 +4513,21 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
                 if (evolutions[i].param == evolutionItem)
                     conditionsMet = TRUE;
                 break;
+            case EVO_TRADE:
+                // Cities of Emerald (Task 4.4, approved 2026-09-16): the
+                // Linking Cord performs trade evolutions in single-player.
+                // Held-item conditions (e.g. Onix + Metal Coat) are checked
+                // normally; partner conditions (Karrablast/Shelmet) are
+                // satisfied by the required species in the player's party.
+                if (evolutionItem == ITEM_LINKING_CORD)
+                {
+                    conditionsMet = TRUE;
+                    virtualPartner = FindLinkingCordPartnerInParty(evolutions[i].params);
+                }
+                break;
             }
 
-            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, PARTY_MON_NONE, canStopEvo, evoState))
+            if (conditionsMet && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, virtualPartner, PARTY_MON_NONE, canStopEvo, evoState))
             {
                 // All checks passed, so stop checking the rest of the evolutions.
                 // This is different from vanilla where the loop continues.
