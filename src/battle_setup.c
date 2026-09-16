@@ -7,6 +7,7 @@
 #include "battle_pyramid.h"
 #include "battle_setup.h"
 #include "cities_rankings.h"
+#include "cities_rematches.h"
 #include "battle_special.h"
 #include "battle_partner.h"
 #include "battle_tower.h"
@@ -2009,7 +2010,8 @@ u16 GetRematchTrainerIdFromTable(const struct RematchTrainer *table, u16 firstBa
     trainerEntry = &table[tableId];
     for (i = 1; i < REMATCHES_COUNT; i++)
     {
-        if (trainerEntry->trainerIds[i] == 0) // previous entry was this trainer's last one
+        if (trainerEntry->trainerIds[i] == 0 // previous entry was this trainer's last one
+         || CitiesIsGymRematchVersionLocked(tableId, i)) // Cities (GDD 7.3): version not yet unlocked
             return trainerEntry->trainerIds[i - 1];
         if (!HasTrainerBeenFought(trainerEntry->trainerIds[i]))
             return trainerEntry->trainerIds[i];
@@ -2030,7 +2032,8 @@ static u16 GetLastBeatenRematchTrainerIdFromTable(const struct RematchTrainer *t
     trainerEntry = &table[tableId];
     for (i = 1; i < REMATCHES_COUNT; i++)
     {
-        if (trainerEntry->trainerIds[i] == 0) // previous entry was this trainer's last one
+        if (trainerEntry->trainerIds[i] == 0 // previous entry was this trainer's last one
+         || CitiesIsGymRematchVersionLocked(tableId, i)) // Cities (GDD 7.3): version not yet unlocked
             return trainerEntry->trainerIds[i - 1];
         if (!HasTrainerBeenFought(trainerEntry->trainerIds[i]))
             return trainerEntry->trainerIds[i - 1];
@@ -2306,6 +2309,35 @@ void CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Traine
 
 static void CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
 {
+    // Cities of Emerald (GDD 7.3): all three rival rematch versions share one
+    // trainer ID per gender, so the armed version selects the party here. The
+    // starter slot gets the rival's Hoenn line at full evolution; the rival
+    // class branch in CreateNPCTrainerPartyFromTrainer then region-maps it.
+    if (CitiesIsRivalRematchTrainer(trainerNum) && VarGet(VAR_CITIES_RIVAL_REMATCH_VERSION) != 0)
+    {
+        u32 version = VarGet(VAR_CITIES_RIVAL_REMATCH_VERSION);
+        u32 rivalSlot = (VarGet(VAR_STARTER_MON) + 1) % 3;
+        const struct CitiesRivalRematchParty *versionParty;
+        struct Trainer tempTrainer;
+        struct TrainerMon *mons;
+
+        if (version > CITIES_REMATCH_VERSIONS_MAX)
+            version = CITIES_REMATCH_VERSIONS_MAX;
+        versionParty = &gCitiesRivalRematchParties[version - 1];
+
+        memcpy(&tempTrainer, GetTrainerStructFromId(trainerNum), sizeof(struct Trainer));
+        mons = AllocZeroed(versionParty->partySize * sizeof(struct TrainerMon));
+        memcpy(mons, versionParty->party, versionParty->partySize * sizeof(struct TrainerMon));
+        mons[versionParty->starterIndex].species =
+            gCitiesStarterStages[CITIES_STARTER_REGION_HOENN - 1][rivalSlot][2];
+        tempTrainer.party = mons;
+        tempTrainer.partySize = versionParty->partySize;
+        tempTrainer.poolSize = 0;
+        CreateNPCTrainerPartyFromTrainer(party, &tempTrainer);
+        Free(mons);
+        return;
+    }
+
     if (!GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum));

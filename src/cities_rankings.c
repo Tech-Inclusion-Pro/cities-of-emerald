@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "battle_setup.h"
 #include "cities_accessibility.h"
+#include "cities_rematches.h"
 #include "event_data.h"
 #include "pokemon.h"
 #include "string_util.h"
@@ -33,7 +34,12 @@ void CitiesRanking_BattleStart(u16 trainerId)
         return;
 
     sTracking = TRUE;
-    sEligibleForWin = !HasTrainerBeenFought(trainerId);
+    // GDD 7.3/8.2: rival rematch versions share one trainer ID, so their
+    // once-per-version eligibility lives in Cities flags, not the trainer flag.
+    if (CitiesIsRivalRematchTrainer(trainerId))
+        sEligibleForWin = CitiesRivalRematchWinEligible();
+    else
+        sEligibleForWin = !HasTrainerBeenFought(trainerId);
 }
 
 void CitiesRanking_TickFrame(void)

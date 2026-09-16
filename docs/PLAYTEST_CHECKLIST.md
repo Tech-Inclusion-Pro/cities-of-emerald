@@ -52,8 +52,19 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Debug-give badges → whole board climbs (Wallace +40/badge, Rival +150)
 - [ ] Turn on slow text + wait-for-button + extra time → quick-win window grows (hard to eyeball; spot-check that quick wins still register)
 
+## Rematch versions (Phase 8) — needs a post-Champion save (debug: set FLAG_SYS_GAME_CLEAR)
+- [ ] Gym leader (e.g. Roxanne) offers a rematch after the badge dialogue; it's a DOUBLE battle with the new V1 team (levels 63/65)
+- [ ] Beat V1, talk again → notice "won't change your ranking" appears, then the SAME V1 team repeats (V2 stays locked)
+- [ ] Debug-set FLAG_CITIES_POSTGAME_THREAD1_MIDPOINT → next gym rematch serves the V2 team (73/75)
+- [ ] Debug-set both THREAD COMPLETE flags → V3 team (83/85); after beating V3, repeats stay V3 (never the reserved _5 party)
+- [ ] Winning a NEW version adds ranking points; repeating a beaten version adds none (loss still subtracts)
+- [ ] Route 103: rival appears at the first-battle spot post-Champion (correct Brendan/May sprite), asks before battling, declining works
+- [ ] Rival team: 5 mons at V1 with YOUR region's counter-starter fully evolved in slot 1
+- [ ] Rival V1 beaten → repeat shows the no-points notice; V2/V3 unlock with the same debug flags
+- [ ] Match call PokéNav: gym leaders may still announce "wants a rematch" — cosmetic, ignore
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
-- No pre-battle "won't change your ranking" notice yet (Phase 7 polish)
-- Pokémon Master event, overworld challenges: with Phase 8
+- Pokémon Master event, overworld challenges: Phase 8 follow-ups, not yet built
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
+- Rematch teams are Normal difficulty only for now; Easy/Hard fall back to Normal
