@@ -1650,6 +1650,9 @@
 #define FLAG_CITIES_DEXNAV_DETECTOR_MODE            (CITIES_FLAGS_START + 0x4)  // DN_FLAG_DETECTOR_MODE
 #define FLAG_CITIES_DYNAMAX_BATTLE                  (CITIES_FLAGS_START + 0x5)  // B_FLAG_DYNAMAX_BATTLE
 #define FLAG_CITIES_TERA_ORB_CHARGED                (CITIES_FLAGS_START + 0x6)  // B_FLAG_TERA_ORB_CHARGED
+// Story/NPC flags
+#define FLAG_CITIES_DEWFORD_STONE_NPC_HIDDEN        (CITIES_FLAGS_START + 0x7)  // Stone expert appears after badge 2 (GDD 4.3)
+#define FLAG_CITIES_DEWFORD_STONE_GIVEN             (CITIES_FLAGS_START + 0x8)  // The one free stone has been chosen
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 
