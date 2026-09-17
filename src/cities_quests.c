@@ -209,6 +209,29 @@ static const u8 *M4QuestStep(void)
     return COMPOUND_STRING("Three lights rest beyond the\nparted wall in the CAVE OF ORIGIN\l(far right corner of the first\lcave). Found: {STR_VAR_1} of 3.");
 }
 
+// ---- M5: The Eon Pair (GDD 6.6, approved 2026-09-17) ----
+
+static bool32 M5QuestActive(void)
+{
+    return FlagGet(FLAG_BADGE08_GET) && VarGet(VAR_CITIES_M5_STATE) < 2;
+}
+
+static const u8 *M5QuestStep(void)
+{
+    bool32 latias = FlagGet(FLAG_CITIES_M5_LATIAS_CAUGHT);
+    bool32 latios = FlagGet(FLAG_CITIES_M5_LATIOS_CAUGHT);
+
+    if (VarGet(VAR_CITIES_M5_STATE) == 0)
+        return COMPOUND_STRING("A sailor in LILYCOVE's harbor tells\nof two lights over the southern\lsea. Hear him out.");
+    if (latias && latios)
+        return COMPOUND_STRING("The EON PAIR flies with you! Read\nthe stone in the island grove, and\lvisit the sailor in LILYCOVE.");
+    if (latias)
+        return COMPOUND_STRING("LATIAS is with you, but won't\nlisten until it's reunited with\lLATIOS on SOUTHERN ISLAND.");
+    if (latios)
+        return COMPOUND_STRING("LATIOS is with you, but won't\nlisten until it's reunited with\lLATIAS on SOUTHERN ISLAND.");
+    return COMPOUND_STRING("Two lights circle SOUTHERN ISLAND.\nThe sailor in LILYCOVE's harbor\lwill take you any time.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -279,6 +302,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Sealed Door"),     M2QuestActive,         M2QuestStep },
     { COMPOUND_STRING("On the Trail"),        M3QuestActive,         M3QuestStep },
     { COMPOUND_STRING("The Three Lights"),    M4QuestActive,         M4QuestStep },
+    { COMPOUND_STRING("The Eon Pair"),        M5QuestActive,         M5QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

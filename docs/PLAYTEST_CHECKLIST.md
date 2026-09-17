@@ -122,6 +122,17 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Caught spirit at 7 badges disobeys with the exact RAIN BADGE message; obeys after beating Juan
 - [ ] All 3 caught → keeper's closing line; journal quest completes and drops off
 
+## Legendary arc M5 (Phase 10)
+- [ ] Sailor appears in the Lilycove harbor terminal at badge 8 (right side of the dock); intro gives the EON TICKET
+- [ ] Sailor sails you to Southern Island on request (works BEFORE the League — no SS Tidal needed); island sailor sails you back
+- [ ] Post-League: the ferry attendant also lists Southern Island (Eon Ticket + enable flag), with the vanilla first-time ticket scene
+- [ ] Both Latias and Latios visible in the grove, flanking the Eon stone; each fights at the auto-cap level
+- [ ] KO'd Lati returns on re-entry; catching removes only that one; the old TV-pick cutscene never plays
+- [ ] Caught single Lati disobeys with the exact reunion message ("…until it's reunited with…"); both caught → both obey
+- [ ] Trade one away after both caught → the remaining one still obeys (sticky pair flag)
+- [ ] Eon stone: "waiting" text before both caught; hums and gives LATIASITE + LATIOSITE once; quiet afterward; bag-full retry works
+- [ ] Journal quest opens at badge 8, names the missing partner while one is caught, completes and drops off
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

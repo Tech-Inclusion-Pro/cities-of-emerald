@@ -4,6 +4,7 @@ LilycoveCity_Harbor_MapScripts::
 
 LilycoveCity_Harbor_OnTransition:
 	setescapewarp MAP_LILYCOVE_CITY, 12, 33
+	call Cities_EventScript_UpdateM5Sailor
 	end
 
 LilycoveCity_Harbor_EventScript_FerryAttendant::

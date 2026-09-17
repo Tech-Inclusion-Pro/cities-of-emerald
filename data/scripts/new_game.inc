@@ -218,8 +218,8 @@ EventScript_ResetAllMapFlags::
 	setflag FLAG_HIDE_ROUTE_103_BIRCH
 	setflag FLAG_HIDE_LILYCOVE_HARBOR_FERRY_SAILOR
 	setflag FLAG_HIDE_LILYCOVE_HARBOR_EVENT_TICKET_TAKER
-	setflag FLAG_HIDE_SOUTHERN_ISLAND_EON_STONE
-	setflag FLAG_HIDE_SOUTHERN_ISLAND_UNCHOSEN_EON_DUO_MON
+	@ Cities M5: the vanilla Southern Island cutscene objects are gone;
+	@ both Latis are Cities statics now (data/scripts/cities_m5.inc).
 	setflag FLAG_UNKNOWN_0x393
 	setflag FLAG_HIDE_MT_PYRE_SUMMIT_MAXIE
 	setflag FLAG_HIDE_MAUVILLE_CITY_WATTSON

@@ -290,6 +290,7 @@
 #define VAR_CITIES_M3_STATE                              (CITIES_VARS_START + 0x9) // 0 = not met, 1 = ranger met / beasts roaming, 2 = arc complete
 #define VAR_CITIES_M3_CHASE                              (CITIES_VARS_START + 0xA) // 2 bits per beast (Raikou, Entei, Suicune): battle meetings; 3 = cornered in its den
 #define VAR_CITIES_M4_STATE                              (CITIES_VARS_START + 0xB) // 0 = not met, 1 = keeper met / passage open, 2 = arc complete
+#define VAR_CITIES_M5_STATE                              (CITIES_VARS_START + 0xC) // 0 = not met, 1 = sailor met / route open, 2 = arc complete
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END

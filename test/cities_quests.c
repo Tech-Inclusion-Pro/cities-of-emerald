@@ -101,3 +101,27 @@ TEST("Journal: M4 opens at badge 7 and completes on the keeper's word")
     FlagClear(FLAG_BADGE07_GET);
     ClearQuestTestState();
 }
+
+TEST("Journal: M5 opens at badge 8 and completes on the sailor's word")
+{
+    ClearQuestTestState();
+    VarSet(VAR_CITIES_M5_STATE, 0);
+
+    u32 base = CountJournalEntries();
+
+    // Badge 8 opens The Eon Pair (badges 6/7 also wake M3/M4).
+    FlagSet(FLAG_BADGE06_GET);
+    FlagSet(FLAG_BADGE07_GET);
+    FlagSet(FLAG_BADGE08_GET);
+    EXPECT_EQ(CountJournalEntries(), base + 3);
+
+    // Completing the arc drops it from the journal.
+    VarSet(VAR_CITIES_M5_STATE, 2);
+    EXPECT_EQ(CountJournalEntries(), base + 2);
+
+    VarSet(VAR_CITIES_M5_STATE, 0);
+    FlagClear(FLAG_BADGE06_GET);
+    FlagClear(FLAG_BADGE07_GET);
+    FlagClear(FLAG_BADGE08_GET);
+    ClearQuestTestState();
+}
