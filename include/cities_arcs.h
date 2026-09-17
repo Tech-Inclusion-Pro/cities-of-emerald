@@ -24,6 +24,8 @@ enum CitiesArc
     CITIES_ARC_H6,   // Xerneas, Yveltal, Zygarde — postgame hidden area (undercliff), tier 70, Zygarde Cube
     CITIES_ARC_H7,   // Reshiram, Zekrom, Kyurem  — postgame hidden area (hall), tier 70, DNA Splicers
     CITIES_ARC_H9,   // The old heroes (6)        — postgame hidden area (meadow), tier 70, rusted relics + reins
+    CITIES_ARC_H2A,  // Treasures of Ruin         — postgame hidden area (garden), tier 65
+    CITIES_ARC_H2B,  // Loyal Three + Ogerpon     — postgame hidden area (garden), tier 65
     CITIES_ARC_COUNT // NOTE: postgame arcs sit at the end; the always-obeys rule keys on >= CITIES_ARC_M1PG
 };
 

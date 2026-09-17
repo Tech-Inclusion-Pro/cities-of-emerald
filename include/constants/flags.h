@@ -1827,6 +1827,24 @@
 #define FLAG_CITIES_H9_CALYREX_CAUGHT               (CITIES_FLAGS_START + 0x9C)
 #define FLAG_CITIES_H9_KUBFU_CAUGHT                 (CITIES_FLAGS_START + 0x9D)
 #define FLAG_CITIES_H9_RELICS_GIVEN                 (CITIES_FLAGS_START + 0x9E) // Rusted Sword + Shield + Reins handed over
+// H2a "The Chained Ruin" + H2b "The Mask in the Grove" (GDD 6.6, split approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H2_GARDENER                (CITIES_FLAGS_START + 0x9F) // Oldale, postgame; one guide for both quests
+#define FLAG_CITIES_HIDE_H2A_WOCHIEN                (CITIES_FLAGS_START + 0xA0) // Treasures at the north stelae
+#define FLAG_CITIES_HIDE_H2A_CHIENPAO               (CITIES_FLAGS_START + 0xA1)
+#define FLAG_CITIES_HIDE_H2A_TINGLU                 (CITIES_FLAGS_START + 0xA2)
+#define FLAG_CITIES_HIDE_H2A_CHIYU                  (CITIES_FLAGS_START + 0xA3)
+#define FLAG_CITIES_H2A_WOCHIEN_CAUGHT              (CITIES_FLAGS_START + 0xA4)
+#define FLAG_CITIES_H2A_CHIENPAO_CAUGHT             (CITIES_FLAGS_START + 0xA5)
+#define FLAG_CITIES_H2A_TINGLU_CAUGHT               (CITIES_FLAGS_START + 0xA6)
+#define FLAG_CITIES_H2A_CHIYU_CAUGHT                (CITIES_FLAGS_START + 0xA7)
+#define FLAG_CITIES_HIDE_H2B_OKIDOGI                (CITIES_FLAGS_START + 0xA8) // the Loyal Three in the grove
+#define FLAG_CITIES_HIDE_H2B_MUNKIDORI              (CITIES_FLAGS_START + 0xA9)
+#define FLAG_CITIES_HIDE_H2B_FEZANDIPITI            (CITIES_FLAGS_START + 0xAA)
+#define FLAG_CITIES_HIDE_H2B_OGERPON                (CITIES_FLAGS_START + 0xAB) // shown only once the three are caught
+#define FLAG_CITIES_H2B_OKIDOGI_CAUGHT              (CITIES_FLAGS_START + 0xAC)
+#define FLAG_CITIES_H2B_MUNKIDORI_CAUGHT            (CITIES_FLAGS_START + 0xAD)
+#define FLAG_CITIES_H2B_FEZANDIPITI_CAUGHT          (CITIES_FLAGS_START + 0xAE)
+#define FLAG_CITIES_H2B_OGERPON_CAUGHT              (CITIES_FLAGS_START + 0xAF)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

@@ -302,6 +302,8 @@
 #define VAR_CITIES_H6_STATE                              (CITIES_VARS_START + 0x15) // 0 = not started, 1 = ecologist met, 2 = arc complete
 #define VAR_CITIES_H7_STATE                              (CITIES_VARS_START + 0x16) // 0 = not started, 1 = engineer met, 2 = arc complete
 #define VAR_CITIES_H9_STATE                              (CITIES_VARS_START + 0x17) // 0 = not started, 1 = elder met, 2 = arc complete
+#define VAR_CITIES_H2A_STATE                             (CITIES_VARS_START + 0x18) // 0 = not started, 1 = gardener met (both quests open), 2 = complete
+#define VAR_CITIES_H2B_STATE                             (CITIES_VARS_START + 0x19) // 0 = not started, 1 = gardener met, 2 = complete
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END

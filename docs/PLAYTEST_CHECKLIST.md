@@ -258,6 +258,17 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "The Old Heroes" opens after meeting him, runs the steeds beat then the king, completes after the relics
 - [ ] Wild sweep: none of the six appear in any random source (existing test gate)
 
+## Hidden areas H2a + H2b (Phase 11)
+- [ ] Gardener appears in Oldale (east side, below the mart row) only after the League
+- [ ] His intro opens BOTH journal quests; saying yes walks you into the Forgotten Garden; saying no leaves him available
+- [ ] Forgotten Garden looks right: walled meadow, four stelae stones up north, grove + mask shrine down south, no way out of bounds, no wild encounters
+- [ ] South gap returns you to Oldale beside him
+- [ ] H2a: all four Treasures visible beside their stelae from the first visit; each fights at level 65; KO returns on re-entry; only catching removes it; stela signs read correctly (curly quotes render)
+- [ ] H2b: the Loyal Three visible on their perches; Ogerpon ABSENT until all three are caught, then appears at the mask shrine with its greeting line; level 65
+- [ ] All eight obey immediately at any badge count
+- [ ] Gardener wraps each quest separately (courtyard wrap, mask-story wrap), then offers visits; both journal quests complete and drop off independently
+- [ ] Wild sweep: none of the eight appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

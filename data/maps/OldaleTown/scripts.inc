@@ -3,6 +3,7 @@ OldaleTown_MapScripts::
 	.byte 0
 
 OldaleTown_OnTransition:
+	call Cities_EventScript_UpdateH2Gardener @ H2a/H2b (cities_h2.inc)
 	call Common_EventScript_SetupRivalGfxId
 	setflag FLAG_VISITED_OLDALE_TOWN
 	call_if_unset FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_BlockWestEntrance

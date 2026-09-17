@@ -509,6 +509,54 @@ static const u8 *H9QuestStep(void)
     return COMPOUND_STRING("Old heroes rest in a meadow past\nVERDANTURF. The elder will walk\lyou in. With you: {STR_VAR_1} of 6.");
 }
 
+// ---- H2a/H2b: the Forgotten Garden (GDD 6.6, split approved 2026-09-17) ----
+
+static u32 CountH2ACaught(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_H2A_WOCHIEN_CAUGHT))  count++;
+    if (FlagGet(FLAG_CITIES_H2A_CHIENPAO_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_H2A_TINGLU_CAUGHT))   count++;
+    if (FlagGet(FLAG_CITIES_H2A_CHIYU_CAUGHT))    count++;
+    return count;
+}
+
+static bool32 H2AQuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H2A_STATE) == 1;
+}
+
+static const u8 *H2AQuestStep(void)
+{
+    u32 caught = CountH2ACaught();
+
+    if (caught == 4)
+        return COMPOUND_STRING("All four grudges are laid down.\nTell the gardener in OLDALE.");
+    ConvertIntToDecimalStringN(gStringVar1, caught, STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Four unsealed stelae stand in the\nFORGOTTEN GARDEN's courtyard. The\lgardener in OLDALE will walk you\lin. Faced: {STR_VAR_1} of 4.");
+}
+
+static bool32 H2BQuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H2B_STATE) == 1;
+}
+
+static const u8 *H2BQuestStep(void)
+{
+    u32 three = 0;
+
+    if (FlagGet(FLAG_CITIES_H2B_OKIDOGI_CAUGHT))     three++;
+    if (FlagGet(FLAG_CITIES_H2B_MUNKIDORI_CAUGHT))   three++;
+    if (FlagGet(FLAG_CITIES_H2B_FEZANDIPITI_CAUGHT)) three++;
+    if (FlagGet(FLAG_CITIES_H2B_OGERPON_CAUGHT))
+        return COMPOUND_STRING("The masked one chose you. Tell\nthe gardener in OLDALE the true\lstory's ending.");
+    if (three == 3)
+        return COMPOUND_STRING("The false heroes are gone - and\nthe masked one has stepped out at\lthe shrine in the grove.");
+    ConvertIntToDecimalStringN(gStringVar1, three, STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Three 'heroes' hold the grove in\nthe FORGOTTEN GARDEN - and someone\lwronged still hides there.\lFaced: {STR_VAR_1} of 3.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -591,6 +639,8 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Balance Below"),   H6QuestActive,         H6QuestStep },
     { COMPOUND_STRING("Truth and Ideals"),    H7QuestActive,         H7QuestStep },
     { COMPOUND_STRING("The Old Heroes"),      H9QuestActive,         H9QuestStep },
+    { COMPOUND_STRING("The Chained Ruin"),    H2AQuestActive,        H2AQuestStep },
+    { COMPOUND_STRING("The Mask in the Grove"), H2BQuestActive,      H2BQuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

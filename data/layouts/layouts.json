@@ -9433,6 +9433,17 @@
       "border_filepath": "data/layouts/HerosMeadow/border.bin",
       "blockdata_filepath": "data/layouts/HerosMeadow/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_FORGOTTEN_GARDEN",
+      "name": "ForgottenGarden_Layout",
+      "width": 22,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/ForgottenGarden/border.bin",
+      "blockdata_filepath": "data/layouts/ForgottenGarden/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }
