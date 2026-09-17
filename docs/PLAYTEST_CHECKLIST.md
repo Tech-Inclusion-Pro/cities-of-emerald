@@ -97,6 +97,19 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] All 3 Regis caught → archaeologist celebration ("colossus" H3 tease)
 - [ ] M5 note for later: Latias/Latios obedience pair-rule messages (needs both caught to verify)
 
+## Legendary arc M3 (Phase 10)
+- [ ] Ranger appears in the Fortree Pokémon Center at badge 6 (left side, below the boy); intro releases the beasts
+- [ ] Journal "On the Trail" shows one line per beast; the route named matches where you actually find it
+- [ ] Beast battles start on the named route at the auto-cap level; level rises if you come back with more badges
+- [ ] Beast HP/status carry over between meetings; a KO'd beast keeps roaming at full health (never lost)
+- [ ] Third battle meeting (any outcome) → "worn out" notice appears once you're back in control
+- [ ] Cornered beast waits in its den: Raikou in Altering Cave, Entei in Scorched Slab, Suicune in Meteor Falls (up past the waterfall, 1F back room)
+- [ ] Den battle: beast can't flee; KO → "slipped away", re-enter → it's back; catch → gone for good
+- [ ] Caught beast at 6 badges disobeys with the exact MIND BADGE message; obeys the moment you have badge 7
+- [ ] All 3 caught → ranger celebration ("rainbow wings" H4 tease); journal quest completes and drops off
+- [ ] Post-League scene at home: SS Ticket scene plays normally with NO Latias/Latios TV broadcast (M5 owns them now)
+- [ ] Old saves from before this build are NOT compatible (ROAMER_COUNT save layout change) — start fresh
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

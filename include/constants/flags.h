@@ -1702,6 +1702,14 @@
 #define FLAG_CITIES_M1_MOLTRES_CAUGHT               (CITIES_FLAGS_START + 0x2E)
 // M2 "The Sealed Chamber, Opened" (GDD 6.6, outline approved 2026-09-16)
 #define FLAG_CITIES_HIDE_M2_ARCHAEOLOGIST           (CITIES_FLAGS_START + 0x2F) // Pacifidlog House1, shown at badge 5
+// M3 "On the Trail" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_M3_RANGER                  (CITIES_FLAGS_START + 0x30) // Fortree Pokémon Center, shown at badge 6
+#define FLAG_CITIES_HIDE_M3_RAIKOU                  (CITIES_FLAGS_START + 0x31) // Den statics: shown while cornered and not caught
+#define FLAG_CITIES_HIDE_M3_ENTEI                   (CITIES_FLAGS_START + 0x32)
+#define FLAG_CITIES_HIDE_M3_SUICUNE                 (CITIES_FLAGS_START + 0x33)
+#define FLAG_CITIES_M3_RAIKOU_CAUGHT                (CITIES_FLAGS_START + 0x34)
+#define FLAG_CITIES_M3_ENTEI_CAUGHT                 (CITIES_FLAGS_START + 0x35)
+#define FLAG_CITIES_M3_SUICUNE_CAUGHT               (CITIES_FLAGS_START + 0x36)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

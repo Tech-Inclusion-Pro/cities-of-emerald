@@ -1,6 +1,7 @@
 #include "global.h"
 #include "cities_quests.h"
 #include "cities_arcs.h"
+#include "cities_m3.h"
 #include "battle_setup.h"
 #include "cities_field_events.h"
 #include "event_data.h"
@@ -147,6 +148,36 @@ static const u8 *M2QuestStep(void)
     return COMPOUND_STRING("DIVE under Route 134 to the SEALED\nCHAMBER. One wall wants DIG; the\ldeep room wants WAILORD first and\lRELICANTH last. Then three ancient\ldoors open across HOENN.");
 }
 
+// ---- M3: On the Trail (GDD 6.6, approved 2026-09-17) ----
+
+static u32 CountM3Caught(void)
+{
+    u32 beast, count = 0;
+
+    for (beast = 0; beast < CITIES_M3_BEAST_COUNT; beast++)
+        if (CitiesM3BeastCaught(beast))
+            count++;
+    return count;
+}
+
+static bool32 M3QuestActive(void)
+{
+    return FlagGet(FLAG_BADGE06_GET) && VarGet(VAR_CITIES_M3_STATE) < 2;
+}
+
+static const u8 *M3QuestStep(void)
+{
+    if (VarGet(VAR_CITIES_M3_STATE) == 0)
+        return COMPOUND_STRING("A RANGER in FORTREE's POKéMON\nCENTER is tracking three strange\lvisitors. Ask her about them.");
+    if (CitiesArcAllCaught(CITIES_ARC_M3))
+        return COMPOUND_STRING("All three beasts run with you now!\nTell the RANGER in FORTREE CITY.");
+    // Live positions, one line per beast (built into STR_VAR_1).
+    CitiesM3BufferChaseStatus(gStringVar1);
+    if (CountM3Caught() > 0 && !FlagGet(FLAG_BADGE07_GET))
+        return COMPOUND_STRING("{STR_VAR_1}\pYour beast won't listen until you\nearn the MIND BADGE.");
+    return COMPOUND_STRING("{STR_VAR_1}");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -215,6 +246,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Eevee Experts"),   EeveeQuestActive,      EeveeQuestStep },
     { COMPOUND_STRING("Strange Weather"),     M1QuestActive,         M1QuestStep },
     { COMPOUND_STRING("The Sealed Door"),     M2QuestActive,         M2QuestStep },
+    { COMPOUND_STRING("On the Trail"),        M3QuestActive,         M3QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

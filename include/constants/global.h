@@ -135,7 +135,7 @@ enum PartyBattleSlot
 #define UNION_ROOM_KB_ROW_COUNT 10
 #define SAVED_TRENDS_COUNT 5
 #define PYRAMID_BAG_ITEMS_COUNT 10
-#define ROAMER_COUNT 1 // Number of maximum concurrent active roamers
+#define ROAMER_COUNT 3 // Number of maximum concurrent active roamers (Cities M3: the three beasts roam together; +56 B SaveBlock1, see docs/SAVE_BUDGET.md)
 
 enum BagCounts
 {

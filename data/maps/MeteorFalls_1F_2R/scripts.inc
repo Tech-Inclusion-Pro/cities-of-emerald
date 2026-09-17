@@ -1,5 +1,15 @@
 MeteorFalls_1F_2R_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, MeteorFalls_1F_2R_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, MeteorFalls_1F_2R_OnResume
 	.byte 0
+
+MeteorFalls_1F_2R_OnTransition:
+	call Cities_EventScript_UpdateM3SuicuneDen
+	end
+
+MeteorFalls_1F_2R_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M3TryRemoveCaughtBeast
+	end
 
 MeteorFalls_1F_2R_EventScript_Nicolas::
 	trainerbattle_single TRAINER_NICOLAS_1, MeteorFalls_1F_2R_Text_NicolasIntro, MeteorFalls_1F_2R_Text_NicolasDefeat, MeteorFalls_1F_2R_EventScript_RegisterNicolas

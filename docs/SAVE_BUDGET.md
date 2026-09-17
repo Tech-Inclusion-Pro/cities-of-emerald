@@ -4,6 +4,8 @@ Task 0.4 deliverable. Measured on `upcoming` (commit at clone, 2026-09-16) with 
 
 > **Update 2026-09-16 (post Phase 1):** the Cities flag/var ranges (+192 B), bag expansion (+376 B), and `FREE_MYSTERY_GIFT` (−876 B) are live. SaveBlock1 measured: **15,260 B used, 612 B free**. `FREE_MYSTERY_EVENT_BUFFERS` was tried and REVERTED — it crashes the expansion's test suite (heap corruption; see CONFIG_CHANGES.md). Its 1,104 B plus the other FREE_* options remain in reserve. Numbers below are the original pre-Phase-1 audit.
 
+> **Update 2026-09-17 (M3):** `ROAMER_COUNT` 1 → 3 for the roaming beasts: +56 B in SaveBlock1 (2 × 28 B `struct Roamer`), leaving ~556 B free. Save layout change — saves from before this build are incompatible.
+
 ## 1. Current state (measured)
 
 | Block | Used | Capacity | Free | Enforced by |

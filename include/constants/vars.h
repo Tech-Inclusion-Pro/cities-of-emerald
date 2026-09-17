@@ -287,6 +287,8 @@
 #define VAR_CITIES_RIVAL_REMATCH_VERSION                 (CITIES_VARS_START + 0x6) // Armed rival rematch version (1..3); 0 = none armed
 #define VAR_CITIES_M1_STATE                              (CITIES_VARS_START + 0x7) // 0 = not met, 1 = reporter met, 2 = arc complete
 #define VAR_CITIES_M2_STATE                              (CITIES_VARS_START + 0x8) // 0 = not met, 1 = archaeologist met, 2 = arc complete
+#define VAR_CITIES_M3_STATE                              (CITIES_VARS_START + 0x9) // 0 = not met, 1 = ranger met / beasts roaming, 2 = arc complete
+#define VAR_CITIES_M3_CHASE                              (CITIES_VARS_START + 0xA) // 2 bits per beast (Raikou, Entei, Suicune): battle meetings; 3 = cornered in its den
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END

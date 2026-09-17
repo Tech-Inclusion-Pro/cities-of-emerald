@@ -1,4 +1,5 @@
 #include "global.h"
+#include "cities_m3.h"
 #include "event_data.h"
 #include "ow_abilities.h"
 #include "pokemon.h"
@@ -246,8 +247,12 @@ bool8 IsRoamerAt(u32 roamerIndex, u8 mapGroup, u8 mapNum)
 
 void CreateRoamerMonInstance(u32 roamerIndex)
 {
-    u32 status = ROAMER(roamerIndex)->statusA + (ROAMER(roamerIndex)->statusB << 8);
+    u32 status;
     struct Pokemon *mon = &gParties[B_TRAINER_OPPONENT_A][0];
+
+    // Cities of Emerald M3 (GDD 6.4): the beasts' level tracks the cap.
+    CitiesM3RefreshRoamerLevel(roamerIndex);
+    status = ROAMER(roamerIndex)->statusA + (ROAMER(roamerIndex)->statusB << 8);
     ZeroEnemyPartyMons();
     CreateMonWithIVsPersonality(mon, ROAMER(roamerIndex)->species, ROAMER(roamerIndex)->level, ROAMER(roamerIndex)->ivs, ROAMER(roamerIndex)->personality);
     SetMonData(mon, MON_DATA_STATUS, &status);
