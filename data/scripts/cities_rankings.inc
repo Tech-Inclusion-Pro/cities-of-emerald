@@ -32,3 +32,24 @@ Cities_Text_NoRankingChange:
 	.string "from this trainer.\p"
 	.string "This battle won't change your\n"
 	.string "ranking.$"
+
+@ GDD 8.1 / Task 7.7: shown the moment the player first holds #1.
+Cities_EventScript_BecameMaster::
+	lockall
+	playfanfare MUS_OBTAIN_SYMBOL
+	waitfanfare
+	setflag FLAG_CITIES_MASTER_ANNOUNCED
+	msgbox Cities_Text_BecameMaster, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Cities_Text_BecameMaster:
+	.string "{PLAYER} reached No. 1 in the\n"
+	.string "national rankings!\p"
+	.string "{PLAYER} is now the\n"
+	.string "POKéMON MASTER!\p"
+	.string "The POKéMON LEAGUE has invited you\n"
+	.string "to a ceremony.\p"
+	.string "An official is waiting in the\n"
+	.string "POKéMON LEAGUE lobby at\l"
+	.string "EVER GRANDE CITY.$"

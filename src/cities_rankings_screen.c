@@ -1,6 +1,7 @@
 #include "global.h"
 #include "cities_rankings.h"
 #include "bg.h"
+#include "event_data.h"
 #include "gpu_regs.h"
 #include "main.h"
 #include "menu.h"
@@ -40,6 +41,7 @@ static EWRAM_DATA struct RankEntry sEntries[24];
 static EWRAM_DATA u8 sEntryCount = 0;
 
 static const u8 sText_You[] = _("You");
+static const u8 sText_YouMaster[] = _("You - MASTER"); // GDD 8.1 title (Task 7.7)
 
 static const struct WindowTemplate sWinTemplates[] =
 {
@@ -125,7 +127,9 @@ static void DrawList(u32 scroll)
         ConvertIntToDecimalStringN(buf, idx + 1, STR_CONV_MODE_RIGHT_ALIGN, 2);
         AddTextPrinterParameterized(WIN_LIST, FONT_NORMAL, buf, 4, y, TEXT_SKIP_DRAW, NULL);
         AddTextPrinterParameterized(WIN_LIST, FONT_NORMAL,
-            e->name != NULL ? e->name : sText_You, 28, y, TEXT_SKIP_DRAW, NULL);
+            e->name != NULL ? e->name
+                : FlagGet(FLAG_CITIES_POKEMON_MASTER) ? sText_YouMaster : sText_You,
+            28, y, TEXT_SKIP_DRAW, NULL);
         ConvertIntToDecimalStringN(buf, e->score, STR_CONV_MODE_RIGHT_ALIGN, 6);
         AddTextPrinterParameterized(WIN_LIST, FONT_NORMAL, buf, 150, y, TEXT_SKIP_DRAW, NULL);
         if (e->name == NULL)

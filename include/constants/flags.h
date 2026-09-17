@@ -1680,6 +1680,16 @@
 #define FLAG_CITIES_RIVAL_REMATCH_V1_BEATEN         (CITIES_FLAGS_START + 0x1C)
 #define FLAG_CITIES_RIVAL_REMATCH_V2_BEATEN         (CITIES_FLAGS_START + 0x1D)
 #define FLAG_CITIES_RIVAL_REMATCH_V3_BEATEN         (CITIES_FLAGS_START + 0x1E)
+// Overworld challengers (GDD 8.5, Task 7.8; badge-staged, approved 2026-09-16)
+#define FLAG_CITIES_HIDE_CHALLENGER_BRAM            (CITIES_FLAGS_START + 0x1F) // Route 110, badge 3
+#define FLAG_CITIES_HIDE_CHALLENGER_ILARIA          (CITIES_FLAGS_START + 0x20) // Route 119, badge 5
+#define FLAG_CITIES_HIDE_CHALLENGER_CORSEN          (CITIES_FLAGS_START + 0x21) // Route 121, badge 7
+#define FLAG_CITIES_HIDE_CHALLENGER_VESPER          (CITIES_FLAGS_START + 0x22) // Ever Grande, Champion
+// Pokémon Master (GDD 8.1, Task 7.7)
+#define FLAG_CITIES_POKEMON_MASTER                  (CITIES_FLAGS_START + 0x23) // Held #1 at least once; permanent title
+#define FLAG_CITIES_MASTER_ANNOUNCED                (CITIES_FLAGS_START + 0x24) // The reach-the-top message has been shown
+#define FLAG_CITIES_MASTER_CEREMONY_DONE            (CITIES_FLAGS_START + 0x25) // League ceremony held, Master Ball given
+#define FLAG_CITIES_HIDE_LEAGUE_OFFICIAL            (CITIES_FLAGS_START + 0x26) // League lobby official (ceremony NPC)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

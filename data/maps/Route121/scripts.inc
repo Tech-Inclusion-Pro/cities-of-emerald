@@ -4,6 +4,7 @@ Route121_MapScripts::
 
 Route121_OnTransition:
 	call Route121_EventScript_UpdateEeveeTrainerSylveon
+	call Cities_EventScript_UpdateChallengerCorsen
 	end
 
 Route121_EventScript_Woman::

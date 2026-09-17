@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle_setup.h"
 #include "bike.h"
+#include "cities_field_events.h"
 #include "coord_event_weather.h"
 #include "daycare.h"
 #include "debug.h"
@@ -173,6 +174,10 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
 
     if (CheckForTrainersWantingBattle() == TRUE)
+        return TRUE;
+
+    // Cities of Emerald: queued one-shot field events (Master event, recap).
+    if (CitiesTryStartQueuedFieldScript() == TRUE)
         return TRUE;
 
     if (TryRunOnFrameMapScript() == TRUE)

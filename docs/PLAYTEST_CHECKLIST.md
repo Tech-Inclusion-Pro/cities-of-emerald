@@ -63,8 +63,17 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Rival V1 beaten → repeat shows the no-points notice; V2/V3 unlock with the same debug flags
 - [ ] Match call PokéNav: gym leaders may still announce "wants a rematch" — cosmetic, ignore
 
+## Challengers & Master (Phase 7 leftovers)
+- [ ] Bram appears on Route 110 (near the south camper) after badge 3; challenge dialogue, points once, friendly after
+- [ ] Ilaria on Route 119 (south grass, near the bug catcher) after badge 5
+- [ ] Corsen on Route 121 (west end, near the woman) after badge 7
+- [ ] Vesper in Ever Grande City (upper plateau by the League doors) once Champion
+- [ ] All four: reachable/not walled in (coords placed from data, not eyes)
+- [ ] Reach No. 1 (debug: give badges + win battles, or set score) → fanfare + MASTER message on regaining control
+- [ ] League lobby: official (gentleman, mid-lobby) holds the ceremony, gives MASTER BALL; bag-full retry works; repeat dialogue after
+- [ ] Ranking screen: your row reads "You - MASTER" once titled; title survives dropping below No. 1
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
-- Pokémon Master event, overworld challenges: Phase 8 follow-ups, not yet built
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
 - Rematch teams are Normal difficulty only for now; Easy/Hard fall back to Normal
