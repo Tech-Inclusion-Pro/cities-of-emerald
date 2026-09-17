@@ -173,6 +173,8 @@ enum
     MULTI_CITIES_DIFFICULTY,   // Cities of Emerald: new-game setup (GDD 4.1/10)
     MULTI_CITIES_LEVEL_CAP,    // Cities of Emerald: assist cap choice (GDD 10)
     MULTI_CITIES_ACCESS_PRESET, // Cities of Emerald: accessibility presets (GDD 11.6)
+    MULTI_CITIES_GUIDE_MENU,    // Cities of Emerald: Littleroot guide main menu (GDD 11.4)
+    MULTI_CITIES_TUTORIALS,     // Cities of Emerald: replayable tutorials (GDD 11.4)
 };
 
 #define MULTI_NONE 255

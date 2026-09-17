@@ -73,6 +73,7 @@ enum
     MENU_ACTION_DEXNAV,
     MENU_ACTION_CITIES_ACCESS,
     MENU_ACTION_CITIES_RANKINGS,
+    MENU_ACTION_CITIES_JOURNAL,
 };
 
 // Save status
@@ -117,6 +118,8 @@ static bool8 StartMenuDebugCallback(void);
 static bool8 StartMenuDexNavCallback(void);
 static bool8 StartMenuCitiesAccessCallback(void);
 static bool8 StartMenuCitiesRankingsCallback(void);
+static bool8 StartMenuCitiesJournalCallback(void);
+extern const u8 Cities_EventScript_ShowJournal[];
 extern const u8 Cities_EventScript_ShowRankings[];
 
 // Menu callbacks
@@ -215,6 +218,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_DEXNAV]          = {gText_MenuDexNav,  {.u8_void = StartMenuDexNavCallback}},
     [MENU_ACTION_CITIES_ACCESS]   = {COMPOUND_STRING("Access"), {.u8_void = StartMenuCitiesAccessCallback}},
     [MENU_ACTION_CITIES_RANKINGS] = {COMPOUND_STRING("Ranking"), {.u8_void = StartMenuCitiesRankingsCallback}},
+    [MENU_ACTION_CITIES_JOURNAL]  = {COMPOUND_STRING("Journal"), {.u8_void = StartMenuCitiesJournalCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -340,6 +344,7 @@ static void BuildNormalStartMenu(void)
         AddStartMenuAction(MENU_ACTION_DEXNAV);
     AddStartMenuAction(MENU_ACTION_CITIES_ACCESS); // Cities of Emerald: Accessibility menu, always available (GDD 11)
     AddStartMenuAction(MENU_ACTION_CITIES_RANKINGS); // Cities of Emerald: rankings (GDD 8.5)
+    AddStartMenuAction(MENU_ACTION_CITIES_JOURNAL); // Cities of Emerald: quest journal (GDD 11.4)
 
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
@@ -1535,6 +1540,16 @@ static bool8 StartMenuCitiesAccessCallback(void)
         return TRUE;
     }
     return FALSE;
+}
+
+// Cities of Emerald (GDD 11.4): the journal is a field script, so close
+// the menu and run it — same shape as the Safari retire prompt.
+static bool8 StartMenuCitiesJournalCallback(void)
+{
+    RemoveExtraStartMenuWindows();
+    HideStartMenu();
+    ScriptContext_SetupScript(Cities_EventScript_ShowJournal);
+    return TRUE;
 }
 
 static bool8 StartMenuDexNavCallback(void)

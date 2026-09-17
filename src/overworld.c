@@ -6,6 +6,7 @@
 #include "berry.h"
 #include "bg.h"
 #include "cable_club.h"
+#include "cities_quests.h"
 #include "credits_frlg.h"
 #include "clock.h"
 #include "dexnav.h"
@@ -2135,6 +2136,7 @@ void CB2_ContinueSavedGame(void)
     UnfreezeObjectEvents();
     DoTimeBasedEvents();
     UpdateMiscOverworldStates();
+    CitiesOnContinueGame(); // Cities of Emerald (GDD 11.4): queue the recap
     if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
         InitBattlePyramidMap(TRUE);
     else if (trainerHillMapId != 0)
