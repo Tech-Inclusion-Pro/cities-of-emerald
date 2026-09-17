@@ -4,6 +4,7 @@ FortreeCity_MapScripts::
 	.byte 0
 
 FortreeCity_OnTransition:
+	call Cities_EventScript_UpdateH4Hiker @ H4 (cities_h4.inc)
 	setflag FLAG_VISITED_FORTREE_CITY
 	end
 

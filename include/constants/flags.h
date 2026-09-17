@@ -1788,6 +1788,7 @@
 #define FLAG_CITIES_H8_LANDORUS_CAUGHT              (CITIES_FLAGS_START + 0x78)
 #define FLAG_CITIES_H8_ENAMORUS_CAUGHT              (CITIES_FLAGS_START + 0x79)
 #define FLAG_CITIES_H8_GLASS_GIVEN                  (CITIES_FLAGS_START + 0x7A) // Reveal Glass handed over
+#define FLAG_CITIES_HIDE_H4_HIKER                   (CITIES_FLAGS_START + 0x7B) // H4 guide in Fortree, postgame
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

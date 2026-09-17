@@ -9378,6 +9378,17 @@
       "border_filepath": "data/layouts/ColossusVault/border.bin",
       "blockdata_filepath": "data/layouts/ColossusVault/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_OLD_GROWTH_CANOPY",
+      "name": "OldGrowthCanopy_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/OldGrowthCanopy/border.bin",
+      "blockdata_filepath": "data/layouts/OldGrowthCanopy/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

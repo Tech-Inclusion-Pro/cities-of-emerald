@@ -198,6 +198,17 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "The Colossus Wakes" opens after meeting her, runs both beats, completes and drops off
 - [ ] Wild sweep: none of the three appear in any random source (existing test gate)
 
+## Hidden area H4 (Phase 11)
+- [ ] Hiker appears in Fortree (west side, ground level below the tree houses) only after the League - no M3 requirement
+- [ ] His intro plays once; saying yes climbs to Old-Growth Canopy; saying no leaves him available
+- [ ] Old-Growth Canopy looks right: wooden decks and walkways in the treetops, rails above, canopy all around, no way off the decks, no wild encounters
+- [ ] South walkway returns you to Fortree beside the hiker
+- [ ] Ho-Oh on the high sun deck and Lugia in the shaded east corner both visible from the first visit; each fights at level 65; KO returns on re-entry; only catching removes it
+- [ ] Celebi absent until BOTH are caught, then appears on the moss shrine (west); same rules at level 65
+- [ ] All three obey immediately at any badge count
+- [ ] Journal "Rainbow Wings" opens after meeting the hiker, runs both beats, completes and drops off
+- [ ] Wild sweep: none of the three appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

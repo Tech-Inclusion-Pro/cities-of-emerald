@@ -376,6 +376,26 @@ static const u8 *H3QuestStep(void)
     return COMPOUND_STRING("Two wardens keep the COLOSSUS\nVAULT under PETALBURG's hills.\lBefriend both to wake the giant.\lWardens: {STR_VAR_1} of 2.");
 }
 
+// ---- H4: Rainbow Wings (GDD 6.6, approved 2026-09-17) ----
+
+static bool32 H4QuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H4_STATE) == 1;
+}
+
+static const u8 *H4QuestStep(void)
+{
+    bool32 hooh = FlagGet(FLAG_CITIES_H4_HOOH_CAUGHT);
+    bool32 lugia = FlagGet(FLAG_CITIES_H4_LUGIA_CAUGHT);
+
+    if (FlagGet(FLAG_CITIES_H4_CELEBI_CAUGHT))
+        return COMPOUND_STRING("Sky, sea, and time travel with\nyou. Tell the hiker in FORTREE.");
+    if (hooh && lugia)
+        return COMPOUND_STRING("Sky and sea are settled - and\nsomething small now waits at the\lmoss shrine in the canopy.");
+    ConvertIntToDecimalStringN(gStringVar1, (hooh ? 1 : 0) + (lugia ? 1 : 0), STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("A rainbow lands on one tree above\nFORTREE. The hiker will climb up\lwith you. Settled: {STR_VAR_1} of 2.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -453,6 +473,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Island Guardians"), H10QuestActive,       H10QuestStep },
     { COMPOUND_STRING("The Heart of the Mountain"), H11QuestActive,  H11QuestStep },
     { COMPOUND_STRING("The Colossus Wakes"),  H3QuestActive,         H3QuestStep },
+    { COMPOUND_STRING("Rainbow Wings"),       H4QuestActive,         H4QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },
