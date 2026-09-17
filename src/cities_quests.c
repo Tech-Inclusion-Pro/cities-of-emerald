@@ -356,6 +356,26 @@ static const u8 *H11QuestStep(void)
     return COMPOUND_STRING("Something with a heartbeat sleeps\nunder MT. CHIMNEY. The volcanologist\lat the summit will climb down\lwith you.");
 }
 
+// ---- H3: The Colossus Wakes (GDD 6.6, approved 2026-09-17) ----
+
+static bool32 H3QuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H3_STATE) == 1;
+}
+
+static const u8 *H3QuestStep(void)
+{
+    bool32 eleki = FlagGet(FLAG_CITIES_H3_REGIELEKI_CAUGHT);
+    bool32 drago = FlagGet(FLAG_CITIES_H3_REGIDRAGO_CAUGHT);
+
+    if (FlagGet(FLAG_CITIES_H3_REGIGIGAS_CAUGHT))
+        return COMPOUND_STRING("The colossus travels with you.\nTell the archaeologist in the\lCOLOSSUS VAULT.");
+    if (eleki && drago)
+        return COMPOUND_STRING("Both wardens are with you - and\nthe dais is no longer empty. The\lcolossus is awake in the vault.");
+    ConvertIntToDecimalStringN(gStringVar1, (eleki ? 1 : 0) + (drago ? 1 : 0), STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Two wardens keep the COLOSSUS\nVAULT under PETALBURG's hills.\lBefriend both to wake the giant.\lWardens: {STR_VAR_1} of 2.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -432,6 +452,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Lunar Duo"),       H5BQuestActive,        H5BQuestStep },
     { COMPOUND_STRING("The Island Guardians"), H10QuestActive,       H10QuestStep },
     { COMPOUND_STRING("The Heart of the Mountain"), H11QuestActive,  H11QuestStep },
+    { COMPOUND_STRING("The Colossus Wakes"),  H3QuestActive,         H3QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

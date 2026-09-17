@@ -186,6 +186,18 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "The Heart of the Mountain" opens after meeting her, completes and drops off
 - [ ] Wild sweep: Heatran appears in no random source (existing test gate)
 
+## Hidden area H3 (Phase 11)
+- [ ] Archaeologist appears at Petalburg's west tree line ONLY when you are Champion AND M2 is complete (Champion with M2 unfinished -> nobody there)
+- [ ] Her intro references the Pacifidlog braille chambers; saying yes takes you into Colossus Vault
+- [ ] Colossus Vault looks right: main hall + two side alcoves, dark stone dais, no way out of bounds, no wild encounters
+- [ ] South alcove returns you to Petalburg beside her spot
+- [ ] Regieleki (west alcove) and Regidrago (east alcove) visible from the first visit; each fights at level 65; KO returns on re-entry; only catching removes it
+- [ ] Dais is EMPTY until both wardens are caught; then Regigigas appears there; same battle rules at level 65
+- [ ] All three obey immediately at any badge count
+- [ ] In-vault archaeologist tracks progress: wardens intro -> giant-awake notice -> closing thanks -> quiet after
+- [ ] Journal "The Colossus Wakes" opens after meeting her, runs both beats, completes and drops off
+- [ ] Wild sweep: none of the three appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

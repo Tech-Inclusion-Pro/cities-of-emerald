@@ -156,6 +156,11 @@ TEST("Arc levels: postgame arcs use their fixed tier, mid-game arcs follow the c
     EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_TAPU_BULU), 60);
     EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_HEATRAN), 60);
 
+    // The 65 tier (GDD 6.4).
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_REGIGIGAS), 65);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_HO_OH), 65);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_ENAMORUS), 65);
+
     // Non-arc species fall back to the cap rule.
     EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_PIKACHU), Script_CitiesGetLegendaryLevel());
 }

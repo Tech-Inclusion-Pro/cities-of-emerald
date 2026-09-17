@@ -18,6 +18,9 @@ enum CitiesArc
     CITIES_ARC_H5B,  // Cresselia, Darkrai        — postgame hidden area (Moonrise Cove), always obeys
     CITIES_ARC_H10,  // The four Tapu             — postgame hidden area (Shrine Atoll), always obeys
     CITIES_ARC_H11,  // Heatran                   — postgame hidden area (Ember Vault), always obeys
+    CITIES_ARC_H3,   // Regigigas, Regieleki, Regidrago — postgame (needs M2 complete), tier 65
+    CITIES_ARC_H4,   // Ho-Oh, Lugia, Celebi      — postgame hidden area (canopy), tier 65
+    CITIES_ARC_H8,   // The four forces of storm  — postgame hidden area (rise), tier 65, Reveal Glass
     CITIES_ARC_COUNT // NOTE: postgame arcs sit at the end; the always-obeys rule keys on >= CITIES_ARC_M1PG
 };
 

@@ -1762,6 +1762,32 @@
 #define FLAG_CITIES_HIDE_H11_VOLCANOLOGIST          (CITIES_FLAGS_START + 0x61) // Mt. Chimney summit, postgame
 #define FLAG_CITIES_HIDE_H11_HEATRAN                (CITIES_FLAGS_START + 0x62)
 #define FLAG_CITIES_H11_HEATRAN_CAUGHT              (CITIES_FLAGS_START + 0x63)
+// H3 "The Colossus Wakes" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H3_ARCHAEOLOGIST           (CITIES_FLAGS_START + 0x64) // Petalburg west tree line, postgame + M2 done
+#define FLAG_CITIES_HIDE_H3_REGIELEKI               (CITIES_FLAGS_START + 0x65) // wardens in the Colossus Vault
+#define FLAG_CITIES_HIDE_H3_REGIDRAGO               (CITIES_FLAGS_START + 0x66)
+#define FLAG_CITIES_HIDE_H3_REGIGIGAS               (CITIES_FLAGS_START + 0x67) // shown only once both wardens are caught
+#define FLAG_CITIES_H3_REGIELEKI_CAUGHT             (CITIES_FLAGS_START + 0x68)
+#define FLAG_CITIES_H3_REGIDRAGO_CAUGHT             (CITIES_FLAGS_START + 0x69)
+#define FLAG_CITIES_H3_REGIGIGAS_CAUGHT             (CITIES_FLAGS_START + 0x6A)
+// H4 "Rainbow Wings" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H4_HOOH                    (CITIES_FLAGS_START + 0x6B) // the canopy above Fortree
+#define FLAG_CITIES_HIDE_H4_LUGIA                   (CITIES_FLAGS_START + 0x6C)
+#define FLAG_CITIES_HIDE_H4_CELEBI                  (CITIES_FLAGS_START + 0x6D) // shown only once both are caught
+#define FLAG_CITIES_H4_HOOH_CAUGHT                  (CITIES_FLAGS_START + 0x6E)
+#define FLAG_CITIES_H4_LUGIA_CAUGHT                 (CITIES_FLAGS_START + 0x6F)
+#define FLAG_CITIES_H4_CELEBI_CAUGHT                (CITIES_FLAGS_START + 0x70)
+// H8 "The Weather Menders" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H8_RESEARCHER              (CITIES_FLAGS_START + 0x71) // Fallarbor, postgame
+#define FLAG_CITIES_HIDE_H8_TORNADUS                (CITIES_FLAGS_START + 0x72) // perches on Windswept Rise
+#define FLAG_CITIES_HIDE_H8_THUNDURUS               (CITIES_FLAGS_START + 0x73)
+#define FLAG_CITIES_HIDE_H8_LANDORUS                (CITIES_FLAGS_START + 0x74)
+#define FLAG_CITIES_HIDE_H8_ENAMORUS                (CITIES_FLAGS_START + 0x75) // shown only once the trio is caught
+#define FLAG_CITIES_H8_TORNADUS_CAUGHT              (CITIES_FLAGS_START + 0x76)
+#define FLAG_CITIES_H8_THUNDURUS_CAUGHT             (CITIES_FLAGS_START + 0x77)
+#define FLAG_CITIES_H8_LANDORUS_CAUGHT              (CITIES_FLAGS_START + 0x78)
+#define FLAG_CITIES_H8_ENAMORUS_CAUGHT              (CITIES_FLAGS_START + 0x79)
+#define FLAG_CITIES_H8_GLASS_GIVEN                  (CITIES_FLAGS_START + 0x7A) // Reveal Glass handed over
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

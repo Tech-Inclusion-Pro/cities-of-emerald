@@ -4,6 +4,7 @@ PetalburgCity_MapScripts::
 	.byte 0
 
 PetalburgCity_OnTransition:
+	call Cities_EventScript_UpdateH3Archaeologist @ H3 (cities_h3.inc)
 	setflag FLAG_VISITED_PETALBURG_CITY
 	call_if_eq VAR_PETALBURG_CITY_STATE, 0, PetalburgCity_EventScript_MoveGymBoyToWestEntrance
 	call_if_eq VAR_PETALBURG_CITY_STATE, 2, PetalburgCity_EventScript_DisableMapNameAndMusic

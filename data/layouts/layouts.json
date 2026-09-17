@@ -9367,6 +9367,17 @@
       "border_filepath": "data/layouts/EmberVault/border.bin",
       "blockdata_filepath": "data/layouts/EmberVault/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_COLOSSUS_VAULT",
+      "name": "ColossusVault_Layout",
+      "width": 18,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/ColossusVault/border.bin",
+      "blockdata_filepath": "data/layouts/ColossusVault/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

@@ -296,6 +296,9 @@
 #define VAR_CITIES_H5B_STATE                             (CITIES_VARS_START + 0xF) // 0 = not started, 1 = fisher met, 2 = arc complete
 #define VAR_CITIES_H10_STATE                             (CITIES_VARS_START + 0x10) // 0 = not started, 1 = elder met, 2 = arc complete
 #define VAR_CITIES_H11_STATE                             (CITIES_VARS_START + 0x11) // 0 = not started, 1 = volcanologist met, 2 = arc complete
+#define VAR_CITIES_H3_STATE                              (CITIES_VARS_START + 0x12) // 0 = not started, 1 = archaeologist met, 2 = arc complete
+#define VAR_CITIES_H4_STATE                              (CITIES_VARS_START + 0x13) // 0 = not started, 1 = ranger's canopy story heard, 2 = arc complete
+#define VAR_CITIES_H8_STATE                              (CITIES_VARS_START + 0x14) // 0 = not started, 1 = researcher met, 2 = arc complete
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END

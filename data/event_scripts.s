@@ -132,6 +132,7 @@ gStdScripts_End::
 
 
 	.include "data/maps/PetalburgCity/scripts.inc"
+	.include "data/maps/ColossusVault/scripts.inc"
 	.include "data/maps/SlateportCity/scripts.inc"
 	.include "data/maps/MauvilleCity/scripts.inc"
 	.include "data/maps/RustboroCity/scripts.inc"
@@ -1727,6 +1728,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/cities_h5b.inc"
 	.include "data/scripts/cities_h10.inc"
 	.include "data/scripts/cities_h11.inc"
+	.include "data/scripts/cities_h3.inc"
 	.include "data/scripts/roulette.inc"
 	.include "data/scripts/pokedex_rating.inc"
 	.include "data/text/pokedex_rating.inc"
