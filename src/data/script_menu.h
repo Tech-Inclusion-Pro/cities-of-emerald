@@ -1151,6 +1151,26 @@ static const struct MenuAction sMultichoiceList_CitiesAccessPreset[] =
     {COMPOUND_STRING("One-Handed")},
 };
 
+static const struct MenuAction sMultichoiceList_CitiesGuideMenu[] =
+{
+    {COMPOUND_STRING("Presets")},
+    {COMPOUND_STRING("What's next?")},
+    {COMPOUND_STRING("Tutorials")},
+    {COMPOUND_STRING("Goodbye")},
+};
+
+static const struct MenuAction sMultichoiceList_CitiesTutorials[] =
+{
+    {COMPOUND_STRING("Breeding")},
+    {COMPOUND_STRING("Mega Evolution")},
+    {COMPOUND_STRING("Z-Moves")},
+    {COMPOUND_STRING("Dynamax")},
+    {COMPOUND_STRING("Terastal")},
+    {COMPOUND_STRING("Wild Pokémon")},
+    {COMPOUND_STRING("Rankings")},
+    {COMPOUND_STRING("Done")},
+};
+
 // Cities of Emerald: Dewford stone expert choice (GDD 4.3)
 static const struct MenuAction sMultichoiceList_CitiesEeveeStones[] =
 {
@@ -1333,6 +1353,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_CITIES_DIFFICULTY]                          = MULTICHOICE(sMultichoiceList_CitiesDifficulty),
     [MULTI_CITIES_LEVEL_CAP]                           = MULTICHOICE(sMultichoiceList_CitiesLevelCap),
     [MULTI_CITIES_ACCESS_PRESET]                       = MULTICHOICE(sMultichoiceList_CitiesAccessPreset),
+    [MULTI_CITIES_GUIDE_MENU]                          = MULTICHOICE(sMultichoiceList_CitiesGuideMenu),
+    [MULTI_CITIES_TUTORIALS]                           = MULTICHOICE(sMultichoiceList_CitiesTutorials),
 };
 
 const u8 *const gStdStrings[] =

@@ -646,3 +646,5 @@ gSpecials::
 	def_special Script_CitiesRivalRematchWon
 	def_special Script_CitiesGymRematchWillScore
 	def_special Script_CitiesRivalRematchWillScore
+	def_special Script_CitiesBufferNextJournalEntry
+	def_special Script_CitiesBufferMainQuestStep

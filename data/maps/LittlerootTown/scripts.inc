@@ -1016,19 +1016,78 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 
 
 @ Cities of Emerald (GDD 11.7): in-world accessibility guide.
+@ Phase 9 (GDD 11.4): the guide now offers presets, a plain-language
+@ "what's next" hint, and replayable tutorials from one menu.
 LittlerootTown_EventScript_CitiesAccessGuide::
 	lock
 	faceplayer
 	msgbox LittlerootTown_Text_AccessGuideIntro, MSGBOX_DEFAULT
+LittlerootTown_EventScript_GuideMenu::
+	message LittlerootTown_Text_GuideWhatElse
+	waitmessage
+	multichoice 0, 0, MULTI_CITIES_GUIDE_MENU, TRUE
+	switch VAR_RESULT
+	case 0, LittlerootTown_EventScript_GuidePresets
+	case 1, LittlerootTown_EventScript_GuideHint
+	case 2, LittlerootTown_EventScript_GuideTutorials
+	goto LittlerootTown_EventScript_AccessGuideDone
+
+LittlerootTown_EventScript_GuidePresets::
 	msgbox LittlerootTown_Text_AccessGuideOfferPreset, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, LittlerootTown_EventScript_AccessGuideDone
+	goto_if_eq VAR_RESULT, NO, LittlerootTown_EventScript_GuideMenu
 	message LittlerootTown_Text_AccessGuideChoosePreset
 	waitmessage
 	multichoice 0, 0, MULTI_CITIES_ACCESS_PRESET, TRUE
 	special Script_CitiesApplyPreset
 	msgbox LittlerootTown_Text_AccessGuideApplied, MSGBOX_DEFAULT
-	release
-	end
+	goto LittlerootTown_EventScript_GuideMenu
+
+LittlerootTown_EventScript_GuideHint::
+	special Script_CitiesBufferMainQuestStep
+	msgbox LittlerootTown_Text_GuideHint, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_GuideMenu
+
+LittlerootTown_EventScript_GuideTutorials::
+	message LittlerootTown_Text_GuideChooseTutorial
+	waitmessage
+	multichoice 0, 0, MULTI_CITIES_TUTORIALS, TRUE
+	switch VAR_RESULT
+	case 0, LittlerootTown_EventScript_TutorialBreeding
+	case 1, LittlerootTown_EventScript_TutorialMega
+	case 2, LittlerootTown_EventScript_TutorialZMoves
+	case 3, LittlerootTown_EventScript_TutorialDynamax
+	case 4, LittlerootTown_EventScript_TutorialTera
+	case 5, LittlerootTown_EventScript_TutorialWild
+	case 6, LittlerootTown_EventScript_TutorialRankings
+	goto LittlerootTown_EventScript_GuideMenu
+
+LittlerootTown_EventScript_TutorialBreeding::
+	msgbox LittlerootTown_Text_TutorialBreeding, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_GuideTutorials
+
+LittlerootTown_EventScript_TutorialMega::
+	msgbox LittlerootTown_Text_TutorialMega, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_GuideTutorials
+
+LittlerootTown_EventScript_TutorialZMoves::
+	msgbox LittlerootTown_Text_TutorialZMoves, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_GuideTutorials
+
+LittlerootTown_EventScript_TutorialDynamax::
+	msgbox LittlerootTown_Text_TutorialDynamax, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_GuideTutorials
+
+LittlerootTown_EventScript_TutorialTera::
+	msgbox LittlerootTown_Text_TutorialTera, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_GuideTutorials
+
+LittlerootTown_EventScript_TutorialWild::
+	msgbox LittlerootTown_Text_TutorialWild, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_GuideTutorials
+
+LittlerootTown_EventScript_TutorialRankings::
+	msgbox LittlerootTown_Text_TutorialRankings, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_GuideTutorials
 
 LittlerootTown_EventScript_AccessGuideDone::
 	msgbox LittlerootTown_Text_AccessGuideBye, MSGBOX_DEFAULT
@@ -1060,3 +1119,77 @@ LittlerootTown_Text_AccessGuideApplied:
 LittlerootTown_Text_AccessGuideBye:
 	.string "Any time you like, the ACCESS\n"
 	.string "menu is there for you.$"
+
+LittlerootTown_Text_GuideWhatElse:
+	.string "What would you like?$"
+
+LittlerootTown_Text_GuideHint:
+	.string "Here's where your journey points\n"
+	.string "next:\p"
+	.string "{STR_VAR_3}\p"
+	.string "You can read this any time in the\n"
+	.string "JOURNAL, on the START menu.$"
+
+LittlerootTown_Text_GuideChooseTutorial:
+	.string "Which topic should I explain?$"
+
+LittlerootTown_Text_TutorialBreeding:
+	.string "BREEDING: leave two compatible\n"
+	.string "POKéMON at the DAY CARE on\l"
+	.string "Route 117.\p"
+	.string "Walk around and the pair may leave\n"
+	.string "an EGG. Carry it and keep walking\l"
+	.string "until it hatches.\p"
+	.string "DITTO can pair with almost any\n"
+	.string "POKéMON.$"
+
+LittlerootTown_Text_TutorialMega:
+	.string "MEGA EVOLUTION: give a POKéMON its\n"
+	.string "own MEGA STONE to hold.\p"
+	.string "In battle, choose a move and press\n"
+	.string "START to toggle MEGA EVOLUTION,\l"
+	.string "then attack.\p"
+	.string "It lasts for the battle, and works\n"
+	.string "once per battle.$"
+
+LittlerootTown_Text_TutorialZMoves:
+	.string "Z-MOVES: give a POKéMON a\n"
+	.string "Z-CRYSTAL that matches one of its\l"
+	.string "moves.\p"
+	.string "In battle, press START on a move to\n"
+	.string "power it up into a huge Z-MOVE.\p"
+	.string "You can use one Z-MOVE per battle.$"
+
+LittlerootTown_Text_TutorialDynamax:
+	.string "DYNAMAX: in the places that allow\n"
+	.string "it, press START in battle to make\l"
+	.string "your POKéMON giant for 3 turns.\p"
+	.string "Its moves become MAX MOVES and it\n"
+	.string "gets extra HP while it lasts.$"
+
+LittlerootTown_Text_TutorialTera:
+	.string "TERASTALLIZING: with a charged TERA\n"
+	.string "ORB, press START in battle to\l"
+	.string "change your POKéMON's type to its\l"
+	.string "TERA TYPE.\p"
+	.string "It lasts until the battle ends.$"
+
+LittlerootTown_Text_TutorialWild:
+	.string "WILD POKéMON: you can see many of\n"
+	.string "them walking around in grass, caves,\l"
+	.string "and water.\p"
+	.string "Walk into one to battle it, or step\n"
+	.string "around it to pass by.\p"
+	.string "Different POKéMON come out in the\n"
+	.string "morning, daytime, and night.$"
+
+LittlerootTown_Text_TutorialRankings:
+	.string "RANKINGS: winning trainer battles\n"
+	.string "earns points. Losing costs a little.\p"
+	.string "You earn extra points when your\n"
+	.string "whole team helps and nobody faints,\l"
+	.string "and for winning without dawdling.\p"
+	.string "Turning on accessibility features\n"
+	.string "gives you extra time - no penalty.\p"
+	.string "Check your rank with START, then\n"
+	.string "RANKING.$"

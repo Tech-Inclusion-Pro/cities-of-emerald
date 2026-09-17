@@ -73,6 +73,16 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] League lobby: official (gentleman, mid-lobby) holds the ceremony, gives MASTER BALL; bag-full retry works; repeat dialogue after
 - [ ] Ranking screen: your row reads "You - MASTER" once titled; title survives dropping below No. 1
 
+## Quest journal & guide (Phase 9)
+- [ ] START → Journal: pages through active quests (main story first), each as name then plain-language next step
+- [ ] Journal main-story step matches where you actually are (check at 2-3 different save points)
+- [ ] Eevee quest appears after badge 2, shows "N of 8", disappears when all 8 experts are beaten
+- [ ] Challenger quest appears after badge 3 with "N of 4"; rematch + Master quests appear once Champion
+- [ ] Load a save → "Welcome back!" recap shows the current main-story step once you have control
+- [ ] If you earned MASTER and saved before the fanfare showed, loading shows the announcement instead
+- [ ] Littleroot guide: menu offers Presets / What's next? / Tutorials / Goodbye; all loop back to the menu
+- [ ] All 7 tutorials read correctly (Breeding, Mega, Z-Moves, Dynamax, Terastal, Wild Pokémon, Rankings)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
