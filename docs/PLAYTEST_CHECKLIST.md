@@ -153,6 +153,17 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "The Swords of Justice" opens after meeting the ranger, shows N of 4, completes and drops off
 - [ ] Wild sweep: none of the four appear in any random source (existing test gate)
 
+## Hidden area H5b (Phase 11)
+- [ ] Fisher appears on Dewford's south beach (left side) only after the League
+- [ ] Fisher's intro plays once; saying yes rows you to Moonrise Cove; saying no leaves him available
+- [ ] Moonrise Cove looks right: cave walls all around, moonpool in the outer chamber, dark-floored nook up top, no way out of bounds, no wild encounters
+- [ ] Stepping into the south alcove returns you to Dewford's beach next to the fisher
+- [ ] Cresselia by the pool and Darkrai in the nook both visible from the first visit; each fights at level 60; KO returns on re-entry; only catching removes it
+- [ ] Both obey immediately at any badge count
+- [ ] Keeper's dialogue tracks progress: pair intro -> closing thanks -> quiet after
+- [ ] Journal "The Lunar Duo" opens after meeting the fisher, names the remaining one while one is caught, completes and drops off
+- [ ] Wild sweep: neither appears in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

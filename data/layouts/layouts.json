@@ -9334,6 +9334,17 @@
       "border_filepath": "data/layouts/LittlerootHollow/border.bin",
       "blockdata_filepath": "data/layouts/LittlerootHollow/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_MOONRISE_COVE",
+      "name": "MoonriseCove_Layout",
+      "width": 18,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MoonriseCove/border.bin",
+      "blockdata_filepath": "data/layouts/MoonriseCove/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

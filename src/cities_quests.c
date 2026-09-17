@@ -293,6 +293,27 @@ static const u8 *H1QuestStep(void)
     return COMPOUND_STRING("Three guardians keep a hidden\nhollow near LITTLEROOT. The ranger\lat the tree line will walk you in.\lWith you: {STR_VAR_1} of 4.");
 }
 
+// ---- H5b: The Lunar Duo (GDD 6.6, approved 2026-09-17) ----
+
+static bool32 H5BQuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H5B_STATE) == 1;
+}
+
+static const u8 *H5BQuestStep(void)
+{
+    bool32 cresselia = FlagGet(FLAG_CITIES_H5B_CRESSELIA_CAUGHT);
+    bool32 darkrai = FlagGet(FLAG_CITIES_H5B_DARKRAI_CAUGHT);
+
+    if (cresselia && darkrai)
+        return COMPOUND_STRING("Both dreamers travel with you.\nTell the keeper in MOONRISE COVE.");
+    if (cresselia)
+        return COMPOUND_STRING("CRESSELIA is with you. DARKRAI\nstill keeps to the dark nook at\lthe back of MOONRISE COVE.");
+    if (darkrai)
+        return COMPOUND_STRING("DARKRAI is with you. CRESSELIA\nstill rests by the moonpool in\lMOONRISE COVE.");
+    return COMPOUND_STRING("DEWFORD can't sleep. Two dreamers\nrest in MOONRISE COVE - the fisher\lon the beach will row you out.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -366,6 +387,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Eon Pair"),        M5QuestActive,         M5QuestStep },
     { COMPOUND_STRING("Stranger Weather"),    M1PGQuestActive,       M1PGQuestStep },
     { COMPOUND_STRING("The Swords of Justice"), H1QuestActive,       H1QuestStep },
+    { COMPOUND_STRING("The Lunar Duo"),       H5BQuestActive,        H5BQuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

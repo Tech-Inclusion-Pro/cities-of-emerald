@@ -94,6 +94,13 @@ TEST("Arc obedience: the postgame arc always obeys, badges or none (GDD 6.5)")
     EXPECT_EQ(CitiesGetArcObedience(SPECIES_VIRIZION, &msg), CITIES_ARC_OBEYS);
     EXPECT_EQ(CitiesGetArcObedience(SPECIES_KELDEO, &msg), CITIES_ARC_OBEYS);
 
+    // And the H5b / H10 / H11 residents.
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_CRESSELIA, &msg), CITIES_ARC_OBEYS);
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_DARKRAI, &msg), CITIES_ARC_OBEYS);
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_TAPU_KOKO, &msg), CITIES_ARC_OBEYS);
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_TAPU_FINI, &msg), CITIES_ARC_OBEYS);
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_HEATRAN, &msg), CITIES_ARC_OBEYS);
+
     // The Kantonian birds still follow their own arc's badge rule.
     FlagClear(FLAG_BADGE04_GET);
     EXPECT_EQ(CitiesGetArcObedience(SPECIES_ARTICUNO, &msg), CITIES_ARC_DISOBEYS);

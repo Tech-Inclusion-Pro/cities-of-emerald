@@ -4,6 +4,7 @@ DewfordTown_MapScripts::
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
+	call Cities_EventScript_UpdateH5BFisher @ H5b (cities_h5b.inc)
 	end
 
 DewfordTown_EventScript_Briney::

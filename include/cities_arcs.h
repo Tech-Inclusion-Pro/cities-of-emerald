@@ -15,6 +15,9 @@ enum CitiesArc
     CITIES_ARC_M5, // Latias, Latios              — opens badge 8, obeys when both caught
     CITIES_ARC_M1PG, // Galarian birds            — postgame (League + M1 complete), always obeys
     CITIES_ARC_H1,   // Swords of Justice         — postgame hidden area (Littleroot Hollow), always obeys
+    CITIES_ARC_H5B,  // Cresselia, Darkrai        — postgame hidden area (Moonrise Cove), always obeys
+    CITIES_ARC_H10,  // The four Tapu             — postgame hidden area (Shrine Atoll), always obeys
+    CITIES_ARC_H11,  // Heatran                   — postgame hidden area (Ember Vault), always obeys
     CITIES_ARC_COUNT // NOTE: postgame arcs sit at the end; the always-obeys rule keys on >= CITIES_ARC_M1PG
 };
 

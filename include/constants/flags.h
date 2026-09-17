@@ -1742,6 +1742,26 @@
 #define FLAG_CITIES_H1_TERRAKION_CAUGHT             (CITIES_FLAGS_START + 0x50)
 #define FLAG_CITIES_H1_VIRIZION_CAUGHT              (CITIES_FLAGS_START + 0x51)
 #define FLAG_CITIES_H1_KELDEO_CAUGHT                (CITIES_FLAGS_START + 0x52)
+// H5b "The Lunar Duo" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H5B_FISHER                 (CITIES_FLAGS_START + 0x53) // Dewford beach, postgame
+#define FLAG_CITIES_HIDE_H5B_CRESSELIA              (CITIES_FLAGS_START + 0x54) // the pair in Moonrise Cove
+#define FLAG_CITIES_HIDE_H5B_DARKRAI                (CITIES_FLAGS_START + 0x55)
+#define FLAG_CITIES_H5B_CRESSELIA_CAUGHT            (CITIES_FLAGS_START + 0x56)
+#define FLAG_CITIES_H5B_DARKRAI_CAUGHT              (CITIES_FLAGS_START + 0x57)
+// H10 "The Island Guardians" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H10_ELDER                  (CITIES_FLAGS_START + 0x58) // Pacifidlog east walkway, postgame
+#define FLAG_CITIES_HIDE_H10_KOKO                   (CITIES_FLAGS_START + 0x59) // guardians on Shrine Atoll
+#define FLAG_CITIES_HIDE_H10_LELE                   (CITIES_FLAGS_START + 0x5A)
+#define FLAG_CITIES_HIDE_H10_BULU                   (CITIES_FLAGS_START + 0x5B)
+#define FLAG_CITIES_HIDE_H10_FINI                   (CITIES_FLAGS_START + 0x5C)
+#define FLAG_CITIES_H10_KOKO_CAUGHT                 (CITIES_FLAGS_START + 0x5D)
+#define FLAG_CITIES_H10_LELE_CAUGHT                 (CITIES_FLAGS_START + 0x5E)
+#define FLAG_CITIES_H10_BULU_CAUGHT                 (CITIES_FLAGS_START + 0x5F)
+#define FLAG_CITIES_H10_FINI_CAUGHT                 (CITIES_FLAGS_START + 0x60)
+// H11 "The Heart of the Mountain" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H11_VOLCANOLOGIST          (CITIES_FLAGS_START + 0x61) // Mt. Chimney summit, postgame
+#define FLAG_CITIES_HIDE_H11_HEATRAN                (CITIES_FLAGS_START + 0x62)
+#define FLAG_CITIES_H11_HEATRAN_CAUGHT              (CITIES_FLAGS_START + 0x63)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

@@ -41,6 +41,9 @@ static const u16 sArcM4[] = { SPECIES_UXIE, SPECIES_MESPRIT, SPECIES_AZELF };
 static const u16 sArcM5[] = { SPECIES_LATIAS, SPECIES_LATIOS };
 static const u16 sArcM1PG[] = { SPECIES_ARTICUNO_GALAR, SPECIES_ZAPDOS_GALAR, SPECIES_MOLTRES_GALAR };
 static const u16 sArcH1[] = { SPECIES_COBALION, SPECIES_TERRAKION, SPECIES_VIRIZION, SPECIES_KELDEO };
+static const u16 sArcH5B[] = { SPECIES_CRESSELIA, SPECIES_DARKRAI };
+static const u16 sArcH10[] = { SPECIES_TAPU_KOKO, SPECIES_TAPU_LELE, SPECIES_TAPU_BULU, SPECIES_TAPU_FINI };
+static const u16 sArcH11[] = { SPECIES_HEATRAN };
 
 static const struct CitiesArcInfo sArcs[CITIES_ARC_COUNT] =
 {
@@ -51,6 +54,9 @@ static const struct CitiesArcInfo sArcs[CITIES_ARC_COUNT] =
     [CITIES_ARC_M5] = { sArcM5, ARRAY_COUNT(sArcM5), 0, 0 },
     [CITIES_ARC_M1PG] = { sArcM1PG, ARRAY_COUNT(sArcM1PG), 0, 0 },
     [CITIES_ARC_H1] = { sArcH1, ARRAY_COUNT(sArcH1), 0, 0 },
+    [CITIES_ARC_H5B] = { sArcH5B, ARRAY_COUNT(sArcH5B), 0, 0 },
+    [CITIES_ARC_H10] = { sArcH10, ARRAY_COUNT(sArcH10), 0, 0 },
+    [CITIES_ARC_H11] = { sArcH11, ARRAY_COUNT(sArcH11), 0, 0 },
 };
 
 static bool32 SpeciesCaught(u16 species)
