@@ -292,6 +292,7 @@
 #define VAR_CITIES_M4_STATE                              (CITIES_VARS_START + 0xB) // 0 = not met, 1 = keeper met / passage open, 2 = arc complete
 #define VAR_CITIES_M5_STATE                              (CITIES_VARS_START + 0xC) // 0 = not met, 1 = sailor met / route open, 2 = arc complete
 #define VAR_CITIES_M1PG_STATE                            (CITIES_VARS_START + 0xD) // 0 = not started, 1 = reporter met, 2 = arc complete
+#define VAR_CITIES_H1_STATE                              (CITIES_VARS_START + 0xE) // 0 = not started, 1 = ranger met / hollow open, 2 = arc complete
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END

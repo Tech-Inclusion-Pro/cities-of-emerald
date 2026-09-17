@@ -1732,6 +1732,16 @@
 #define FLAG_CITIES_M1PG_ARTICUNO_CAUGHT            (CITIES_FLAGS_START + 0x47)
 #define FLAG_CITIES_M1PG_ZAPDOS_CAUGHT              (CITIES_FLAGS_START + 0x48)
 #define FLAG_CITIES_M1PG_MOLTRES_CAUGHT             (CITIES_FLAGS_START + 0x49)
+// H1 "The Swords of Justice" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H1_RANGER                  (CITIES_FLAGS_START + 0x4A) // Littleroot tree line, postgame
+#define FLAG_CITIES_HIDE_H1_COBALION                (CITIES_FLAGS_START + 0x4B) // guardians in Littleroot Hollow
+#define FLAG_CITIES_HIDE_H1_TERRAKION               (CITIES_FLAGS_START + 0x4C)
+#define FLAG_CITIES_HIDE_H1_VIRIZION                (CITIES_FLAGS_START + 0x4D)
+#define FLAG_CITIES_HIDE_H1_KELDEO                  (CITIES_FLAGS_START + 0x4E) // shown only once the trio is caught
+#define FLAG_CITIES_H1_COBALION_CAUGHT              (CITIES_FLAGS_START + 0x4F)
+#define FLAG_CITIES_H1_TERRAKION_CAUGHT             (CITIES_FLAGS_START + 0x50)
+#define FLAG_CITIES_H1_VIRIZION_CAUGHT              (CITIES_FLAGS_START + 0x51)
+#define FLAG_CITIES_H1_KELDEO_CAUGHT                (CITIES_FLAGS_START + 0x52)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

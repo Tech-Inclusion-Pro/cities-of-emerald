@@ -141,6 +141,18 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "Stranger Weather" opens with the reporter, shows N of 3, completes and drops off after her closing line
 - [ ] The Kantonian M1 birds never overlap the Galarian ones (M1 must be complete before these appear)
 
+## Hidden area H1 (Phase 11)
+- [ ] Ranger appears at Littleroot's tree line (top-left, below the trees) only after the League
+- [ ] Ranger's intro plays once; saying yes walks you into Littleroot Hollow; saying no leaves her available
+- [ ] Littleroot Hollow looks right: solid tree walls all around, no way to walk out of bounds, no wild encounters, forest music
+- [ ] Stepping into the south alcove returns you to Littleroot next to the ranger
+- [ ] Cobalion (west), Terrakion (east), Virizion (north) visible; each fights at level 60; KO'd guardian returns on re-entry; only catching removes it
+- [ ] Keldeo absent until all three are caught, then appears at the clearing's center; same battle rules
+- [ ] All four obey immediately at any badge count (no disobedience message ever)
+- [ ] Caretaker's dialogue tracks progress: guardians intro -> Keldeo notice -> closing thanks -> quiet after
+- [ ] Journal "The Swords of Justice" opens after meeting the ranger, shows N of 4, completes and drops off
+- [ ] Wild sweep: none of the four appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

@@ -14,7 +14,8 @@ enum CitiesArc
     CITIES_ARC_M4, // Uxie, Mesprit, Azelf        — opens badge 7, obeys badge 8
     CITIES_ARC_M5, // Latias, Latios              — opens badge 8, obeys when both caught
     CITIES_ARC_M1PG, // Galarian birds            — postgame (League + M1 complete), always obeys
-    CITIES_ARC_COUNT
+    CITIES_ARC_H1,   // Swords of Justice         — postgame hidden area (Littleroot Hollow), always obeys
+    CITIES_ARC_COUNT // NOTE: postgame arcs sit at the end; the always-obeys rule keys on >= CITIES_ARC_M1PG
 };
 
 // Result of the badge-based obedience rule (GDD 6.5).

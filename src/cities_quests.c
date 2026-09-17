@@ -262,6 +262,37 @@ static const u8 *M1PGQuestStep(void)
     return COMPOUND_STRING("Impossible readings at the old\nsites: FIERY PATH, SHOAL CAVE, and\lNEW MAUVILLE. Calmed: {STR_VAR_1} of 3.");
 }
 
+// ---- H1: The Swords of Justice (GDD 6.6, approved 2026-09-17) ----
+
+static u32 CountH1Caught(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_H1_COBALION_CAUGHT))  count++;
+    if (FlagGet(FLAG_CITIES_H1_TERRAKION_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_H1_VIRIZION_CAUGHT))  count++;
+    if (FlagGet(FLAG_CITIES_H1_KELDEO_CAUGHT))    count++;
+    return count;
+}
+
+static bool32 H1QuestActive(void)
+{
+    // Opens once the ranger is met (GDD 6.6 outline); drops off when done.
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H1_STATE) == 1;
+}
+
+static const u8 *H1QuestStep(void)
+{
+    u32 caught = CountH1Caught();
+
+    if (caught == 4)
+        return COMPOUND_STRING("All four guardians travel with you.\nTell the caretaker in the hollow.");
+    if (caught == 3)
+        return COMPOUND_STRING("The student, KELDEO, has come to\nthe hollow looking for its\lteachers. It waits in the heart\lof the clearing.");
+    ConvertIntToDecimalStringN(gStringVar1, caught, STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Three guardians keep a hidden\nhollow near LITTLEROOT. The ranger\lat the tree line will walk you in.\lWith you: {STR_VAR_1} of 4.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -334,6 +365,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Three Lights"),    M4QuestActive,         M4QuestStep },
     { COMPOUND_STRING("The Eon Pair"),        M5QuestActive,         M5QuestStep },
     { COMPOUND_STRING("Stranger Weather"),    M1PGQuestActive,       M1PGQuestStep },
+    { COMPOUND_STRING("The Swords of Justice"), H1QuestActive,       H1QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },
