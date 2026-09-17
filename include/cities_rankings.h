@@ -20,6 +20,7 @@ u32 CitiesRanking_GetNpcCount(void);
 const u8 *CitiesRanking_GetNpcName(u32 index);
 s32 CitiesRanking_GetNpcScore(u32 index);
 u32 CitiesRanking_GetPlayerRank(void);
+void CitiesRanking_CheckBecameMaster(void);
 void Script_CitiesBufferRankingScore(void);
 void CB2_InitCitiesRankingsScreen(void);
 

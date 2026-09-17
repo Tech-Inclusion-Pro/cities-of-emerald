@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "battle_setup.h"
 #include "cities_accessibility.h"
+#include "cities_field_events.h"
 #include "cities_rematches.h"
 #include "event_data.h"
 #include "pokemon.h"
@@ -14,6 +15,8 @@
 // (rematch versions hook in during Phase 8); losses always count, even
 // against a trainer already beaten (approved [PROPOSED] default).
 // Battle Frontier and link battles never count.
+
+extern const u8 Cities_EventScript_BecameMaster[];
 
 static EWRAM_DATA u8 sActedMask = 0;       // player party slots that used a move
 static EWRAM_DATA u32 sBattleFrames = 0;   // GDD 8.4: measured in frames
@@ -124,6 +127,22 @@ void CitiesRanking_BattleEnd(void)
 
     CitiesRanking_ApplyDelta(CitiesRanking_ComputeDelta(won, survivedActed, fainted,
                                                         sBattleFrames <= CitiesRanking_QuickWinFrames()));
+    CitiesRanking_CheckBecameMaster();
+}
+
+// GDD 8.1 / Task 7.7 (approved 2026-09-16): the first time the player holds
+// #1, the POKéMON MASTER title is earned permanently. The announcement
+// script runs when the player next has field control; the League ceremony
+// NPC appears from the same flag. If the game is saved before the
+// announcement shows, the recap path re-queues it on load.
+void CitiesRanking_CheckBecameMaster(void)
+{
+    if (FlagGet(FLAG_CITIES_POKEMON_MASTER))
+        return;
+    if (CitiesRanking_GetPlayerRank() != 1)
+        return;
+    FlagSet(FLAG_CITIES_POKEMON_MASTER);
+    CitiesQueueFieldScript(Cities_EventScript_BecameMaster);
 }
 
 // Rankings view (Task 7.6 v1): buffers score text for the start-menu script.

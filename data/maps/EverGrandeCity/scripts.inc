@@ -3,6 +3,7 @@ EverGrandeCity_MapScripts::
 	.byte 0
 
 EverGrandeCity_OnTransition:
+	call Cities_EventScript_UpdateChallengerVesper
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	end
 

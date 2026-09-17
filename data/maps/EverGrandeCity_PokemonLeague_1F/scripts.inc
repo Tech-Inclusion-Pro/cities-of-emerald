@@ -4,6 +4,7 @@ EverGrandeCity_PokemonLeague_1F_MapScripts::
 	.byte 0
 
 EverGrandeCity_PokemonLeague_1F_OnTransition:
+	call EverGrandeCity_PokemonLeague_1F_EventScript_UpdateCitiesOfficial
 	setrespawn HEAL_LOCATION_EVER_GRANDE_CITY_POKEMON_LEAGUE
 	setflag FLAG_LANDMARK_POKEMON_LEAGUE
 	call_if_unset FLAG_ENTERED_ELITE_FOUR, EverGrandeCity_PokemonLeague_1F_EventScript_GuardsBlockDoor
@@ -135,3 +136,69 @@ EverGrandeCity_PokemonLeague_1F_Text_GoForth:
 	.string "TRAINER! Believe in yourself and your\n"
 	.string "POKéMON, and go forth!$"
 
+
+@ Cities of Emerald (GDD 8.1, Task 7.7): the POKéMON MASTER ceremony.
+@ The official appears once the title is earned; the ceremony (and the
+@ MASTER BALL) happens once, then the official stays to congratulate.
+EverGrandeCity_PokemonLeague_1F_EventScript_UpdateCitiesOfficial::
+	goto_if_set FLAG_CITIES_POKEMON_MASTER, EverGrandeCity_PokemonLeague_1F_EventScript_ShowCitiesOfficial
+	setflag FLAG_CITIES_HIDE_LEAGUE_OFFICIAL
+	return
+
+EverGrandeCity_PokemonLeague_1F_EventScript_ShowCitiesOfficial::
+	clearflag FLAG_CITIES_HIDE_LEAGUE_OFFICIAL
+	return
+
+EverGrandeCity_PokemonLeague_1F_EventScript_CitiesOfficial::
+	lock
+	faceplayer
+	goto_if_set FLAG_CITIES_MASTER_CEREMONY_DONE, EverGrandeCity_PokemonLeague_1F_EventScript_CitiesOfficialAfter
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesCeremony, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_SYMBOL
+	waitfanfare
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesCeremonyTitle, MSGBOX_DEFAULT
+	giveitem ITEM_MASTER_BALL
+	goto_if_eq VAR_RESULT, FALSE, EverGrandeCity_PokemonLeague_1F_EventScript_CitiesBagFull
+	setflag FLAG_CITIES_MASTER_CEREMONY_DONE
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesCeremonyClose, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonLeague_1F_EventScript_CitiesBagFull::
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesBagFull, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonLeague_1F_EventScript_CitiesOfficialAfter::
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesOfficialAfter, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonLeague_1F_Text_CitiesCeremony:
+	.string "{PLAYER}! On behalf of the entire\n"
+	.string "POKéMON LEAGUE, welcome.\p"
+	.string "You have reached No. 1 in the national\n"
+	.string "rankings.\p"
+	.string "No trainer in HOENN stands above\n"
+	.string "you. Not even the CHAMPION.$"
+
+EverGrandeCity_PokemonLeague_1F_Text_CitiesCeremonyTitle:
+	.string "By the authority of the POKéMON\n"
+	.string "LEAGUE, I name you…\p"
+	.string "POKéMON MASTER!$"
+
+EverGrandeCity_PokemonLeague_1F_Text_CitiesCeremonyClose:
+	.string "That MASTER BALL is a gift from all\n"
+	.string "of us.\p"
+	.string "Your title is yours for good, no\n"
+	.string "matter how the rankings shift.\p"
+	.string "Congratulations, MASTER {PLAYER}!$"
+
+EverGrandeCity_PokemonLeague_1F_Text_CitiesBagFull:
+	.string "Oh! Your BAG is full.\p"
+	.string "Come back for your gift when you've\n"
+	.string "made some room.$"
+
+EverGrandeCity_PokemonLeague_1F_Text_CitiesOfficialAfter:
+	.string "It's an honor, MASTER {PLAYER}.\p"
+	.string "The whole region looks up to you.$"
