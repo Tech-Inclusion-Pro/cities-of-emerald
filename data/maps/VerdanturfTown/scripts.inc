@@ -3,6 +3,7 @@ VerdanturfTown_MapScripts::
 	.byte 0
 
 VerdanturfTown_OnTransition:
+	call Cities_EventScript_UpdateH9Elder @ H9 (cities_h9.inc)
 	setflag FLAG_VISITED_VERDANTURF_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
 	end

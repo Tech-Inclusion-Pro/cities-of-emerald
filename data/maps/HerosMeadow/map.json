@@ -1,0 +1,119 @@
+{
+  "id": "MAP_HEROS_MEADOW",
+  "name": "HerosMeadow",
+  "layout": "LAYOUT_HEROS_MEADOW",
+  "music": "MUS_VERDANTURF",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_VERDANTURF_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZACIAN)",
+      "x": 7,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_H9Zacian",
+      "flag": "FLAG_CITIES_HIDE_H9_ZACIAN"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZAMAZENTA)",
+      "x": 12,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_H9Zamazenta",
+      "flag": "FLAG_CITIES_HIDE_H9_ZAMAZENTA"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GLASTRIER)",
+      "x": 4,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_H9Glastrier",
+      "flag": "FLAG_CITIES_HIDE_H9_GLASTRIER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SPECTRIER)",
+      "x": 15,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_H9Spectrier",
+      "flag": "FLAG_CITIES_HIDE_H9_SPECTRIER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CALYREX)",
+      "x": 9,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_H9Calyrex",
+      "flag": "FLAG_CITIES_HIDE_H9_CALYREX"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KUBFU)",
+      "x": 11,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_H9Kubfu",
+      "flag": "FLAG_CITIES_HIDE_H9_KUBFU"
+    }
+  ],
+  "warp_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 18,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Cities_EventScript_H9MeadowExit"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 18,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Cities_EventScript_H9MeadowExit"
+    }
+  ],
+  "bg_events": []
+}

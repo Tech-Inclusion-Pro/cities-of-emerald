@@ -246,6 +246,18 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "Truth and Ideals" opens after meeting him, runs both beats, completes after the splicers
 - [ ] Wild sweep: none of the three appear in any random source (existing test gate)
 
+## Hidden area H9 (Phase 11)
+- [ ] Storyteller elder appears in Verdanturf (south-west, near the town's lower path) only after the League
+- [ ] His intro plays once; saying yes walks you into Hero's Meadow; saying no leaves him available
+- [ ] Hero's Meadow looks right: walled meadow like Littleroot Hollow, no way out of bounds, no wild encounters
+- [ ] South gap returns you to Verdanturf beside him
+- [ ] Five heroes visible from the first visit: Zacian + Zamazenta (north pair), Glastrier (west), Spectrier (east), Kubfu (near the entrance); each fights at level 70; KO returns on re-entry; only catching removes it
+- [ ] Calyrex absent until BOTH steeds are caught, then appears at the meadow's crown (top center); same rules at level 70
+- [ ] All six obey immediately at any badge count
+- [ ] All six caught -> elder's thanks + RUSTED SWORD, RUSTED SHIELD, and REINS OF UNITY given together exactly once; bag-full refuses all three and retries
+- [ ] Journal "The Old Heroes" opens after meeting him, runs the steeds beat then the king, completes after the relics
+- [ ] Wild sweep: none of the six appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

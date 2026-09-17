@@ -475,6 +475,40 @@ static const u8 *H7QuestStep(void)
     return COMPOUND_STRING("Two currents argue in RESONANCE\nHALL under MAUVILLE. The engineer\lwill take you down. Settled:\l{STR_VAR_1} of 2.");
 }
 
+// ---- H9: The Old Heroes (GDD 6.6, approved 2026-09-17) ----
+
+static u32 CountH9Caught(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_H9_ZACIAN_CAUGHT))    count++;
+    if (FlagGet(FLAG_CITIES_H9_ZAMAZENTA_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_H9_GLASTRIER_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_H9_SPECTRIER_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_H9_CALYREX_CAUGHT))   count++;
+    if (FlagGet(FLAG_CITIES_H9_KUBFU_CAUGHT))     count++;
+    return count;
+}
+
+static bool32 H9QuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H9_STATE) == 1;
+}
+
+static const u8 *H9QuestStep(void)
+{
+    bool32 steeds = FlagGet(FLAG_CITIES_H9_GLASTRIER_CAUGHT)
+                 && FlagGet(FLAG_CITIES_H9_SPECTRIER_CAUGHT);
+    u32 caught = CountH9Caught();
+
+    if (caught == 6)
+        return COMPOUND_STRING("All six heroes walk with you.\nSee the elder in VERDANTURF - he\lhas their relics for you.");
+    ConvertIntToDecimalStringN(gStringVar1, caught, STR_CONV_MODE_LEFT_ALIGN, 1);
+    if (steeds && !FlagGet(FLAG_CITIES_H9_CALYREX_CAUGHT))
+        return COMPOUND_STRING("Both steeds are with you - and\nthe king has returned to the\lmeadow's crown. With you: {STR_VAR_1} of 6.");
+    return COMPOUND_STRING("Old heroes rest in a meadow past\nVERDANTURF. The elder will walk\lyou in. With you: {STR_VAR_1} of 6.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -556,6 +590,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Weather Menders"), H8QuestActive,         H8QuestStep },
     { COMPOUND_STRING("The Balance Below"),   H6QuestActive,         H6QuestStep },
     { COMPOUND_STRING("Truth and Ideals"),    H7QuestActive,         H7QuestStep },
+    { COMPOUND_STRING("The Old Heroes"),      H9QuestActive,         H9QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },
