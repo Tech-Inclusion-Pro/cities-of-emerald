@@ -209,6 +209,18 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "Rainbow Wings" opens after meeting the hiker, runs both beats, completes and drops off
 - [ ] Wild sweep: none of the three appear in any random source (existing test gate)
 
+## Hidden area H8 (Phase 11)
+- [ ] Researcher appears in Fallarbor (south-west of the contest hall area) only after the League
+- [ ] Her intro plays once; saying yes climbs to Windswept Rise; saying no leaves her available
+- [ ] Windswept Rise looks right: open ash moor ringed by rocky mounds, falling ash weather, four stone perches at the corners, no way out except the south gap, no wild encounters
+- [ ] South gap returns you to Fallarbor beside her
+- [ ] Tornadus (NW), Thundurus (NE), Landorus (SW) visible from the first visit; each fights at level 65; KO returns on re-entry; only catching removes it
+- [ ] SE perch is EMPTY until the three are caught; then Enamorus appears there; same rules at level 65
+- [ ] All four obey immediately at any badge count
+- [ ] All four caught -> researcher's thanks + REVEAL GLASS handed over exactly once; bag-full retry works; glass switches the genies' Therian forms
+- [ ] Journal "The Weather Menders" opens after meeting her, runs both beats, completes after the glass
+- [ ] Wild sweep: none of the four appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

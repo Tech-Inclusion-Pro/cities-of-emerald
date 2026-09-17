@@ -396,6 +396,28 @@ static const u8 *H4QuestStep(void)
     return COMPOUND_STRING("A rainbow lands on one tree above\nFORTREE. The hiker will climb up\lwith you. Settled: {STR_VAR_1} of 2.");
 }
 
+// ---- H8: The Weather Menders (GDD 6.6, approved 2026-09-17) ----
+
+static bool32 H8QuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H8_STATE) == 1;
+}
+
+static const u8 *H8QuestStep(void)
+{
+    u32 trio = 0;
+
+    if (FlagGet(FLAG_CITIES_H8_TORNADUS_CAUGHT))  trio++;
+    if (FlagGet(FLAG_CITIES_H8_THUNDURUS_CAUGHT)) trio++;
+    if (FlagGet(FLAG_CITIES_H8_LANDORUS_CAUGHT))  trio++;
+    if (FlagGet(FLAG_CITIES_H8_ENAMORUS_CAUGHT))
+        return COMPOUND_STRING("All four are with you. Tell the\nresearcher in FALLARBOR - she has\lsomething for you.");
+    if (trio == 3)
+        return COMPOUND_STRING("The storms are settled - and\nspring has come to the empty\lfourth perch on WINDSWEPT RISE.");
+    ConvertIntToDecimalStringN(gStringVar1, trio, STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Three storm forces hold perches\non WINDSWEPT RISE above FALLARBOR.\lSettled: {STR_VAR_1} of 3.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -474,6 +496,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Heart of the Mountain"), H11QuestActive,  H11QuestStep },
     { COMPOUND_STRING("The Colossus Wakes"),  H3QuestActive,         H3QuestStep },
     { COMPOUND_STRING("Rainbow Wings"),       H4QuestActive,         H4QuestStep },
+    { COMPOUND_STRING("The Weather Menders"), H8QuestActive,         H8QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },
