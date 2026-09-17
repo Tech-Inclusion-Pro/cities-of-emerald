@@ -5,6 +5,7 @@ MtChimney_MapScripts::
 
 MtChimney_OnTransition:
 	setvar VAR_JAGGED_PASS_ASH_WEATHER, 1
+	call Cities_EventScript_UpdateH11Volcanologist @ H11 (cities_h11.inc)
 	end
 
 MtChimney_OnResume:

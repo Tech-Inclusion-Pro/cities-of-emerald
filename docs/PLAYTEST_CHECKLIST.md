@@ -175,6 +175,17 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "The Island Guardians" opens after meeting the elder, shows N of 4, completes and drops off
 - [ ] Wild sweep: no Tapu appears in any random source (existing test gate)
 
+## Hidden area H11 (Phase 11)
+- [ ] Volcanologist appears on the Mt. Chimney summit (right of the cable car station door) only after the League
+- [ ] Her intro plays once; saying yes climbs down to Ember Vault; saying no leaves her available
+- [ ] Ember Vault looks right: rock walls, lava pools along both sides, basalt floor, no way out of bounds, no wild encounters
+- [ ] Stepping into the south alcove returns you to the summit beside her
+- [ ] Heatran visible on the central floor; fights at level 60; KO returns on re-entry; only catching removes it
+- [ ] Heatran obeys immediately at any badge count
+- [ ] Her vault dialogue tracks progress: pulse intro -> closing thanks -> quiet after
+- [ ] Journal "The Heart of the Mountain" opens after meeting her, completes and drops off
+- [ ] Wild sweep: Heatran appears in no random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

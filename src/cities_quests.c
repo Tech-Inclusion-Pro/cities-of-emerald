@@ -342,6 +342,20 @@ static const u8 *H10QuestStep(void)
     return COMPOUND_STRING("Four guardians wait on SHRINE\nATOLL's islets. The elder in\lPACIFIDLOG will raft you out.\lWith you: {STR_VAR_1} of 4.");
 }
 
+// ---- H11: The Heart of the Mountain (GDD 6.6, approved 2026-09-17) ----
+
+static bool32 H11QuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H11_STATE) == 1;
+}
+
+static const u8 *H11QuestStep(void)
+{
+    if (FlagGet(FLAG_CITIES_H11_HEATRAN_CAUGHT))
+        return COMPOUND_STRING("The mountain's heart travels with\nyou. Tell the volcanologist in\lEMBER VAULT.");
+    return COMPOUND_STRING("Something with a heartbeat sleeps\nunder MT. CHIMNEY. The volcanologist\lat the summit will climb down\lwith you.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -417,6 +431,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Swords of Justice"), H1QuestActive,       H1QuestStep },
     { COMPOUND_STRING("The Lunar Duo"),       H5BQuestActive,        H5BQuestStep },
     { COMPOUND_STRING("The Island Guardians"), H10QuestActive,       H10QuestStep },
+    { COMPOUND_STRING("The Heart of the Mountain"), H11QuestActive,  H11QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

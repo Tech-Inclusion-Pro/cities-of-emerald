@@ -9356,6 +9356,17 @@
       "border_filepath": "data/layouts/ShrineAtoll/border.bin",
       "blockdata_filepath": "data/layouts/ShrineAtoll/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_EMBER_VAULT",
+      "name": "EmberVault_Layout",
+      "width": 16,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/EmberVault/border.bin",
+      "blockdata_filepath": "data/layouts/EmberVault/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }
