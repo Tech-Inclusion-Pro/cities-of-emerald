@@ -350,7 +350,8 @@ After becoming Champion, the player unlocks:
 - His hometown, the coastal village of **Coralmere**, sank during Kyogre's storms. The Institute tracked the storms but could not warn people in time.
 - Goal: use time rifts to return to the day of the crisis and save Coralmere.
 - Blind spot: he will not accept what else that change would erase.
-- **[OPEN]** The Archivist's appearance; Team Epoch admins and grunts.
+- **[DECIDED 2026-09-17]** The Archivist's appearance: slate-gray coat, carries Coralmere's old harbor barometer; vanilla stand-in sprites until release-phase art.
+- **[DECIDED 2026-09-17]** Admins: Meridian (the believer) and Gnomon (the engineer). Grunts are archivist-styled: coats, satchels; they catalogue, they don't menace. Full cast in docs/EPOCH_STORY_OUTLINE.md.
 - Links to Shaymin's event (Section 6.6), which also uses the Weather Institute; the two can share characters or clues.
 
 **Coralmere**
@@ -377,7 +378,7 @@ After becoming Champion, the player unlocks:
 - **[DECIDED]** A **Coralmere survivor** speaks his name.
 - **[DECIDED]** More people from Coralmere survived than Kai believed. He thinks the village was lost with everyone in it; learning otherwise is central to his acceptance.
 - **[DECIDED]** Survivors are a **scattered group across many towns**, each referencing Coralmere in some way. The player meets them as ordinary NPCs, with hints that only make sense later. This echoes the game's name: Coralmere lives on in Hoenn's other cities.
-- **[PROPOSED]** After the V4 time-rift scene, the quest journal gains a "Coralmere survivors" entry that lists the survivors the player has met, and revisiting them unlocks new dialogue.
+- **[DECIDED 2026-09-17]** After the V4 time-rift scene, the quest journal gains a "Coralmere survivors" entry that lists the survivors the player has met, and revisiting them unlocks new dialogue.
 - **[PROPOSED]** Survivor roster (hints are written so they read as ordinary flavor text before the reveal):
 
 | Town | Survivor | Hint |
@@ -400,7 +401,7 @@ After becoming Champion, the player unlocks:
 - **[DECIDED] Redemption:** Kai performs a heroic act, and only then does the family feel safe approaching him. The name reveal follows.
 - **[PROPOSED] Why the search failed:** Kai stopped using his name and lived only as "the Archivist," so nobody searching for "Kai" could find him.
 - **[PROPOSED] How they learned who he was:** the scattered survivors recognized him over time (for example, the Lilycove painter spots his likeness in their painting, and word travels through the survivor group to Pacifidlog).
-- **[PROPOSED] The heroic act (V5):** Eternatus's power spins out of control and sends a storm toward Pacifidlog, echoing the storm that took Coralmere. Kai shuts down the time rift to stop it, giving up his only chance to save Coralmere, without knowing his friend's family lives there. The family witnesses this, and it is what lets them approach him.
+- **[DECIDED 2026-09-17] The heroic act (V5):** Eternatus's power spins out of control and sends a storm toward Pacifidlog, echoing the storm that took Coralmere. Kai shuts down the time rift to stop it, giving up his only chance to save Coralmere, without knowing his friend's family lives there. The family witnesses this, and it is what lets them approach him.
 - Writing rule: handle the friend's death gently and without melodrama; the focus is on a life well lived and on connection, not tragedy.
 - **[OPEN]** The family's other members (for example, the friend's partner or adult children).
 
