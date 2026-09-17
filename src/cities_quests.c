@@ -314,6 +314,34 @@ static const u8 *H5BQuestStep(void)
     return COMPOUND_STRING("DEWFORD can't sleep. Two dreamers\nrest in MOONRISE COVE - the fisher\lon the beach will row you out.");
 }
 
+// ---- H10: The Island Guardians (GDD 6.6, approved 2026-09-17) ----
+
+static u32 CountH10Caught(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_H10_KOKO_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_H10_LELE_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_H10_BULU_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_H10_FINI_CAUGHT)) count++;
+    return count;
+}
+
+static bool32 H10QuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H10_STATE) == 1;
+}
+
+static const u8 *H10QuestStep(void)
+{
+    u32 caught = CountH10Caught();
+
+    if (caught == 4)
+        return COMPOUND_STRING("All four guardians travel with you.\nTell the caretaker on SHRINE ATOLL.");
+    ConvertIntToDecimalStringN(gStringVar1, caught, STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Four guardians wait on SHRINE\nATOLL's islets. The elder in\lPACIFIDLOG will raft you out.\lWith you: {STR_VAR_1} of 4.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -388,6 +416,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("Stranger Weather"),    M1PGQuestActive,       M1PGQuestStep },
     { COMPOUND_STRING("The Swords of Justice"), H1QuestActive,       H1QuestStep },
     { COMPOUND_STRING("The Lunar Duo"),       H5BQuestActive,        H5BQuestStep },
+    { COMPOUND_STRING("The Island Guardians"), H10QuestActive,       H10QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

@@ -9345,6 +9345,17 @@
       "border_filepath": "data/layouts/MoonriseCove/border.bin",
       "blockdata_filepath": "data/layouts/MoonriseCove/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_SHRINE_ATOLL",
+      "name": "ShrineAtoll_Layout",
+      "width": 22,
+      "height": 22,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Pacifidlog",
+      "border_filepath": "data/layouts/ShrineAtoll/border.bin",
+      "blockdata_filepath": "data/layouts/ShrineAtoll/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

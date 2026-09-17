@@ -164,6 +164,17 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "The Lunar Duo" opens after meeting the fisher, names the remaining one while one is caught, completes and drops off
 - [ ] Wild sweep: neither appears in any random source (existing test gate)
 
+## Hidden area H10 (Phase 11)
+- [ ] Elder appears on Pacifidlog's south-east platform (by the south bridge) only after the League
+- [ ] Elder's intro plays once; saying yes rafts you to Shrine Atoll; saying no leaves her available
+- [ ] Shrine Atoll looks right: five log platforms over open sea, bridges N/E/S/W from the center, no way to walk into open water, no wild encounters
+- [ ] Stepping onto the moored-raft plank (center platform's south-east corner) returns you to Pacifidlog next to the elder
+- [ ] All four Tapu visible on their islets from the first visit (Koko north, Lele east, Bulu south, Fini west); each fights at level 60; KO returns on re-entry; only catching removes it
+- [ ] All four obey immediately at any badge count
+- [ ] Caretaker's dialogue tracks progress: shrines intro -> closing thanks -> quiet after
+- [ ] Journal "The Island Guardians" opens after meeting the elder, shows N of 4, completes and drops off
+- [ ] Wild sweep: no Tapu appears in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
