@@ -1789,6 +1789,44 @@
 #define FLAG_CITIES_H8_ENAMORUS_CAUGHT              (CITIES_FLAGS_START + 0x79)
 #define FLAG_CITIES_H8_GLASS_GIVEN                  (CITIES_FLAGS_START + 0x7A) // Reveal Glass handed over
 #define FLAG_CITIES_HIDE_H4_HIKER                   (CITIES_FLAGS_START + 0x7B) // H4 guide in Fortree, postgame
+// H6 "The Balance Below" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H6_ECOLOGIST               (CITIES_FLAGS_START + 0x7C) // Mossdeep cliff edge, postgame
+#define FLAG_CITIES_HIDE_H6_XERNEAS                 (CITIES_FLAGS_START + 0x7D)
+#define FLAG_CITIES_HIDE_H6_YVELTAL                 (CITIES_FLAGS_START + 0x7E)
+#define FLAG_CITIES_HIDE_H6_ZYGARDE                 (CITIES_FLAGS_START + 0x7F) // shown only once both are caught
+#define FLAG_CITIES_H6_XERNEAS_CAUGHT               (CITIES_FLAGS_START + 0x80)
+#define FLAG_CITIES_H6_YVELTAL_CAUGHT               (CITIES_FLAGS_START + 0x81)
+#define FLAG_CITIES_H6_ZYGARDE_CAUGHT               (CITIES_FLAGS_START + 0x82)
+#define FLAG_CITIES_H6_CELL1                        (CITIES_FLAGS_START + 0x83) // cell collect flags double as object hide-flags
+#define FLAG_CITIES_H6_CELL2                        (CITIES_FLAGS_START + 0x84)
+#define FLAG_CITIES_H6_CELL3                        (CITIES_FLAGS_START + 0x85)
+#define FLAG_CITIES_H6_CELL4                        (CITIES_FLAGS_START + 0x86)
+#define FLAG_CITIES_H6_CELL5                        (CITIES_FLAGS_START + 0x87)
+#define FLAG_CITIES_H6_CUBE_GIVEN                   (CITIES_FLAGS_START + 0x88) // Zygarde Cube handed over
+// H7 "Truth and Ideals" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H7_ENGINEER                (CITIES_FLAGS_START + 0x89) // Mauville, postgame
+#define FLAG_CITIES_HIDE_H7_RESHIRAM                (CITIES_FLAGS_START + 0x8A)
+#define FLAG_CITIES_HIDE_H7_ZEKROM                  (CITIES_FLAGS_START + 0x8B)
+#define FLAG_CITIES_HIDE_H7_KYUREM                  (CITIES_FLAGS_START + 0x8C) // shown only once both are caught
+#define FLAG_CITIES_H7_RESHIRAM_CAUGHT              (CITIES_FLAGS_START + 0x8D)
+#define FLAG_CITIES_H7_ZEKROM_CAUGHT                (CITIES_FLAGS_START + 0x8E)
+#define FLAG_CITIES_H7_KYUREM_CAUGHT                (CITIES_FLAGS_START + 0x8F)
+#define FLAG_CITIES_H7_SPLICERS_GIVEN               (CITIES_FLAGS_START + 0x90) // DNA Splicers handed over
+// H9 "The Old Heroes" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H9_ELDER                   (CITIES_FLAGS_START + 0x91) // Verdanturf, postgame
+#define FLAG_CITIES_HIDE_H9_ZACIAN                  (CITIES_FLAGS_START + 0x92)
+#define FLAG_CITIES_HIDE_H9_ZAMAZENTA               (CITIES_FLAGS_START + 0x93)
+#define FLAG_CITIES_HIDE_H9_GLASTRIER               (CITIES_FLAGS_START + 0x94)
+#define FLAG_CITIES_HIDE_H9_SPECTRIER               (CITIES_FLAGS_START + 0x95)
+#define FLAG_CITIES_HIDE_H9_CALYREX                 (CITIES_FLAGS_START + 0x96) // shown only once both steeds are caught
+#define FLAG_CITIES_HIDE_H9_KUBFU                   (CITIES_FLAGS_START + 0x97)
+#define FLAG_CITIES_H9_ZACIAN_CAUGHT                (CITIES_FLAGS_START + 0x98)
+#define FLAG_CITIES_H9_ZAMAZENTA_CAUGHT             (CITIES_FLAGS_START + 0x99)
+#define FLAG_CITIES_H9_GLASTRIER_CAUGHT             (CITIES_FLAGS_START + 0x9A)
+#define FLAG_CITIES_H9_SPECTRIER_CAUGHT             (CITIES_FLAGS_START + 0x9B)
+#define FLAG_CITIES_H9_CALYREX_CAUGHT               (CITIES_FLAGS_START + 0x9C)
+#define FLAG_CITIES_H9_KUBFU_CAUGHT                 (CITIES_FLAGS_START + 0x9D)
+#define FLAG_CITIES_H9_RELICS_GIVEN                 (CITIES_FLAGS_START + 0x9E) // Rusted Sword + Shield + Reins handed over
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

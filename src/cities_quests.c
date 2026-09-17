@@ -418,6 +418,43 @@ static const u8 *H8QuestStep(void)
     return COMPOUND_STRING("Three storm forces hold perches\non WINDSWEPT RISE above FALLARBOR.\lSettled: {STR_VAR_1} of 3.");
 }
 
+// ---- H6: The Balance Below (GDD 6.6, approved 2026-09-17) ----
+
+static u32 CountH6Cells(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_H6_CELL1)) count++;
+    if (FlagGet(FLAG_CITIES_H6_CELL2)) count++;
+    if (FlagGet(FLAG_CITIES_H6_CELL3)) count++;
+    if (FlagGet(FLAG_CITIES_H6_CELL4)) count++;
+    if (FlagGet(FLAG_CITIES_H6_CELL5)) count++;
+    return count;
+}
+
+static bool32 H6QuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H6_STATE) == 1;
+}
+
+static const u8 *H6QuestStep(void)
+{
+    bool32 xerneas = FlagGet(FLAG_CITIES_H6_XERNEAS_CAUGHT);
+    bool32 yveltal = FlagGet(FLAG_CITIES_H6_YVELTAL_CAUGHT);
+    u32 cells = CountH6Cells();
+
+    ConvertIntToDecimalStringN(gStringVar1, cells, STR_CONV_MODE_LEFT_ALIGN, 1);
+    if (FlagGet(FLAG_CITIES_H6_ZYGARDE_CAUGHT))
+    {
+        if (cells == 5)
+            return COMPOUND_STRING("All three, and every cell. See\nthe ecologist on MOSSDEEP's cliff\ledge - she has something for you.");
+        return COMPOUND_STRING("The trio is with you, but green\ncells still glimmer in the\lUNDERCLIFF. Found: {STR_VAR_1} of 5.");
+    }
+    if (xerneas && yveltal)
+        return COMPOUND_STRING("Life and death are settled - and\norder has appeared at the center\lof the UNDERCLIFF.\lCells found: {STR_VAR_1} of 5.");
+    return COMPOUND_STRING("The balance tips in the UNDERCLIFF\nbelow MOSSDEEP. The ecologist will\lclimb down with you.\lCells found: {STR_VAR_1} of 5.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -497,6 +534,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Colossus Wakes"),  H3QuestActive,         H3QuestStep },
     { COMPOUND_STRING("Rainbow Wings"),       H4QuestActive,         H4QuestStep },
     { COMPOUND_STRING("The Weather Menders"), H8QuestActive,         H8QuestStep },
+    { COMPOUND_STRING("The Balance Below"),   H6QuestActive,         H6QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

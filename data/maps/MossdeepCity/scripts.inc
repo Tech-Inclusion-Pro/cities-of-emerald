@@ -3,6 +3,7 @@ MossdeepCity_MapScripts::
 	.byte 0
 
 MossdeepCity_OnTransition:
+	call Cities_EventScript_UpdateH6Ecologist @ H6 (cities_h6.inc)
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3

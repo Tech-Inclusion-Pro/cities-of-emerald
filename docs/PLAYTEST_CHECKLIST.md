@@ -221,6 +221,19 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "The Weather Menders" opens after meeting her, runs both beats, completes after the glass
 - [ ] Wild sweep: none of the four appear in any random source (existing test gate)
 
+## Hidden area H6 (Phase 11)
+- [ ] Ecologist appears at Mossdeep's cliff edge (below the ninja boy's ledge area) only after the League
+- [ ] Her intro plays once; saying yes climbs down to Mossdeep Undercliff; saying no leaves her available
+- [ ] Undercliff looks right: spring pool chamber + dark nook, cave walls, no way out of bounds, no wild encounters
+- [ ] South alcove returns you to the cliff edge beside her
+- [ ] Xerneas (by the pool) and Yveltal (dark nook) visible from the first visit; each fights at level 70; KO returns on re-entry; only catching removes it
+- [ ] Zygarde absent until BOTH are caught, then appears at the center floor; same rules at level 70
+- [ ] All three obey immediately at any badge count
+- [ ] Five cell pickups glow in the cavern; each collects once with a chime and never returns
+- [ ] Trio caught but cells missing -> ecologist points back down (with a lift offer); all five + trio -> ZYGARDE CUBE given once, bag-full retry works
+- [ ] Journal "The Balance Below" opens after meeting her, shows trio and cell counts, completes after the cube
+- [ ] Wild sweep: none of the three appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
