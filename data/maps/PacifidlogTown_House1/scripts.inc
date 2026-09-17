@@ -1,5 +1,10 @@
 PacifidlogTown_House1_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PacifidlogTown_House1_OnTransition
 	.byte 0
+
+PacifidlogTown_House1_OnTransition:
+	call Cities_EventScript_UpdateM2Archaeologist
+	end
 
 PacifidlogTown_House1_EventScript_Man::
 	msgbox PacifidlogTown_House1_Text_RegiStory, MSGBOX_NPC

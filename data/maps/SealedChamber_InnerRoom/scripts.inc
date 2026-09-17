@@ -4,6 +4,7 @@ SealedChamber_InnerRoom_MapScripts::
 SealedChamber_InnerRoom_EventScript_BrailleBackWall::
 	lockall
 	braillemsgbox SealedChamber_InnerRoom_Braille_FirstWailordLastRelicanth
+	msgbox Cities_Text_BrailleFirstWailord, MSGBOX_DEFAULT
 	goto_if_set FLAG_REGI_DOORS_OPENED, SealedChamber_InnerRoom_EventScript_NoEffect
 	specialvar VAR_RESULT, CheckRelicanthWailord
 	goto_if_eq VAR_RESULT, FALSE, SealedChamber_InnerRoom_EventScript_NoEffect
@@ -34,36 +35,42 @@ SealedChamber_InnerRoom_EventScript_NoEffect::
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart1::
 	lockall
 	braillemsgbox SealedChamber_InnerRoom_Braille_InThisCaveWeHaveLived
+	msgbox Cities_Text_BrailleLore1, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart2::
 	lockall
 	braillemsgbox SealedChamber_InnerRoom_Braille_WeOweAllToThePokemon
+	msgbox Cities_Text_BrailleLore2, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart3::
 	lockall
 	braillemsgbox SealedChamber_InnerRoom_Braille_ButWeSealedThePokemonAway
+	msgbox Cities_Text_BrailleLore3, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart4::
 	lockall
 	braillemsgbox SealedChamber_InnerRoom_Braille_WeFearedIt
+	msgbox Cities_Text_BrailleLore4, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart5::
 	lockall
 	braillemsgbox SealedChamber_InnerRoom_Braille_ThoseWithCourageHope
+	msgbox Cities_Text_BrailleLore5, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_InnerRoom_EventScript_BrailleStoryPart6::
 	lockall
 	braillemsgbox SealedChamber_InnerRoom_Braille_OpenDoorEternalPokemonWaits
+	msgbox Cities_Text_BrailleLore6, MSGBOX_DEFAULT
 	releaseall
 	end
 

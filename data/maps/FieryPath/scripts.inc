@@ -1,11 +1,18 @@
 FieryPath_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FieryPath_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, FieryPath_OnResume
 	.byte 0
+
+FieryPath_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end
 
 FieryPath_OnTransition:
 	call_if_unset FLAG_LANDMARK_FIERY_PATH, FieryPath_EventScript_MoveScottToFallarbor
 	setflag FLAG_LANDMARK_FIERY_PATH
 	call FieryPath_EventScript_UpdateEeveeTrainerFlareon
+	call Cities_EventScript_UpdateM1Npcs
+	call Cities_EventScript_UpdateM1Moltres
 	end
 
 FieryPath_EventScript_MoveScottToFallarbor::

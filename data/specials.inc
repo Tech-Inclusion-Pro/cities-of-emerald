@@ -650,3 +650,4 @@ gSpecials::
 	def_special Script_CitiesBufferMainQuestStep
 	def_special Script_CitiesGetLegendaryLevel
 	def_special Script_CitiesArcAllCaught
+	def_special Script_CitiesSetWildLegendary

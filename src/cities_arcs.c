@@ -4,6 +4,7 @@
 #include "event_data.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "script_pokemon_util.h"
 #include "constants/flags.h"
 #include "constants/species.h"
 #include "constants/vars.h"
@@ -118,6 +119,14 @@ u16 Script_CitiesGetLegendaryLevel(void)
     if (level > 60)
         level = 60; // post-Champion floor of the postgame tiers
     return level;
+}
+
+// Special: prepare a scripted wild battle against the legendary in
+// VAR_0x8004 at the level-matched cap (10.0a). Started with
+// BattleSetup_StartLegendaryBattle from the script.
+void Script_CitiesSetWildLegendary(void)
+{
+    CreateScriptedWildMon(gSpecialVar_0x8004, Script_CitiesGetLegendaryLevel(), ITEM_NONE);
 }
 
 // Special (specialvar): VAR_0x8004 = CITIES_ARC_*; TRUE once every

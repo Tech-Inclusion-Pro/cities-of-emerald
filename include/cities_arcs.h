@@ -42,5 +42,6 @@ bool32 CitiesLatiUnited(void);
 // Script specials
 u16 Script_CitiesGetLegendaryLevel(void);
 bool8 Script_CitiesArcAllCaught(void);
+void Script_CitiesSetWildLegendary(void);
 
 #endif // GUARD_CITIES_ARCS_H

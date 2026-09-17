@@ -40,6 +40,7 @@ AncientTomb_EventScript_CaveEntranceMiddle::
 	lockall
 	goto_if_set FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED, AncientTomb_EventScript_BigHoleInWall
 	braillemsgbox AncientTomb_Braille_ShineInTheMiddle
+	msgbox Cities_Text_BrailleShineMiddle, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -51,6 +52,7 @@ AncientTomb_EventScript_BigHoleInWall::
 AncientTomb_EventScript_CaveEntranceSide::
 	lockall
 	braillemsgbox AncientTomb_Braille_ShineInTheMiddle
+	msgbox Cities_Text_BrailleShineMiddle, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -61,7 +63,8 @@ AncientTomb_EventScript_Registeel::
 	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGISTEEL, 40
+	setvar VAR_0x8004, SPECIES_REGISTEEL
+	special Script_CitiesSetWildLegendary @ Cities 10.0a: level = badge cap
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -74,8 +77,7 @@ AncientTomb_EventScript_Registeel::
 	end
 
 AncientTomb_EventScript_DefeatedRegisteel::
-	setflag FLAG_DEFEATED_REGISTEEL
-	goto Common_EventScript_RemoveStaticPokemon
+	goto Cities_EventScript_LegendWithdrew @ Cities: returns on re-entry
 	end
 
 AncientTomb_EventScript_RanFromRegisteel::

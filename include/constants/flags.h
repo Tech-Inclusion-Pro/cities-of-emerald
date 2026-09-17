@@ -1692,6 +1692,16 @@
 #define FLAG_CITIES_HIDE_LEAGUE_OFFICIAL            (CITIES_FLAGS_START + 0x26) // League lobby official (ceremony NPC)
 // Legendary arcs (GDD 6.5, Phase 10)
 #define FLAG_CITIES_LATI_UNITED                     (CITIES_FLAGS_START + 0x27) // M5: both Latias and Latios caught at least once; never cleared
+// M1 "Strange Weather" (GDD 6.6, outline approved 2026-09-16)
+#define FLAG_CITIES_HIDE_M1_NPCS                    (CITIES_FLAGS_START + 0x28) // Reporter + 3 site scientists (shared; shown at badge 3)
+#define FLAG_CITIES_HIDE_M1_ARTICUNO                (CITIES_FLAGS_START + 0x29)
+#define FLAG_CITIES_HIDE_M1_ZAPDOS                  (CITIES_FLAGS_START + 0x2A)
+#define FLAG_CITIES_HIDE_M1_MOLTRES                 (CITIES_FLAGS_START + 0x2B)
+#define FLAG_CITIES_M1_ARTICUNO_CAUGHT              (CITIES_FLAGS_START + 0x2C)
+#define FLAG_CITIES_M1_ZAPDOS_CAUGHT                (CITIES_FLAGS_START + 0x2D)
+#define FLAG_CITIES_M1_MOLTRES_CAUGHT               (CITIES_FLAGS_START + 0x2E)
+// M2 "The Sealed Chamber, Opened" (GDD 6.6, outline approved 2026-09-16)
+#define FLAG_CITIES_HIDE_M2_ARCHAEOLOGIST           (CITIES_FLAGS_START + 0x2F) // Pacifidlog House1, shown at badge 5
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

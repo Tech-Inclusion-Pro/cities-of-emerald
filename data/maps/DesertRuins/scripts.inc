@@ -40,6 +40,7 @@ DesertRuins_EventScript_CaveEntranceMiddle::
 	lockall
 	goto_if_set FLAG_SYS_REGIROCK_PUZZLE_COMPLETED, DesertRuins_EventScript_BigHoleInWall
 	braillemsgbox DesertRuins_Braille_UseRockSmash
+	msgbox Cities_Text_BrailleRockSmash, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -51,6 +52,7 @@ DesertRuins_EventScript_BigHoleInWall::
 DesertRuins_EventScript_CaveEntranceSide::
 	lockall
 	braillemsgbox DesertRuins_Braille_UseRockSmash
+	msgbox Cities_Text_BrailleRockSmash, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -61,7 +63,8 @@ DesertRuins_EventScript_Regirock::
 	playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGIROCK, 40
+	setvar VAR_0x8004, SPECIES_REGIROCK
+	special Script_CitiesSetWildLegendary @ Cities 10.0a: level = badge cap
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -74,8 +77,7 @@ DesertRuins_EventScript_Regirock::
 	end
 
 DesertRuins_EventScript_DefeatedRegirock::
-	setflag FLAG_DEFEATED_REGIROCK
-	goto Common_EventScript_RemoveStaticPokemon
+	goto Cities_EventScript_LegendWithdrew @ Cities: returns on re-entry
 	end
 
 DesertRuins_EventScript_RanFromRegirock::

@@ -29,48 +29,56 @@ SealedChamber_OuterRoom_EventScript_CloseInnerRoomEntrance::
 SealedChamber_OuterRoom_EventScript_BrailleABC::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_ABC
+	msgbox Cities_Text_BrailleAlphabetWall, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleGHI::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_GHI
+	msgbox Cities_Text_BrailleAlphabetWall, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleMNO::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_MNO
+	msgbox Cities_Text_BrailleAlphabetWall, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleTUV::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_TUV
+	msgbox Cities_Text_BrailleAlphabetWall, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleDEF::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_DEF
+	msgbox Cities_Text_BrailleAlphabetWall, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BrailleJKL::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_JKL
+	msgbox Cities_Text_BrailleAlphabetWall, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BraillePQRS::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_PQRS
+	msgbox Cities_Text_BrailleAlphabetWall, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SealedChamber_OuterRoom_EventScript_BraillePeriod::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_Period
+	msgbox Cities_Text_BrailleAlphabetWall, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -90,6 +98,7 @@ SealedChamber_OuterRoom_EventScript_InnerRoomEntranceWall::
 	lockall
 	goto_if_set FLAG_SYS_BRAILLE_DIG, SealedChamber_OuterRoom_EventScript_HoleInWall
 	braillemsgbox SealedChamber_OuterRoom_Braille_DigHere
+	msgbox Cities_Text_BrailleDigHere, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -101,6 +110,7 @@ SealedChamber_OuterRoom_EventScript_HoleInWall::
 SealedChamber_OuterRoom_EventScript_BrailleDigHere::
 	lockall
 	braillemsgbox SealedChamber_OuterRoom_Braille_DigHere
+	msgbox Cities_Text_BrailleDigHere, MSGBOX_DEFAULT
 	releaseall
 	end
 

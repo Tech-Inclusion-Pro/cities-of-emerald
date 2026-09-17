@@ -83,6 +83,20 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Littleroot guide: menu offers Presets / What's next? / Tutorials / Goodbye; all loop back to the menu
 - [ ] All 7 tutorials read correctly (Breeding, Mega, Z-Moves, Dynamax, Terastal, Wild Pokémon, Rankings)
 
+## Legendary arcs M1 & M2 (Phase 10)
+- [ ] Reporter appears in Slateport Pokémon Center at badge 3 (left side, near the sailor); intro lists the three sites
+- [ ] Moltres visible in Fiery Path mid-cave at badge 3; scientist near the south entrance — check both are reachable
+- [ ] Articuno in Shoal Cave ice room (low tide), Zapdos in New Mauville inner room — check spots once you have Surf
+- [ ] Bird level = your current auto cap (e.g. 24 at 3 badges); rises if you come back later
+- [ ] KO a bird → "slipped away" message; leave and re-enter → it's back; catch → gone for good
+- [ ] Caught bird at 3 badges disobeys with the exact HEAT BADGE message; obeys the moment you have badge 4
+- [ ] All 3 caught → reporter celebration (M1-PG tease); journal quest completes and drops off
+- [ ] Archaeologist appears in Pacifidlog House 1 (Regi-lore house) at badge 5, gives the plain-language route
+- [ ] Every braille sign in Sealed Chamber + the three ruins shows a plain-text translation box after the braille
+- [ ] Regis fight at auto-cap level (not 40); KO'd Regi returns on re-entry
+- [ ] All 3 Regis caught → archaeologist celebration ("colossus" H3 tease)
+- [ ] M5 note for later: Latias/Latios obedience pair-rule messages (needs both caught to verify)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
