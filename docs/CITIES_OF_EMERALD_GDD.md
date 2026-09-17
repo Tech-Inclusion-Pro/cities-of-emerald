@@ -72,7 +72,7 @@ These are mostly config changes. **[DECIDED]** unless noted.
 
 ### Quality of life
 - Reusable TMs
-- Move relearner and move deleter in an easy-to-reach location **[PROPOSED: Oldale Town Pokémon Center]**
+- Move relearner and move deleter in an easy-to-reach location **[DECIDED 2026-09-17: free QoL pair side by side in Mauville's central plaza; vanilla Fallarbor/Lilycove NPCs remain]**
 - Bag sorting and expanded bag capacity
 - More PC storage **[PROPOSED: only if the expansion supports it without breaking saves]**
 - PC access from the start menu **[PROPOSED: unlocked after badge 1]**
@@ -80,7 +80,7 @@ These are mostly config changes. **[DECIDED]** unless noted.
 
 ### Collecting
 - Standard shiny rate (no change) **[DECIDED]**
-- Shiny Charm as a reward **[PROPOSED: for completing the National Pokédex "seen" count]**
+- Shiny Charm as a reward **[DECIDED 2026-09-17: Birch gives it at 300 caught species]**
 - Hidden abilities obtainable (wild chance and Ability Patch)
 
 ---
@@ -228,7 +228,7 @@ Several legendary arcs can be open at the same time. Each arc has its own flags 
 | 75 | H5a (Dialga, Palkia, Giratina) | V4 |
 | 80 | H5a (Arceus) | V5 |
 
-- **Mythical events:** levels **[OPEN]**; set when each event is written.
+- **Mythical events:** levels **[DECIDED 2026-09-17]** — every mythical event encounter is fixed level 70.
 - The strongest legendaries are placed late (see 6.6).
 
 ### 6.5 Obedience **[DECIDED]**
@@ -418,7 +418,7 @@ After becoming Champion, the player unlocks:
 ### 7.4 Champion defense **[DECIDED concept]**
 - Challengers come to the Ever Grande League and battle the player.
 - Challenges also appear from trainers throughout the game (Section 8.5).
-- **[OPEN]** Frequency and challenger roster.
+- **[DECIDED 2026-09-17]** Title defenses on demand: an official in the Ever Grande lobby offers a full battle against a challenger drawn from the national-rankings NPC roster with postgame-tier teams; wins score ranking points.
 
 ---
 
@@ -604,10 +604,7 @@ A Littleroot Town character introduces the Accessibility menu and can change set
 
 ## 14. Open decisions (summary)
 
-1. Champion defense frequency and roster
-2. Mythical event levels (6.4)
-3. The Archivist's appearance; Team Epoch admins and grunts (7.2)
-4. The Pacifidlog family's other members (7.2)
+1. The Pacifidlog family's other members (7.2)
 5. Eeveelution trainer locations (4.3)
 6. Kai's redemption details: why the search failed, how the family learned, the heroic act (7.2)
 7. All other **[PROPOSED]** items
