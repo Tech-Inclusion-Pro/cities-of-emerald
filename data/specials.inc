@@ -648,3 +648,5 @@ gSpecials::
 	def_special Script_CitiesRivalRematchWillScore
 	def_special Script_CitiesBufferNextJournalEntry
 	def_special Script_CitiesBufferMainQuestStep
+	def_special Script_CitiesGetLegendaryLevel
+	def_special Script_CitiesArcAllCaught

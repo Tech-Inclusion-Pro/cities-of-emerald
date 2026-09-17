@@ -5212,6 +5212,11 @@ BattleScript_MoveUsedLoafingAroundMsg::
 	printfromtable gInobedientStringIds
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
+BattleScript_CitiesWontListen::
+	printfromtable gCitiesWontListenStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
 BattleScript_TruantLoafingAround::
 	flushtextbox
 	call BattleScript_AbilityPopUp

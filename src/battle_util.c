@@ -1,4 +1,5 @@
 #include "global.h"
+#include "cities_arcs.h"
 #include "cities_rankings.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -5803,6 +5804,25 @@ enum Obedience GetAttackerObedienceForAction(void)
         return OBEYS;
     if (B_OBEDIENCE_MECHANICS < GEN_8 && !IsOtherTrainer(gBattleMons[gBattlerAttacker].otId, gBattleMons[gBattlerAttacker].otName))
         return OBEYS;
+
+    // Cities of Emerald (GDD 6.5): arc legendaries follow the deterministic
+    // badge rule instead of vanilla level obedience — checked before the
+    // Rain Badge bypass because M5 gates on the pair, not on badges.
+    {
+        u8 citiesMsg;
+
+        switch (CitiesGetArcObedience(gBattleMons[gBattlerAttacker].species, &citiesMsg))
+        {
+        case CITIES_ARC_OBEYS:
+            return OBEYS;
+        case CITIES_ARC_DISOBEYS:
+            gBattleCommunication[MULTISTRING_CHOOSER] = citiesMsg;
+            return DISOBEYS_CITIES_ARC;
+        case CITIES_ARC_NOT_ARC_SPECIES:
+            break;
+        }
+    }
+
     if (FlagGet(FLAG_BADGE08_GET)) // Rain Badge, ignore obedience altogether
         return OBEYS;
 

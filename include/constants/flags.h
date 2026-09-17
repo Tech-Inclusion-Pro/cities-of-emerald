@@ -1690,6 +1690,8 @@
 #define FLAG_CITIES_MASTER_ANNOUNCED                (CITIES_FLAGS_START + 0x24) // The reach-the-top message has been shown
 #define FLAG_CITIES_MASTER_CEREMONY_DONE            (CITIES_FLAGS_START + 0x25) // League ceremony held, Master Ball given
 #define FLAG_CITIES_HIDE_LEAGUE_OFFICIAL            (CITIES_FLAGS_START + 0x26) // League lobby official (ceremony NPC)
+// Legendary arcs (GDD 6.5, Phase 10)
+#define FLAG_CITIES_LATI_UNITED                     (CITIES_FLAGS_START + 0x27) // M5: both Latias and Latios caught at least once; never cleared
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

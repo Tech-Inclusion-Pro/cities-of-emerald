@@ -5,21 +5,36 @@
 #include "pokemon.h"
 
 
+static const u32 sLevelCapFlagMap[][2] =
+{
+    {FLAG_BADGE01_GET, 15},
+    {FLAG_BADGE02_GET, 19},
+    {FLAG_BADGE03_GET, 24},
+    {FLAG_BADGE04_GET, 29},
+    {FLAG_BADGE05_GET, 31},
+    {FLAG_BADGE06_GET, 33},
+    {FLAG_BADGE07_GET, 42},
+    {FLAG_BADGE08_GET, 46},
+    {FLAG_IS_CHAMPION, 58},
+};
+
+// Cities of Emerald (GDD 6.4): the badge-based cap with no Assist
+// override applied — the world's difficulty anchor, used for mid-game
+// legendary levels regardless of the player's cap setting.
+u32 GetAutomaticLevelCap(void)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sLevelCapFlagMap); i++)
+    {
+        if (!FlagGet(sLevelCapFlagMap[i][0]))
+            return sLevelCapFlagMap[i][1];
+    }
+    return MAX_LEVEL;
+}
+
 u32 GetCurrentLevelCap(void)
 {
-    static const u32 sLevelCapFlagMap[][2] =
-    {
-        {FLAG_BADGE01_GET, 15},
-        {FLAG_BADGE02_GET, 19},
-        {FLAG_BADGE03_GET, 24},
-        {FLAG_BADGE04_GET, 29},
-        {FLAG_BADGE05_GET, 31},
-        {FLAG_BADGE06_GET, 33},
-        {FLAG_BADGE07_GET, 42},
-        {FLAG_BADGE08_GET, 46},
-        {FLAG_IS_CHAMPION, 58},
-    };
-
     u32 i;
 
     u32 capBonus = 0;
