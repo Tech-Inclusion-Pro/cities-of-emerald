@@ -557,6 +557,59 @@ static const u8 *H2BQuestStep(void)
     return COMPOUND_STRING("Three 'heroes' hold the grove in\nthe FORGOTTEN GARDEN - and someone\lwronged still hides there.\lFaced: {STR_VAR_1} of 3.");
 }
 
+// ---- H5a: The Making of Everything + Plate hunt (GDD 6.6 / 11.x) ----
+
+static const u16 sH5APlateFlags[] =
+{
+    FLAG_CITIES_H5A_PLATE_1,  FLAG_CITIES_H5A_PLATE_2,  FLAG_CITIES_H5A_PLATE_3,
+    FLAG_CITIES_H5A_PLATE_4,  FLAG_CITIES_H5A_PLATE_5,  FLAG_CITIES_H5A_PLATE_6,
+    FLAG_CITIES_H5A_PLATE_7,  FLAG_CITIES_H5A_PLATE_8,  FLAG_CITIES_H5A_PLATE_9,
+    FLAG_CITIES_H5A_PLATE_10, FLAG_CITIES_H5A_PLATE_11, FLAG_CITIES_H5A_PLATE_12,
+    FLAG_CITIES_H5A_PLATE_13, FLAG_CITIES_H5A_PLATE_14, FLAG_CITIES_H5A_PLATE_15,
+    FLAG_CITIES_H5A_PLATE_16, FLAG_CITIES_H5A_PLATE_17,
+};
+
+// Special (specialvar): how many of the 17 Plates have been picked up.
+u16 Script_CitiesH5APlateCount(void)
+{
+    u32 i, count = 0;
+
+    for (i = 0; i < ARRAY_COUNT(sH5APlateFlags); i++)
+        if (FlagGet(sH5APlateFlags[i]))
+            count++;
+    return count;
+}
+
+static u32 CountH5ATrioCaught(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_H5A_DIALGA_CAUGHT))   count++;
+    if (FlagGet(FLAG_CITIES_H5A_PALKIA_CAUGHT))   count++;
+    if (FlagGet(FLAG_CITIES_H5A_GIRATINA_CAUGHT)) count++;
+    return count;
+}
+
+static bool32 H5AQuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H5A_STATE) == 1;
+}
+
+static const u8 *H5AQuestStep(void)
+{
+    u32 trio = CountH5ATrioCaught();
+    u32 plates = Script_CitiesH5APlateCount();
+
+    ConvertIntToDecimalStringN(gStringVar1, plates, STR_CONV_MODE_LEFT_ALIGN, 2);
+    if (FlagGet(FLAG_CITIES_H5A_ARCEUS_CAUGHT))
+        return COMPOUND_STRING("The first story has its keeper.\nTell the historian in LILYCOVE.");
+    if (trio == 3 && plates == 17)
+        return COMPOUND_STRING("Time, space, the other side - and\nall 17 PLATES. The sanctum altar\lin the RIFT VESTIBULE is waiting.");
+    if (trio == 3)
+        return COMPOUND_STRING("The trio is with you. Gather the\nrest of the PLATES across HOENN\lfor the altar. Found: {STR_VAR_1} of 17.");
+    return COMPOUND_STRING("DIALGA and PALKIA wait in the\nRIFT VESTIBULE; GIRATINA on MT.\lPYRE's summit. PLATES found:\l{STR_VAR_1} of 17.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -641,6 +694,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Old Heroes"),      H9QuestActive,         H9QuestStep },
     { COMPOUND_STRING("The Chained Ruin"),    H2AQuestActive,        H2AQuestStep },
     { COMPOUND_STRING("The Mask in the Grove"), H2BQuestActive,      H2BQuestStep },
+    { COMPOUND_STRING("The Making of Everything"), H5AQuestActive,   H5AQuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

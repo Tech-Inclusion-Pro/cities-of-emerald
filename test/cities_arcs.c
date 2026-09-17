@@ -167,6 +167,13 @@ TEST("Arc levels: postgame arcs use their fixed tier, mid-game arcs follow the c
     EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_KUBFU), 70);
     EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_CALYREX), 70);
 
+    // The Oldale pair sits at 65; the finale climbs to 75 and 80.
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_OGERPON), 65);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_TING_LU), 65);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_DIALGA), 75);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_GIRATINA), 75);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_ARCEUS), 80);
+
     // Non-arc species fall back to the cap rule.
     EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_PIKACHU), Script_CitiesGetLegendaryLevel());
 }

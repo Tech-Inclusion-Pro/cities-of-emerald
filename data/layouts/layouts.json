@@ -9444,6 +9444,17 @@
       "border_filepath": "data/layouts/ForgottenGarden/border.bin",
       "blockdata_filepath": "data/layouts/ForgottenGarden/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_RIFT_VESTIBULE",
+      "name": "RiftVestibule_Layout",
+      "width": 18,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/RiftVestibule/border.bin",
+      "blockdata_filepath": "data/layouts/RiftVestibule/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

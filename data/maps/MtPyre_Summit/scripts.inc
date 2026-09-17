@@ -1,9 +1,15 @@
 MtPyre_Summit_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Summit_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, MtPyre_Summit_OnResume
 	.byte 0
+
+MtPyre_Summit_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end
 
 MtPyre_Summit_OnTransition:
 	call_if_eq VAR_MT_PYRE_STATE, 2, MtPyre_Summit_EventScript_SetArchieMaxiePositions
+	call Cities_EventScript_UpdateH5AGiratina @ H5a (cities_h5a.inc)
 	end
 
 MtPyre_Summit_EventScript_SetArchieMaxiePositions::

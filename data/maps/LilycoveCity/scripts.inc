@@ -4,6 +4,7 @@ LilycoveCity_MapScripts::
 	.byte 0
 
 LilycoveCity_OnTransition:
+	call Cities_EventScript_UpdateH5AHistorian @ H5a (cities_h5a.inc)
 	setflag FLAG_VISITED_LILYCOVE_CITY
 	setvar VAR_CONTEST_HALL_STATE, 0
 	setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER

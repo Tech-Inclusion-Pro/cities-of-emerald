@@ -650,6 +650,7 @@ gSpecials::
 	def_special Script_CitiesBufferMainQuestStep
 	def_special Script_CitiesGetLegendaryLevel
 	def_special Script_CitiesArcAllCaught
+	def_special Script_CitiesH5APlateCount
 	def_special Script_CitiesSetWildLegendary
 	def_special Script_CitiesM3StartRoamers
 	def_special Script_CitiesM3DenVisible

@@ -269,6 +269,21 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Gardener wraps each quest separately (courtyard wrap, mask-story wrap), then offers visits; both journal quests complete and drop off independently
 - [ ] Wild sweep: none of the eight appear in any random source (existing test gate)
 
+## Hidden area H5a + Plate hunt (Phase 11 finale)
+- [ ] Historian appears in Lilycove (east side, below the museum area) only after the League
+- [ ] Her intro plays once; saying yes enters the Rift Vestibule; saying no leaves her available
+- [ ] Rift Vestibule looks right: hall + dark north sanctum with the altar, no way out of bounds, no wild encounters
+- [ ] South alcove returns you to Lilycove beside her
+- [ ] Dialga (west) and Palkia (east) visible from the first visit; each fights at level 75; KO returns on re-entry; only catching removes it
+- [ ] Giratina appears on Mt. Pyre's summit only AFTER meeting the historian; fights at level 75; same rules
+- [ ] All 17 Plate item balls are reachable and collect once each (list: Fiery Path, Shoal Cave entrance + ice room, New Mauville, Petalburg Woods, Granite Cave 1F, Jagged Pass, Route 111, Sky Pillar 1F, Mt. Pyre summit + 3F, Route 119, Meteor Falls 1F + B1F, Abandoned Ship B1F, Mt. Chimney, Route 117) - note: plates are collectible even before the postgame; only the journal quest is postgame
+- [ ] Trio caught -> historian gives ADAMANT CRYSTAL + LUSTROUS GLOBE + GRISEOUS CORE together exactly once; bag-full refuses all three and retries
+- [ ] Altar: quiet text before the trio; plate-count text (N of 17) with trio but missing plates; with trio + all 17 -> Arceus battle at level 80
+- [ ] Arceus KO/flee -> "light recedes", altar can be tried again; only catching sets it done; altar quiet afterward
+- [ ] Historian's finale line plays once after Arceus; journal "The Making of Everything" completes and drops off
+- [ ] All four obey immediately at any badge count
+- [ ] Wild sweep: none of the four appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

@@ -1845,6 +1845,33 @@
 #define FLAG_CITIES_H2B_MUNKIDORI_CAUGHT            (CITIES_FLAGS_START + 0xAD)
 #define FLAG_CITIES_H2B_FEZANDIPITI_CAUGHT          (CITIES_FLAGS_START + 0xAE)
 #define FLAG_CITIES_H2B_OGERPON_CAUGHT              (CITIES_FLAGS_START + 0xAF)
+// H5a "The Making of Everything" + Plate hunt (GDD 6.6 / task 11.x, approved 2026-09-17)
+#define FLAG_CITIES_HIDE_H5A_HISTORIAN              (CITIES_FLAGS_START + 0xB0) // Lilycove, postgame
+#define FLAG_CITIES_HIDE_H5A_DIALGA                 (CITIES_FLAGS_START + 0xB1)
+#define FLAG_CITIES_HIDE_H5A_PALKIA                 (CITIES_FLAGS_START + 0xB2)
+#define FLAG_CITIES_HIDE_H5A_GIRATINA               (CITIES_FLAGS_START + 0xB3) // Mt. Pyre summit, after the historian
+#define FLAG_CITIES_H5A_DIALGA_CAUGHT               (CITIES_FLAGS_START + 0xB4)
+#define FLAG_CITIES_H5A_PALKIA_CAUGHT               (CITIES_FLAGS_START + 0xB5)
+#define FLAG_CITIES_H5A_GIRATINA_CAUGHT             (CITIES_FLAGS_START + 0xB6)
+#define FLAG_CITIES_H5A_ARCEUS_CAUGHT               (CITIES_FLAGS_START + 0xB7) // altar encounter; no overworld object
+#define FLAG_CITIES_H5A_CRYSTALS_GIVEN              (CITIES_FLAGS_START + 0xB8) // Adamant Crystal + Lustrous Globe + Griseous Core
+#define FLAG_CITIES_H5A_PLATE_1                     (CITIES_FLAGS_START + 0xB9) // 17 Plate item balls across Hoenn (task 11.x)
+#define FLAG_CITIES_H5A_PLATE_2                     (CITIES_FLAGS_START + 0xBA)
+#define FLAG_CITIES_H5A_PLATE_3                     (CITIES_FLAGS_START + 0xBB)
+#define FLAG_CITIES_H5A_PLATE_4                     (CITIES_FLAGS_START + 0xBC)
+#define FLAG_CITIES_H5A_PLATE_5                     (CITIES_FLAGS_START + 0xBD)
+#define FLAG_CITIES_H5A_PLATE_6                     (CITIES_FLAGS_START + 0xBE)
+#define FLAG_CITIES_H5A_PLATE_7                     (CITIES_FLAGS_START + 0xBF)
+#define FLAG_CITIES_H5A_PLATE_8                     (CITIES_FLAGS_START + 0xC0)
+#define FLAG_CITIES_H5A_PLATE_9                     (CITIES_FLAGS_START + 0xC1)
+#define FLAG_CITIES_H5A_PLATE_10                    (CITIES_FLAGS_START + 0xC2)
+#define FLAG_CITIES_H5A_PLATE_11                    (CITIES_FLAGS_START + 0xC3)
+#define FLAG_CITIES_H5A_PLATE_12                    (CITIES_FLAGS_START + 0xC4)
+#define FLAG_CITIES_H5A_PLATE_13                    (CITIES_FLAGS_START + 0xC5)
+#define FLAG_CITIES_H5A_PLATE_14                    (CITIES_FLAGS_START + 0xC6)
+#define FLAG_CITIES_H5A_PLATE_15                    (CITIES_FLAGS_START + 0xC7)
+#define FLAG_CITIES_H5A_PLATE_16                    (CITIES_FLAGS_START + 0xC8)
+#define FLAG_CITIES_H5A_PLATE_17                    (CITIES_FLAGS_START + 0xC9)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 
