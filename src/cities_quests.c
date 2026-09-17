@@ -1,5 +1,6 @@
 #include "global.h"
 #include "cities_quests.h"
+#include "cities_arcs.h"
 #include "battle_setup.h"
 #include "cities_field_events.h"
 #include "event_data.h"
@@ -101,6 +102,51 @@ static const u8 *EeveeQuestStep(void)
     return COMPOUND_STRING("Battle all eight Eeveelution experts\nacross Hoenn. So far: {STR_VAR_1} of 8.");
 }
 
+// ---- M1: Strange Weather (GDD 6.6, approved 2026-09-16) ----
+
+static u32 CountM1Caught(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_M1_ARTICUNO_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_M1_ZAPDOS_CAUGHT))   count++;
+    if (FlagGet(FLAG_CITIES_M1_MOLTRES_CAUGHT))  count++;
+    return count;
+}
+
+static bool32 M1QuestActive(void)
+{
+    return FlagGet(FLAG_BADGE03_GET) && VarGet(VAR_CITIES_M1_STATE) < 2;
+}
+
+static const u8 *M1QuestStep(void)
+{
+    u32 caught = CountM1Caught();
+
+    if (caught == 3)
+        return COMPOUND_STRING("The weather has calmed! Tell the\nreporter in SLATEPORT's POKéMON\lCENTER what you found.");
+    ConvertIntToDecimalStringN(gStringVar1, caught, STR_CONV_MODE_LEFT_ALIGN, 1);
+    if (caught > 0 && !FlagGet(FLAG_BADGE04_GET))
+        return COMPOUND_STRING("Strange weather: FIERY PATH, SHOAL\nCAVE (SURF), NEW MAUVILLE (SURF).\lCalmed: {STR_VAR_1} of 3. Your bird won't\llisten until you earn the HEAT BADGE.");
+    return COMPOUND_STRING("Strange weather! Check FIERY PATH,\nSHOAL CAVE (SURF), and NEW MAUVILLE\l(SURF). Calmed: {STR_VAR_1} of 3.");
+}
+
+// ---- M2: The Sealed Chamber, Opened (GDD 6.6, approved 2026-09-16) ----
+
+static bool32 M2QuestActive(void)
+{
+    return FlagGet(FLAG_BADGE05_GET) && VarGet(VAR_CITIES_M2_STATE) < 2;
+}
+
+static const u8 *M2QuestStep(void)
+{
+    if (VarGet(VAR_CITIES_M2_STATE) == 0)
+        return COMPOUND_STRING("An archaeologist in PACIFIDLOG TOWN\nknows the SEALED CHAMBER's secret.\lVisit her (the house on the west\lside).");
+    if (CitiesArcAllCaught(CITIES_ARC_M2))
+        return COMPOUND_STRING("All three giants are with you!\nTell the archaeologist in\lPACIFIDLOG TOWN.");
+    return COMPOUND_STRING("DIVE under Route 134 to the SEALED\nCHAMBER. One wall wants DIG; the\ldeep room wants WAILORD first and\lRELICANTH last. Then three ancient\ldoors open across HOENN.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -167,6 +213,8 @@ static const struct CitiesQuest sQuests[] =
 {
     { COMPOUND_STRING("The Hoenn Journey"),   MainQuestActive,       MainQuestStep },
     { COMPOUND_STRING("The Eevee Experts"),   EeveeQuestActive,      EeveeQuestStep },
+    { COMPOUND_STRING("Strange Weather"),     M1QuestActive,         M1QuestStep },
+    { COMPOUND_STRING("The Sealed Door"),     M2QuestActive,         M2QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

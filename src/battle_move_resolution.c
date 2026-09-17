@@ -251,6 +251,11 @@ static enum CancelerResult CancelerObedience(struct BattleCalcValues *cv)
             gBattlescriptCurrInstr = BattleScript_IgnoresWhileAsleep;
             gBattleStruct->moveResultFlags[cv->battlerDef] |= MOVE_RESULT_MISSED;
             return CANCELER_RESULT_FAILURE;
+        case DISOBEYS_CITIES_ARC:
+            // Cities of Emerald (GDD 6.5): no action, clear message.
+            gBattlescriptCurrInstr = BattleScript_CitiesWontListen;
+            gBattleStruct->moveResultFlags[cv->battlerDef] |= MOVE_RESULT_MISSED;
+            return CANCELER_RESULT_FAILURE;
         case DISOBEYS_RANDOM_MOVE:
             gCurrentMove = gCalledMove = gBattleMons[cv->battlerAtk].moves[gCurrMovePos];
             gBattlescriptCurrInstr = GetMoveBattleScript(gCalledMove);

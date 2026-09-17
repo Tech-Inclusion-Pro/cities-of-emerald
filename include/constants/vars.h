@@ -285,6 +285,8 @@
 #define VAR_CITIES_STARTER_REGION                        (CITIES_VARS_START + 0x4) // CITIES_STARTER_REGION_* (starter_choose.h); 0 = not chosen yet (vanilla fallback)
 #define VAR_CITIES_DIFFICULTY                            (CITIES_VARS_START + 0x5) // B_VAR_DIFFICULTY: 0 = Easy, 1 = Normal, 2 = Hard
 #define VAR_CITIES_RIVAL_REMATCH_VERSION                 (CITIES_VARS_START + 0x6) // Armed rival rematch version (1..3); 0 = none armed
+#define VAR_CITIES_M1_STATE                              (CITIES_VARS_START + 0x7) // 0 = not met, 1 = reporter met, 2 = arc complete
+#define VAR_CITIES_M2_STATE                              (CITIES_VARS_START + 0x8) // 0 = not met, 1 = archaeologist met, 2 = arc complete
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END

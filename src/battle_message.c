@@ -4,6 +4,7 @@
 #include "battle_ai_record.h"
 #include "battle_controllers.h"
 #include "battle_message.h"
+#include "cities_arcs.h"
 #include "battle_setup.h"
 #include "battle_special.h"
 #include "battle_z_move.h"
@@ -909,6 +910,12 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_S]                                    = COMPOUND_STRING("s"),
     [STRINGID_LOSTSOMEOFITSHP]                      = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} lost some of its HP!"),
     [STRINGID_BELCHCANTUSE]                         = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} hasn't eaten any held Berries, so it can't possibly belch!\p"),
+    [STRINGID_CITIESWONTLISTENHEAT]                 = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil you earn the HEAT BADGE!"),
+    [STRINGID_CITIESWONTLISTENFEATHER]              = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil you earn the FEATHER BADGE!"),
+    [STRINGID_CITIESWONTLISTENMIND]                 = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil you earn the MIND BADGE!"),
+    [STRINGID_CITIESWONTLISTENRAIN]                 = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil you earn the RAIN BADGE!"),
+    [STRINGID_CITIESWONTLISTENLATIOS]               = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil it's reunited with LATIOS!"),
+    [STRINGID_CITIESWONTLISTENLATIAS]               = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil it's reunited with LATIAS!"),
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1357,6 +1364,17 @@ const u16 gPrimalWeatherBlocksStringIds[] =
 {
     [B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN]      = STRINGID_MOVEFIZZLEDOUTINTHEHEAVYRAIN,
     [B_MSG_PRIMAL_WEATHER_EVAPORATED_IN_SUN]    = STRINGID_MOVEEVAPORATEDINTHEHARSHSUNLIGHT,
+};
+
+// Cities of Emerald (GDD 6.5): indexed by CITIES_ARC_MSG_*.
+const u16 gCitiesWontListenStringIds[] =
+{
+    [CITIES_ARC_MSG_HEAT_BADGE]    = STRINGID_CITIESWONTLISTENHEAT,
+    [CITIES_ARC_MSG_FEATHER_BADGE] = STRINGID_CITIESWONTLISTENFEATHER,
+    [CITIES_ARC_MSG_MIND_BADGE]    = STRINGID_CITIESWONTLISTENMIND,
+    [CITIES_ARC_MSG_RAIN_BADGE]    = STRINGID_CITIESWONTLISTENRAIN,
+    [CITIES_ARC_MSG_NEED_LATIOS]   = STRINGID_CITIESWONTLISTENLATIOS,
+    [CITIES_ARC_MSG_NEED_LATIAS]   = STRINGID_CITIESWONTLISTENLATIAS,
 };
 
 const u16 gInobedientStringIds[] =

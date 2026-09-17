@@ -16,6 +16,7 @@ static void ClearQuestTestState(void)
     FlagClear(FLAG_BADGE03_GET);
     FlagClear(FLAG_SYS_GAME_CLEAR);
     FlagClear(FLAG_CITIES_POKEMON_MASTER);
+    VarSet(VAR_CITIES_M1_STATE, 0);
     VarSet(VAR_TEMP_9, 0);
 }
 
@@ -43,17 +44,22 @@ TEST("Journal: quests activate with progress and completed ones drop off")
     FlagSet(FLAG_BADGE02_GET);
     EXPECT_EQ(CountJournalEntries(), 2);
 
-    // Badge 3: the ranked challengers join.
+    // Badge 3: the M1 arc and the ranked challengers join.
     FlagSet(FLAG_BADGE03_GET);
+    EXPECT_EQ(CountJournalEntries(), 4);
+
+    // Completing M1 (state 2) drops it from the journal.
+    VarSet(VAR_CITIES_M1_STATE, 2);
     EXPECT_EQ(CountJournalEntries(), 3);
+    VarSet(VAR_CITIES_M1_STATE, 0);
 
     // Champion: rematches and the road to Master open too.
     FlagSet(FLAG_SYS_GAME_CLEAR);
-    EXPECT_EQ(CountJournalEntries(), 5);
+    EXPECT_EQ(CountJournalEntries(), 6);
 
     // The Master quest completes and leaves the journal.
     FlagSet(FLAG_CITIES_POKEMON_MASTER);
-    EXPECT_EQ(CountJournalEntries(), 4);
+    EXPECT_EQ(CountJournalEntries(), 5);
 
     ClearQuestTestState();
 }

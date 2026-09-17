@@ -4,6 +4,7 @@ SlateportCity_PokemonCenter_1F_MapScripts::
 	.byte 0
 
 SlateportCity_PokemonCenter_1F_OnTransition:
+	call Cities_EventScript_UpdateM1Npcs
 	setrespawn HEAL_LOCATION_SLATEPORT_CITY
 	call Common_EventScript_UpdateBrineyLocation
 	end

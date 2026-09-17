@@ -1,9 +1,15 @@
 ShoalCave_LowTideIceRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, ShoalCave_LowTideIceRoom_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, ShoalCave_LowTideIceRoom_OnResume
 	.byte 0
+
+ShoalCave_LowTideIceRoom_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end
 
 ShoalCave_LowTideIceRoom_OnTransition:
 	call ShoalCave_LowTideIceRoom_EventScript_UpdateEeveeTrainerGlaceon
+	call Cities_EventScript_UpdateM1Articuno
 	end
 
 

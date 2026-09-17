@@ -17,6 +17,7 @@ NewMauville_Entrance_EventScript_CloseDoor::
 	return
 
 NewMauville_Entrance_OnTransition:
+	call Cities_EventScript_UpdateM1Npcs
 	setflag FLAG_LANDMARK_NEW_MAUVILLE
 	end
 

@@ -9,6 +9,7 @@ enum Obedience
     DISOBEYS_FALL_ASLEEP,
     DISOBEYS_WHILE_ASLEEP,
     DISOBEYS_RANDOM_MOVE,
+    DISOBEYS_CITIES_ARC, // Cities of Emerald (GDD 6.5): badge-gated legendary, clear message, no action
 };
 
 enum CancelerResult

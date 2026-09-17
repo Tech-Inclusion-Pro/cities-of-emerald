@@ -77,6 +77,7 @@ IslandCave_EventScript_CaveEntranceSide::
 IslandCave_EventScript_CloseBrailleMsg::
 	waitbuttonpress
 	closebraillemessage
+	msgbox Cities_Text_BrailleRunLap, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -94,7 +95,8 @@ IslandCave_EventScript_Regice::
 	playmoncry SPECIES_REGICE, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGICE, 40
+	setvar VAR_0x8004, SPECIES_REGICE
+	special Script_CitiesSetWildLegendary @ Cities 10.0a: level = badge cap
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -107,8 +109,7 @@ IslandCave_EventScript_Regice::
 	end
 
 IslandCave_EventScript_DefeatedRegice::
-	setflag FLAG_DEFEATED_REGICE
-	goto Common_EventScript_RemoveStaticPokemon
+	goto Cities_EventScript_LegendWithdrew @ Cities: returns on re-entry
 	end
 
 IslandCave_EventScript_RanFromRegice::
