@@ -178,6 +178,37 @@ static const u8 *M3QuestStep(void)
     return COMPOUND_STRING("{STR_VAR_1}");
 }
 
+// ---- M4: The Three Lights (GDD 6.6, approved 2026-09-17) ----
+
+static u32 CountM4Caught(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_M4_UXIE_CAUGHT))    count++;
+    if (FlagGet(FLAG_CITIES_M4_MESPRIT_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_M4_AZELF_CAUGHT))   count++;
+    return count;
+}
+
+static bool32 M4QuestActive(void)
+{
+    return FlagGet(FLAG_BADGE07_GET) && VarGet(VAR_CITIES_M4_STATE) < 2;
+}
+
+static const u8 *M4QuestStep(void)
+{
+    u32 caught = CountM4Caught();
+
+    if (VarGet(VAR_CITIES_M4_STATE) == 0)
+        return COMPOUND_STRING("A keeper waits inside the CAVE OF\nORIGIN's entrance, in SOOTOPOLIS.\lShe knows the mountain's story.");
+    if (caught == 3)
+        return COMPOUND_STRING("Mind, heart, and will are with\nyou. Tell the keeper at the CAVE\lOF ORIGIN's entrance.");
+    ConvertIntToDecimalStringN(gStringVar1, caught, STR_CONV_MODE_LEFT_ALIGN, 1);
+    if (caught > 0 && !FlagGet(FLAG_BADGE08_GET))
+        return COMPOUND_STRING("Three lights rest beyond the\nparted wall in the CAVE OF ORIGIN.\lFound: {STR_VAR_1} of 3. Your spirit won't\llisten until you earn the RAIN\lBADGE.");
+    return COMPOUND_STRING("Three lights rest beyond the\nparted wall in the CAVE OF ORIGIN\l(far right corner of the first\lcave). Found: {STR_VAR_1} of 3.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -247,6 +278,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("Strange Weather"),     M1QuestActive,         M1QuestStep },
     { COMPOUND_STRING("The Sealed Door"),     M2QuestActive,         M2QuestStep },
     { COMPOUND_STRING("On the Trail"),        M3QuestActive,         M3QuestStep },
+    { COMPOUND_STRING("The Three Lights"),    M4QuestActive,         M4QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

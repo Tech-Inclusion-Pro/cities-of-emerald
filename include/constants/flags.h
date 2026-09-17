@@ -1710,6 +1710,14 @@
 #define FLAG_CITIES_M3_RAIKOU_CAUGHT                (CITIES_FLAGS_START + 0x34)
 #define FLAG_CITIES_M3_ENTEI_CAUGHT                 (CITIES_FLAGS_START + 0x35)
 #define FLAG_CITIES_M3_SUICUNE_CAUGHT               (CITIES_FLAGS_START + 0x36)
+// M4 "The Three Lights" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_M4_KEEPER                  (CITIES_FLAGS_START + 0x37) // Cave of Origin entrance, shown at badge 7
+#define FLAG_CITIES_HIDE_M4_UXIE                    (CITIES_FLAGS_START + 0x38) // Chamber statics: hidden once caught
+#define FLAG_CITIES_HIDE_M4_MESPRIT                 (CITIES_FLAGS_START + 0x39)
+#define FLAG_CITIES_HIDE_M4_AZELF                   (CITIES_FLAGS_START + 0x3A)
+#define FLAG_CITIES_M4_UXIE_CAUGHT                  (CITIES_FLAGS_START + 0x3B)
+#define FLAG_CITIES_M4_MESPRIT_CAUGHT               (CITIES_FLAGS_START + 0x3C)
+#define FLAG_CITIES_M4_AZELF_CAUGHT                 (CITIES_FLAGS_START + 0x3D)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

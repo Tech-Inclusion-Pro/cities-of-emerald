@@ -110,6 +110,18 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Post-League scene at home: SS Ticket scene plays normally with NO Latias/Latios TV broadcast (M5 owns them now)
 - [ ] Old saves from before this build are NOT compatible (ROAMER_COUNT save layout change) — start fresh
 
+## Legendary arc M4 (Phase 10)
+- [ ] Keeper appears inside the Cave of Origin entrance at badge 7 (left wall of the corridor); intro opens the passage
+- [ ] 1F far-right alcove: stepping into the end tiles warps to chamber 1 ("parted wall" message) — only after meeting the keeper
+- [ ] Chamber 1 ladder (top-left) returns to the 1F alcove, NOT the B1F staircase
+- [ ] Chain works both ways: 1F alcove ↔ chamber 1 ↔ chamber 2 ↔ chamber 3 → B1F stairs
+- [ ] Uxie / Mesprit / Azelf visible in chambers 1/2/3; fight at the auto-cap level; KO'd spirit returns on re-entry; catch removes it
+- [ ] Each chamber's inscription reads correctly (mind / heart / will)
+- [ ] No wild encounters inside the three chambers
+- [ ] During the crisis: Wallace's B1F scene still plays normally, whether you enter from the stairs or from chamber 3
+- [ ] Caught spirit at 7 badges disobeys with the exact RAIN BADGE message; obeys after beating Juan
+- [ ] All 3 caught → keeper's closing line; journal quest completes and drops off
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

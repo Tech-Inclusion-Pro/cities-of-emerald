@@ -79,3 +79,25 @@ TEST("Journal: the hint special always yields a non-empty main step")
 
     ClearQuestTestState();
 }
+
+TEST("Journal: M4 opens at badge 7 and completes on the keeper's word")
+{
+    ClearQuestTestState();
+    VarSet(VAR_CITIES_M4_STATE, 0);
+
+    u32 base = CountJournalEntries();
+
+    // Badge 7 opens The Three Lights (badge 6 also wakes M3 — count both).
+    FlagSet(FLAG_BADGE06_GET);
+    FlagSet(FLAG_BADGE07_GET);
+    EXPECT_EQ(CountJournalEntries(), base + 2);
+
+    // Completing the arc drops it from the journal.
+    VarSet(VAR_CITIES_M4_STATE, 2);
+    EXPECT_EQ(CountJournalEntries(), base + 1);
+
+    VarSet(VAR_CITIES_M4_STATE, 0);
+    FlagClear(FLAG_BADGE06_GET);
+    FlagClear(FLAG_BADGE07_GET);
+    ClearQuestTestState();
+}

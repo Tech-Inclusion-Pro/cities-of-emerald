@@ -29,8 +29,52 @@
       "elevation": 3,
       "dest_map": "MAP_CAVE_OF_ORIGIN_B1F",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 15,
+      "y": 15,
+      "elevation": 3,
+      "dest_map": "MAP_CAVE_OF_ORIGIN_1F",
+      "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "elevation": 3,
+      "var": "VAR_CITIES_M4_STATE",
+      "script": "Cities_EventScript_M4PassageEnter",
+      "x": 17,
+      "y": 14,
+      "var_value": "1"
+    },
+    {
+      "type": "trigger",
+      "elevation": 3,
+      "var": "VAR_CITIES_M4_STATE",
+      "script": "Cities_EventScript_M4PassageEnter",
+      "x": 17,
+      "y": 14,
+      "var_value": "2"
+    },
+    {
+      "type": "trigger",
+      "elevation": 3,
+      "var": "VAR_CITIES_M4_STATE",
+      "script": "Cities_EventScript_M4PassageEnter",
+      "x": 17,
+      "y": 15,
+      "var_value": "1"
+    },
+    {
+      "type": "trigger",
+      "elevation": 3,
+      "var": "VAR_CITIES_M4_STATE",
+      "script": "Cities_EventScript_M4PassageEnter",
+      "x": 17,
+      "y": 15,
+      "var_value": "2"
+    }
+  ],
   "bg_events": []
 }

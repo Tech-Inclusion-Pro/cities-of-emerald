@@ -1,7 +1,13 @@
 CaveOfOrigin_UnusedRubySapphireMap1_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, CaveOfOrigin_UnusedRubySapphireMap1_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CaveOfOrigin_UnusedRubySapphireMap1_OnResume
 	.byte 0
 
 CaveOfOrigin_UnusedRubySapphireMap1_OnTransition:
 	call_if_set FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE, CaveOfOrigin_EventScript_DisableTriggers
+	call Cities_EventScript_UpdateM4Uxie
+	end
+
+CaveOfOrigin_UnusedRubySapphireMap1_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M4TryRemoveCaughtSpirit
 	end
