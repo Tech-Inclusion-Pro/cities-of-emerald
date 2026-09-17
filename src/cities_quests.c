@@ -455,6 +455,26 @@ static const u8 *H6QuestStep(void)
     return COMPOUND_STRING("The balance tips in the UNDERCLIFF\nbelow MOSSDEEP. The ecologist will\lclimb down with you.\lCells found: {STR_VAR_1} of 5.");
 }
 
+// ---- H7: Truth and Ideals (GDD 6.6, approved 2026-09-17) ----
+
+static bool32 H7QuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_H7_STATE) == 1;
+}
+
+static const u8 *H7QuestStep(void)
+{
+    bool32 reshiram = FlagGet(FLAG_CITIES_H7_RESHIRAM_CAUGHT);
+    bool32 zekrom = FlagGet(FLAG_CITIES_H7_ZEKROM_CAUGHT);
+
+    if (FlagGet(FLAG_CITIES_H7_KYUREM_CAUGHT))
+        return COMPOUND_STRING("Truth, ideals, and the husk all\ntravel with you. See the engineer\lin MAUVILLE - he found something.");
+    if (reshiram && zekrom)
+        return COMPOUND_STRING("The argument under MAUVILLE is\nsettled - and something cold now\lwaits at the hall's north end.");
+    ConvertIntToDecimalStringN(gStringVar1, (reshiram ? 1 : 0) + (zekrom ? 1 : 0), STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Two currents argue in RESONANCE\nHALL under MAUVILLE. The engineer\lwill take you down. Settled:\l{STR_VAR_1} of 2.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -535,6 +555,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("Rainbow Wings"),       H4QuestActive,         H4QuestStep },
     { COMPOUND_STRING("The Weather Menders"), H8QuestActive,         H8QuestStep },
     { COMPOUND_STRING("The Balance Below"),   H6QuestActive,         H6QuestStep },
+    { COMPOUND_STRING("Truth and Ideals"),    H7QuestActive,         H7QuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

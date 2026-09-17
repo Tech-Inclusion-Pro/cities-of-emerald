@@ -9411,6 +9411,17 @@
       "border_filepath": "data/layouts/MossdeepUndercliff/border.bin",
       "blockdata_filepath": "data/layouts/MossdeepUndercliff/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_RESONANCE_HALL",
+      "name": "ResonanceHall_Layout",
+      "width": 16,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/ResonanceHall/border.bin",
+      "blockdata_filepath": "data/layouts/ResonanceHall/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

@@ -234,6 +234,18 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal "The Balance Below" opens after meeting her, shows trio and cell counts, completes after the cube
 - [ ] Wild sweep: none of the three appear in any random source (existing test gate)
 
+## Hidden area H7 (Phase 11)
+- [ ] Engineer appears in Mauville (south of the central plaza) only after the League
+- [ ] His intro plays once; saying yes climbs down to Resonance Hall; saying no leaves him available
+- [ ] Resonance Hall looks right: single vault, dark cold patch at the north end, no way out of bounds, no wild encounters
+- [ ] South alcove returns you to Mauville beside him
+- [ ] Reshiram (west) and Zekrom (east) face each other, visible from the first visit; each fights at level 70; KO returns on re-entry; only catching removes it
+- [ ] Kyurem absent until BOTH are caught, then appears at the cold north end; same rules at level 70
+- [ ] All three obey immediately at any badge count
+- [ ] All three caught -> engineer's thanks + DNA SPLICERS given once; bag-full retry works; splicers fuse/split Kyurem properly
+- [ ] Journal "Truth and Ideals" opens after meeting him, runs both beats, completes after the splicers
+- [ ] Wild sweep: none of the three appear in any random source (existing test gate)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
