@@ -142,3 +142,20 @@ TEST("Arc levels: legendary level tracks the automatic cap and ignores Assist ov
     FlagSet(FLAG_IS_CHAMPION);
     EXPECT_EQ(Script_CitiesGetLegendaryLevel(), 60);
 }
+
+TEST("Arc levels: postgame arcs use their fixed tier, mid-game arcs follow the cap")
+{
+    // Mid-game species with no badges: the automatic cap, not a tier.
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_ZAPDOS), Script_CitiesGetLegendaryLevel());
+
+    // Postgame arcs are pinned to the GDD 6.4 tier table even though
+    // the automatic cap would say the same or something else.
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_ARTICUNO_GALAR), 60);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_KELDEO), 60);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_DARKRAI), 60);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_TAPU_BULU), 60);
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_HEATRAN), 60);
+
+    // Non-arc species fall back to the cap rule.
+    EXPECT_EQ(CitiesGetLegendarySpeciesLevel(SPECIES_PIKACHU), Script_CitiesGetLegendaryLevel());
+}

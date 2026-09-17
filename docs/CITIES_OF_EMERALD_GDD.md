@@ -223,7 +223,7 @@ Several legendary arcs can be open at the same time. Each arc has its own flags 
 | Level | Hidden-area and follow-up arcs | Villain arc (played in order) |
 |---|---|---|
 | 60 | M1-PG, H1, H5b, H10, H11 | V1 |
-| 65 | H2, H3, H4, H8 | V2 |
+| 65 | H2a, H2b, H3, H4, H8 | V2 |
 | 70 | H6, H7, H9 | V3 |
 | 75 | H5a (Dialga, Palkia, Giratina) | V4 |
 | 80 | H5a (Arceus) | V5 |
@@ -273,7 +273,8 @@ Several legendary arcs can be open at the same time. Each arc has its own flags 
 | ID | Entry point | Species | Final reward |
 |---|---|---|---|
 | H1 | Littleroot | Cobalion, Terrakion, Virizion, Keldeo | — |
-| H2 | Oldale | Wo-Chien, Chien-Pao, Ting-Lu, Chi-Yu, Okidogi, Munkidori, Fezandipiti, Ogerpon | — (largest arc; may split later) |
+| H2a | Oldale | Wo-Chien, Chien-Pao, Ting-Lu, Chi-Yu | — |
+| H2b | Oldale (same hidden area as H2a) | Okidogi, Munkidori, Fezandipiti, Ogerpon | — |
 | H3 | Petalburg | Regigigas, Regieleki, Regidrago (follow-up to M2) | — |
 | H4 | Fortree | Ho-Oh, Lugia, Celebi | — |
 | H5a | Lilycove and Mt. Pyre (Giratina at Mt. Pyre) | Dialga, Palkia, Giratina, then Arceus | Adamant, Lustrous, and Griseous Crystals; completed Plate set |

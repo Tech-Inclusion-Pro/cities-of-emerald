@@ -32,6 +32,7 @@ struct CitiesArcInfo
     u8 speciesCount;
     u16 obeyBadgeFlag;  // 0 = special rule (M5)
     u8 disobeyMsg;      // index into gCitiesWontListenStringIds (M1-M4)
+    u8 fixedLevel;      // postgame tier (GDD 6.4); 0 = follow the automatic cap
 };
 
 static const u16 sArcM1[] = { SPECIES_ARTICUNO, SPECIES_ZAPDOS, SPECIES_MOLTRES };
@@ -52,11 +53,11 @@ static const struct CitiesArcInfo sArcs[CITIES_ARC_COUNT] =
     [CITIES_ARC_M3] = { sArcM3, ARRAY_COUNT(sArcM3), FLAG_BADGE07_GET, CITIES_ARC_MSG_MIND_BADGE },
     [CITIES_ARC_M4] = { sArcM4, ARRAY_COUNT(sArcM4), FLAG_BADGE08_GET, CITIES_ARC_MSG_RAIN_BADGE },
     [CITIES_ARC_M5] = { sArcM5, ARRAY_COUNT(sArcM5), 0, 0 },
-    [CITIES_ARC_M1PG] = { sArcM1PG, ARRAY_COUNT(sArcM1PG), 0, 0 },
-    [CITIES_ARC_H1] = { sArcH1, ARRAY_COUNT(sArcH1), 0, 0 },
-    [CITIES_ARC_H5B] = { sArcH5B, ARRAY_COUNT(sArcH5B), 0, 0 },
-    [CITIES_ARC_H10] = { sArcH10, ARRAY_COUNT(sArcH10), 0, 0 },
-    [CITIES_ARC_H11] = { sArcH11, ARRAY_COUNT(sArcH11), 0, 0 },
+    [CITIES_ARC_M1PG] = { sArcM1PG, ARRAY_COUNT(sArcM1PG), 0, 0, 60 },
+    [CITIES_ARC_H1] = { sArcH1, ARRAY_COUNT(sArcH1), 0, 0, 60 },
+    [CITIES_ARC_H5B] = { sArcH5B, ARRAY_COUNT(sArcH5B), 0, 0, 60 },
+    [CITIES_ARC_H10] = { sArcH10, ARRAY_COUNT(sArcH10), 0, 0, 60 },
+    [CITIES_ARC_H11] = { sArcH11, ARRAY_COUNT(sArcH11), 0, 0, 60 },
 };
 
 static bool32 SpeciesCaught(u16 species)
@@ -134,12 +135,30 @@ u16 Script_CitiesGetLegendaryLevel(void)
     return level;
 }
 
+// The level for a specific arc species: postgame arcs use their fixed
+// tier (GDD 6.4); mid-game arcs follow the automatic cap.
+u16 CitiesGetLegendarySpeciesLevel(u16 species)
+{
+    u32 arc, i;
+
+    for (arc = 0; arc < CITIES_ARC_COUNT; arc++)
+    {
+        const struct CitiesArcInfo *info = &sArcs[arc];
+
+        for (i = 0; i < info->speciesCount; i++)
+            if (info->species[i] == species && info->fixedLevel != 0)
+                return info->fixedLevel;
+    }
+    return Script_CitiesGetLegendaryLevel();
+}
+
 // Special: prepare a scripted wild battle against the legendary in
-// VAR_0x8004 at the level-matched cap (10.0a). Started with
-// BattleSetup_StartLegendaryBattle from the script.
+// VAR_0x8004 at its tier (fixed for postgame arcs, level-matched cap
+// for mid-game ones). Started with BattleSetup_StartLegendaryBattle
+// from the script.
 void Script_CitiesSetWildLegendary(void)
 {
-    CreateScriptedWildMon(gSpecialVar_0x8004, Script_CitiesGetLegendaryLevel(), ITEM_NONE);
+    CreateScriptedWildMon(gSpecialVar_0x8004, CitiesGetLegendarySpeciesLevel(gSpecialVar_0x8004), ITEM_NONE);
 }
 
 // Special (specialvar): VAR_0x8004 = CITIES_ARC_*; TRUE once every
