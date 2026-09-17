@@ -19,6 +19,7 @@ NewMauville_Inside_EventScript_TryRemoveVoltorb::
 
 NewMauville_Inside_OnTransition:
 	call Cities_EventScript_UpdateM1Zapdos
+	call Cities_EventScript_UpdateM1PGZapdos
 	setvar VAR_TEMP_1, 0
 	setvar VAR_TEMP_2, 0
 	call_if_unset FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb1

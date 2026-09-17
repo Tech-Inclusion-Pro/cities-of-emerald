@@ -10,6 +10,7 @@ ShoalCave_LowTideIceRoom_OnResume:
 ShoalCave_LowTideIceRoom_OnTransition:
 	call ShoalCave_LowTideIceRoom_EventScript_UpdateEeveeTrainerGlaceon
 	call Cities_EventScript_UpdateM1Articuno
+	call Cities_EventScript_UpdateM1PGArticuno
 	end
 
 

@@ -133,6 +133,14 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Eon stone: "waiting" text before both caught; hums and gives LATIASITE + LATIOSITE once; quiet afterward; bag-full retry works
 - [ ] Journal quest opens at badge 8, names the missing partner while one is caught, completes and drops off
 
+## Legendary arc M1-PG (Phase 10, postgame)
+- [ ] Reporter's follow-up appears only when you are Champion AND M1 is complete (Champion with M1 unfinished -> her old dialogue)
+- [ ] Galarian Articuno / Zapdos / Moltres visible at the M1 sites (Shoal Cave ice room / New Mauville / Fiery Path), standing where the originals stood
+- [ ] Each fights at level 60; a KO'd bird returns on re-entry; only catching removes it
+- [ ] Caught Galarian birds obey immediately, at any badge count (no disobedience message ever)
+- [ ] Journal "Stranger Weather" opens with the reporter, shows N of 3, completes and drops off after her closing line
+- [ ] The Kantonian M1 birds never overlap the Galarian ones (M1 must be complete before these appear)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

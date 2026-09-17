@@ -232,6 +232,36 @@ static const u8 *M5QuestStep(void)
     return COMPOUND_STRING("Two lights circle SOUTHERN ISLAND.\nThe sailor in LILYCOVE's harbor\lwill take you any time.");
 }
 
+// ---- M1-PG: Stranger Weather (GDD 6.6, approved 2026-09-17) ----
+
+static u32 CountM1PGCaught(void)
+{
+    u32 count = 0;
+
+    if (FlagGet(FLAG_CITIES_M1PG_ARTICUNO_CAUGHT)) count++;
+    if (FlagGet(FLAG_CITIES_M1PG_ZAPDOS_CAUGHT))   count++;
+    if (FlagGet(FLAG_CITIES_M1PG_MOLTRES_CAUGHT))  count++;
+    return count;
+}
+
+static bool32 M1PGQuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR) && VarGet(VAR_CITIES_M1_STATE) == 2
+        && VarGet(VAR_CITIES_M1PG_STATE) < 2;
+}
+
+static const u8 *M1PGQuestStep(void)
+{
+    u32 caught = CountM1PGCaught();
+
+    if (VarGet(VAR_CITIES_M1PG_STATE) == 0)
+        return COMPOUND_STRING("The reporter in SLATEPORT's POKéMON\nCENTER has a follow-up to her big\lstory. Hear her out.");
+    if (caught == 3)
+        return COMPOUND_STRING("Two sets of three! Tell the\nreporter in SLATEPORT's POKéMON\lCENTER how the story ends.");
+    ConvertIntToDecimalStringN(gStringVar1, caught, STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Impossible readings at the old\nsites: FIERY PATH, SHOAL CAVE, and\lNEW MAUVILLE. Calmed: {STR_VAR_1} of 3.");
+}
+
 // ---- Ranked challengers (GDD 8.5) ----
 
 static const u16 sChallengers[] =
@@ -303,6 +333,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("On the Trail"),        M3QuestActive,         M3QuestStep },
     { COMPOUND_STRING("The Three Lights"),    M4QuestActive,         M4QuestStep },
     { COMPOUND_STRING("The Eon Pair"),        M5QuestActive,         M5QuestStep },
+    { COMPOUND_STRING("Stranger Weather"),    M1PGQuestActive,       M1PGQuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

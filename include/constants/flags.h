@@ -1725,6 +1725,13 @@
 #define FLAG_CITIES_M5_LATIAS_CAUGHT                (CITIES_FLAGS_START + 0x41)
 #define FLAG_CITIES_M5_LATIOS_CAUGHT                (CITIES_FLAGS_START + 0x42)
 #define FLAG_CITIES_M5_STONES_TAKEN                 (CITIES_FLAGS_START + 0x43) // Eon stone gave Latiasite + Latiosite
+// M1-PG "Stranger Weather" (GDD 6.6, outline approved 2026-09-17)
+#define FLAG_CITIES_HIDE_M1PG_ARTICUNO              (CITIES_FLAGS_START + 0x44) // Galarian birds at the M1 sites, postgame
+#define FLAG_CITIES_HIDE_M1PG_ZAPDOS                (CITIES_FLAGS_START + 0x45)
+#define FLAG_CITIES_HIDE_M1PG_MOLTRES               (CITIES_FLAGS_START + 0x46)
+#define FLAG_CITIES_M1PG_ARTICUNO_CAUGHT            (CITIES_FLAGS_START + 0x47)
+#define FLAG_CITIES_M1PG_ZAPDOS_CAUGHT              (CITIES_FLAGS_START + 0x48)
+#define FLAG_CITIES_M1PG_MOLTRES_CAUGHT             (CITIES_FLAGS_START + 0x49)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

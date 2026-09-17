@@ -39,6 +39,7 @@ static const u16 sArcM2[] = { SPECIES_REGIROCK, SPECIES_REGICE, SPECIES_REGISTEE
 static const u16 sArcM3[] = { SPECIES_RAIKOU, SPECIES_ENTEI, SPECIES_SUICUNE };
 static const u16 sArcM4[] = { SPECIES_UXIE, SPECIES_MESPRIT, SPECIES_AZELF };
 static const u16 sArcM5[] = { SPECIES_LATIAS, SPECIES_LATIOS };
+static const u16 sArcM1PG[] = { SPECIES_ARTICUNO_GALAR, SPECIES_ZAPDOS_GALAR, SPECIES_MOLTRES_GALAR };
 
 static const struct CitiesArcInfo sArcs[CITIES_ARC_COUNT] =
 {
@@ -47,6 +48,7 @@ static const struct CitiesArcInfo sArcs[CITIES_ARC_COUNT] =
     [CITIES_ARC_M3] = { sArcM3, ARRAY_COUNT(sArcM3), FLAG_BADGE07_GET, CITIES_ARC_MSG_MIND_BADGE },
     [CITIES_ARC_M4] = { sArcM4, ARRAY_COUNT(sArcM4), FLAG_BADGE08_GET, CITIES_ARC_MSG_RAIN_BADGE },
     [CITIES_ARC_M5] = { sArcM5, ARRAY_COUNT(sArcM5), 0, 0 },
+    [CITIES_ARC_M1PG] = { sArcM1PG, ARRAY_COUNT(sArcM1PG), 0, 0 },
 };
 
 static bool32 SpeciesCaught(u16 species)
@@ -81,6 +83,9 @@ enum CitiesArcObedience CitiesGetArcObedience(u16 species, u8 *msgIndexOut)
         {
             if (info->species[i] != species)
                 continue;
+            // Postgame arcs always obey (GDD 6.5).
+            if (arc == CITIES_ARC_M1PG)
+                return CITIES_ARC_OBEYS;
             if (arc == CITIES_ARC_M5)
             {
                 if (CitiesLatiUnited())

@@ -72,6 +72,7 @@ Cities_EventScript_M1ReporterAllCaught::
 	end
 
 Cities_EventScript_M1ReporterAfter::
+	goto_if_set FLAG_SYS_GAME_CLEAR, Cities_EventScript_M1PGReporter @ M1-PG "Stranger Weather" (cities_m1pg.inc)
 	msgbox Cities_Text_M1ReporterAfter, MSGBOX_DEFAULT
 	release
 	end

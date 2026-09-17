@@ -13,6 +13,7 @@ FieryPath_OnTransition:
 	call FieryPath_EventScript_UpdateEeveeTrainerFlareon
 	call Cities_EventScript_UpdateM1Npcs
 	call Cities_EventScript_UpdateM1Moltres
+	call Cities_EventScript_UpdateM1PGMoltres
 	end
 
 FieryPath_EventScript_MoveScottToFallarbor::

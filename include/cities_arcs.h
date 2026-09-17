@@ -13,6 +13,7 @@ enum CitiesArc
     CITIES_ARC_M3, // Raikou, Entei, Suicune      — opens badge 6, obeys badge 7
     CITIES_ARC_M4, // Uxie, Mesprit, Azelf        — opens badge 7, obeys badge 8
     CITIES_ARC_M5, // Latias, Latios              — opens badge 8, obeys when both caught
+    CITIES_ARC_M1PG, // Galarian birds            — postgame (League + M1 complete), always obeys
     CITIES_ARC_COUNT
 };
 

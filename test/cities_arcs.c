@@ -79,6 +79,21 @@ TEST("Arc obedience: the M5 flag alone keeps the pair obedient (survives trade o
     EXPECT_EQ(CitiesGetArcObedience(SPECIES_LATIOS, &msg), CITIES_ARC_OBEYS);
 }
 
+TEST("Arc obedience: the postgame arc always obeys, badges or none (GDD 6.5)")
+{
+    u8 msg = 0xFF;
+
+    // No badges at all — the postgame rule doesn't care.
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_ARTICUNO_GALAR, &msg), CITIES_ARC_OBEYS);
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_ZAPDOS_GALAR, &msg), CITIES_ARC_OBEYS);
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_MOLTRES_GALAR, &msg), CITIES_ARC_OBEYS);
+
+    // The Kantonian birds still follow their own arc's badge rule.
+    FlagClear(FLAG_BADGE04_GET);
+    EXPECT_EQ(CitiesGetArcObedience(SPECIES_ARTICUNO, &msg), CITIES_ARC_DISOBEYS);
+    EXPECT_EQ(msg, CITIES_ARC_MSG_HEAT_BADGE);
+}
+
 TEST("Arc rewards: all-caught check flips only when the whole arc is caught")
 {
     EXPECT(!CitiesArcAllCaught(CITIES_ARC_M2));
