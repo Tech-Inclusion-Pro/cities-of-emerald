@@ -1,3 +1,14 @@
 Underwater_Route124_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, Underwater_Route124_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, Underwater_Route124_OnTransition
 	.byte 0
 
+
+Underwater_Route124_OnTransition:
+	call Cities_EventScript_MythicShowManaphy
+	call Cities_EventScript_MythicShowPhione
+	end
+
+Underwater_Route124_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end

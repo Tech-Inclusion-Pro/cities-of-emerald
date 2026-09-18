@@ -475,6 +475,7 @@ PetalburgWoods_Text_TrainerTipsPP:
 
 
 PetalburgWoods_OnTransition:
+	call Cities_EventScript_MythicShowZarude
 	call Cities_EventScript_UpdateV4PetalburgWoods
 	end
 

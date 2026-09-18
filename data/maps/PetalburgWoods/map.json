@@ -240,6 +240,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Cities_EventScript_V4FlutterMane",
       "flag": "FLAG_CITIES_HIDE_V4_FLUTTER_MANE"
+    },
+    {
+      "local_id": "LOCALID_WOODS_CITIES_ZARUDE",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZARUDE)",
+      "x": 13,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_MythicZarude",
+      "flag": "FLAG_CITIES_HIDE_MYTHIC_ZARUDE"
     }
   ],
   "warp_events": [

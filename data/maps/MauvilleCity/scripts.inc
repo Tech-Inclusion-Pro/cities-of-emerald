@@ -1,8 +1,10 @@
 MauvilleCity_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, MauvilleCity_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_OnTransition
 	.byte 0
 
 MauvilleCity_OnTransition:
+	call Cities_EventScript_MythicShowVictini
 	call Cities_EventScript_UpdateH7Engineer @ H7 (cities_h7.inc)
 	setflag FLAG_VISITED_MAUVILLE_CITY
 	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
@@ -663,3 +665,7 @@ MauvilleCity_Text_ExplainTV:
 
 MauvilleCity_Text_BeenCheckingOutTV:
 	.string "Hi, have you been checking out TVs?$"
+
+MauvilleCity_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end

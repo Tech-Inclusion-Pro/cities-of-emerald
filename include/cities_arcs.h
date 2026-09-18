@@ -33,6 +33,7 @@ enum CitiesArc
     CITIES_ARC_V3,   // UBs + Cosmog line + Necrozma — Epoch thread, tier 70
     CITIES_ARC_V4,   // Paradox + rift anchors    — Epoch thread, tier 75
     CITIES_ARC_V5,   // Eternatus                 — Epoch finale, tier 80
+    CITIES_ARC_MYTHIC, // all mythical events     — Phase 13, tier 70, always obeys
     CITIES_ARC_COUNT // NOTE: postgame arcs sit at the end; the always-obeys rule keys on >= CITIES_ARC_M1PG
 };
 

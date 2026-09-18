@@ -1,8 +1,10 @@
 FallarborTown_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, FallarborTown_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_OnTransition
 	.byte 0
 
 FallarborTown_OnTransition:
+	call Cities_EventScript_MythicShowMeloetta
 	call Cities_EventScript_UpdateH8Researcher @ H8 (cities_h8.inc)
 	setflag FLAG_VISITED_FALLARBOR_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
@@ -94,3 +96,7 @@ FallarborTown_Text_MoveTutorSign:
 	.string "MOVE TUTOR'S HOUSE\n"
 	.string "“New moves taught to POKéMON.”$"
 
+
+FallarborTown_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end

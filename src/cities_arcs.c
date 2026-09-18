@@ -78,6 +78,15 @@ static const u16 sArcV4[] =
     SPECIES_IRON_BOULDER, SPECIES_IRON_CROWN,
 };
 static const u16 sArcV5[] = { SPECIES_ETERNATUS };
+// Mythical events (GDD 6.6, Task 13.1). All fixed level 70. Mew, Celebi,
+// Genesect, Magearna and Keldeo live in their story arcs, not here.
+static const u16 sArcMythic[] =
+{
+    SPECIES_DEOXYS, SPECIES_JIRACHI, SPECIES_DIANCIE, SPECIES_MANAPHY,
+    SPECIES_PHIONE, SPECIES_SHAYMIN, SPECIES_HOOPA, SPECIES_VICTINI,
+    SPECIES_MELOETTA, SPECIES_VOLCANION, SPECIES_MARSHADOW, SPECIES_ZERAORA,
+    SPECIES_ZARUDE, SPECIES_MELTAN, SPECIES_MELMETAL,
+};
 
 static const struct CitiesArcInfo sArcs[CITIES_ARC_COUNT] =
 {
@@ -106,6 +115,7 @@ static const struct CitiesArcInfo sArcs[CITIES_ARC_COUNT] =
     [CITIES_ARC_V3] = { sArcV3, ARRAY_COUNT(sArcV3), 0, 0, 70 },
     [CITIES_ARC_V4] = { sArcV4, ARRAY_COUNT(sArcV4), 0, 0, 75 },
     [CITIES_ARC_V5] = { sArcV5, ARRAY_COUNT(sArcV5), 0, 0, 80 },
+    [CITIES_ARC_MYTHIC] = { sArcMythic, ARRAY_COUNT(sArcMythic), 0, 0, 70 },
 };
 
 static bool32 SpeciesCaught(u16 species)

@@ -1,4 +1,6 @@
 FallarborTown_CozmosHouse_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, FallarborTown_CozmosHouse_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_CozmosHouse_OnTransition
 	.byte 0
 
 FallarborTown_CozmosHouse_EventScript_ProfCozmo::
@@ -116,3 +118,11 @@ FallarborTown_CozmosHouse_Text_CozmoIsSoHappy:
 	.string "Look at PROF. COZMO…\n"
 	.string "He's so happy! I think it's cute.$"
 
+
+FallarborTown_CozmosHouse_OnTransition:
+	call Cities_EventScript_MythicShowJirachi
+	end
+
+FallarborTown_CozmosHouse_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end
