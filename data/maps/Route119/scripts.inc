@@ -15,6 +15,7 @@ Route119_EventScript_TryRemoveKecleon::
 	return
 
 Route119_OnTransition:
+	call Cities_EventScript_UpdateShaymin
 	call Cities_EventScript_UpdateV3Route119
 	call Cities_EventScript_UpdateV4Route119
 	call Cities_EventScript_UpdateChallengerIlaria

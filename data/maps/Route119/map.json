@@ -710,6 +710,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Cities_EventScript_V4RagingBolt",
       "flag": "FLAG_CITIES_HIDE_V4_RAGING_BOLT"
+    },
+    {
+      "local_id": "LOCALID_ROUTE119_CITIES_SHAYMIN",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHAYMIN)",
+      "x": 9,
+      "y": 106,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_MythicShaymin",
+      "flag": "FLAG_CITIES_HIDE_MYTHIC_SHAYMIN"
     }
   ],
   "warp_events": [

@@ -419,3 +419,106 @@ Cities_Text_MythicZarude:
 	.string "canopy, bark-clad and wary, guarding\l"
 	.string "its green.$"
 
+
+@ ===================================================================
+@ Deoxys — Birth Island (Task 13.1). The vanilla triangle puzzle is
+@ reused as-is (Deoxys level raised to 70 in BirthIsland_Exterior).
+@ A postgame sailor at Lilycove Harbor gives passage, Briney-style.
+@ ===================================================================
+
+Cities_EventScript_UpdateDeoxysSailor::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Cities_EventScript_HideDeoxysSailor
+	clearflag FLAG_CITIES_MYTHIC_DEOXYS_SAILOR
+	return
+
+Cities_EventScript_HideDeoxysSailor::
+	setflag FLAG_CITIES_MYTHIC_DEOXYS_SAILOR
+	return
+
+Cities_EventScript_DeoxysSailor::
+	lock
+	faceplayer
+	msgbox Cities_Text_DeoxysSailor, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Cities_EventScript_DeoxysSailorStay
+	setflag FLAG_ENABLE_SHIP_BIRTH_ISLAND
+	msgbox Cities_Text_DeoxysSailorCastOff, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	warp MAP_BIRTH_ISLAND_HARBOR, 8, 4
+	waitstate
+	release
+	end
+
+Cities_EventScript_DeoxysSailorStay::
+	msgbox Cities_Text_DeoxysSailorStay, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_Text_DeoxysSailor:
+	.string "There's a speck of land out east\n"
+	.string "the charts barely admit exists.\p"
+	.string "Ships' compasses spin near it.\n"
+	.string "Sailors call it BIRTH ISLAND.\p"
+	.string "You look like trouble enough to\n"
+	.string "enjoy that. Shall I take you?$"
+
+Cities_Text_DeoxysSailorCastOff:
+	.string "Hold onto something. The last\n"
+	.string "stretch gets strange.$"
+
+Cities_Text_DeoxysSailorStay:
+	.string "The island's not going anywhere.\n"
+	.string "Probably.$"
+
+@ ===================================================================
+@ Shaymin — the Route 119 meadow (Task 13.1). Halley's pre-League
+@ hook ("the meadow bloomed like a thank-you") pays off: postgame,
+@ after her history, she points the player south of the Institute.
+@ ===================================================================
+
+Cities_EventScript_UpdateShaymin::
+	goto_if_unset FLAG_CITIES_MYTHIC_SHAYMIN_MEADOW, Cities_EventScript_MythicHideShaymin
+	goto_if_set FLAG_CITIES_MYTHIC_SHAYMIN_CAUGHT, Cities_EventScript_MythicHideShaymin
+	clearflag FLAG_CITIES_HIDE_MYTHIC_SHAYMIN
+	return
+
+Cities_EventScript_MythicHideShaymin::
+	setflag FLAG_CITIES_HIDE_MYTHIC_SHAYMIN
+	return
+
+Cities_EventScript_MythicShaymin::
+	lock
+	faceplayer
+	msgbox Cities_Text_MythicShaymin, MSGBOX_DEFAULT
+	closemessage
+	waitse
+	playmoncry SPECIES_SHAYMIN, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setvar VAR_0x8004, SPECIES_SHAYMIN
+	special Script_CitiesSetWildLegendary
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Cities_EventScript_MythicCaughtShaymin
+	goto Cities_EventScript_LegendWithdrew
+
+Cities_EventScript_MythicCaughtShaymin::
+	setflag FLAG_CITIES_MYTHIC_SHAYMIN_CAUGHT
+	goto_if_set FLAG_CITIES_MYTHIC_SHAYMIN_GRACIDEA_GIVEN, Cities_EventScript_MythicShayminDone
+	setflag FLAG_CITIES_MYTHIC_SHAYMIN_GRACIDEA_GIVEN
+	giveitem ITEM_GRACIDEA
+Cities_EventScript_MythicShayminDone::
+	release
+	end
+
+Cities_Text_MythicShaymin:
+	.string "The meadow south of the INSTITUTE\n"
+	.string "is thick with gracidea flowers.\p"
+	.string "One of them lifts its head, looks\n"
+	.string "around, and turns out to be a\l"
+	.string "small green hedgehog.\p"
+	.string "The thank-you HALLEY spoke of,\n"
+	.string "grown legs.$"

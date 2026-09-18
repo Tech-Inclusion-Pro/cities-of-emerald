@@ -342,6 +342,7 @@ Route119_WeatherInstitute_2F_EventScript_CitiesHalley::
 Route119_WeatherInstitute_2F_EventScript_CitiesHalleyHistory::
 	msgbox Route119_WeatherInstitute_2F_Text_CitiesHalleyHistory, MSGBOX_DEFAULT
 	setflag FLAG_CITIES_EPOCH_WI_HISTORY
+	setflag FLAG_CITIES_MYTHIC_SHAYMIN_MEADOW
 	release
 	end
 
@@ -395,6 +396,7 @@ Route119_WeatherInstitute_2F_Text_CitiesHalleyHistory:
 Route119_WeatherInstitute_2F_EventScript_CitiesHalleyV3::
 	msgbox Route119_WeatherInstitute_2F_Text_CitiesHalleyV3, MSGBOX_DEFAULT
 	setflag FLAG_CITIES_EPOCH_WI_HISTORY
+	setflag FLAG_CITIES_MYTHIC_SHAYMIN_MEADOW
 	release
 	end
 

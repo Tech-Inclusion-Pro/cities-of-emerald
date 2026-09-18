@@ -2028,6 +2028,8 @@
 #define FLAG_CITIES_MYTHIC_MELTAN_NUT_5                        (CITIES_FLAGS_START + 0x160)
 #define FLAG_CITIES_MYTHIC_MELTAN_NUT_6                        (CITIES_FLAGS_START + 0x161)
 #define FLAG_CITIES_MYTHIC_MELTAN_HUNT_DONE                    (CITIES_FLAGS_START + 0x162) // all 6 nuts collected; Meltan appears
+#define FLAG_CITIES_MYTHIC_SHAYMIN_GRACIDEA_GIVEN              (CITIES_FLAGS_START + 0x163) // Gracidea handed out once
+#define FLAG_CITIES_MYTHIC_MELTAN_CAUGHT                       (CITIES_FLAGS_START + 0x164) // gate for Melmetal appearing
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 
