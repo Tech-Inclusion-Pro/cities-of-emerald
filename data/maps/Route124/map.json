@@ -196,6 +196,34 @@
       "trainer_sight_or_berry_tree_id": "7",
       "script": "Route124_EventScript_Isabella",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_ROUTE124_CITIES_NIHILEGO",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(NIHILEGO)",
+      "x": 37,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_V3Nihilego",
+      "flag": "FLAG_CITIES_HIDE_V3_NIHILEGO"
+    },
+    {
+      "local_id": "LOCALID_ROUTE124_CITIES_NECROZMA",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(NECROZMA)",
+      "x": 35,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_V3Necrozma",
+      "flag": "FLAG_CITIES_HIDE_V3_NECROZMA"
     }
   ],
   "warp_events": [

@@ -1,8 +1,10 @@
 MtPyre_Exterior_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, MtPyre_Exterior_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Exterior_OnTransition
 	.byte 0
 
 MtPyre_Exterior_OnTransition:
+	call Cities_EventScript_UpdateV3MtPyre
 	call MtPyre_Exterior_EventScript_CheckEnterFromSummit
 	call MtPyre_Exterior_EventScript_UpdateEeveeTrainerUmbreon
 	end
@@ -67,3 +69,7 @@ MtPyre_Exterior_Text_EeveeUmbreonReward:
 MtPyre_Exterior_Text_EeveeUmbreonChat:
 	.string "Moonlight suits Umbreon.\n"
 	.string "It suits me, too.$"
+
+MtPyre_Exterior_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end

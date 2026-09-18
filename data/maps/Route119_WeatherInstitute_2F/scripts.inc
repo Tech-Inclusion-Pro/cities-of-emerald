@@ -331,6 +331,7 @@ Route119_WeatherInstitute_2F_Text_NoAbnormalWeather:
 Route119_WeatherInstitute_2F_EventScript_CitiesHalley::
 	lock
 	faceplayer
+	goto_if_ge VAR_CITIES_V3_STATE, 2, Route119_WeatherInstitute_2F_EventScript_CitiesHalleyV3
 	goto_if_set FLAG_SYS_GAME_CLEAR, Route119_WeatherInstitute_2F_EventScript_CitiesHalleyHistory
 	msgbox Route119_WeatherInstitute_2F_Text_CitiesHalleyBefore, MSGBOX_DEFAULT
 	release
@@ -386,3 +387,25 @@ Route119_WeatherInstitute_2F_Text_CitiesHalleyHistory:
 	.string "gray coat who watches the sky like\l"
 	.string "it owes him an answer…\p"
 	.string "please be kind to him.$"
+
+@ After V3 (the Archivist seen in person at Mt. Pyre), Halley hears
+@ the description and knows exactly who closed a hole in the sky.
+Route119_WeatherInstitute_2F_EventScript_CitiesHalleyV3::
+	msgbox Route119_WeatherInstitute_2F_Text_CitiesHalleyV3, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_EPOCH_WI_HISTORY
+	release
+	end
+
+Route119_WeatherInstitute_2F_Text_CitiesHalleyV3:
+	.string "A man in a slate-gray coat, who\n"
+	.string "closed a hole in the sky with\l"
+	.string "his hands…\p"
+	.string "I heard it from three different\n"
+	.string "rangers.\p"
+	.string "Reading storms was never enough\n"
+	.string "for him. He wanted to catch one\l"
+	.string "and wring it dry.\p"
+	.string "If you see him again - tell him\n"
+	.string "his desk is still here.\p"
+	.string "Tell him it faces the sea now.\n"
+	.string "I turned it myself.$"

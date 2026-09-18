@@ -5,6 +5,7 @@ MossdeepCity_SpaceCenter_1F_MapScripts::
 
 MossdeepCity_SpaceCenter_1F_OnTransition:
 	call Cities_EventScript_UpdateV1Researcher
+	call Cities_EventScript_V3UpdateHelpers
 	goto_if_eq VAR_MOSSDEEP_CITY_STATE, 2, MossdeepCity_SpaceCenter_1F_EventScript_MoveObjectsForTeamMagma
 	end
 

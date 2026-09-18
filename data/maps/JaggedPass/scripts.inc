@@ -5,6 +5,7 @@ JaggedPass_MapScripts::
 	.byte 0
 
 JaggedPass_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
 	setstepcallback STEP_CB_ASH
 	call_if_eq VAR_JAGGED_PASS_STATE, 0, JaggedPass_EventScript_CheckHasMagmaEmblem
 	end
@@ -19,6 +20,7 @@ JaggedPass_EventScript_SetReadyToOpenHideout::
 	return
 
 JaggedPass_OnTransition:
+	call Cities_EventScript_UpdateV3JaggedPass
 	call_if_eq VAR_JAGGED_PASS_ASH_WEATHER, 1, JaggedPass_EventScript_SetWeatherAsh
 	end
 

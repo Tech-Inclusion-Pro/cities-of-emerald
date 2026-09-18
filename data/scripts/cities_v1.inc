@@ -72,8 +72,39 @@ Cities_EventScript_V1Researcher::
 	lock
 	faceplayer
 	goto_if_eq VAR_CITIES_V1_STATE, 0, Cities_EventScript_V1ResearcherIntro
+	goto_if_ne VAR_CITIES_V2_STATE, 3, Cities_EventScript_V1ResearcherV1Phase
+	goto_if_eq VAR_CITIES_V3_STATE, 0, Cities_EventScript_V3ResearcherWormholes
+	goto_if_unset FLAG_CITIES_V3_COSMOG_GIVEN, Cities_EventScript_V3ResearcherCosmogRetry
+	msgbox Cities_Text_V3ResearcherDuring, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_V1ResearcherV1Phase::
 	goto_if_eq VAR_CITIES_V1_STATE, 3, Cities_EventScript_V1ResearcherAfter
 	msgbox Cities_Text_V1ResearcherRepeat, MSGBOX_DEFAULT
+	release
+	end
+
+@ V3 entry: the researcher reports the wormholes and Cosmog moves in.
+Cities_EventScript_V3ResearcherWormholes::
+	msgbox Cities_Text_V3ResearcherWormholes, MSGBOX_DEFAULT
+	setvar VAR_CITIES_V3_STATE, 1
+	goto Cities_EventScript_V3ResearcherGiveCosmog
+
+Cities_EventScript_V3ResearcherCosmogRetry::
+	msgbox Cities_Text_V3ResearcherCosmogRetry, MSGBOX_DEFAULT
+Cities_EventScript_V3ResearcherGiveCosmog::
+	msgbox Cities_Text_V3CosmogShelters, MSGBOX_DEFAULT
+	givemon SPECIES_COSMOG, 70
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, Cities_EventScript_V3CosmogGiven
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, Cities_EventScript_V3CosmogGiven
+	msgbox Cities_Text_V3CosmogNoRoom, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_V3CosmogGiven::
+	setflag FLAG_CITIES_V3_COSMOG_GIVEN
+	msgbox Cities_Text_V3CosmogGiven, MSGBOX_DEFAULT
 	release
 	end
 

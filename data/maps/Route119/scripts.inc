@@ -4,6 +4,7 @@ Route119_MapScripts::
 	.byte 0
 
 Route119_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
 	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Route119_EventScript_TryRemoveKecleon
 	end
 
@@ -14,6 +15,7 @@ Route119_EventScript_TryRemoveKecleon::
 	return
 
 Route119_OnTransition:
+	call Cities_EventScript_UpdateV3Route119
 	call Cities_EventScript_UpdateChallengerIlaria
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId
