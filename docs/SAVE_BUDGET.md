@@ -6,6 +6,8 @@ Task 0.4 deliverable. Measured on `upcoming` (commit at clone, 2026-09-16) with 
 
 > **Update 2026-09-17 (M3):** `ROAMER_COUNT` 1 → 3 for the roaming beasts: +56 B in SaveBlock1 (2 × 28 B `struct Roamer`), leaving ~556 B free. Save layout change — saves from before this build are incompatible.
 
+> **Update 2026-09-18 (Task 12.2 prep):** trainer table grown 864 → 928 (`MAX_TRAINERS_COUNT_EMERALD`): +8 B of trainer-defeat flags in SaveBlock1 (~548 B free) and every flag ID after the trainer block shifts by 64. Save layout change (taken once, with headroom): IDs 863–926 reserved for Team Epoch (Phase 12), the title-defense roster (Phase 14), and future events.
+
 ## 1. Current state (measured)
 
 | Block | Used | Capacity | Free | Enforced by |

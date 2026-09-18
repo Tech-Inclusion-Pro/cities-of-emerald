@@ -860,9 +860,9 @@
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
 
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
-//       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
-//       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
+// NOTE: Because each Trainer uses a flag to determine when they are defeated, adding trainers
+//       past MAX_TRAINERS_COUNT grows the trainer-flag block in SaveBlock1 (8 trainers = 1 byte)
+//       and shifts every downstream flag ID (SYSTEM/DAILY/CITIES) — a save-format break.
 
 // Cities of Emerald: Eeveelution trainers (GDD 4.3). Uses 8 of the 9 spare
 // trainer slots noted above — Phase 8 rematch versions will need the flag
@@ -876,8 +876,12 @@
 #define TRAINER_CITIES_EEVEE_UMBREON        861
 #define TRAINER_CITIES_EEVEE_GLACEON        862
 
-#define TRAINERS_COUNT_EMERALD     863
-#define MAX_TRAINERS_COUNT_EMERALD 864
+// Cities of Emerald: table grown 864 -> 928 (approved 2026-09-18; +8 B of
+// trainer flags in SaveBlock1, save-format break taken once with headroom).
+// IDs 863..926 are reserved for Team Epoch (Phase 12, TRAINER_EPOCH_*), the
+// title-defense ranked NPC roster (Phase 14), and future events.
+#define TRAINERS_COUNT_EMERALD     927
+#define MAX_TRAINERS_COUNT_EMERALD 928
 
 #if IS_FRLG
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG
