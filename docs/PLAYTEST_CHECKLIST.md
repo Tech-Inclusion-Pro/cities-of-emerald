@@ -318,6 +318,14 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] V5: arriving at Pacifidlog after V4 starts the storm (downpour) → the Archivist at the dock sails you to the Storm's Eye islet → Eternatus (lv80; catch or defeat both trigger the heroic act) → rift shut, storm stops, quiet boat ride home; if Eternatus wasn't caught, he ferries you back out until it is
 - [ ] All Epoch battles award ranking points once; no battle anywhere with the Archivist; "Kai" appears nowhere
 
+## Task 12.6 — The ending (Phase 12)
+- [ ] After V5: sun out at Pacifidlog, the family (Marisol, Nico, Bay) stands on the planks behind the Archivist at the dock; each has a "before" line
+- [ ] Talking to him plays the scene: Nico runs to him and says the name; the bell rings once; Marisol's speech; his answer; white fade — from here he is KAI
+- [ ] After: the family is home outside the bell house (House 3) with new lines; Kai still ferries to the Storm's Eye if Eternatus is uncaught
+- [ ] Epilogues: Kai at the Weather Institute 2F window (desk faces the sea; Halley has a final line); the annex is the Coralmere Archive — Meridian teaching, Gnomon labeling crates "NEVER AGAIN (PROBABLY)"
+- [ ] Journal: "The Quiet Buyers" quest tracked the whole thread and drops off at the ending; Halley's history now says "the year the great storms came" (timeline fix)
+- [ ] "Kai" is not spoken anywhere before the naming scene
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

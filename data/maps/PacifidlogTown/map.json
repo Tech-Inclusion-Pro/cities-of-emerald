@@ -91,6 +91,48 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Cities_EventScript_V5ArchivistPacifidlog",
       "flag": "FLAG_CITIES_HIDE_V5_ARCHIVIST_PACIFIDLOG"
+    },
+    {
+      "local_id": "LOCALID_PACIFIDLOG_CITIES_MARISOL",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "x": 9,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_EndingMarisol",
+      "flag": "FLAG_CITIES_HIDE_ENDING_FAMILY"
+    },
+    {
+      "local_id": "LOCALID_PACIFIDLOG_CITIES_NICO",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
+      "x": 8,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_EndingNico",
+      "flag": "FLAG_CITIES_HIDE_ENDING_FAMILY"
+    },
+    {
+      "local_id": "LOCALID_PACIFIDLOG_CITIES_BAY",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "x": 10,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_EndingBay",
+      "flag": "FLAG_CITIES_HIDE_ENDING_FAMILY"
     }
   ],
   "warp_events": [

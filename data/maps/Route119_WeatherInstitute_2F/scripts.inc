@@ -3,6 +3,7 @@ Route119_WeatherInstitute_2F_MapScripts::
 	.byte 0
 
 Route119_WeatherInstitute_2F_OnTransition:
+	call Cities_EventScript_UpdateEpilogueKaiWI
 	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 0, Route119_WeatherInstitute_2F_EventScript_SetScientistPosAquaHere
 	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_WeatherInstitute_2F_EventScript_SetScientistPosAquaGone
 	call_if_set FLAG_SYS_GAME_CLEAR, Route119_WeatherInstitute_2F_EventScript_SetScientistPosGameClear
@@ -331,6 +332,7 @@ Route119_WeatherInstitute_2F_Text_NoAbnormalWeather:
 Route119_WeatherInstitute_2F_EventScript_CitiesHalley::
 	lock
 	faceplayer
+	goto_if_set FLAG_CITIES_KAI_NAMED, Route119_WeatherInstitute_2F_EventScript_CitiesHalleyEnding
 	goto_if_ge VAR_CITIES_V3_STATE, 2, Route119_WeatherInstitute_2F_EventScript_CitiesHalleyV3
 	goto_if_set FLAG_SYS_GAME_CLEAR, Route119_WeatherInstitute_2F_EventScript_CitiesHalleyHistory
 	msgbox Route119_WeatherInstitute_2F_Text_CitiesHalleyBefore, MSGBOX_DEFAULT
@@ -364,9 +366,9 @@ Route119_WeatherInstitute_2F_Text_CitiesHalleyHistory:
 	.string "Then you've seen how big the sea\n"
 	.string "can be. Maybe you can hold this\l"
 	.string "story without dropping it.\p"
-	.string "The year KYOGRE woke, we tracked\n"
-	.string "storm cells from this room, day\l"
-	.string "and night.\p"
+	.string "The year the great storms came,\n"
+	.string "we tracked their cells from this\l"
+	.string "room, day and night.\p"
 	.string "The finest reader of storms among us\n"
 	.string "was a young researcher from a small\l"
 	.string "coastal village.\p"
@@ -409,3 +411,18 @@ Route119_WeatherInstitute_2F_Text_CitiesHalleyV3:
 	.string "his desk is still here.\p"
 	.string "Tell him it faces the sea now.\n"
 	.string "I turned it myself.$"
+
+Route119_WeatherInstitute_2F_EventScript_CitiesHalleyEnding::
+	msgbox Route119_WeatherInstitute_2F_Text_CitiesHalleyEnding, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_WeatherInstitute_2F_Text_CitiesHalleyEnding:
+	.string "Thirty years I read this room's\n"
+	.string "weather.\p"
+	.string "Today the desk by the window is\n"
+	.string "taken, the kettle is on, and\l"
+	.string "somebody is humming over the\l"
+	.string "pressure charts.\p"
+	.string "Fair skies, Champion.\n"
+	.string "Officially logged.$"

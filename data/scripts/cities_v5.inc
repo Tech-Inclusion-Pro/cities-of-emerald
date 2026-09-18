@@ -15,6 +15,7 @@ Cities_EventScript_UpdateV5Pacifidlog::
 	goto_if_eq VAR_CITIES_V5_STATE, 1, Cities_EventScript_V5PacifidlogStorm
 	goto_if_eq VAR_CITIES_V5_STATE, 2, Cities_EventScript_V5PacifidlogStorm
 	goto_if_ne VAR_CITIES_V5_STATE, 3, Cities_EventScript_V5PacifidlogHideArchivist
+	goto_if_unset FLAG_CITIES_KAI_NAMED, Cities_EventScript_V5PacifidlogShowArchivist
 	goto_if_unset FLAG_CITIES_V5_ETERNATUS_CAUGHT, Cities_EventScript_V5PacifidlogShowArchivist
 	goto Cities_EventScript_V5PacifidlogHideArchivist
 
@@ -40,7 +41,7 @@ Cities_EventScript_V5PacifidlogHideArchivist::
 Cities_EventScript_V5ArchivistPacifidlog::
 	lock
 	faceplayer
-	goto_if_eq VAR_CITIES_V5_STATE, 3, Cities_EventScript_V5ArchivistFerryBack
+	goto_if_eq VAR_CITIES_V5_STATE, 3, Cities_EventScript_V5ArchivistAfterStorm
 	msgbox Cities_Text_V5ArchivistPacifidlog, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Cities_EventScript_V5ArchivistWait
 	msgbox Cities_Text_V5ArchivistSail, MSGBOX_DEFAULT
@@ -55,6 +56,11 @@ Cities_EventScript_V5ArchivistWait::
 	msgbox Cities_Text_V5ArchivistWait, MSGBOX_DEFAULT
 	release
 	end
+
+@ 12.6: at V5==3 the ending scene comes first; the ferry after.
+Cities_EventScript_V5ArchivistAfterStorm::
+	goto_if_unset FLAG_CITIES_KAI_NAMED, Cities_EventScript_EndingScene
+	goto Cities_EventScript_V5ArchivistFerryBack
 
 @ After the rift is shut: he still ferries the player out while
 @ Eternatus remains uncaught.

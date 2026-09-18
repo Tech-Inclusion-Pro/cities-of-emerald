@@ -394,6 +394,7 @@ After becoming Champion, the player unlocks:
 | Pacifidlog | A family | Rebuilt their lives on the water; their home has a small bell by the door |
 
 - **[DECIDED]** The **Pacifidlog family** speaks Kai's name in the ending. They rebuilt their lives on the water, the clearest sign that Coralmere's people carried on.
+- **[DECIDED 2026-09-18]** The family: **Tomas** (Kai's childhood best friend; rang the bell every year "so anyone still out there could find their way home"; passed away years ago), his daughter **Marisol**, and her children **Nico** and **Bay** — the children who speak the name, because to them it was a bedtime story, never lost.
 - **[DECIDED]** They are the family of Kai's **childhood best friend**. They kept his memory alive by telling stories about him, so they know his name when he has lost it.
 - **[DECIDED]** The best friend survived the storm and lived a full life, but passed away years later. They live on through the family's stories.
 - **[DECIDED]** The children of the family, who grew up hearing stories about Kai, are the ones who speak his name. The ending is bittersweet and centers acceptance: Kai cannot get the past back, but the people and memories he cared about continued.
@@ -605,7 +606,10 @@ A Littleroot Town character introduces the Accessibility menu and can change set
 
 ## 14. Open decisions (summary)
 
-1. The Pacifidlog family's other members (7.2)
-5. Eeveelution trainer locations (4.3)
-6. Kai's redemption details: why the search failed, how the family learned, the heroic act (7.2)
-7. All other **[PROPOSED]** items
+**None.** The last open item — the Pacifidlog family's other members —
+was decided 2026-09-18 (Task 12.6): **Tomas** (Kai's late best friend,
+who rang the bell every year), his daughter **Marisol**, and her
+children **Nico** and **Bay**, who speak the name. Eeveelution trainer
+locations and the redemption details were decided in earlier phases.
+Remaining **[PROPOSED]** items (custom art, etc.) are release-phase
+polish, not design decisions.

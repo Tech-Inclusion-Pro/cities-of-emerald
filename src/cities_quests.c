@@ -663,6 +663,30 @@ static const u8 *MasterQuestStep(void)
     return COMPOUND_STRING("Hold the top score in the national\nrankings to become the POKéMON\lMASTER. Check START > RANKING.");
 }
 
+// ---- Team Epoch, V1-V5 (GDD 7.2, Task 12.6) ----
+// One quest line for the whole thread. It drops off the journal at
+// the ending (the name never appears here; Task 12.8's rule).
+
+static bool32 EpochQuestActive(void)
+{
+    return VarGet(VAR_CITIES_V1_STATE) >= 1 && !FlagGet(FLAG_CITIES_KAI_NAMED);
+}
+
+static const u8 *EpochQuestStep(void)
+{
+    if (VarGet(VAR_CITIES_V5_STATE) == 3)
+        return COMPOUND_STRING("The storm is gone. The man who\nstopped it is still on the dock at\lPACIFIDLOG. Someone should talk to\lhim.");
+    if (VarGet(VAR_CITIES_V5_STATE) >= 1)
+        return COMPOUND_STRING("A storm is closing on PACIFIDLOG\nTOWN. The ARCHIVIST waits at the\ldock. Go with him.");
+    if (VarGet(VAR_CITIES_V4_STATE) >= 1)
+        return COMPOUND_STRING("Time rifts have opened over Hoenn.\nThe anchors hold at ROUTE 128,\lover the drowned village. Bring\lthem down.");
+    if (VarGet(VAR_CITIES_V3_STATE) >= 1)
+        return COMPOUND_STRING("Holes in the sky over six places.\nClose them: catch what came\lthrough. TEAM EPOCH is helping.");
+    if (VarGet(VAR_CITIES_V2_STATE) >= 1)
+        return COMPOUND_STRING("DEVON's stolen research was traced\nto a camp on the ROUTE 115 cliffs,\labove METEOR FALLS.");
+    return COMPOUND_STRING("Someone is quietly buying old\nresearch near the MOSSDEEP SPACE\lCENTER. The annex door is on 2F.");
+}
+
 // ---- Journal ----
 
 struct CitiesQuest
@@ -695,6 +719,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Chained Ruin"),    H2AQuestActive,        H2AQuestStep },
     { COMPOUND_STRING("The Mask in the Grove"), H2BQuestActive,      H2BQuestStep },
     { COMPOUND_STRING("The Making of Everything"), H5AQuestActive,   H5AQuestStep },
+    { COMPOUND_STRING("The Quiet Buyers"),    EpochQuestActive,      EpochQuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

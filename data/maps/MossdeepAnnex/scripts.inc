@@ -7,6 +7,7 @@ MossdeepAnnex_MapScripts::
 
 MossdeepAnnex_OnTransition:
 	call Cities_EventScript_UpdateV1Annex
+	call Cities_EventScript_UpdateEpilogueArchive
 	end
 
 MossdeepAnnex_OnResume:

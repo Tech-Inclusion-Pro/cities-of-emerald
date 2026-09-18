@@ -5,6 +5,7 @@ PacifidlogTown_MapScripts::
 
 PacifidlogTown_OnTransition:
 	call Cities_EventScript_UpdateV5Pacifidlog
+	call Cities_EventScript_UpdateEnding
 	call Cities_EventScript_UpdateH10Elder @ H10 (cities_h10.inc)
 	setflag FLAG_VISITED_PACIFIDLOG_TOWN
 	end

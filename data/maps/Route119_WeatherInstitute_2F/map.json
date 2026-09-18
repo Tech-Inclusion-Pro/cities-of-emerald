@@ -138,6 +138,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route119_WeatherInstitute_2F_EventScript_CitiesHalley",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_WEATHER_INSTITUTE_2F_CITIES_KAI",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+      "x": 12,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_EpilogueKai",
+      "flag": "FLAG_CITIES_HIDE_KAI_WI"
     }
   ],
   "warp_events": [

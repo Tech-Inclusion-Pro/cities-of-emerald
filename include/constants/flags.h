@@ -1975,6 +1975,11 @@
 #define FLAG_CITIES_HIDE_V5_ARCHIVIST_PACIFIDLOG                (CITIES_FLAGS_START + 0x12C)
 #define FLAG_CITIES_HIDE_V5_ARCHIVIST_ISLET                     (CITIES_FLAGS_START + 0x12D)
 #define FLAG_CITIES_HIDE_V2_AIDE                                (CITIES_FLAGS_START + 0x12E) // Devon aide hook (Devon Corp 3F), appears once V1 completes
+#define FLAG_CITIES_KAI_NAMED                                   (CITIES_FLAGS_START + 0x12F) // THE ending flag (12.6): the children spoke his name; he is Kai everywhere after
+#define FLAG_CITIES_HIDE_ENDING_FAMILY                          (CITIES_FLAGS_START + 0x130) // Marisol, Nico, Bay (Pacifidlog; gather at the dock for the scene, home after)
+#define FLAG_CITIES_HIDE_KAI_WI                                 (CITIES_FLAGS_START + 0x131) // Kai at the Weather Institute 2F window (epilogue)
+#define FLAG_CITIES_HIDE_ARCHIVE_MERIDIAN                       (CITIES_FLAGS_START + 0x132) // Meridian keeps the Coralmere Archive (annex epilogue)
+#define FLAG_CITIES_HIDE_ARCHIVE_GNOMON                         (CITIES_FLAGS_START + 0x133) // Gnomon dismantles the machines (annex epilogue)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 
