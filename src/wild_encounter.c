@@ -23,6 +23,7 @@
 #include "tv.h"
 #include "wild_encounter.h"
 #include "story_only.h"
+#include "cities_challenge.h"
 #include "battle_debug.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
@@ -591,14 +592,16 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum WildPok
     if (IsStoryOnlySpecies(wildMonInfo->wildPokemon[wildMonIndex].species))
         return FALSE;
 
-    CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level);
+    // Cities of Emerald (GDD 10): randomizer remaps the wild species after
+    // selection; the remap is itself never story-only.
+    CreateWildMon(CitiesMaybeRandomizeWild(wildMonInfo->wildPokemon[wildMonIndex].species), level);
     return TRUE;
 }
 
 static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 rod)
 {
     u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
-    enum Species wildMonSpecies = wildMonInfo->wildPokemon[wildMonIndex].species;
+    enum Species wildMonSpecies = CitiesMaybeRandomizeWild(wildMonInfo->wildPokemon[wildMonIndex].species);
     u8 level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING);
 
     UpdateChainFishingStreak();

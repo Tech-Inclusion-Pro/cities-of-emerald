@@ -658,3 +658,5 @@ gSpecials::
 	def_special Script_CitiesBufferTradeSpeciesName
 	def_special Script_CitiesBufferAchievements
 	def_special Script_CitiesShinyCharmEligible
+	def_special Script_CitiesSetNuzlocke
+	def_special Script_CitiesSetRandomizer

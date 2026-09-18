@@ -40,6 +40,7 @@
 #include "secret_base.h"
 #include "sound.h"
 #include "starter_choose.h"
+#include "cities_challenge.h"
 #include "strings.h"
 #include "string_util.h"
 #include "task.h"
@@ -713,6 +714,7 @@ static void CB2_EndWildBattle(void)
     }
     else
     {
+        CitiesNuzlockeProcessFaints(); // GDD 10: lay fainted mons to rest
         SetMainCallback2(CB2_ReturnToField);
         DowngradeBadPoison();
         gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
@@ -1014,6 +1016,8 @@ static void CB2_GiveStarter(void)
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
+    if (CitiesRandomizeStartersOn()) // GDD 10 randomizer
+        starterMon = CitiesRandomizeSpecies(starterMon);
     ScriptGiveMon(starterMon, 5, ITEM_NONE);
     ResetTasks();
     PlayBattleBGM();
@@ -1603,6 +1607,11 @@ static void CB2_EndTrainerBattle(void)
          || FlagGet(FNPC_FLAG_HEAL_AFTER_FOLLOWER_BATTLE)))
             HealPlayerParty();
     }
+
+    // GDD 10: survive a trainer battle with faints → lay them to rest.
+    // A total wipe (defeated) white-outs and heals, ending the run instead.
+    if (!IsPlayerDefeated(gBattleOutcome))
+        CitiesNuzlockeProcessFaints();
 
     if (TRAINER_BATTLE_PARAM.earlyRival)
     {
@@ -2289,20 +2298,17 @@ void CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Traine
     for (i = 0; i < monsCount; i++)
     {
         u32 monIndex = monIndices[i];
+        struct TrainerMon genMon = trainer->party[monIndex];
         // Cities of Emerald (GDD 4.2): rival teams keep the vanilla 3-way
         // Hoenn variants in data; swap the starter-line member for the same
         // evolution stage of the player's chosen region before generation so
         // movesets, IVs, and nature all come out right.
         if (trainer->trainerClass == TRAINER_CLASS_RIVAL)
-        {
-            struct TrainerMon rivalMon = trainer->party[monIndex];
-            rivalMon.species = CitiesGetRivalStarterSpecies(rivalMon.species);
-            GenerateMonFromTrainerMon(&party[i], &rivalMon, trainerGen);
-        }
-        else
-        {
-            GenerateMonFromTrainerMon(&party[i], &trainer->party[monIndex], trainerGen);
-        }
+            genMon.species = CitiesGetRivalStarterSpecies(genMon.species);
+        // GDD 10 randomizer: remap each opponent species (never story-only).
+        if (CitiesRandomizeTrainersOn())
+            genMon.species = CitiesRandomizeSpecies(genMon.species);
+        GenerateMonFromTrainerMon(&party[i], &genMon, trainerGen);
     }
     Free(trainerGen);
 }

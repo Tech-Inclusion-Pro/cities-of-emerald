@@ -916,6 +916,7 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_CITIESWONTLISTENRAIN]                 = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil you earn the RAIN BADGE!"),
     [STRINGID_CITIESWONTLISTENLATIOS]               = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil it's reunited with LATIOS!"),
     [STRINGID_CITIESWONTLISTENLATIAS]               = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} won't listen\nuntil it's reunited with LATIAS!"),
+    [STRINGID_CITIESNUZLOCKEBLOCK]                  = COMPOUND_STRING("The NUZLOCKE rule holds!\nYou've already met this area's first!"),
 };
 
 const u16 gTrainerUsedItemStringIds[] =

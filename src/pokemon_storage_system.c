@@ -30,6 +30,7 @@
 #include "pokemon_storage_system.h"
 #include "script.h"
 #include "sound.h"
+#include "cities_challenge.h"
 #include "string_util.h"
 #include "strings.h"
 #include "text.h"
@@ -2343,7 +2344,13 @@ static void Task_PokeStorageMain(u8 taskId)
             }
             break;
         case INPUT_MOVE_MON:
-            if (IsRemovingLastPartyMon())
+            // Cities of Emerald (GDD 10): memorial Pokémon rest in peace.
+            if (CitiesNuzlockeOn() && sCursorArea == CURSOR_AREA_IN_BOX
+             && StorageGetCurrentBox() == CitiesNuzlockeMemorialBox())
+            {
+                PlaySE(SE_FAILURE);
+            }
+            else if (IsRemovingLastPartyMon())
             {
                 sStorage->state = MSTATE_ERROR_LAST_PARTY_MON;
             }
@@ -2354,7 +2361,12 @@ static void Task_PokeStorageMain(u8 taskId)
             }
             break;
         case INPUT_SHIFT_MON:
-            if (!CanShiftMon())
+            if (CitiesNuzlockeOn() && sCursorArea == CURSOR_AREA_IN_BOX
+             && StorageGetCurrentBox() == CitiesNuzlockeMemorialBox())
+            {
+                PlaySE(SE_FAILURE);
+            }
+            else if (!CanShiftMon())
             {
                 sStorage->state = MSTATE_ERROR_LAST_PARTY_MON;
             }
@@ -2365,8 +2377,16 @@ static void Task_PokeStorageMain(u8 taskId)
             }
             break;
         case INPUT_WITHDRAW:
-            PlaySE(SE_SELECT);
-            SetPokeStorageTask(Task_WithdrawMon);
+            if (CitiesNuzlockeOn() && sCursorArea == CURSOR_AREA_IN_BOX
+             && StorageGetCurrentBox() == CitiesNuzlockeMemorialBox())
+            {
+                PlaySE(SE_FAILURE);
+            }
+            else
+            {
+                PlaySE(SE_SELECT);
+                SetPokeStorageTask(Task_WithdrawMon);
+            }
             break;
         case INPUT_PLACE_MON:
             PlaySE(SE_SELECT);

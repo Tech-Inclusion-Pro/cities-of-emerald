@@ -1,5 +1,6 @@
 #include "global.h"
 #include "cities_accessibility.h"
+#include "cities_challenge.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -533,6 +534,7 @@ static void Cmd_tryrecycleitem(void);
 static void Cmd_settypetoenvironment(void);
 static void Cmd_snatchsetbattlers(void);
 static void Cmd_handleballthrow(void);
+static bool32 CitiesNuzlockeBlocksCatch(void);
 static void Cmd_givecaughtmon(void);
 static void Cmd_trysetcaughtmondexflags(void);
 static void Cmd_displaydexinfo(void);
@@ -8060,10 +8062,35 @@ static void Cmd_handleballthrow(void)
         MarkBattlerForControllerExec(gBattlerAttacker);
         gBattlescriptCurrInstr = BattleScript_WallyBallThrow;
     }
+    else if (CitiesNuzlockeBlocksCatch())
+    {
+        // Cities of Emerald (GDD 10): first-encounter rule refuses the ball.
+        BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, BALL_TRAINER_BLOCK);
+        MarkBattlerForControllerExec(gBattlerAttacker);
+        gBattlescriptCurrInstr = BattleScript_CitiesNuzlockeBallBlock;
+    }
     else
     {
         SetBallThrowShakes();
     }
+}
+
+// GDD 10: TRUE when the Nuzlocke first-encounter rule forbids catching the
+// current wild target (dupes/shiny clauses handled inside).
+static bool32 CitiesNuzlockeBlocksCatch(void)
+{
+    struct Pokemon *mon;
+    u16 species;
+    bool8 isShiny;
+
+    if (!CitiesNuzlockeOn())
+        return FALSE;
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        return FALSE;
+    mon = GetBattlerMon(GetCatchingBattler());
+    species = GetMonData(mon, MON_DATA_SPECIES);
+    isShiny = IsMonShiny(mon);
+    return !CitiesNuzlockeMayCatch(species, isShiny);
 }
 
 static void Cmd_givecaughtmon(void)
@@ -8177,6 +8204,10 @@ static void Cmd_givecaughtmon(void)
             if (lostItem != ITEM_NONE && GetItemPocket(lostItem) != POCKET_BERRIES)
                 SetMonData(caughtMon, MON_DATA_HELD_ITEM, &lostItem);  // Restore non-berry items
         }
+
+        // Cities of Emerald (GDD 10): consume the area's Nuzlocke first
+        // encounter now that the wild mon is actually caught.
+        CitiesNuzlockeNoteCaught(GetMonData(caughtMon, MON_DATA_SPECIES), IsMonShiny(caughtMon));
 
         enum PartyMon emptySlot;
         for (emptySlot = PARTY_MON_0; emptySlot < PARTY_MON_NONE; emptySlot++)

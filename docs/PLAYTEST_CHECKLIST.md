@@ -351,6 +351,14 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Shiny Charm: at 300 caught, Birch (his lab) hands over the Shiny Charm, once
 - [ ] Mauville plaza: free move relearner (~15,8) and deleter (~17,8), no Heart Scale; Fallarbor/Lilycove NPCs still work
 
+## Phase 15 — Challenge modes (new game, truck setup)
+- [ ] Truck setup asks Nuzlocke? then Randomizer? after difficulty/assist; both default off if you say no
+- [ ] Randomizer on: wild encounters, your starter, and trainer teams are shuffled to random non-legendary species; the same original always maps to the same replacement; no legendaries/mythicals/UBs/paradox ever appear
+- [ ] Nuzlocke on: after your first catch in an area, a Poké Ball on a different species there is refused ("the NUZLOCKE rule holds"); dupes (already-owned) and shinies are still catchable
+- [ ] Nuzlocke faint: a Pokémon that faints (and you survive the battle) is moved to the last PC box (memorial); it can't be moved, shifted, or withdrawn from that box (fail beep)
+- [ ] Total party wipe still white-outs and heals normally (run-ending, no permadeath applied)
+- [ ] A normal (no-challenge) save behaves exactly as before
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

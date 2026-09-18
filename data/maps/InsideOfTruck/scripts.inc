@@ -90,7 +90,7 @@ InsideOfTruck_EventScript_SetHard::
 
 InsideOfTruck_EventScript_CitiesSetupAssist::
 	msgbox InsideOfTruck_Text_AssistExplain, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, InsideOfTruck_EventScript_CitiesSetupDone
+	goto_if_eq VAR_RESULT, NO, InsideOfTruck_EventScript_CitiesSetupChallenge
 	setflag FLAG_CITIES_ASSIST_MODE
 	message InsideOfTruck_Text_ChooseLevelCap
 	waitmessage
@@ -99,23 +99,60 @@ InsideOfTruck_EventScript_CitiesSetupAssist::
 	case 0, InsideOfTruck_EventScript_CapKeep
 	case 1, InsideOfTruck_EventScript_CapRaise
 	case 2, InsideOfTruck_EventScript_CapRemove
-	goto InsideOfTruck_EventScript_CitiesSetupDone
+	goto InsideOfTruck_EventScript_CitiesSetupChallenge
 
 InsideOfTruck_EventScript_CapKeep::
 	setvar VAR_CITIES_LEVEL_CAP, 0
-	goto InsideOfTruck_EventScript_CitiesSetupDone
+	goto InsideOfTruck_EventScript_CitiesSetupChallenge
 
 InsideOfTruck_EventScript_CapRaise::
 	setvar VAR_CITIES_LEVEL_CAP, 1
-	goto InsideOfTruck_EventScript_CitiesSetupDone
+	goto InsideOfTruck_EventScript_CitiesSetupChallenge
 
 InsideOfTruck_EventScript_CapRemove::
 	setvar VAR_CITIES_LEVEL_CAP, 100
+	goto InsideOfTruck_EventScript_CitiesSetupChallenge
+
+InsideOfTruck_EventScript_CitiesSetupChallenge::
+	msgbox InsideOfTruck_Text_NuzlockeExplain, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, InsideOfTruck_EventScript_CitiesSetupRandomizer
+	setvar VAR_0x8004, 1
+	special Script_CitiesSetNuzlocke
+	msgbox InsideOfTruck_Text_NuzlockeOn, MSGBOX_DEFAULT
+InsideOfTruck_EventScript_CitiesSetupRandomizer::
+	msgbox InsideOfTruck_Text_RandomizerExplain, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, InsideOfTruck_EventScript_CitiesSetupDone
+	setvar VAR_0x8004, 1
+	special Script_CitiesSetRandomizer
+	msgbox InsideOfTruck_Text_RandomizerOn, MSGBOX_DEFAULT
 	goto InsideOfTruck_EventScript_CitiesSetupDone
 
 InsideOfTruck_EventScript_CitiesSetupDone::
 	msgbox InsideOfTruck_Text_SetupDone, MSGBOX_DEFAULT
 	return
+
+InsideOfTruck_Text_NuzlockeExplain:
+	.string "Now, two optional challenges.\p"
+	.string "NUZLOCKE mode: only your first\n"
+	.string "catch in each area, and a fainted\l"
+	.string "POKéMON is laid to rest for good.\p"
+	.string "Turn on NUZLOCKE mode?$"
+
+InsideOfTruck_Text_NuzlockeOn:
+	.string "NUZLOCKE mode is on. Duplicate and\n"
+	.string "shiny clauses are on too. Be brave.$"
+
+InsideOfTruck_Text_RandomizerExplain:
+	.string "RANDOMIZER mode: wild POKéMON,\n"
+	.string "your starter, and TRAINER teams\l"
+	.string "are all shuffled.\p"
+	.string "Legendary and story POKéMON are\n"
+	.string "never shuffled in.\p"
+	.string "Turn on RANDOMIZER mode?$"
+
+InsideOfTruck_Text_RandomizerOn:
+	.string "RANDOMIZER mode is on. Expect the\n"
+	.string "unexpected!$"
 
 InsideOfTruck_Text_SetupIntro:
 	.string "Welcome!\p"

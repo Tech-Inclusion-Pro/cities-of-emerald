@@ -284,6 +284,24 @@ struct CitiesAccessibility
     u32 padding:13;
 };
 
+// Challenge modes (GDD Section 10, Phase 15). Chosen once at the truck
+// setup and immutable after. Everything is inert unless its mode bit is
+// set, so a normal save behaves exactly as before.
+#define CITIES_NUM_MAPSEC_BYTES 17 // ceil(~134 MAPSEC / 8); first-encounter bits
+struct CitiesChallenge
+{
+    u32 nuzlocke:1;
+    u32 dupesClause:1;
+    u32 shinyClause:1;
+    u32 randomizer:1;
+    u32 randomizeWild:1;
+    u32 randomizeStarters:1;
+    u32 randomizeTrainers:1;
+    u32 padding:25;
+    u32 randomizerSeed;
+    u8 firstEncounter[CITIES_NUM_MAPSEC_BYTES]; // Nuzlocke: area already had its first catch
+};
+
 struct SaveBlock3
 {
 #if OW_USE_FAKE_RTC
@@ -291,6 +309,7 @@ struct SaveBlock3
 #endif
     struct CitiesAccessibility citiesAccess;
     s32 citiesRankingScore; // National ranking score (GDD 8.6); floored at 0
+    struct CitiesChallenge citiesChallenge; // Nuzlocke + randomizer (GDD 10)
 #if FNPC_ENABLE_NPC_FOLLOWERS
     struct NPCFollower NPCfollower;
 #endif

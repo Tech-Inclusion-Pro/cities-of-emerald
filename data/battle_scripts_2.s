@@ -240,6 +240,14 @@ BattleScript_TrainerBallBlock::
 	waitmessage B_WAIT_TIME_LONG
 	finishaction
 
+@ Cities of Emerald (GDD 10): the Nuzlocke first-encounter rule returns
+@ the ball unused, mirroring the trainer-block flow.
+BattleScript_CitiesNuzlockeBallBlock::
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_CITIESNUZLOCKEBLOCK
+	waitmessage B_WAIT_TIME_LONG
+	finishaction
+
 BattleScript_RunByUsingItem::
 	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN
