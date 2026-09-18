@@ -528,6 +528,10 @@ Chosen at the setup screen; difficulty can be changed later **[PROPOSED]** at an
 
 Accessibility is a core feature, not an add-on. All options live in a dedicated Accessibility menu (separate from vanilla Options) reachable from the start menu and the setup screen.
 
+### 11.0 Identity and appearance
+- **[DECIDED 2026-09-18]** Pronouns are chosen at the truck setup — **He / She / They / enter your own** (free text) — and are **fully separate from the player's look**. The look (sprite) is picked at Birch's intro (the two existing sprites), reworded from "boy or girl" to a look question. The pronoun is stored on its own (`SaveBlock3.citiesPronoun`).
+- **[PROPOSED — post-release, art-blocked]** A third player avatar, and full character customization (hair color/length, clothes type/color). Both require a pixel-art pipeline the project doesn't have (each variant needs art across ~18 overworld poses + battle sprites), and the base engine has no ORAS-style customization system. Revisit only with a sprite artist; palette-only color swaps would be the smaller first step.
+
 ### 11.1 Vision
 - **Type labels:** types shown as text (and icons), never by color alone
 - **High-contrast theme:** text boxes and menus

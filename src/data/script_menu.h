@@ -1192,6 +1192,14 @@ static const struct MenuAction sMultichoiceList_CitiesTitleDefense[] =
     {gText_Exit},
 };
 
+static const struct MenuAction sMultichoiceList_CitiesPronoun[] =
+{
+    {COMPOUND_STRING("He / him")},
+    {COMPOUND_STRING("She / her")},
+    {COMPOUND_STRING("They / them")},
+    {COMPOUND_STRING("Enter my own")},
+};
+
 struct MultichoiceListStruct
 {
     const struct MenuAction *list;
@@ -1366,6 +1374,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_CITIES_GUIDE_MENU]                          = MULTICHOICE(sMultichoiceList_CitiesGuideMenu),
     [MULTI_CITIES_TUTORIALS]                           = MULTICHOICE(sMultichoiceList_CitiesTutorials),
     [MULTI_CITIES_TITLE_DEFENSE]                       = MULTICHOICE(sMultichoiceList_CitiesTitleDefense),
+    [MULTI_CITIES_PRONOUN]                             = MULTICHOICE(sMultichoiceList_CitiesPronoun),
 };
 
 const u8 *const gStdStrings[] =

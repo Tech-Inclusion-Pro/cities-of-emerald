@@ -66,6 +66,38 @@ InsideOfTruck_EventScript_CitiesSetup::
 	waitmessage
 	multichoice 0, 0, MULTI_CITIES_ACCESS_PRESET, TRUE
 	special Script_CitiesApplyPreset
+InsideOfTruck_EventScript_CitiesSetupPronoun::
+	message InsideOfTruck_Text_ChoosePronoun
+	waitmessage
+	multichoice 0, 0, MULTI_CITIES_PRONOUN, FALSE
+	switch VAR_RESULT
+	case 0, InsideOfTruck_EventScript_PronounHe
+	case 1, InsideOfTruck_EventScript_PronounShe
+	case 2, InsideOfTruck_EventScript_PronounThey
+	case 3, InsideOfTruck_EventScript_PronounCustom
+	case MULTI_B_PRESSED, InsideOfTruck_EventScript_PronounThey
+	goto InsideOfTruck_EventScript_CitiesSetupDifficulty
+
+InsideOfTruck_EventScript_PronounHe::
+	setvar VAR_0x8004, 0
+	special Script_CitiesSetPronounPreset
+	goto InsideOfTruck_EventScript_CitiesSetupDifficulty
+
+InsideOfTruck_EventScript_PronounShe::
+	setvar VAR_0x8004, 1
+	special Script_CitiesSetPronounPreset
+	goto InsideOfTruck_EventScript_CitiesSetupDifficulty
+
+InsideOfTruck_EventScript_PronounThey::
+	setvar VAR_0x8004, 2
+	special Script_CitiesSetPronounPreset
+	goto InsideOfTruck_EventScript_CitiesSetupDifficulty
+
+InsideOfTruck_EventScript_PronounCustom::
+	special Script_CitiesEnterCustomPronoun
+	waitstate
+	goto InsideOfTruck_EventScript_CitiesSetupDifficulty
+
 InsideOfTruck_EventScript_CitiesSetupDifficulty::
 	message InsideOfTruck_Text_ChooseDifficulty
 	waitmessage
@@ -153,6 +185,12 @@ InsideOfTruck_Text_RandomizerExplain:
 InsideOfTruck_Text_RandomizerOn:
 	.string "RANDOMIZER mode is on. Expect the\n"
 	.string "unexpected!$"
+
+InsideOfTruck_Text_ChoosePronoun:
+	.string "What pronouns do you use?\p"
+	.string "This is just for you - your look is\n"
+	.string "a separate choice, so pick whatever\l"
+	.string "feels right.$"
 
 InsideOfTruck_Text_SetupIntro:
 	.string "Welcome!\p"

@@ -1,6 +1,10 @@
 #include "global.h"
 #include "cities_arcs.h"
 #include "event_data.h"
+#include "main.h"
+#include "naming_screen.h"
+#include "string_util.h"
+#include "overworld.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "random.h"
@@ -52,6 +56,35 @@ void Script_CitiesDoRandomTrade(void)
 void Script_CitiesBufferTradeSpeciesName(void)
 {
     StringCopy(gStringVar1, GetSpeciesName(gSpecialVar_0x8005));
+}
+
+// ---- Player pronouns (separate from the sprite/look) ----
+// Stored as a short word so future text can read it; presets for the
+// common choices, plus a free-text custom entry. No text currently
+// genders the player, so this is inclusive + future-proof.
+
+void Script_CitiesSetPronounPreset(void)
+{
+    const u8 *word;
+    switch (gSpecialVar_0x8004)
+    {
+    case 0:  word = COMPOUND_STRING("he");   break;
+    case 1:  word = COMPOUND_STRING("she");  break;
+    default: word = COMPOUND_STRING("they"); break;
+    }
+    StringCopy(gSaveBlock3Ptr->citiesPronoun, word);
+}
+
+// Free-text entry from the truck setup; returns to the continuing script.
+void Script_CitiesEnterCustomPronoun(void)
+{
+    DoNamingScreen(NAMING_SCREEN_CODE, gSaveBlock3Ptr->citiesPronoun, 0, 0, 0,
+                   CB2_ReturnToFieldContinueScript);
+}
+
+void Script_CitiesBufferPronoun(void)
+{
+    StringCopy(gStringVar1, gSaveBlock3Ptr->citiesPronoun);
 }
 
 // ---- 14.4 Shiny Charm: Birch gives it at 300 caught (GDD, [DECIDED]) ----

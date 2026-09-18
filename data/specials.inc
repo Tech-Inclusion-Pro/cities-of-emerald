@@ -660,3 +660,6 @@ gSpecials::
 	def_special Script_CitiesShinyCharmEligible
 	def_special Script_CitiesSetNuzlocke
 	def_special Script_CitiesSetRandomizer
+	def_special Script_CitiesSetPronounPreset
+	def_special Script_CitiesEnterCustomPronoun
+	def_special Script_CitiesBufferPronoun

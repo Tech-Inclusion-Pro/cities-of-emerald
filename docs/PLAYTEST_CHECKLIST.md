@@ -359,6 +359,12 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Total party wipe still white-outs and heals normally (run-ending, no permadeath applied)
 - [ ] A normal (no-challenge) save behaves exactly as before
 
+## Pronouns (new-game setup)
+- [ ] Birch's intro asks "Which of these looks feels like you?" (reworded from boy/girl); the sprite still previews and sets your look
+- [ ] Truck setup asks "What pronouns do you use?" with He/She/They/Enter my own, separate from the look
+- [ ] "Enter my own" opens a text-entry screen and returns to setup cleanly
+- [ ] Any look pairs with any pronoun (e.g. Brendan-look + they/them works)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

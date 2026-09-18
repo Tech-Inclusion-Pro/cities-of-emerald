@@ -310,6 +310,7 @@ struct SaveBlock3
     struct CitiesAccessibility citiesAccess;
     s32 citiesRankingScore; // National ranking score (GDD 8.6); floored at 0
     struct CitiesChallenge citiesChallenge; // Nuzlocke + randomizer (GDD 10)
+    u8 citiesPronoun[CODE_NAME_LENGTH + 1]; // player pronoun word (he/she/they/custom); look is separate
 #if FNPC_ENABLE_NPC_FOLLOWERS
     struct NPCFollower NPCfollower;
 #endif
