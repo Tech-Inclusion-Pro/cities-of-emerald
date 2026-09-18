@@ -316,7 +316,10 @@ void UpdateOverworldWildEncounter(void)
         RemoveObjectEvent(owe);
     objectEventId = SpawnSpecialObjectEvent(&objectEventTemplate);
 
-    assertf(objectEventId < OBJECT_EVENTS_COUNT, "could not spawn generated overworld encounter. too many object events exist")
+    // Cities: a full object-event table is normal on busy maps (player +
+    // follower + NPCs + prior spawns), not a bug — skip this spawn quietly
+    // and retry later instead of raising the debug-build crash screen.
+    if (objectEventId >= OBJECT_EVENTS_COUNT)
     {
         SetMinimumOWESpawnTimer();
         return;

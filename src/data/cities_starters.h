@@ -63,3 +63,14 @@ const u16 gCitiesStarterStages[CITIES_STARTER_REGION_SPECIAL - 1][3][3] =
         {SPECIES_QUAXLY,     SPECIES_QUAXWELL,   SPECIES_QUAQUAVAL},
     },
 };
+
+// The Special region has no evolution triangle: three standalone picks,
+// shown side by side like a normal region. The chosen slot is remembered in
+// VAR_CITIES_STARTER_SPECIAL because VAR_STARTER_MON carries the rival's
+// encoded random Hoenn roll instead (approved 2026-09-18).
+const u16 gCitiesSpecialStarters[3] =
+{
+    SPECIES_EEVEE,
+    SPECIES_PIKACHU,
+    SPECIES_DITTO,
+};

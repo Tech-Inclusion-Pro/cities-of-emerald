@@ -7,7 +7,7 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 ## New game flow
 - [ ] Truck setup runs before Littleroot: accessibility preset → difficulty → Assist (+ level cap choice if Assist on)
 - [ ] Starter screen: 10-region list scrolls; 3 starters show sprite + name + "type as text"; B steps back; confirm wording matches GDD; starter is level 5
-- [ ] Special region gives Eevee; rival later has a random Hoenn starter
+- [ ] Special region shows Eevee / Pikachu / Ditto side by side; each can be chosen; rival later has a random Hoenn starter
 - [ ] Route 103 rival carries the type-advantaged starter FROM YOUR REGION (e.g., Kanto grass pick → rival Charmander)
 
 ## Wild encounters (Phase 4)
@@ -283,6 +283,13 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Historian's finale line plays once after Arceus; journal "The Making of Everything" completes and drops off
 - [ ] All four obey immediately at any badge count
 - [ ] Wild sweep: none of the four appear in any random source (existing test gate)
+
+## Playtest fixes 1 (2026-09-18)
+- [ ] Special starter: pick each of Eevee / Pikachu / Ditto on separate new games; the picked species is what Birch hands over (level 5)
+- [ ] With a Special pick, the Route 103 rival has a random HOENN starter (first stage)
+- [ ] Route 101/102/103/104, Petalburg Woods, Rusturf Tunnel: wilds are level 3–6 (was 2–5)
+- [ ] Busy route with follower + several visible wilds: no "too many object events" crash screen in the dev build; spawns just pause
+- [ ] Start menu: first entry sits close under the window's top border (list moved up 4px, window 1 tile shorter)
 
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)

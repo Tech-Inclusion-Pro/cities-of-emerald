@@ -17,11 +17,13 @@ enum
     CITIES_STARTER_REGION_ALOLA,
     CITIES_STARTER_REGION_GALAR,
     CITIES_STARTER_REGION_PALDEA,
-    CITIES_STARTER_REGION_SPECIAL, // Eevee
+    CITIES_STARTER_REGION_SPECIAL, // Eevee / Pikachu / Ditto (pick stored in VAR_CITIES_STARTER_SPECIAL)
 };
 
 // [region - 1][slot: 0 grass, 1 fire, 2 water][stage 0..2]
 extern const u16 gCitiesStarterStages[CITIES_STARTER_REGION_SPECIAL - 1][3][3];
+// Special region choices: [slot: 0 Eevee, 1 Pikachu, 2 Ditto]
+extern const u16 gCitiesSpecialStarters[3];
 
 extern const u16 gBirchBagGrass_Pal[];
 extern const u32 gBirchBagTilemap[];

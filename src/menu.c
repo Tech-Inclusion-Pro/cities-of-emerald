@@ -393,7 +393,9 @@ void DisplayYesNoMenuWithDefault(u8 initialCursorPos)
 u8 AddStartMenuWindow(u8 numActions)
 {
     if (sStartMenuWindowId == WINDOW_NONE)
-        sStartMenuWindowId = AddWindowParameterized(0, 22, 1, 7, (numActions * 2) + 2, 15, 0x139);
+        // Cities: items print at y offset 5 (was 9), so one padding tile is
+        // enough — the old +2 left a visible gap above the first entry.
+        sStartMenuWindowId = AddWindowParameterized(0, 22, 1, 7, (numActions * 2) + 1, 15, 0x139);
     return sStartMenuWindowId;
 }
 

@@ -38,7 +38,9 @@ PLAN_CSV = ROOT / "docs/species_plan.csv"
 OUT_JSON = ROOT / "src/data/wild_encounters.json"
 
 TIER_LEVELS = {
-    "T1": (2, 5), "T2": (5, 11), "T3": (12, 19),
+    # T1 raised from (2, 5) after playtest feedback 2026-09-18: level-5
+    # starters trivialized the first routes.
+    "T1": (3, 6), "T2": (5, 11), "T3": (12, 19),
     "T4": (20, 29), "T5": (26, 38), "PG": (45, 55),
 }
 

@@ -112,16 +112,16 @@ Located in Birch's rescue scene (replace the vanilla three-ball bag screen).
 | Alola | Rowlet, Litten, Popplio |
 | Galar | Grookey, Scorbunny, Sobble |
 | Paldea | Sprigatito, Fuecoco, Quaxly |
-| Special | Eevee |
+| Special | Eevee, Pikachu, Ditto **[DECIDED 2026-09-18]** |
 
-**Step 2 — Pick a Pokémon:** show the region's three starters side by side. For each: front sprite, name, and type **as text** (for example, "Grass"). Pressing B returns to Step 1. For Special, show Eevee alone.
+**Step 2 — Pick a Pokémon:** show the region's three starters side by side. For each: front sprite, name, and type **as text** (for example, "Grass"). Pressing B returns to Step 1. Special works the same way, with Eevee, Pikachu, and Ditto side by side.
 
 **Step 3 — Confirm:** "You chose [NAME], the [TYPE]-type Pokémon. Is that right?" Yes / No.
 
 Requirements:
 - Starter level matches vanilla (5).
-- Rival (May/Brendan) picks a starter with a type advantage over the player's choice, drawn from the same region. If the player picks Eevee, the rival picks **[PROPOSED]** a random Hoenn starter.
-- All rival teams that include a starter must branch on the player's choice (the vanilla game already branches on three options; extend to 28 combinations or map by type).
+- Rival (May/Brendan) picks a starter with a type advantage over the player's choice, drawn from the same region. If the player picks a Special Pokémon, the rival picks **[DECIDED 2026-09-18]** a random Hoenn starter (the player's Special pick is stored in VAR_CITIES_STARTER_SPECIAL).
+- All rival teams that include a starter must branch on the player's choice (the vanilla game already branches on three options; extend to 30 combinations or map by type).
 - The screen must be fully usable with text only (no information conveyed by sprite or color alone).
 
 ### 4.3 Eevee and Eeveelutions **[DECIDED]**

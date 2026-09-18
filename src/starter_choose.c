@@ -274,7 +274,14 @@ u16 GetStarterPokemon(u16 chosenStarterId)
     if (chosenStarterId >= STARTER_MON_COUNT)
         chosenStarterId = 0;
     if (region == CITIES_STARTER_REGION_SPECIAL)
-        return SPECIES_EEVEE;
+    {
+        // chosenStarterId holds the rival's encoded roll here; the player's
+        // actual pick lives in VAR_CITIES_STARTER_SPECIAL.
+        u16 specialSlot = VarGet(VAR_CITIES_STARTER_SPECIAL);
+        if (specialSlot >= STARTER_MON_COUNT)
+            specialSlot = 0;
+        return gCitiesSpecialStarters[specialSlot];
+    }
     if (region >= CITIES_STARTER_REGION_KANTO && region <= CITIES_STARTER_REGION_PALDEA)
         return gCitiesStarterStages[region - 1][chosenStarterId][0];
     return sStarterMon[chosenStarterId];
@@ -291,7 +298,7 @@ enum Species CitiesGetRivalStarterSpecies(enum Species species)
 
     if (region < CITIES_STARTER_REGION_KANTO || region > CITIES_STARTER_REGION_PALDEA
      || region == CITIES_STARTER_REGION_HOENN)
-        return species; // Hoenn, Special (Eevee), or unset: vanilla teams are already right.
+        return species; // Hoenn, Special, or unset: vanilla teams are already right.
 
     for (line = 0; line < 3; line++)
     {
@@ -455,22 +462,20 @@ static enum Species GetDisplaySpecies(u8 taskId, u8 slot)
     u16 region = gTasks[taskId].tRegion;
 
     if (region == CITIES_STARTER_REGION_SPECIAL)
-        return SPECIES_EEVEE;
+        return gCitiesSpecialStarters[slot];
     return gCitiesStarterStages[region - 1][slot][0];
 }
 
 static void Task_OpenMonSelect(u8 taskId)
 {
     u8 i;
-    bool8 isSpecial = (gTasks[taskId].tRegion == CITIES_STARTER_REGION_SPECIAL);
 
-    gTasks[taskId].tMonCount = isSpecial ? 1 : STARTER_MON_COUNT;
+    gTasks[taskId].tMonCount = STARTER_MON_COUNT;
 
     for (i = 0; i < gTasks[taskId].tMonCount; i++)
     {
-        u8 coordIndex = isSpecial ? 1 : i; // lone Eevee sits in the middle
         gTasks[taskId].data[tSpriteBase + i] =
-            CreatePokemonFrontSprite(GetDisplaySpecies(taskId, i), sMonCoords[coordIndex][0], sMonCoords[coordIndex][1], 13 + i);
+            CreatePokemonFrontSprite(GetDisplaySpecies(taskId, i), sMonCoords[i][0], sMonCoords[i][1], 13 + i);
     }
 
     gSprites[gTasks[taskId].tHandSpriteId].invisible = FALSE;
@@ -572,10 +577,13 @@ static void Task_HandleConfirmStarterInput(u8 taskId)
         VarSet(VAR_CITIES_STARTER_REGION, region);
         if (region == CITIES_STARTER_REGION_SPECIAL)
         {
-            // Eevee: the rival gets a random Hoenn starter (approved 2026-09-16).
+            // Special picks (Eevee/Pikachu/Ditto) have no type triangle, so
+            // the rival gets a random Hoenn starter (approved 2026-09-16).
             // Scripts derive the rival's pick as (VAR_STARTER_MON + 1) % 3, so
-            // encode the rolled pick accordingly.
+            // encode the rolled pick there and keep the player's actual pick
+            // in VAR_CITIES_STARTER_SPECIAL.
             u16 rivalSlot = Random() % 3;
+            VarSet(VAR_CITIES_STARTER_SPECIAL, gTasks[taskId].tMonSelection);
             gSpecialVar_Result = (rivalSlot + 2) % 3;
         }
         else
@@ -609,8 +617,6 @@ static void SpriteCB_SelectionHand(struct Sprite *sprite)
     u8 taskId = sprite->sTaskId;
     u8 coordIndex = gTasks[taskId].tMonSelection;
 
-    if (gTasks[taskId].tRegion == CITIES_STARTER_REGION_SPECIAL)
-        coordIndex = 1;
     sprite->x = sCursorCoords[coordIndex][0];
     sprite->y = sCursorCoords[coordIndex][1];
     sprite->y2 = Sin(sprite->data[1], 8);

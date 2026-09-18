@@ -4,7 +4,7 @@
 #include "starter_choose.h"
 #include "test/test.h"
 
-// GDD 4.2 / Task 3.4: all 28 starter choices produce the right species, and
+// GDD 4.2 / Task 3.4: all 30 starter choices produce the right species, and
 // the rival mapping yields a valid type-advantaged team for each of them.
 
 // The rival's slot is always (player slot + 1) % 3 — set by script data.
@@ -23,13 +23,31 @@ TEST("Starter selection: all 27 regional choices give the right species")
     VarSet(VAR_CITIES_STARTER_REGION, CITIES_STARTER_REGION_NONE);
 }
 
-TEST("Starter selection: the 28th choice (Special) always gives Eevee")
+TEST("Starter selection: Special gives the pick stored in VAR_CITIES_STARTER_SPECIAL")
 {
-    u32 slot;
+    u32 specialSlot, rivalRoll;
 
     VarSet(VAR_CITIES_STARTER_REGION, CITIES_STARTER_REGION_SPECIAL);
-    for (slot = 0; slot < 3; slot++)
-        EXPECT_EQ(GetStarterPokemon(slot), SPECIES_EEVEE);
+    for (specialSlot = 0; specialSlot < 3; specialSlot++)
+    {
+        VarSet(VAR_CITIES_STARTER_SPECIAL, specialSlot);
+        // The argument is the rival's encoded roll and must never matter.
+        for (rivalRoll = 0; rivalRoll < 3; rivalRoll++)
+            EXPECT_EQ(GetStarterPokemon(rivalRoll), gCitiesSpecialStarters[specialSlot]);
+    }
+    EXPECT_EQ(gCitiesSpecialStarters[0], SPECIES_EEVEE);
+    EXPECT_EQ(gCitiesSpecialStarters[1], SPECIES_PIKACHU);
+    EXPECT_EQ(gCitiesSpecialStarters[2], SPECIES_DITTO);
+    VarSet(VAR_CITIES_STARTER_SPECIAL, 0);
+    VarSet(VAR_CITIES_STARTER_REGION, CITIES_STARTER_REGION_NONE);
+}
+
+TEST("Starter selection: an out-of-range Special pick falls back to Eevee")
+{
+    VarSet(VAR_CITIES_STARTER_REGION, CITIES_STARTER_REGION_SPECIAL);
+    VarSet(VAR_CITIES_STARTER_SPECIAL, 3);
+    EXPECT_EQ(GetStarterPokemon(0), SPECIES_EEVEE);
+    VarSet(VAR_CITIES_STARTER_SPECIAL, 0);
     VarSet(VAR_CITIES_STARTER_REGION, CITIES_STARTER_REGION_NONE);
 }
 

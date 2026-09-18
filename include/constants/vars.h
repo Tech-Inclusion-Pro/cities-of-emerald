@@ -305,6 +305,7 @@
 #define VAR_CITIES_H2A_STATE                             (CITIES_VARS_START + 0x18) // 0 = not started, 1 = gardener met (both quests open), 2 = complete
 #define VAR_CITIES_H2B_STATE                             (CITIES_VARS_START + 0x19) // 0 = not started, 1 = gardener met, 2 = complete
 #define VAR_CITIES_H5A_STATE                             (CITIES_VARS_START + 0x1A) // 0 = not started, 1 = historian met, 2 = Arceus caught + finale spoken
+#define VAR_CITIES_STARTER_SPECIAL                       (CITIES_VARS_START + 0x1B) // Special-region starter slot (0 Eevee, 1 Pikachu, 2 Ditto); VAR_STARTER_MON holds the rival's encoded roll instead
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END
