@@ -17005,7 +17005,7 @@ Level: 40
 === TRAINER_EPOCH_GRUNT_1 ===
 Name: GRUNT
 Class: Team Epoch
-Pic: Scientist
+Pic: Psychic M
 Gender: Male
 Music: Male
 AI: Basic Trainer
@@ -17033,7 +17033,7 @@ Level: 58
 === TRAINER_EPOCH_GRUNT_3 ===
 Name: GRUNT
 Class: Team Epoch
-Pic: Scientist
+Pic: Psychic M
 Gender: Male
 Music: Male
 AI: Basic Trainer
@@ -17061,7 +17061,7 @@ Level: 63
 === TRAINER_EPOCH_GRUNT_5 ===
 Name: GRUNT
 Class: Team Epoch
-Pic: Scientist
+Pic: Psychic M
 Gender: Male
 Music: Male
 AI: Basic Trainer
@@ -17115,7 +17115,7 @@ Level: 75
 === TRAINER_EPOCH_GNOMON_1 ===
 Name: GNOMON
 Class: Epoch Admin
-Pic: Scientist
+Pic: Psychic M
 Gender: Male
 Music: Male
 AI: Check Bad Move / Try To Faint
@@ -17132,7 +17132,7 @@ Level: 65
 === TRAINER_EPOCH_GNOMON_2 ===
 Name: GNOMON
 Class: Epoch Admin
-Pic: Scientist
+Pic: Psychic M
 Gender: Male
 Music: Male
 AI: Check Bad Move / Try To Faint

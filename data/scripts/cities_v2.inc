@@ -369,3 +369,9 @@ Cities_Text_V2LetterDone:
 	.string "for years.\p"
 	.string "Somewhere south of here, there\n"
 	.string "is a village to find.$"
+
+Cities_Text_V2CrateEmpty:
+	.string "The crate stands open and empty.\p"
+	.string "The padding inside is shaped\n"
+	.string "like a small, patient figure\l"
+	.string "with folded hands.$"

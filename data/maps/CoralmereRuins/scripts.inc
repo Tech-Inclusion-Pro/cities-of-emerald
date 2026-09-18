@@ -3,10 +3,12 @@
 @ FLAG_CITIES_CORALMERE_OPEN is set (12.5, after V2); before that the
 @ entrance current turns the player around just inside.
 CoralmereRuins_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, CoralmereRuins_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, CoralmereRuins_OnTransition
 	.byte 0
 
 CoralmereRuins_OnTransition::
+	call Cities_EventScript_UpdateV4Coralmere
 	setvar VAR_TEMP_0, 0
 	goto_if_unset FLAG_CITIES_CORALMERE_OPEN, CoralmereRuins_OnTransition_End
 	setvar VAR_TEMP_0, 1
@@ -68,3 +70,7 @@ CoralmereRuins_Text_HouseFloor:
 	.string "In the corner, a raised hearth.\p"
 	.string "Someone cooked here, once,\n"
 	.string "every day.$"
+
+CoralmereRuins_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end

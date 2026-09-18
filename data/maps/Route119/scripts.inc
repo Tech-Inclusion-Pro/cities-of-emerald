@@ -16,6 +16,7 @@ Route119_EventScript_TryRemoveKecleon::
 
 Route119_OnTransition:
 	call Cities_EventScript_UpdateV3Route119
+	call Cities_EventScript_UpdateV4Route119
 	call Cities_EventScript_UpdateChallengerIlaria
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId

@@ -1,8 +1,14 @@
 AbandonedShip_Deck_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, AbandonedShip_Deck_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, AbandonedShip_Deck_OnTransition
 	.byte 0
 
 AbandonedShip_Deck_OnTransition:
+	call Cities_EventScript_UpdateV4Deck
 	setflag FLAG_LANDMARK_ABANDONED_SHIP
 	end
 
+
+AbandonedShip_Deck_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end

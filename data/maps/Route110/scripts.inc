@@ -5,10 +5,12 @@ Route110_MapScripts::
 	.byte 0
 
 Route110_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
 	special UpdateCyclingRoadState
 	end
 
 Route110_OnTransition:
+	call Cities_EventScript_UpdateV4Route110
 	call Cities_EventScript_UpdateChallengerBram
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId

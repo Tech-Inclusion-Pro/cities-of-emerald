@@ -190,6 +190,7 @@ Cities_EventScript_V3GnomonBagFull::
 	end
 
 Cities_EventScript_V3GnomonAfter::
+	goto_if_eq VAR_CITIES_V4_STATE, 0, Cities_EventScript_V4GnomonOpens
 	msgbox Cities_Text_V3GnomonAfter, MSGBOX_DEFAULT
 	release
 	end

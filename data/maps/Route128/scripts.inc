@@ -1,9 +1,11 @@
 Route128_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, Route128_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, Route128_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route128_OnFrame
 	.byte 0
 
 Route128_OnTransition:
+	call Cities_EventScript_UpdateV4Route128
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	end
 
@@ -324,3 +326,7 @@ Route128_Text_CitiesStoneRows:
 	.string "surface.\p"
 	.string "They look like the posts of a\n"
 	.string "very long dock.$"
+
+Route128_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end

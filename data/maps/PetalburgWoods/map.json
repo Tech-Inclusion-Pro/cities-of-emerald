@@ -198,6 +198,48 @@
       "trainer_sight_or_berry_tree_id": "ITEM_MEADOW_PLATE",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_CITIES_H5A_PLATE_4"
+    },
+    {
+      "local_id": "LOCALID_WOODS_CITIES_BRUTE_BONNET",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BRUTE_BONNET)",
+      "x": 12,
+      "y": 33,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_V4BruteBonnet",
+      "flag": "FLAG_CITIES_HIDE_V4_BRUTE_BONNET"
+    },
+    {
+      "local_id": "LOCALID_WOODS_CITIES_SLITHER_WING",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SLITHER_WING)",
+      "x": 16,
+      "y": 34,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_V4SlitherWing",
+      "flag": "FLAG_CITIES_HIDE_V4_SLITHER_WING"
+    },
+    {
+      "local_id": "LOCALID_WOODS_CITIES_FLUTTER_MANE",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FLUTTER_MANE)",
+      "x": 20,
+      "y": 35,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_V4FlutterMane",
+      "flag": "FLAG_CITIES_HIDE_V4_FLUTTER_MANE"
     }
   ],
   "warp_events": [

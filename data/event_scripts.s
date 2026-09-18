@@ -1749,6 +1749,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/cities_v1.inc"
 	.include "data/scripts/cities_v2.inc"
 	.include "data/scripts/cities_v3.inc"
+	.include "data/scripts/cities_v4.inc"
 	.include "data/scripts/roulette.inc"
 	.include "data/scripts/pokedex_rating.inc"
 	.include "data/text/pokedex_rating.inc"
