@@ -310,6 +310,14 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Six villagers, all unnamed, everyday lines; the elder mentions the young researcher who checks the barometer; the kids' "four rings" matches the tower scoreboard
 - [ ] Music is the Pacifidlog/Lilycove theme; weather sunny; no encounters, no exits (dev warp out)
 
+## Task 12.5 — Team Epoch V1–V5 (Phase 12)
+- [ ] V1: postgame, Devon researcher in Space Center lobby → annex door appears on 2F back wall → 2 grunt battles + Meridian (lv60 team) → Mewtwo in the ring; Genesect wakes after; Mew outside the door after both; Epoch gone once all three caught
+- [ ] V2: Devon aide (Devon Corp 3F) → Route 115 cliff camp (Mach Bike/Meteor Falls) → grunts + Gnomon → Type: Null → Silvally → sealed crate opens from inside (Magearna gift) → the letter completes the arc AND opens the sunken village
+- [ ] V3: researcher reports six wormholes + Cosmog gift → UB statics at R124/R119/New Mauville/R120/Jagged Pass/Mt. Pyre; Poipole gift after Guzzlord; Naganadel after; Necrozma at R124 after Sol+Lun; Archivist scene at Mt. Pyre (he closes a hole, leaves); Gnomon gives N-Solarizer/Lunarizer when all 16 obtained; Halley has a new line after the Mt. Pyre scene
+- [ ] V4: Gnomon reports the breakthrough → paradox pockets (R111 x4, Woods x3, R119 x3, New Mauville x3, R110 x3, Ship deck x4) → Meridian at the R128 anchors, Gnomon at New Mauville → entering the sunken square warps to living Coralmere; walk to the sea ends it → Terapagos in the square after → arc completes on Koraidon+Miraidon+Terapagos (pockets stay open)
+- [ ] V5: arriving at Pacifidlog after V4 starts the storm (downpour) → the Archivist at the dock sails you to the Storm's Eye islet → Eternatus (lv80; catch or defeat both trigger the heroic act) → rift shut, storm stops, quiet boat ride home; if Eternatus wasn't caught, he ferries you back out until it is
+- [ ] All Epoch battles award ranking points once; no battle anywhere with the Archivist; "Kai" appears nowhere
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

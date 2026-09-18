@@ -1,0 +1,50 @@
+{
+  "id": "MAP_STORMS_EYE",
+  "name": "StormsEye",
+  "layout": "LAYOUT_STORMS_EYE",
+  "music": "MUS_ABNORMAL_WEATHER",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_ROUTE_131",
+  "requires_flash": false,
+  "weather": "WEATHER_DOWNPOUR",
+  "map_type": "MAP_TYPE_OCEAN_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_STORMS_EYE_ARCHIVIST",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+      "x": 5,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_V5ArchivistIslet",
+      "flag": "FLAG_CITIES_HIDE_V5_ARCHIVIST_ISLET"
+    },
+    {
+      "local_id": "LOCALID_STORMS_EYE_ETERNATUS",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ETERNATUS)",
+      "x": 8,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_V5Eternatus",
+      "flag": "FLAG_CITIES_HIDE_V5_ETERNATUS"
+    }
+  ],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": []
+}

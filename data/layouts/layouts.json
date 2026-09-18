@@ -9488,6 +9488,17 @@
       "border_filepath": "data/layouts/MossdeepAnnex/border.bin",
       "blockdata_filepath": "data/layouts/MossdeepAnnex/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_STORMS_EYE",
+      "name": "StormsEye_Layout",
+      "width": 16,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mossdeep",
+      "border_filepath": "data/layouts/StormsEye/border.bin",
+      "blockdata_filepath": "data/layouts/StormsEye/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

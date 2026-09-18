@@ -1,6 +1,12 @@
 # Task 12.5 — Arcs V1–V5, Implementation Outline (for approval)
 
-**Status: PROPOSED 2026-09-18.** Implements the approved 12.1 beat
+**Status: APPROVED + BUILT 2026-09-18** (all four decisions as
+recommended: gifts for Magearna/Cosmog/Poipole; V4 completes on the
+trio; new Storm's Eye islet for V5). Build notes: Epoch trainer pics
+use Psychic M/F + Hex Maniac (Emerald has no Scientist pic); V3
+entry and Cosmog live on the V1 researcher NPC; journal quest
+entries for the V thread are deferred to a 12.5 polish pass together
+with 12.6. Implements the approved 12.1 beat
 sheet (docs/EPOCH_STORY_OUTLINE.md). Story is settled; this decides
 sites, trainers, and mechanics. "Kai" appears nowhere; grunts
 catalogue, they don't menace.
