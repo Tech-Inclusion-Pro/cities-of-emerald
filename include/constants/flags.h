@@ -1974,6 +1974,7 @@
 #define FLAG_CITIES_V5_ETERNATUS_CAUGHT                         (CITIES_FLAGS_START + 0x12B)
 #define FLAG_CITIES_HIDE_V5_ARCHIVIST_PACIFIDLOG                (CITIES_FLAGS_START + 0x12C)
 #define FLAG_CITIES_HIDE_V5_ARCHIVIST_ISLET                     (CITIES_FLAGS_START + 0x12D)
+#define FLAG_CITIES_HIDE_V2_AIDE                                (CITIES_FLAGS_START + 0x12E) // Devon aide hook (Devon Corp 3F), appears once V1 completes
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

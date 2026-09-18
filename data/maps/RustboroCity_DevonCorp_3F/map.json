@@ -54,6 +54,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_DevonCorp_3F_EventScript_MrStone",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_DEVON_3F_CITIES_AIDE",
+      "graphics_id": "OBJ_EVENT_GFX_DEVON_EMPLOYEE",
+      "x": 4,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cities_EventScript_V2Aide",
+      "flag": "FLAG_CITIES_HIDE_V2_AIDE"
     }
   ],
   "warp_events": [
