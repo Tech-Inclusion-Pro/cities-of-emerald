@@ -353,6 +353,7 @@ After becoming Champion, the player unlocks:
 - **[DECIDED 2026-09-17]** The Archivist's appearance: slate-gray coat, carries Coralmere's old harbor barometer; vanilla stand-in sprites until release-phase art.
 - **[DECIDED 2026-09-17]** Admins: Meridian (the believer) and Gnomon (the engineer). Grunts are archivist-styled: coats, satchels; they catalogue, they don't menace. Full cast in docs/EPOCH_STORY_OUTLINE.md.
 - Links to Shaymin's event (Section 6.6), which also uses the Weather Institute; the two can share characters or clues.
+- **[DECIDED 2026-09-18]** His history is told at the Weather Institute by **Forecaster Halley**, a senior colleague from the storm year (Task 12.2). Her postgame telling sets the flag the V arcs react to; her pre-League dialogue carries the Shaymin hook (the meadow that "bloomed like a thank-you").
 
 **Coralmere**
 - A new, original coastal village that no longer exists in the present.

@@ -324,3 +324,65 @@ Route119_WeatherInstitute_2F_Text_NoAbnormalWeather:
 	.string "The occasional rainfall is a blessing,\n"
 	.string "really.$"
 
+
+@ Cities of Emerald — Task 12.2 (GDD 7.2): Forecaster Halley carries the
+@ Archivist's history. Full story unlocks postgame and sets
+@ FLAG_CITIES_EPOCH_WI_HISTORY for the V arcs to react to.
+Route119_WeatherInstitute_2F_EventScript_CitiesHalley::
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, Route119_WeatherInstitute_2F_EventScript_CitiesHalleyHistory
+	msgbox Route119_WeatherInstitute_2F_Text_CitiesHalleyBefore, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_WeatherInstitute_2F_EventScript_CitiesHalleyHistory::
+	msgbox Route119_WeatherInstitute_2F_Text_CitiesHalleyHistory, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_EPOCH_WI_HISTORY
+	release
+	end
+
+Route119_WeatherInstitute_2F_Text_CitiesHalleyBefore:
+	.string "I've read pressure charts in this\n"
+	.string "room for thirty years.\p"
+	.string "Our proudest season and our worst\n"
+	.string "one were the same year…\l"
+	.string "the year of the great storms.\p"
+	.string "A colleague of mine took that season\n"
+	.string "very hard. One day he packed up\l"
+	.string "and left, and that was that.\p"
+	.string "Here's an odd thing, though.\p"
+	.string "The spring after the storms, the\n"
+	.string "meadow south of here bloomed\l"
+	.string "like a thank-you.\p"
+	.string "I like to think the flowers\n"
+	.string "remember kindness.$"
+
+Route119_WeatherInstitute_2F_Text_CitiesHalleyHistory:
+	.string "You're the Champion now, aren't you?\p"
+	.string "Then you've seen how big the sea\n"
+	.string "can be. Maybe you can hold this\l"
+	.string "story without dropping it.\p"
+	.string "The year KYOGRE woke, we tracked\n"
+	.string "storm cells from this room, day\l"
+	.string "and night.\p"
+	.string "The finest reader of storms among us\n"
+	.string "was a young researcher from a small\l"
+	.string "coastal village.\p"
+	.string "One night, a storm turned faster\n"
+	.string "than our charts could follow.\p"
+	.string "Our warning went out hours too late\n"
+	.string "for his village.\p"
+	.string "The sea took it. He was here, at his\n"
+	.string "desk, when it happened.\p"
+	.string "After that he grew very quiet.\n"
+	.string "One morning his desk was clear.\p"
+	.string "All he took was the old harbor\n"
+	.string "barometer he'd brought from home.\p"
+	.string "He stopped using his name\n"
+	.string "around then.\l"
+	.string "I won't guess at what he goes by now.\p"
+	.string "If you ever meet a man in a slate-\n"
+	.string "gray coat who watches the sky like\l"
+	.string "it owes him an answer…\p"
+	.string "please be kind to him.$"

@@ -1872,6 +1872,7 @@
 #define FLAG_CITIES_H5A_PLATE_15                    (CITIES_FLAGS_START + 0xC7)
 #define FLAG_CITIES_H5A_PLATE_16                    (CITIES_FLAGS_START + 0xC8)
 #define FLAG_CITIES_H5A_PLATE_17                    (CITIES_FLAGS_START + 0xC9)
+#define FLAG_CITIES_EPOCH_WI_HISTORY                (CITIES_FLAGS_START + 0xCA) // Heard Forecaster Halley's full Archivist history (Task 12.2)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

@@ -131,3 +131,43 @@ Route119_WeatherInstitute_1F_Text_TakeRestInBed:
 	.string "There's a bed…\n"
 	.string "Let's take a rest.$"
 
+
+@ Cities of Emerald — Task 12.2 (GDD 7.2): quiet archive clues about the
+@ Archivist, readable from the first visit. They are flavor before the
+@ V arcs and land differently after.
+Route119_WeatherInstitute_1F_EventScript_CitiesStormLogs::
+	msgbox Route119_WeatherInstitute_1F_Text_CitiesStormLogs, MSGBOX_SIGN
+	end
+
+Route119_WeatherInstitute_1F_EventScript_CitiesStaffPhoto::
+	msgbox Route119_WeatherInstitute_1F_Text_CitiesStaffPhoto, MSGBOX_SIGN
+	end
+
+Route119_WeatherInstitute_1F_EventScript_CitiesWallMount::
+	msgbox Route119_WeatherInstitute_1F_Text_CitiesWallMount, MSGBOX_SIGN
+	end
+
+Route119_WeatherInstitute_1F_Text_CitiesStormLogs:
+	.string "Storm logs, filed by year.\p"
+	.string "The year of the great storms is here\n"
+	.string "too, page after page in neat, small\l"
+	.string "handwriting.\p"
+	.string "One page has been torn out.\p"
+	.string "The entry for a single night\n"
+	.string "is missing.$"
+
+Route119_WeatherInstitute_1F_Text_CitiesStaffPhoto:
+	.string "A framed photo of the INSTITUTE\n"
+	.string "staff, taken years ago.\p"
+	.string "Everyone is smiling at the camera\n"
+	.string "except one researcher.\p"
+	.string "He stands half-turned away, holding\n"
+	.string "a small instrument, watching the\l"
+	.string "sky instead.$"
+
+Route119_WeatherInstitute_1F_Text_CitiesWallMount:
+	.string "An empty bracket is fixed to\n"
+	.string "the wall.\p"
+	.string "The paint around it is darker, in\n"
+	.string "the shape of something round that\l"
+	.string "hung here for years.$"

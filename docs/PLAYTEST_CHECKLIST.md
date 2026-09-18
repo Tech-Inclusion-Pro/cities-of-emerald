@@ -291,6 +291,12 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Busy route with follower + several visible wilds: no "too many object events" crash screen in the dev build; spawns just pause
 - [ ] Start menu: first entry sits close under the window's top border (list moved up 4px, window 1 tile shorter)
 
+## Task 12.2 — Weather Institute (Phase 12)
+- [ ] 2F: Forecaster Halley stands in the console aisle (left side); pre-League she tells the "year of the great storms" story ending with the blooming meadow line
+- [ ] Postgame (game-clear flag): Halley tells the full history (storm, late warning, the barometer, "he stopped using his name") — no name is ever spoken
+- [ ] 1F: three readable clues — storm logbook with a torn-out page (left machine block), staff photo with one researcher half-turned (right machine block), empty wall bracket near the stairs
+- [ ] The word "Kai" appears nowhere in any of this content
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
