@@ -175,6 +175,7 @@ enum
     MULTI_CITIES_ACCESS_PRESET, // Cities of Emerald: accessibility presets (GDD 11.6)
     MULTI_CITIES_GUIDE_MENU,    // Cities of Emerald: Littleroot guide main menu (GDD 11.4)
     MULTI_CITIES_TUTORIALS,     // Cities of Emerald: replayable tutorials (GDD 11.4)
+    MULTI_CITIES_TITLE_DEFENSE, // Cities of Emerald: pick a title-defense challenger (GDD 7.4)
 };
 
 #define MULTI_NONE 255

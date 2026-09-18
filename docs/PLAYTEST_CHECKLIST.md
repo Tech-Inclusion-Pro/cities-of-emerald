@@ -344,6 +344,13 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journals "Whispers and Wishes" (mythicals) shows postgame
 - [ ] `make check` completeness tests stay green (every story-only species obtainable, none placed twice)
 
+## Phase 14 — Remaining postgame features
+- [ ] Title defense: postgame, the League lobby official offers a defense; menu of Bram/Ilaria/Corsen/Vesper/Elite Four; battles are repeatable and each win adds ranking points; challengers stay "beaten" in the world afterward; the Master ceremony still runs once
+- [ ] Random-trade NPC (Slateport market, ~23,13): hand over a party mon → receive a random non-legendary species at the same level; never gives story-only species; won't take an Egg
+- [ ] Achievements: the Mauville records-keeper (~19,8) reports "X of Y earned" and lists them (Champion, Master, 300 caught, Walked Coralmere, Team Epoch's Peace, Arceus)
+- [ ] Shiny Charm: at 300 caught, Birch (his lab) hands over the Shiny Charm, once
+- [ ] Mauville plaza: free move relearner (~15,8) and deleter (~17,8), no Heart Scale; Fallarbor/Lilycove NPCs still work
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

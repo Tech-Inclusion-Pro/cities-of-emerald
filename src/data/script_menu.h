@@ -1182,6 +1182,16 @@ static const struct MenuAction sMultichoiceList_CitiesEeveeStones[] =
     {gText_Exit},
 };
 
+static const struct MenuAction sMultichoiceList_CitiesTitleDefense[] =
+{
+    {COMPOUND_STRING("Bram")},
+    {COMPOUND_STRING("Ilaria")},
+    {COMPOUND_STRING("Corsen")},
+    {COMPOUND_STRING("Vesper")},
+    {COMPOUND_STRING("The Elite Four")},
+    {gText_Exit},
+};
+
 struct MultichoiceListStruct
 {
     const struct MenuAction *list;
@@ -1355,6 +1365,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_CITIES_ACCESS_PRESET]                       = MULTICHOICE(sMultichoiceList_CitiesAccessPreset),
     [MULTI_CITIES_GUIDE_MENU]                          = MULTICHOICE(sMultichoiceList_CitiesGuideMenu),
     [MULTI_CITIES_TUTORIALS]                           = MULTICHOICE(sMultichoiceList_CitiesTutorials),
+    [MULTI_CITIES_TITLE_DEFENSE]                       = MULTICHOICE(sMultichoiceList_CitiesTitleDefense),
 };
 
 const u8 *const gStdStrings[] =

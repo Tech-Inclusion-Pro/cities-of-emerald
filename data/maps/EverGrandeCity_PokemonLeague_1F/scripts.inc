@@ -140,8 +140,10 @@ EverGrandeCity_PokemonLeague_1F_Text_GoForth:
 @ Cities of Emerald (GDD 8.1, Task 7.7): the POKéMON MASTER ceremony.
 @ The official appears once the title is earned; the ceremony (and the
 @ MASTER BALL) happens once, then the official stays to congratulate.
+@ Cities: the official appears once the player is Champion (title
+@ defenses are part of the ranking climb), not only at Master.
 EverGrandeCity_PokemonLeague_1F_EventScript_UpdateCitiesOfficial::
-	goto_if_set FLAG_CITIES_POKEMON_MASTER, EverGrandeCity_PokemonLeague_1F_EventScript_ShowCitiesOfficial
+	goto_if_set FLAG_SYS_GAME_CLEAR, EverGrandeCity_PokemonLeague_1F_EventScript_ShowCitiesOfficial
 	setflag FLAG_CITIES_HIDE_LEAGUE_OFFICIAL
 	return
 
@@ -152,7 +154,8 @@ EverGrandeCity_PokemonLeague_1F_EventScript_ShowCitiesOfficial::
 EverGrandeCity_PokemonLeague_1F_EventScript_CitiesOfficial::
 	lock
 	faceplayer
-	goto_if_set FLAG_CITIES_MASTER_CEREMONY_DONE, EverGrandeCity_PokemonLeague_1F_EventScript_CitiesOfficialAfter
+	goto_if_set FLAG_CITIES_MASTER_CEREMONY_DONE, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseOffer
+	goto_if_unset FLAG_CITIES_POKEMON_MASTER, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseOffer
 	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesCeremony, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_SYMBOL
 	waitfanfare
@@ -161,16 +164,105 @@ EverGrandeCity_PokemonLeague_1F_EventScript_CitiesOfficial::
 	goto_if_eq VAR_RESULT, FALSE, EverGrandeCity_PokemonLeague_1F_EventScript_CitiesBagFull
 	setflag FLAG_CITIES_MASTER_CEREMONY_DONE
 	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesCeremonyClose, MSGBOX_DEFAULT
-	release
-	end
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseOffer
 
 EverGrandeCity_PokemonLeague_1F_EventScript_CitiesBagFull::
 	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesBagFull, MSGBOX_DEFAULT
 	release
 	end
 
-EverGrandeCity_PokemonLeague_1F_EventScript_CitiesOfficialAfter::
-	msgbox EverGrandeCity_PokemonLeague_1F_Text_CitiesOfficialAfter, MSGBOX_DEFAULT
+@ -- Title defense (GDD 7.4): re-fight a ranked challenger for points --
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseOffer::
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseDone
+	message EverGrandeCity_PokemonLeague_1F_Text_TitleDefensePick
+	waitmessage
+	multichoice 0, 0, MULTI_CITIES_TITLE_DEFENSE, FALSE
+	switch VAR_RESULT
+	case 0, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseBram
+	case 1, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseIlaria
+	case 2, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseCorsen
+	case 3, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseVesper
+	case 4, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseEliteFour
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseDone
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseEliteFour::
+	random 4
+	switch VAR_RESULT
+	case 0, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseSidney
+	case 1, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefensePhoebe
+	case 2, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseGlacia
+	case 3, EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseDrake
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseDone
+
+@ Each challenger: clear its defeated flag so the battle triggers, arm
+@ the scoring flag, fight, then re-set the flag so world state is
+@ unchanged (beaten) whether the defense was won or lost.
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseBram::
+	cleartrainerflag TRAINER_CITIES_CHALLENGER_BRAM
+	setflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	trainerbattle_no_intro TRAINER_CITIES_CHALLENGER_BRAM, EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose
+	settrainerflag TRAINER_CITIES_CHALLENGER_BRAM
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseIlaria::
+	cleartrainerflag TRAINER_CITIES_CHALLENGER_ILARIA
+	setflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	trainerbattle_no_intro TRAINER_CITIES_CHALLENGER_ILARIA, EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose
+	settrainerflag TRAINER_CITIES_CHALLENGER_ILARIA
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseCorsen::
+	cleartrainerflag TRAINER_CITIES_CHALLENGER_CORSEN
+	setflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	trainerbattle_no_intro TRAINER_CITIES_CHALLENGER_CORSEN, EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose
+	settrainerflag TRAINER_CITIES_CHALLENGER_CORSEN
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseVesper::
+	cleartrainerflag TRAINER_CITIES_CHALLENGER_VESPER
+	setflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	trainerbattle_no_intro TRAINER_CITIES_CHALLENGER_VESPER, EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose
+	settrainerflag TRAINER_CITIES_CHALLENGER_VESPER
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseSidney::
+	cleartrainerflag TRAINER_SIDNEY
+	setflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose
+	settrainerflag TRAINER_SIDNEY
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefensePhoebe::
+	cleartrainerflag TRAINER_PHOEBE
+	setflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose
+	settrainerflag TRAINER_PHOEBE
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseGlacia::
+	cleartrainerflag TRAINER_GLACIA
+	setflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose
+	settrainerflag TRAINER_GLACIA
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseDrake::
+	cleartrainerflag TRAINER_DRAKE
+	setflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose
+	settrainerflag TRAINER_DRAKE
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseResult::
+	clearflag FLAG_CITIES_TITLE_DEFENSE_ACTIVE
+	closemessage
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseAfter, MSGBOX_DEFAULT
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseOffer
+
+EverGrandeCity_PokemonLeague_1F_EventScript_TitleDefenseDone::
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseDone, MSGBOX_DEFAULT
 	release
 	end
 
@@ -202,3 +294,24 @@ EverGrandeCity_PokemonLeague_1F_Text_CitiesBagFull:
 EverGrandeCity_PokemonLeague_1F_Text_CitiesOfficialAfter:
 	.string "It's an honor, MASTER {PLAYER}.\p"
 	.string "The whole region looks up to you.$"
+
+EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseOffer:
+	.string "A title is not held once. It is\n"
+	.string "held again, and again.\p"
+	.string "Care to defend your standing\n"
+	.string "against a ranked challenger?$"
+
+EverGrandeCity_PokemonLeague_1F_Text_TitleDefensePick:
+	.string "Who will you face?$"
+
+EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseLose:
+	.string "Your title wavers! Rest, and\n"
+	.string "defend it again when you're ready.$"
+
+EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseAfter:
+	.string "A defense well fought. The\n"
+	.string "rankings have taken note.$"
+
+EverGrandeCity_PokemonLeague_1F_Text_TitleDefenseDone:
+	.string "Your standing is safe for today.\n"
+	.string "The rankings await your return.$"

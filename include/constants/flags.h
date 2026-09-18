@@ -2045,6 +2045,8 @@
 #define FLAG_CITIES_MYTHIC_HOOPA_PRIZE_TAKEN                   (CITIES_FLAGS_START + 0x171) // Prison Bottle collected
 #define FLAG_CITIES_MYTHIC_PECHARUNT_CAUGHT                    (CITIES_FLAGS_START + 0x172) // Pecharunt (Mt. Pyre Summit; not in the GDD table, added for completeness)
 #define FLAG_CITIES_HIDE_MYTHIC_PECHARUNT                      (CITIES_FLAGS_START + 0x173)
+#define FLAG_CITIES_TITLE_DEFENSE_ACTIVE                       (CITIES_FLAGS_START + 0x174) // set around a title-defense battle so it scores (Task 14.1)
+#define FLAG_CITIES_SHINY_CHARM_GIVEN                          (CITIES_FLAGS_START + 0x175) // Birch gave the Shiny Charm at 300 caught (Task 14.4)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

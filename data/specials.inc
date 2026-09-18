@@ -654,3 +654,7 @@ gSpecials::
 	def_special Script_CitiesSetWildLegendary
 	def_special Script_CitiesM3StartRoamers
 	def_special Script_CitiesM3DenVisible
+	def_special Script_CitiesDoRandomTrade
+	def_special Script_CitiesBufferTradeSpeciesName
+	def_special Script_CitiesBufferAchievements
+	def_special Script_CitiesShinyCharmEligible

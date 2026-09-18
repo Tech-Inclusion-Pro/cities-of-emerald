@@ -37,9 +37,13 @@ void CitiesRanking_BattleStart(u16 trainerId)
         return;
 
     sTracking = TRUE;
+    // GDD 7.4: title-defense battles re-fight already-beaten ranked NPCs, so
+    // their trainer flag is set; the on-demand flag makes each win score.
+    if (FlagGet(FLAG_CITIES_TITLE_DEFENSE_ACTIVE))
+        sEligibleForWin = TRUE;
     // GDD 7.3/8.2: rival rematch versions share one trainer ID, so their
     // once-per-version eligibility lives in Cities flags, not the trainer flag.
-    if (CitiesIsRivalRematchTrainer(trainerId))
+    else if (CitiesIsRivalRematchTrainer(trainerId))
         sEligibleForWin = CitiesRivalRematchWinEligible();
     else
         sEligibleForWin = !HasTrainerBeenFought(trainerId);
