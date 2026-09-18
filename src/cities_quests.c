@@ -722,6 +722,19 @@ static const u8 *SurvivorsQuestStep(void)
     return COMPOUND_STRING("Across HOENN, ordinary people carry\nCORALMERE with them. Found: {STR_VAR_1} of 8.\lListen; their words mean more now.");
 }
 
+// ---- Mythical events (GDD 6.6, Task 13.1) ----
+// One postgame quest pointing the player at the mythical hotspots.
+
+static bool32 MythicQuestActive(void)
+{
+    return FlagGet(FLAG_SYS_GAME_CLEAR);
+}
+
+static const u8 *MythicQuestStep(void)
+{
+    return COMPOUND_STRING("Wishes and rumors gather across\nHOENN. Meteorites, hot springs, a\lsunken speck of land, a ring in the\lTRICK HOUSE… seek the mythical few.");
+}
+
 // ---- Journal ----
 
 struct CitiesQuest
@@ -756,6 +769,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Making of Everything"), H5AQuestActive,   H5AQuestStep },
     { COMPOUND_STRING("The Quiet Buyers"),    EpochQuestActive,      EpochQuestStep },
     { COMPOUND_STRING("Voices of Coralmere"), SurvivorsQuestActive,  SurvivorsQuestStep },
+    { COMPOUND_STRING("Whispers and Wishes"), MythicQuestActive,     MythicQuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

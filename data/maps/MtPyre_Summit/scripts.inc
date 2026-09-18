@@ -8,6 +8,7 @@ MtPyre_Summit_OnResume:
 	end
 
 MtPyre_Summit_OnTransition:
+	call Cities_EventScript_MythicShowPecharunt
 	call_if_eq VAR_MT_PYRE_STATE, 2, MtPyre_Summit_EventScript_SetArchieMaxiePositions
 	call Cities_EventScript_UpdateH5AGiratina @ H5a (cities_h5a.inc)
 	end

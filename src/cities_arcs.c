@@ -85,7 +85,7 @@ static const u16 sArcMythic[] =
     SPECIES_DEOXYS, SPECIES_JIRACHI, SPECIES_DIANCIE, SPECIES_MANAPHY,
     SPECIES_PHIONE, SPECIES_SHAYMIN, SPECIES_HOOPA, SPECIES_VICTINI,
     SPECIES_MELOETTA, SPECIES_VOLCANION, SPECIES_MARSHADOW, SPECIES_ZERAORA,
-    SPECIES_ZARUDE, SPECIES_MELTAN, SPECIES_MELMETAL,
+    SPECIES_ZARUDE, SPECIES_MELTAN, SPECIES_MELMETAL, SPECIES_PECHARUNT,
 };
 
 static const struct CitiesArcInfo sArcs[CITIES_ARC_COUNT] =
@@ -217,6 +217,29 @@ u16 CitiesGetLegendarySpeciesLevel(u16 species)
 void Script_CitiesSetWildLegendary(void)
 {
     CreateScriptedWildMon(gSpecialVar_0x8004, CitiesGetLegendarySpeciesLevel(gSpecialVar_0x8004), ITEM_NONE);
+}
+
+// Completeness support (GDD 6.8, Task 13.2). Two questions the test asks:
+// how many arc tables list this exact species (must be <= 1), and whether
+// any form of a base line is placed at all (coverage).
+u32 CitiesCountExactPlacements(u16 species)
+{
+    u32 arc, i, n = 0;
+    for (arc = 0; arc < CITIES_ARC_COUNT; arc++)
+        for (i = 0; i < sArcs[arc].speciesCount; i++)
+            if (sArcs[arc].species[i] == species)
+                n++;
+    return n;
+}
+
+bool8 CitiesBaseFormPlaced(u16 base)
+{
+    u32 arc, i;
+    for (arc = 0; arc < CITIES_ARC_COUNT; arc++)
+        for (i = 0; i < sArcs[arc].speciesCount; i++)
+            if (GET_BASE_SPECIES_ID(sArcs[arc].species[i]) == base)
+                return TRUE;
+    return FALSE;
 }
 
 // Special (specialvar): VAR_0x8004 = CITIES_ARC_*; TRUE once every

@@ -2043,6 +2043,8 @@
 #define FLAG_CITIES_MYTHIC_MELTAN_STARTED                      (CITIES_FLAGS_START + 0x16F) // dockworker started the hunt
 #define FLAG_CITIES_MYTHIC_HOOPA_RING_NPC                      (CITIES_FLAGS_START + 0x170) // the ring in the Trick House entrance (object hide)
 #define FLAG_CITIES_MYTHIC_HOOPA_PRIZE_TAKEN                   (CITIES_FLAGS_START + 0x171) // Prison Bottle collected
+#define FLAG_CITIES_MYTHIC_PECHARUNT_CAUGHT                    (CITIES_FLAGS_START + 0x172) // Pecharunt (Mt. Pyre Summit; not in the GDD table, added for completeness)
+#define FLAG_CITIES_HIDE_MYTHIC_PECHARUNT                      (CITIES_FLAGS_START + 0x173)
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

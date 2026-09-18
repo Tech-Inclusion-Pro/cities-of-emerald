@@ -53,13 +53,14 @@ TEST("Journal: quests activate with progress and completed ones drop off")
     EXPECT_EQ(CountJournalEntries(), 3);
     VarSet(VAR_CITIES_M1_STATE, 0);
 
-    // Champion: rematches and the road to Master open too.
+    // Champion: rematches, the road to Master, and the mythical-events
+    // quest (Whispers and Wishes) open too.
     FlagSet(FLAG_SYS_GAME_CLEAR);
-    EXPECT_EQ(CountJournalEntries(), 6);
+    EXPECT_EQ(CountJournalEntries(), 7);
 
     // The Master quest completes and leaves the journal.
     FlagSet(FLAG_CITIES_POKEMON_MASTER);
-    EXPECT_EQ(CountJournalEntries(), 5);
+    EXPECT_EQ(CountJournalEntries(), 6);
 
     ClearQuestTestState();
 }

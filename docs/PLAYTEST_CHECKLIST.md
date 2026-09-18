@@ -335,6 +335,15 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 ## Task 12.8 — The name check
 - [ ] `make check` runs tools/cities/check_kai.py and stays green; deliberately adding "Kai" to any non-ending string should turn it red
 
+## Phase 13 — Mythical events (all postgame, all L70)
+- [ ] Simple statics appear postgame and return if they flee: Jirachi (Cozmo's House), Diancie (Granite Cave B2F), Manaphy then Phione (Underwater Route 124), Victini (Mauville), Meloetta (Fallarbor Town), Volcanion (Lavaridge), Marshadow (Sky Pillar 1F), Zeraora (New Mauville), Zarude (Petalburg Woods), Pecharunt (Mt. Pyre Summit)
+- [ ] Deoxys: postgame sailor at Lilycove Harbor sails to Birth Island; the vanilla triangle puzzle runs; Deoxys is L70
+- [ ] Shaymin: telling Halley's history postgame reveals the Route 119 meadow (south of the Institute); Shaymin there gives the Gracidea
+- [ ] Hoopa: a ring appears in the Trick House entrance postgame → Ring Chamber; plaque order SUN/SEA/SKY opens Hoopa + Prison Bottle
+- [ ] Meltan: Slateport dockworker starts the hunt; 6 nuts across town; all 6 → Meltan; catching it → Melmetal
+- [ ] Journals "Whispers and Wishes" (mythicals) shows postgame
+- [ ] `make check` completeness tests stay green (every story-only species obtainable, none placed twice)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

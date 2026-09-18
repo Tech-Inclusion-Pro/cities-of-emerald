@@ -1,6 +1,11 @@
 # Task 13.1 — Mythical Events (outline, for approval)
 
-**Status: PROPOSED 2026-09-18.** All mythical encounters are fixed
+**Status: APPROVED + BUILT 2026-09-18.** Build note: the 13.2
+completeness test caught one mythical the GDD 6.6 table predates —
+**Pecharunt** — so it was added at **Mt. Pyre Summit** (ghost/poison,
+among the graves) to keep every story-only species obtainable. Also:
+Meloetta is in **Fallarbor Town** proper (Emerald has no Fallarbor
+Contest Hall). All mythical encounters are fixed
 **level 70** (GDD 6.6, [DECIDED 2026-09-17]) and unlock after the
 League. Locations are the [DECIDED] GDD 6.6 table. Together with the
 arcs (which already hold Mew, Celebi, Genesect, Magearna, Keldeo),

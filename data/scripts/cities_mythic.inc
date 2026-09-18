@@ -965,3 +965,51 @@ Cities_Text_MythicHoopa:
 Cities_Text_HoopaPrizeFull:
 	.string "A bottle rests in the last ring.\n"
 	.string "Your BAG is too full to take it.$"
+
+@ ===================================================================
+@ Pecharunt — Mt. Pyre Summit (Task 13.1). NOT in the GDD 6.6 table
+@ (a newer mythical); added so the 13.2 completeness test passes and
+@ no story-only species is unobtainable. Ghost/Poison — the grudge
+@ mochi rests among the mountain's graves. L70 like the rest.
+@ ===================================================================
+
+Cities_EventScript_MythicShowPecharunt::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Cities_EventScript_MythicHidePecharunt
+	goto_if_set FLAG_CITIES_MYTHIC_PECHARUNT_CAUGHT, Cities_EventScript_MythicHidePecharunt
+	clearflag FLAG_CITIES_HIDE_MYTHIC_PECHARUNT
+	return
+
+Cities_EventScript_MythicHidePecharunt::
+	setflag FLAG_CITIES_HIDE_MYTHIC_PECHARUNT
+	return
+
+Cities_EventScript_MythicPecharunt::
+	lock
+	faceplayer
+	msgbox Cities_Text_MythicPecharunt, MSGBOX_DEFAULT
+	closemessage
+	waitse
+	playmoncry SPECIES_PECHARUNT, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setvar VAR_0x8004, SPECIES_PECHARUNT
+	special Script_CitiesSetWildLegendary
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Cities_EventScript_MythicCaughtPecharunt
+	goto Cities_EventScript_LegendWithdrew
+
+Cities_EventScript_MythicCaughtPecharunt::
+	setflag FLAG_CITIES_MYTHIC_PECHARUNT_CAUGHT
+	release
+	end
+
+Cities_Text_MythicPecharunt:
+	.string "Among the graves, a chained pot\n"
+	.string "sits where no one left it.\p"
+	.string "A small ghost peers over its rim,\n"
+	.string "offering you a mochi with a smile\l"
+	.string "that has plans.$"

@@ -60,6 +60,8 @@ enum CitiesArcObedience CitiesGetArcObedience(u16 species, u8 *msgIndexOut);
 bool32 CitiesArcAllCaught(u32 arc);
 bool32 CitiesLatiUnited(void);
 u16 CitiesGetLegendarySpeciesLevel(u16 species);
+u32 CitiesCountExactPlacements(u16 species);
+bool8 CitiesBaseFormPlaced(u16 base);
 
 // Script specials
 u16 Script_CitiesGetLegendaryLevel(void);
