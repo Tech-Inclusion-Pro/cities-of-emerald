@@ -360,6 +360,7 @@ TEST_SKIP_IS_FAIL := \x00
 endif
 
 check: $(TESTELF)
+	@python3 tools/cities/check_kai.py
 	@cp $< $(HEADLESSELF)
 	$(PATCHELF) $(HEADLESSELF) gTestRunnerHeadless '\x01' gTestRunnerSkipIsFail "$(TEST_SKIP_IS_FAIL)"
 	$(ROMTESTHYDRA) $(ROMTEST) $(OBJCOPY) $(HEADLESSELF)

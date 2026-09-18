@@ -326,6 +326,15 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Journal: "The Quiet Buyers" quest tracked the whole thread and drops off at the ending; Halley's history now says "the year the great storms came" (timeline fix)
 - [ ] "Kai" is not spoken anywhere before the naming scene
 
+## Task 12.7 — The Coralmere survivors (Phase 12)
+- [ ] Seven survivors readable from game start: Dewford fisher (beach), Slateport vendor (market), Mauville musician, Fallarbor teacher, Lilycove museum painter (1F), Mossdeep sailor, Sootopolis resident — each gives an ordinary hint
+- [ ] After the rift walk (V4): each says one step more, naming Coralmere
+- [ ] After the ending: each speaks of Kai by name, warmly
+- [ ] Journal "Voices of Coralmere" appears after the rift walk, counts up to 8 of 8 (the Pacifidlog family is the eighth), drops off when all met + ending done
+
+## Task 12.8 — The name check
+- [ ] `make check` runs tools/cities/check_kai.py and stays green; deliberately adding "Kai" to any non-ending string should turn it red
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built

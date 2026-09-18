@@ -290,3 +290,92 @@ Cities_Text_ArchiveGnomon:
 	.string "they say “PROBABLY.”\p"
 	.string "An engineer should be honest\n"
 	.string "on the label.$"
+
+@ -- Task 12.7 survivors, KAI stage (quarantined here; gated behind
+@ FLAG_CITIES_KAI_NAMED at every call site) --
+
+Cities_EventScript_SurvivorDewfordNamed::
+	msgbox Cities_Text_SurvivorDewfordNamed, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_SurvivorSlateportNamed::
+	msgbox Cities_Text_SurvivorSlateportNamed, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_SurvivorMauvilleNamed::
+	msgbox Cities_Text_SurvivorMauvilleNamed, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_SurvivorFallarborNamed::
+	msgbox Cities_Text_SurvivorFallarborNamed, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_SurvivorLilycoveNamed::
+	msgbox Cities_Text_SurvivorLilycoveNamed, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_SurvivorMossdeepNamed::
+	msgbox Cities_Text_SurvivorMossdeepNamed, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_SurvivorSootopolisNamed::
+	msgbox Cities_Text_SurvivorSootopolisNamed, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_Text_SurvivorDewfordNamed:
+	.string "I fish east now. Toward ROUTE\n"
+	.string "128.\p"
+	.string "KAI showed me the village is at\n"
+	.string "peace down there. So am I,\l"
+	.string "slowly.$"
+
+Cities_Text_SurvivorSlateportNamed:
+	.string "KAI came by the stall. Held one\n"
+	.string "of my charms a long time.\p"
+	.string "Said CORALMERE always did have\n"
+	.string "the best hands. Then he bought\l"
+	.string "six.$"
+
+Cities_Text_SurvivorMauvilleNamed:
+	.string "I know the words to the song now.\p"
+	.string "KAI remembered them. We sang it\n"
+	.string "together, badly, and everyone\l"
+	.string "threw coins.\p"
+	.string "Best day of busking I ever had.$"
+
+Cities_Text_SurvivorFallarborNamed:
+	.string "I added CORALMERE to the class\n"
+	.string "map, in ink, for good.\p"
+	.string "KAI signed the corner. He said a\n"
+	.string "town is real as long as someone\l"
+	.string "teaches it.$"
+
+Cities_Text_SurvivorLilycoveNamed:
+	.string "I finished the painting.\p"
+	.string "The tower, above the water, in\n"
+	.string "the sun. KAI helped me choose\l"
+	.string "the light.\p"
+	.string "It hangs in the ARCHIVE now.$"
+
+Cities_Text_SurvivorMossdeepNamed:
+	.string "KAI has the other half of the\n"
+	.string "sign.\p"
+	.string "We fitted them together on the\n"
+	.string "ARCHIVE wall. CORALMERE, whole\l"
+	.string "again, in letters if not in\l"
+	.string "stone.$"
+
+Cities_Text_SurvivorSootopolisNamed:
+	.string "The legendaries never answered\n"
+	.string "my old question.\p"
+	.string "But KAI did, with his own hands,\n"
+	.string "in a storm. That turned out to\l"
+	.string "be the answer.$"
+

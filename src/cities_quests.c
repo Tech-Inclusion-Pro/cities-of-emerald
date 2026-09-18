@@ -687,6 +687,41 @@ static const u8 *EpochQuestStep(void)
     return COMPOUND_STRING("Someone is quietly buying old\nresearch near the MOSSDEEP SPACE\lCENTER. The annex door is on 2F.");
 }
 
+// ---- Voices of Coralmere: the survivors (GDD 7.2, Task 12.7) ----
+// Appears once the player has walked the rift (V4 >= 2). Counts the
+// eight survivors met; the family (Pacifidlog) is the eighth. No name
+// appears here (Task 12.8's rule).
+
+static const u16 sSurvivorFlags[] =
+{
+    FLAG_CITIES_SURVIVOR_DEWFORD, FLAG_CITIES_SURVIVOR_SLATEPORT,
+    FLAG_CITIES_SURVIVOR_MAUVILLE, FLAG_CITIES_SURVIVOR_FALLARBOR,
+    FLAG_CITIES_SURVIVOR_LILYCOVE, FLAG_CITIES_SURVIVOR_MOSSDEEP,
+    FLAG_CITIES_SURVIVOR_SOOTOPOLIS, FLAG_CITIES_SURVIVOR_PACIFIDLOG,
+};
+
+static u32 CountSurvivorsMet(void)
+{
+    u32 i, n = 0;
+    for (i = 0; i < ARRAY_COUNT(sSurvivorFlags); i++)
+        if (FlagGet(sSurvivorFlags[i]))
+            n++;
+    return n;
+}
+
+static bool32 SurvivorsQuestActive(void)
+{
+    if (VarGet(VAR_CITIES_V4_STATE) < 2)
+        return FALSE;
+    return CountSurvivorsMet() < ARRAY_COUNT(sSurvivorFlags);
+}
+
+static const u8 *SurvivorsQuestStep(void)
+{
+    ConvertIntToDecimalStringN(gStringVar1, CountSurvivorsMet(), STR_CONV_MODE_LEFT_ALIGN, 1);
+    return COMPOUND_STRING("Across HOENN, ordinary people carry\nCORALMERE with them. Found: {STR_VAR_1} of 8.\lListen; their words mean more now.");
+}
+
 // ---- Journal ----
 
 struct CitiesQuest
@@ -720,6 +755,7 @@ static const struct CitiesQuest sQuests[] =
     { COMPOUND_STRING("The Mask in the Grove"), H2BQuestActive,      H2BQuestStep },
     { COMPOUND_STRING("The Making of Everything"), H5AQuestActive,   H5AQuestStep },
     { COMPOUND_STRING("The Quiet Buyers"),    EpochQuestActive,      EpochQuestStep },
+    { COMPOUND_STRING("Voices of Coralmere"), SurvivorsQuestActive,  SurvivorsQuestStep },
     { COMPOUND_STRING("Ranked Challengers"),  ChallengerQuestActive, ChallengerQuestStep },
     { COMPOUND_STRING("Stronger Rematches"),  RematchQuestActive,    RematchQuestStep },
     { COMPOUND_STRING("Road to Master"),      MasterQuestActive,     MasterQuestStep },

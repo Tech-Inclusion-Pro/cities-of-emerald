@@ -1753,6 +1753,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/cities_v4.inc"
 	.include "data/scripts/cities_v5.inc"
 	.include "data/scripts/cities_ending.inc"
+	.include "data/scripts/cities_survivors.inc"
 	.include "data/scripts/roulette.inc"
 	.include "data/scripts/pokedex_rating.inc"
 	.include "data/text/pokedex_rating.inc"
