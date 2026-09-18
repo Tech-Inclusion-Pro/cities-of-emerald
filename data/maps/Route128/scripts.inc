@@ -300,3 +300,27 @@ Route128_Text_StevenImGoingToSootopolis:
 	.string "Okay.\n"
 	.string "I'm going to SOOTOPOLIS.$"
 
+
+@ Cities of Emerald — Task 12.3: Coralmere's surface ruins, visible from
+@ the start of the game (GDD 7.2). Just flavor until the V arcs.
+Route128_EventScript_CitiesTowerTop::
+	msgbox Route128_Text_CitiesTowerTop, MSGBOX_SIGN
+	end
+
+Route128_EventScript_CitiesStoneRows::
+	msgbox Route128_Text_CitiesStoneRows, MSGBOX_SIGN
+	end
+
+Route128_Text_CitiesTowerTop:
+	.string "The top of a stone tower rises\n"
+	.string "out of the open sea.\p"
+	.string "Sun and salt have worn it round.\p"
+	.string "Far below, something pale\n"
+	.string "catches the light.$"
+
+Route128_Text_CitiesStoneRows:
+	.string "Worn stumps of stone stand in two\n"
+	.string "straight lines just under the\l"
+	.string "surface.\p"
+	.string "They look like the posts of a\n"
+	.string "very long dock.$"

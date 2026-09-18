@@ -9455,6 +9455,17 @@
       "border_filepath": "data/layouts/RiftVestibule/border.bin",
       "blockdata_filepath": "data/layouts/RiftVestibule/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_CORALMERE_RUINS",
+      "name": "CoralmereRuins_Layout",
+      "width": 24,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/CoralmereRuins/border.bin",
+      "blockdata_filepath": "data/layouts/CoralmereRuins/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

@@ -297,6 +297,13 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] 1F: three readable clues — storm logbook with a torn-out page (left machine block), staff photo with one researcher half-turned (right machine block), empty wall bracket near the stairs
 - [ ] The word "Kai" appears nowhere in any of this content
 
+## Task 12.3 — Coralmere, present (Phase 12)
+- [ ] Route 128 east: rock island reads as ruins — tower-top sign on the south face of the tall rocks (read from the water below), stone-post rows sign east of the island (4 new posts in two lines)
+- [ ] Dive on the dark 2×2 patch at the posts (86,17)-ish lands in a small underwater pocket; cut-stone sign next to a made stone opening
+- [ ] Pre-flag: swimming into the opening gets 2 tiles inside, then "the current … too strong" and you're back outside (debug: FLAG_CITIES_CORALMERE_OPEN toggles this)
+- [ ] Flag set: full village — street, square with the CO…ALME…E sign stone, carved doorway (east house), bell tower base (north), swept house floor with hearth (west house); no encounters, no items
+- [ ] Emerging from the pocket surfaces you at the dive patch
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
