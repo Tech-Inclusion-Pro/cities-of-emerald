@@ -522,3 +522,446 @@ Cities_Text_MythicShaymin:
 	.string "small green hedgehog.\p"
 	.string "The thank-you HALLEY spoke of,\n"
 	.string "grown legs.$"
+
+@ ===================================================================
+@ Meltan + Melmetal — the Slateport hex-nut hunt (Task 13.1, mirrors
+@ the H6 Zygarde-cell pattern). Six nuts scattered across Slateport
+@ appear postgame once a dockworker starts the hunt; collecting all
+@ six draws MELTAN out (L70), and catching it draws the MELMETAL its
+@ swarm became (L70).
+@ ===================================================================
+
+@ on_transition (Slateport): postgame gating for the whole hunt.
+Cities_EventScript_UpdateMeltanHunt::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Cities_EventScript_MeltanHideAll
+	clearflag FLAG_CITIES_HIDE_MELTAN_DOCKWORKER
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_STARTED, Cities_EventScript_MeltanHideNuts
+	goto_if_set FLAG_CITIES_MYTHIC_MELTAN_NUT_1, Cities_EventScript_MeltanHideNut1
+	clearflag FLAG_CITIES_HIDE_MELTAN_NUT_1
+	goto Cities_EventScript_MeltanNut1Done
+Cities_EventScript_MeltanHideNut1::
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_1
+Cities_EventScript_MeltanNut1Done::
+	goto_if_set FLAG_CITIES_MYTHIC_MELTAN_NUT_2, Cities_EventScript_MeltanHideNut2
+	clearflag FLAG_CITIES_HIDE_MELTAN_NUT_2
+	goto Cities_EventScript_MeltanNut2Done
+Cities_EventScript_MeltanHideNut2::
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_2
+Cities_EventScript_MeltanNut2Done::
+	goto_if_set FLAG_CITIES_MYTHIC_MELTAN_NUT_3, Cities_EventScript_MeltanHideNut3
+	clearflag FLAG_CITIES_HIDE_MELTAN_NUT_3
+	goto Cities_EventScript_MeltanNut3Done
+Cities_EventScript_MeltanHideNut3::
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_3
+Cities_EventScript_MeltanNut3Done::
+	goto_if_set FLAG_CITIES_MYTHIC_MELTAN_NUT_4, Cities_EventScript_MeltanHideNut4
+	clearflag FLAG_CITIES_HIDE_MELTAN_NUT_4
+	goto Cities_EventScript_MeltanNut4Done
+Cities_EventScript_MeltanHideNut4::
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_4
+Cities_EventScript_MeltanNut4Done::
+	goto_if_set FLAG_CITIES_MYTHIC_MELTAN_NUT_5, Cities_EventScript_MeltanHideNut5
+	clearflag FLAG_CITIES_HIDE_MELTAN_NUT_5
+	goto Cities_EventScript_MeltanNut5Done
+Cities_EventScript_MeltanHideNut5::
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_5
+Cities_EventScript_MeltanNut5Done::
+	goto_if_set FLAG_CITIES_MYTHIC_MELTAN_NUT_6, Cities_EventScript_MeltanHideNut6
+	clearflag FLAG_CITIES_HIDE_MELTAN_NUT_6
+	goto Cities_EventScript_MeltanNut6Done
+Cities_EventScript_MeltanHideNut6::
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_6
+Cities_EventScript_MeltanNut6Done::
+	call Cities_EventScript_MeltanUpdateMons
+	return
+
+Cities_EventScript_MeltanUpdateMons::
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_HUNT_DONE, Cities_EventScript_MeltanHideMeltan
+	goto_if_set FLAG_CITIES_MYTHIC_MELTAN_CAUGHT, Cities_EventScript_MeltanHideMeltan
+	clearflag FLAG_CITIES_HIDE_MYTHIC_MELTAN
+	goto Cities_EventScript_MeltanUpdateMelmetal
+Cities_EventScript_MeltanHideMeltan::
+	setflag FLAG_CITIES_HIDE_MYTHIC_MELTAN
+Cities_EventScript_MeltanUpdateMelmetal::
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_CAUGHT, Cities_EventScript_MeltanHideMelmetal
+	goto_if_set FLAG_CITIES_MYTHIC_MELMETAL_CAUGHT, Cities_EventScript_MeltanHideMelmetal
+	clearflag FLAG_CITIES_HIDE_MYTHIC_MELMETAL
+	return
+Cities_EventScript_MeltanHideMelmetal::
+	setflag FLAG_CITIES_HIDE_MYTHIC_MELMETAL
+	return
+
+Cities_EventScript_MeltanHideAll::
+	setflag FLAG_CITIES_HIDE_MELTAN_DOCKWORKER
+Cities_EventScript_MeltanHideNuts::
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_1
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_2
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_3
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_4
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_5
+	setflag FLAG_CITIES_HIDE_MYTHIC_MELTAN
+	setflag FLAG_CITIES_HIDE_MYTHIC_MELMETAL
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_6
+	return
+
+Cities_EventScript_MeltanTryFinish::
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_NUT_1, Cities_EventScript_MeltanTryFinishEnd
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_NUT_2, Cities_EventScript_MeltanTryFinishEnd
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_NUT_3, Cities_EventScript_MeltanTryFinishEnd
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_NUT_4, Cities_EventScript_MeltanTryFinishEnd
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_NUT_5, Cities_EventScript_MeltanTryFinishEnd
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_NUT_6, Cities_EventScript_MeltanTryFinishEnd
+	setflag FLAG_CITIES_MYTHIC_MELTAN_HUNT_DONE
+	clearflag FLAG_CITIES_HIDE_MYTHIC_MELTAN
+Cities_EventScript_MeltanTryFinishEnd::
+	return
+
+@ The dockworker (Slateport, postgame): starts the hunt, then tracks it.
+Cities_EventScript_MeltanDockworker::
+	lock
+	faceplayer
+	goto_if_set FLAG_CITIES_MYTHIC_MELMETAL_CAUGHT, Cities_EventScript_MeltanDockAllDone
+	goto_if_unset FLAG_CITIES_MYTHIC_MELTAN_STARTED, Cities_EventScript_MeltanDockStart
+	msgbox Cities_Text_MeltanDockProgress, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_MeltanDockStart::
+	msgbox Cities_Text_MeltanDockStart, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_MYTHIC_MELTAN_STARTED
+	release
+	end
+
+Cities_EventScript_MeltanDockAllDone::
+	msgbox Cities_Text_MeltanDockDone, MSGBOX_DEFAULT
+	release
+	end
+
+Cities_EventScript_MeltanNut1::
+	lock
+	playse SE_M_REFLECT
+	msgbox Cities_Text_MeltanNut, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_MYTHIC_MELTAN_NUT_1
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_1
+	call Cities_EventScript_MeltanTryFinish
+	removeobject VAR_LAST_TALKED
+	release
+	end
+
+Cities_EventScript_MeltanNut2::
+	lock
+	playse SE_M_REFLECT
+	msgbox Cities_Text_MeltanNut, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_MYTHIC_MELTAN_NUT_2
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_2
+	call Cities_EventScript_MeltanTryFinish
+	removeobject VAR_LAST_TALKED
+	release
+	end
+
+Cities_EventScript_MeltanNut3::
+	lock
+	playse SE_M_REFLECT
+	msgbox Cities_Text_MeltanNut, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_MYTHIC_MELTAN_NUT_3
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_3
+	call Cities_EventScript_MeltanTryFinish
+	removeobject VAR_LAST_TALKED
+	release
+	end
+
+Cities_EventScript_MeltanNut4::
+	lock
+	playse SE_M_REFLECT
+	msgbox Cities_Text_MeltanNut, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_MYTHIC_MELTAN_NUT_4
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_4
+	call Cities_EventScript_MeltanTryFinish
+	removeobject VAR_LAST_TALKED
+	release
+	end
+
+Cities_EventScript_MeltanNut5::
+	lock
+	playse SE_M_REFLECT
+	msgbox Cities_Text_MeltanNut, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_MYTHIC_MELTAN_NUT_5
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_5
+	call Cities_EventScript_MeltanTryFinish
+	removeobject VAR_LAST_TALKED
+	release
+	end
+
+Cities_EventScript_MeltanNut6::
+	lock
+	playse SE_M_REFLECT
+	msgbox Cities_Text_MeltanNut, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_MYTHIC_MELTAN_NUT_6
+	setflag FLAG_CITIES_HIDE_MELTAN_NUT_6
+	call Cities_EventScript_MeltanTryFinish
+	removeobject VAR_LAST_TALKED
+	release
+	end
+
+Cities_EventScript_MythicMeltan::
+	lock
+	faceplayer
+	msgbox Cities_Text_MythicMeltan, MSGBOX_DEFAULT
+	closemessage
+	waitse
+	playmoncry SPECIES_MELTAN, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setvar VAR_0x8004, SPECIES_MELTAN
+	special Script_CitiesSetWildLegendary
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Cities_EventScript_MythicCaughtMeltan
+	goto Cities_EventScript_LegendWithdrew
+
+Cities_EventScript_MythicCaughtMeltan::
+	setflag FLAG_CITIES_MYTHIC_MELTAN_CAUGHT
+	clearflag FLAG_CITIES_HIDE_MYTHIC_MELMETAL
+	release
+	end
+
+Cities_EventScript_MythicMelmetal::
+	lock
+	faceplayer
+	msgbox Cities_Text_MythicMelmetal, MSGBOX_DEFAULT
+	closemessage
+	waitse
+	playmoncry SPECIES_MELMETAL, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setvar VAR_0x8004, SPECIES_MELMETAL
+	special Script_CitiesSetWildLegendary
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Cities_EventScript_MythicCaughtMelmetal
+	goto Cities_EventScript_LegendWithdrew
+
+Cities_EventScript_MythicCaughtMelmetal::
+	setflag FLAG_CITIES_MYTHIC_MELMETAL_CAUGHT
+	release
+	end
+
+Cities_Text_MeltanNut:
+	.string "A heavy hex nut, humming faintly.\p"
+	.string "It's warm, like something living\n"
+	.string "used it for a shell.$"
+
+Cities_Text_MeltanDockStart:
+	.string "CHAMPION! You're just the sort of\n"
+	.string "trouble I need.\p"
+	.string "Hex nuts keep vanishing from the\n"
+	.string "shipyard. Bolts, washers, whole\l"
+	.string "toolboxes - gone overnight.\p"
+	.string "I counted six missing, scattered\n"
+	.string "clean across SLATEPORT.\p"
+	.string "Find them for me? Something about\n"
+	.string "this smells less like a thief and\l"
+	.string "more like an APPETITE.$"
+
+Cities_Text_MeltanDockProgress:
+	.string "Still nuts out there. Whatever's\n"
+	.string "taking them has good taste in\l"
+	.string "hardware.$"
+
+Cities_Text_MeltanDockDone:
+	.string "So the thief was a whole SWARM of\n"
+	.string "little eaters, and you've got the\l"
+	.string "big one now.\p"
+	.string "The shipyard's tools are safe.\n"
+	.string "Mostly.$"
+
+Cities_Text_MythicMeltan:
+	.string "The gathered nuts tremble, roll\n"
+	.string "together, and click into a small\l"
+	.string "body with one bright eye.\p"
+	.string "It eyes your team's metal parts\n"
+	.string "with frank interest.$"
+
+Cities_Text_MythicMelmetal:
+	.string "Every nut and bolt MELTAN ever ate\n"
+	.string "answers at once.\p"
+	.string "They pour together into something\n"
+	.string "huge and ancient, fists like\l"
+	.string "wrecking balls.$"
+
+@ ===================================================================
+@ Hoopa — the Ring Chamber (Task 13.1). Reached through a ring that
+@ appears in the Trick House entrance postgame. The plaque names the
+@ order; the coord events enforce it (SUN->SEA->SKY).
+@ ===================================================================
+
+@ Trick House entrance: the ring appears postgame.
+Cities_EventScript_UpdateHoopaRingEntrance::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Cities_EventScript_HideHoopaRingEntrance
+	clearflag FLAG_CITIES_MYTHIC_HOOPA_RING_NPC
+	return
+
+Cities_EventScript_HideHoopaRingEntrance::
+	setflag FLAG_CITIES_MYTHIC_HOOPA_RING_NPC
+	return
+
+Cities_EventScript_HoopaRingEntrance::
+	lock
+	faceplayer
+	msgbox Cities_Text_HoopaRingEntrance, MSGBOX_DEFAULT
+	closemessage
+	delay 20
+	warp MAP_RING_CHAMBER, 6, 8
+	waitstate
+	release
+	end
+
+@ Ring Chamber: visibility + the exit + the puzzle.
+Cities_EventScript_UpdateRingChamber::
+	goto_if_unset FLAG_CITIES_MYTHIC_HOOPA_RING, Cities_EventScript_RingChamberUnsolved
+	goto_if_set FLAG_CITIES_MYTHIC_HOOPA_CAUGHT, Cities_EventScript_RingChamberHideHoopa
+	clearflag FLAG_CITIES_HIDE_MYTHIC_HOOPA
+	goto Cities_EventScript_RingChamberPrize
+Cities_EventScript_RingChamberHideHoopa::
+	setflag FLAG_CITIES_HIDE_MYTHIC_HOOPA
+Cities_EventScript_RingChamberPrize::
+	goto_if_set FLAG_CITIES_MYTHIC_HOOPA_PRIZE_TAKEN, Cities_EventScript_RingChamberHidePrize
+	clearflag FLAG_CITIES_HIDE_MYTHIC_HOOPA_PRIZE
+	return
+Cities_EventScript_RingChamberHidePrize::
+	setflag FLAG_CITIES_HIDE_MYTHIC_HOOPA_PRIZE
+	return
+Cities_EventScript_RingChamberUnsolved::
+	setflag FLAG_CITIES_HIDE_MYTHIC_HOOPA
+	setflag FLAG_CITIES_HIDE_MYTHIC_HOOPA_PRIZE
+	return
+
+Cities_EventScript_RingChamberExit::
+	lockall
+	warp MAP_ROUTE110_TRICK_HOUSE_ENTRANCE, 10, 6
+	waitstate
+	releaseall
+	end
+
+Cities_EventScript_HoopaPlaque::
+	msgbox Cities_Text_HoopaPlaque, MSGBOX_SIGN
+	end
+
+Cities_EventScript_HoopaRingSun::
+	lockall
+	goto_if_set FLAG_CITIES_MYTHIC_HOOPA_RING, Cities_EventScript_HoopaRingLit
+	playse SE_M_REFLECT
+	msgbox Cities_Text_HoopaRingGlow, MSGBOX_DEFAULT
+	setvar VAR_TEMP_1, 1
+	releaseall
+	end
+
+Cities_EventScript_HoopaRingSea::
+	lockall
+	goto_if_set FLAG_CITIES_MYTHIC_HOOPA_RING, Cities_EventScript_HoopaRingLit
+	playse SE_M_REFLECT
+	msgbox Cities_Text_HoopaRingGlow, MSGBOX_DEFAULT
+	setvar VAR_TEMP_1, 2
+	releaseall
+	end
+
+Cities_EventScript_HoopaRingSky::
+	lockall
+	goto_if_set FLAG_CITIES_MYTHIC_HOOPA_RING, Cities_EventScript_HoopaRingLit
+	playse SE_M_REFLECT
+	msgbox Cities_Text_HoopaRingOpen, MSGBOX_DEFAULT
+	setflag FLAG_CITIES_MYTHIC_HOOPA_RING
+	clearflag FLAG_CITIES_HIDE_MYTHIC_HOOPA
+	clearflag FLAG_CITIES_HIDE_MYTHIC_HOOPA_PRIZE
+	addobject LOCALID_RING_CHAMBER_HOOPA
+	addobject LOCALID_RING_CHAMBER_PRIZE
+	playse SE_M_HEAL_BELL
+	releaseall
+	end
+
+Cities_EventScript_HoopaRingLit::
+	releaseall
+	end
+
+Cities_EventScript_MythicHoopa::
+	lock
+	faceplayer
+	msgbox Cities_Text_MythicHoopa, MSGBOX_DEFAULT
+	closemessage
+	waitse
+	playmoncry SPECIES_HOOPA, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setvar VAR_0x8004, SPECIES_HOOPA
+	special Script_CitiesSetWildLegendary
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Cities_EventScript_MythicCaughtHoopa
+	goto Cities_EventScript_LegendWithdrew
+
+Cities_EventScript_MythicCaughtHoopa::
+	setflag FLAG_CITIES_MYTHIC_HOOPA_CAUGHT
+	release
+	end
+
+Cities_EventScript_HoopaPrize::
+	lockall
+	goto_if_set FLAG_CITIES_MYTHIC_HOOPA_PRIZE_TAKEN, Cities_EventScript_HoopaPrizeGone
+	checkitemspace ITEM_PRISON_BOTTLE
+	goto_if_eq VAR_RESULT, FALSE, Cities_EventScript_HoopaPrizeFull
+	giveitem ITEM_PRISON_BOTTLE
+	setflag FLAG_CITIES_MYTHIC_HOOPA_PRIZE_TAKEN
+	setflag FLAG_CITIES_HIDE_MYTHIC_HOOPA_PRIZE
+	removeobject LOCALID_RING_CHAMBER_PRIZE
+	releaseall
+	end
+
+Cities_EventScript_HoopaPrizeFull::
+	msgbox Cities_Text_HoopaPrizeFull, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Cities_EventScript_HoopaPrizeGone::
+	releaseall
+	end
+
+Cities_Text_HoopaRingEntrance:
+	.string "A golden ring hangs in the air\n"
+	.string "where no ring should be.\p"
+	.string "Reaching toward it, your hand\n"
+	.string "passes through - and pulls the\l"
+	.string "rest of you after.$"
+
+Cities_Text_HoopaPlaque:
+	.string "Carved around a stone hoop:\p"
+	.string "“The rings answer in turn.\n"
+	.string "SUN, then SEA, then SKY.”$"
+
+Cities_Text_HoopaRingGlow:
+	.string "The ring lights, and holds.$"
+
+Cities_Text_HoopaRingOpen:
+	.string "The last ring blazes. All three\n"
+	.string "hoops line up - and something\l"
+	.string "reaches through from the other\l"
+	.string "side, laughing.$"
+
+Cities_Text_MythicHoopa:
+	.string "It spins a ring on one finger,\n"
+	.string "grinning at you through it.\p"
+	.string "Six rings, six mischiefs. It has\n"
+	.string "been waiting for someone worth\l"
+	.string "the trouble.$"
+
+Cities_Text_HoopaPrizeFull:
+	.string "A bottle rests in the last ring.\n"
+	.string "Your BAG is too full to take it.$"

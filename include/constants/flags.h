@@ -2030,6 +2030,19 @@
 #define FLAG_CITIES_MYTHIC_MELTAN_HUNT_DONE                    (CITIES_FLAGS_START + 0x162) // all 6 nuts collected; Meltan appears
 #define FLAG_CITIES_MYTHIC_SHAYMIN_GRACIDEA_GIVEN              (CITIES_FLAGS_START + 0x163) // Gracidea handed out once
 #define FLAG_CITIES_MYTHIC_MELTAN_CAUGHT                       (CITIES_FLAGS_START + 0x164) // gate for Melmetal appearing
+#define FLAG_CITIES_MYTHIC_MELMETAL_CAUGHT                     (CITIES_FLAGS_START + 0x165)
+#define FLAG_CITIES_HIDE_MYTHIC_MELTAN                         (CITIES_FLAGS_START + 0x166)
+#define FLAG_CITIES_HIDE_MYTHIC_MELMETAL                       (CITIES_FLAGS_START + 0x167)
+#define FLAG_CITIES_HIDE_MELTAN_NUT_1                          (CITIES_FLAGS_START + 0x168) // object-hide, separate from the collected marker
+#define FLAG_CITIES_HIDE_MELTAN_NUT_2                          (CITIES_FLAGS_START + 0x169)
+#define FLAG_CITIES_HIDE_MELTAN_NUT_3                          (CITIES_FLAGS_START + 0x16A)
+#define FLAG_CITIES_HIDE_MELTAN_NUT_4                          (CITIES_FLAGS_START + 0x16B)
+#define FLAG_CITIES_HIDE_MELTAN_NUT_5                          (CITIES_FLAGS_START + 0x16C)
+#define FLAG_CITIES_HIDE_MELTAN_NUT_6                          (CITIES_FLAGS_START + 0x16D)
+#define FLAG_CITIES_HIDE_MELTAN_DOCKWORKER                     (CITIES_FLAGS_START + 0x16E)
+#define FLAG_CITIES_MYTHIC_MELTAN_STARTED                      (CITIES_FLAGS_START + 0x16F) // dockworker started the hunt
+#define FLAG_CITIES_MYTHIC_HOOPA_RING_NPC                      (CITIES_FLAGS_START + 0x170) // the ring in the Trick House entrance (object hide)
+#define FLAG_CITIES_MYTHIC_HOOPA_PRIZE_TAKEN                   (CITIES_FLAGS_START + 0x171) // Prison Bottle collected
 #define CITIES_FLAGS_END                            (CITIES_FLAGS_START + 0x1FF) // 512 flags reserved (+64 bytes in SaveBlock1)
 #define NUM_CITIES_FLAGS                            (CITIES_FLAGS_END - CITIES_FLAGS_START + 1)
 

@@ -14,6 +14,7 @@ Route110_TrickHouseEntrance_MapScripts::
 	@ 6: 'Trick Master' mechadoll ready to give Tent reward from final challenge (if bag was full)
 
 Route110_TrickHouseEntrance_OnTransition:
+	call Cities_EventScript_UpdateHoopaRingEntrance
 	setflag FLAG_LANDMARK_TRICK_HOUSE
 	goto_if_eq VAR_TRICK_HOUSE_ENTER_FROM_CORRIDOR, 1, Route110_TrickHouseEntrance_EventScript_EnterFromCorridor
 	goto_if_eq VAR_TRICK_HOUSE_PRIZE_PICKUP, 1, Route110_TrickHouseEntrance_EventScript_SetReadyToGiveReward

@@ -196,6 +196,7 @@ gStdScripts_End::
 	.include "data/maps/CoralmereRuins/scripts.inc"
 	.include "data/maps/StormsEye/scripts.inc"
 	.include "data/maps/CoralmerePast/scripts.inc"
+	.include "data/maps/RingChamber/scripts.inc"
 	.include "data/maps/Underwater_Route129/scripts.inc"
 	.include "data/maps/Underwater_Route105/scripts.inc"
 	.include "data/maps/Underwater_Route125/scripts.inc"
