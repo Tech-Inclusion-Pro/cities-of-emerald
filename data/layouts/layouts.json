@@ -9466,6 +9466,17 @@
       "border_filepath": "data/layouts/CoralmereRuins/border.bin",
       "blockdata_filepath": "data/layouts/CoralmereRuins/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_CORALMERE_PAST",
+      "name": "CoralmerePast_Layout",
+      "width": 24,
+      "height": 28,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Pacifidlog",
+      "border_filepath": "data/layouts/CoralmerePast/border.bin",
+      "blockdata_filepath": "data/layouts/CoralmerePast/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

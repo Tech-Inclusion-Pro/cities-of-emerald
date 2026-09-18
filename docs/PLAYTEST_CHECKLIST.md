@@ -304,6 +304,12 @@ Keys: X = A, Z = B, Enter = Start (rebind in mGBA → Settings → Keyboard).
 - [ ] Flag set: full village — street, square with the CO…ALME…E sign stone, carved doorway (east house), bell tower base (north), swept house floor with hearth (west house); no encounters, no items
 - [ ] Emerging from the pocket surfaces you at the dive patch
 
+## Task 12.4 — Coralmere, past (Phase 12; debug-warp only until 12.5)
+- [ ] Debug warp to CORALMERE PAST: walled village, tower top-center, sandy square + street, two log houses, beach, dock into the cove
+- [ ] The five readables mirror the ruins at the same spots: town sign whole ("May every boat come home"), bell rope + chalk scoreboard (tower), fresh lintel (east house door), stew on the hearth (west house door), brass barometer reading FAIR (stone post by the dock)
+- [ ] Six villagers, all unnamed, everyday lines; the elder mentions the young researcher who checks the barometer; the kids' "four rings" matches the tower scoreboard
+- [ ] Music is the Pacifidlog/Lilycove theme; weather sunny; no encounters, no exits (dev warp out)
+
 ## Known-pending (do not report as bugs)
 - Access menu: numeric HP, patterned bars, sound cues, subtitles, hold-to-confirm are hidden until wired (6.3/6.7 follow-ups)
 - Difficulty change at Pokémon Centers: [PROPOSED], not built
