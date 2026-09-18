@@ -522,6 +522,10 @@ enum TrainerClassID
     TRAINER_CLASS_LADY_FRLG,
     TRAINER_CLASS_PAINTER_FRLG,
 
+    // Cities of Emerald: Team Epoch (GDD 7.2, Task 12.5)
+    TRAINER_CLASS_TEAM_EPOCH,
+    TRAINER_CLASS_EPOCH_ADMIN,
+
     TRAINER_CLASS_COUNT,
 };
 

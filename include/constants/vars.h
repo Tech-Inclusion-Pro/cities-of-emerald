@@ -306,6 +306,11 @@
 #define VAR_CITIES_H2B_STATE                             (CITIES_VARS_START + 0x19) // 0 = not started, 1 = gardener met, 2 = complete
 #define VAR_CITIES_H5A_STATE                             (CITIES_VARS_START + 0x1A) // 0 = not started, 1 = historian met, 2 = Arceus caught + finale spoken
 #define VAR_CITIES_STARTER_SPECIAL                       (CITIES_VARS_START + 0x1B) // Special-region starter slot (0 Eevee, 1 Pikachu, 2 Ditto); VAR_STARTER_MON holds the rival's encoded roll instead
+#define VAR_CITIES_V1_STATE                              (CITIES_VARS_START + 0x1C) // Epoch V1: 0 = not started, 1 = researcher met / annex open, 2 = Meridian beaten, 3 = arc complete
+#define VAR_CITIES_V2_STATE                              (CITIES_VARS_START + 0x1D) // Epoch V2: 0 = locked, 1 = Stone met / camp active, 2 = Gnomon beaten, 3 = letter read / arc complete
+#define VAR_CITIES_V3_STATE                              (CITIES_VARS_START + 0x1E) // Epoch V3: 0 = locked, 1 = wormholes open, 2 = Archivist seen, 3 = arc complete (reward given)
+#define VAR_CITIES_V4_STATE                              (CITIES_VARS_START + 0x1F) // Epoch V4: 0 = locked, 1 = rifts open, 2 = Coralmere walked, 3 = arc complete (trio caught)
+#define VAR_CITIES_V5_STATE                              (CITIES_VARS_START + 0x20) // Epoch V5: 0 = locked, 1 = storm / evacuation, 2 = islet reached, 3 = rift shut (hands to 12.6)
 #define CITIES_VARS_END                                  (CITIES_VARS_START + 0x3F) // 64 vars reserved (+128 bytes in SaveBlock1)
 
 #define VARS_END                                         CITIES_VARS_END

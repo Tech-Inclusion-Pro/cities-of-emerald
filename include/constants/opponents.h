@@ -880,6 +880,20 @@
 // trainer flags in SaveBlock1, save-format break taken once with headroom).
 // IDs 863..926 are reserved for Team Epoch (Phase 12, TRAINER_EPOCH_*), the
 // title-defense ranked NPC roster (Phase 14), and future events.
+
+// Team Epoch (GDD 7.2, Task 12.5). The Archivist's ID is reserved and must
+// never be used in a trainerbattle — he is not fought (GDD ending rules).
+#define TRAINER_EPOCH_GRUNT_1               863
+#define TRAINER_EPOCH_GRUNT_2               864
+#define TRAINER_EPOCH_GRUNT_3               865
+#define TRAINER_EPOCH_GRUNT_4               866
+#define TRAINER_EPOCH_GRUNT_5               867
+#define TRAINER_EPOCH_MERIDIAN_1            868
+#define TRAINER_EPOCH_MERIDIAN_2            869
+#define TRAINER_EPOCH_GNOMON_1              870
+#define TRAINER_EPOCH_GNOMON_2              871
+#define TRAINER_EPOCH_ARCHIVIST             872
+
 #define TRAINERS_COUNT_EMERALD     927
 #define MAX_TRAINERS_COUNT_EMERALD 928
 

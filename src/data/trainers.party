@@ -17001,3 +17001,161 @@ AI: Basic Trainer
 
 Glaceon
 Level: 40
+
+=== TRAINER_EPOCH_GRUNT_1 ===
+Name: GRUNT
+Class: Team Epoch
+Pic: Scientist
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Bronzong
+Level: 57
+
+Beheeyem
+Level: 58
+
+=== TRAINER_EPOCH_GRUNT_2 ===
+Name: GRUNT
+Class: Team Epoch
+Pic: Hex Maniac
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+Claydol
+Level: 57
+
+Golurk
+Level: 58
+
+=== TRAINER_EPOCH_GRUNT_3 ===
+Name: GRUNT
+Class: Team Epoch
+Pic: Scientist
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Runerigus
+Level: 62
+
+Sigilyph
+Level: 63
+
+=== TRAINER_EPOCH_GRUNT_4 ===
+Name: GRUNT
+Class: Team Epoch
+Pic: Hex Maniac
+Gender: Female
+Music: Female
+AI: Basic Trainer
+
+Porygon2
+Level: 62
+
+Bronzong
+Level: 63
+
+=== TRAINER_EPOCH_GRUNT_5 ===
+Name: GRUNT
+Class: Team Epoch
+Pic: Scientist
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Cofagrigus
+Level: 72
+
+Claydol
+Level: 72
+
+Golurk
+Level: 73
+
+=== TRAINER_EPOCH_MERIDIAN_1 ===
+Name: MERIDIAN
+Class: Epoch Admin
+Pic: Psychic F
+Gender: Female
+Music: Female
+AI: Check Bad Move / Try To Faint
+
+Musharna
+Level: 59
+
+Grumpig
+Level: 59
+
+Gardevoir
+Level: 60
+
+=== TRAINER_EPOCH_MERIDIAN_2 ===
+Name: MERIDIAN
+Class: Epoch Admin
+Pic: Psychic F
+Gender: Female
+Music: Female
+AI: Check Bad Move / Try To Faint
+
+Musharna
+Level: 74
+
+Reuniclus
+Level: 74
+
+Grumpig
+Level: 74
+
+Gardevoir
+Level: 75
+
+=== TRAINER_EPOCH_GNOMON_1 ===
+Name: GNOMON
+Class: Epoch Admin
+Pic: Scientist
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint
+
+Klinklang
+Level: 64
+
+Magnezone
+Level: 64
+
+Metagross
+Level: 65
+
+=== TRAINER_EPOCH_GNOMON_2 ===
+Name: GNOMON
+Class: Epoch Admin
+Pic: Scientist
+Gender: Male
+Music: Male
+AI: Check Bad Move / Try To Faint
+
+Klinklang
+Level: 74
+
+Porygon-Z
+Level: 74
+
+Magnezone
+Level: 74
+
+Metagross
+Level: 75
+
+=== TRAINER_EPOCH_ARCHIVIST ===
+Name: ARCHIVIST
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+AI: Basic Trainer
+
+Bronzong
+Level: 80

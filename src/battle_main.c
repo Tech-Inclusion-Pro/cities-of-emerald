@@ -417,6 +417,9 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_RUIN_MANIAC_FRLG] =     { _("RUIN MANIAC"), 12 },
     [TRAINER_CLASS_LADY_FRLG] =            { _("LADY"), 50 },
     [TRAINER_CLASS_PAINTER_FRLG] =         { _("PAINTER"), 4 },
+    // Cities of Emerald: Team Epoch (GDD 7.2, Task 12.5)
+    [TRAINER_CLASS_TEAM_EPOCH] =           { _("TEAM EPOCH"), 10 },
+    [TRAINER_CLASS_EPOCH_ADMIN] =          { _("EPOCH ADMIN"), 25 },
 };
 
 static void (*const sTurnActionsFuncsTable[])(void) =
