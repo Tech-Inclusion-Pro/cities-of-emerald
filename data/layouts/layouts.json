@@ -9477,6 +9477,17 @@
       "border_filepath": "data/layouts/CoralmerePast/border.bin",
       "blockdata_filepath": "data/layouts/CoralmerePast/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_MOSSDEEP_ANNEX",
+      "name": "MossdeepAnnex_Layout",
+      "width": 14,
+      "height": 10,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/MossdeepAnnex/border.bin",
+      "blockdata_filepath": "data/layouts/MossdeepAnnex/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

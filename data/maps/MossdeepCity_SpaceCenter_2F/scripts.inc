@@ -1,9 +1,27 @@
 MossdeepCity_SpaceCenter_2F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_SpaceCenter_2F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_SpaceCenter_2F_OnLoad
+	map_script MAP_SCRIPT_ON_RESUME, MossdeepCity_SpaceCenter_2F_OnResume
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_SpaceCenter_2F_OnFrame
 	.byte 0
 
+@ Cities of Emerald (V1): the annex door appears once the Devon
+@ researcher has pointed the player at it (metatile copied from the
+@ stair door at 13,1).
+MossdeepCity_SpaceCenter_2F_OnLoad:
+	call_if_ge VAR_CITIES_V1_STATE, 1, MossdeepCity_SpaceCenter_2F_EventScript_ShowAnnexDoor
+	end
+
+MossdeepCity_SpaceCenter_2F_EventScript_ShowAnnexDoor::
+	setmetatile 10, 1, 0x2CC, FALSE
+	return
+
+MossdeepCity_SpaceCenter_2F_OnResume:
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Cities_EventScript_M1TryRemoveCaughtBird
+	end
+
 MossdeepCity_SpaceCenter_2F_OnTransition:
+	call Cities_EventScript_UpdateV1Mew
 	call_if_eq VAR_MOSSDEEP_CITY_STATE, 2, MossdeepCity_SpaceCenter_2F_EventScript_MoveCivilians
 	call_if_eq VAR_MOSSDEEP_SPACE_CENTER_STATE, 2, MossdeepCity_SpaceCenter_2F_EventScript_MoveDefeatedGrunts
 	end
