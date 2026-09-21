@@ -32,7 +32,7 @@ gText_Birch_AndYouAre::
 	.string "And you are?$"
 
 gText_Birch_BoyOrGirl::
-	.string "Which of these looks\n"
+	.string "Which of these styles\n"
 	.string "feels like you?$"
 
 gText_Birch_WhatsYourName::
