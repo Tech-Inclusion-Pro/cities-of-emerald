@@ -4,6 +4,7 @@
 #include "scanline_effect.h"
 #include "task.h"
 #include "title_screen.h"
+#include "cities_title_splash.h"
 #include "libgcnmultiboot.h"
 #include "malloc.h"
 #include "gpu_regs.h"
@@ -1034,7 +1035,7 @@ void MainCB2_Intro(void)
 static void MainCB2_EndIntro(void)
 {
     if (!UpdatePaletteFade())
-        SetMainCallback2(CB2_InitTitleScreen);
+        SetMainCallback2(CB2_InitCitiesTitleSplash); // Cities splash, then the title screen
 }
 
 static void LoadCopyrightGraphics(u16 tilesetAddress, u16 tilemapAddress, u16 paletteOffset)

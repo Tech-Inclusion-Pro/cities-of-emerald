@@ -1,5 +1,9 @@
 # Cities of Emerald
 
+<p align="center">
+  <img src="docs/images/title_screen.gif" alt="Animated Cities of Emerald title screen: a pixel-art skyline at dusk with an emerald tower, forest, lighthouse, and rocket over shimmering water, clouds drifting by" width="720">
+</p>
+
 **An accessibility-first Pokémon Emerald ROM hack.** Every Pokémon from all nine generations, every legendary woven into a story you can actually follow, a new villain arc about memory and loss — and a game that meets players where they are, whatever their access needs.
 
 > ⚠️ **Status: in development.** All content through Phase 15 is built and passing the automated test suite (5,500+ tests). A public release patch (BPS) will follow the final playtest pass. **No ROMs are or ever will be distributed from this repository** — see [Legal](#legal--license).

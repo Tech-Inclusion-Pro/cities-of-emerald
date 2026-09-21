@@ -1,0 +1,6 @@
+#ifndef GUARD_CITIES_TITLE_SPLASH_H
+#define GUARD_CITIES_TITLE_SPLASH_H
+
+void CB2_InitCitiesTitleSplash(void);
+
+#endif // GUARD_CITIES_TITLE_SPLASH_H
