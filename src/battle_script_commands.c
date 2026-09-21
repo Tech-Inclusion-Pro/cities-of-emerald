@@ -2079,7 +2079,13 @@ static void Cmd_getexp(void)
 
                     if (wasSentOut || holdEffect == HOLD_EFFECT_EXP_SHARE)
                     {
-                        PrepareStringBattle(STRINGID_PKMNGAINEDEXP, 0);
+                        // Cities of Emerald: at/over the soft cap the reward
+                        // shrinks to ~1 — say why instead of "gained 1 Exp."
+                        if (B_EXP_CAP_TYPE != EXP_CAP_NONE
+                         && gParties[B_TRAINER_PLAYER][*expMonId].level >= GetCurrentLevelCap())
+                            PrepareStringBattle(STRINGID_CITIESEXPCAPPED, 0);
+                        else
+                            PrepareStringBattle(STRINGID_PKMNGAINEDEXP, 0);
                     }
                     else if (IsGen6ExpShareEnabled() && !gBattleStruct->teamGotExpMsgPrinted) // Print 'the rest of your team got exp' message once, when all of the sent-in mons were given experience
                     {

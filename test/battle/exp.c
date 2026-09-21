@@ -237,3 +237,23 @@ AI_ONE_VS_TWO_BATTLE_TEST("Both opponent's Pokemon give experience in battle aga
         EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_EXP), expectedXp);
     }
 }
+
+WILD_BATTLE_TEST("Cities: soft level cap explains the tiny Exp gain at the cap")
+{
+    // No badges in tests, so the automatic Cities cap is 15 (GDD 9.1).
+    // Level 60 is 45 over the cap: the reward divides by 64 and floors to 0.
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Level(60); }
+        OPPONENT(SPECIES_WYNAUT) { Level(1); HP(1); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Scratch!");
+        MESSAGE("The wild Wynaut fainted!");
+        MESSAGE("Wobbuffet is at the level cap and gained only a little Exp.");
+    } THEN {
+        // Scaled exp guarantees a minimum of 1 even over the cap.
+        EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_EXP),
+                  gExperienceTables[gSpeciesInfo[SPECIES_WOBBUFFET].growthRate][60] + 1);
+    }
+}
